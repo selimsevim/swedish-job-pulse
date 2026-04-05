@@ -1,0 +1,353 @@
+{
+  "generated": "2026-04-05",
+  "years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "occupation_fields": [
+    {
+      "concept_id": "NYW6_mP6_vwf",
+      "term": "Hälso- och sjukvård",
+      "by_year": [
+        75676,
+        80756,
+        83167,
+        83641,
+        87775,
+        113565,
+        157719,
+        190230,
+        101600,
+        82703
+      ]
+    },
+    {
+      "concept_id": "RPTn_bxG_ExZ",
+      "term": "Försäljning, inköp, marknadsföring",
+      "by_year": [
+        135168,
+        116069,
+        110056,
+        113546,
+        76678,
+        123747,
+        204769,
+        221007,
+        123213,
+        70592
+      ]
+    },
+    {
+      "concept_id": "X82t_awd_Qyc",
+      "term": "Administration, ekonomi, juridik",
+      "by_year": [
+        72718,
+        75688,
+        71913,
+        64424,
+        47135,
+        72793,
+        103572,
+        88819,
+        77323,
+        62979
+      ]
+    },
+    {
+      "concept_id": "MVqp_eS8_kDZ",
+      "term": "Pedagogiskt arbete",
+      "by_year": [
+        99248,
+        91766,
+        82139,
+        72152,
+        53999,
+        66045,
+        84139,
+        67612,
+        55908,
+        51989
+      ]
+    },
+    {
+      "concept_id": "GazW_2TU_kJw",
+      "term": "Socialt arbete",
+      "by_year": [
+        59783,
+        56247,
+        51292,
+        45499,
+        35527,
+        44395,
+        61142,
+        59825,
+        49845,
+        48744
+      ]
+    },
+    {
+      "concept_id": "apaJ_2ja_LuF",
+      "term": "Data/IT",
+      "by_year": [
+        33408,
+        37344,
+        43513,
+        42893,
+        33120,
+        53678,
+        67082,
+        59688,
+        42792,
+        36828
+      ]
+    },
+    {
+      "concept_id": "6Hq3_tKo_V57",
+      "term": "Tekniskt arbete",
+      "by_year": [
+        22460,
+        27139,
+        28250,
+        24791,
+        17494,
+        29605,
+        41688,
+        41012,
+        36457,
+        28986
+      ]
+    },
+    {
+      "concept_id": "ASGV_zcE_bWf",
+      "term": "Transport",
+      "by_year": [
+        28613,
+        32930,
+        30581,
+        26457,
+        18220,
+        30253,
+        53361,
+        48531,
+        36183,
+        28690
+      ]
+    },
+    {
+      "concept_id": "bh3H_Y3h_5eD",
+      "term": "Chefer och verksamhetsledare",
+      "by_year": [
+        27281,
+        28446,
+        29255,
+        27489,
+        21423,
+        31116,
+        41381,
+        34312,
+        29517,
+        28276
+      ]
+    },
+    {
+      "concept_id": "ScKy_FHB_7wT",
+      "term": "Hotell, restaurang, storhushåll",
+      "by_year": [
+        42112,
+        40380,
+        36348,
+        34343,
+        18254,
+        30673,
+        47175,
+        37420,
+        29627,
+        27162
+      ]
+    },
+    {
+      "concept_id": "yhCP_AqT_tns",
+      "term": "Installation, drift, underhåll",
+      "by_year": [
+        23245,
+        24346,
+        24349,
+        21398,
+        16697,
+        26565,
+        43063,
+        49173,
+        36263,
+        25775
+      ]
+    },
+    {
+      "concept_id": "wTEr_CBC_bqh",
+      "term": "Industriell tillverkning",
+      "by_year": [
+        21062,
+        26964,
+        22817,
+        20216,
+        14329,
+        30645,
+        48242,
+        46339,
+        32415,
+        25291
+      ]
+    },
+    {
+      "concept_id": "j7Cq_ZJe_GkT",
+      "term": "Bygg och anläggning",
+      "by_year": [
+        27918,
+        23660,
+        21302,
+        20212,
+        18484,
+        27443,
+        36322,
+        24654,
+        20979,
+        20844
+      ]
+    },
+    {
+      "concept_id": "whao_Q6A_ScE",
+      "term": "Sanering och renhållning",
+      "by_year": [
+        18179,
+        22757,
+        20434,
+        17460,
+        11409,
+        17347,
+        35035,
+        27056,
+        17570,
+        17035
+      ]
+    },
+    {
+      "concept_id": "E7hm_BLq_fqZ",
+      "term": "Säkerhetsarbete",
+      "by_year": [
+        4024,
+        4971,
+        4578,
+        4427,
+        3486,
+        4948,
+        7883,
+        8656,
+        7024,
+        6800
+      ]
+    },
+    {
+      "concept_id": "kJeN_wmw_9wX",
+      "term": "Naturvetenskapligt arbete",
+      "by_year": [
+        3971,
+        4999,
+        5288,
+        5336,
+        4847,
+        6570,
+        8475,
+        6961,
+        5932,
+        5379
+      ]
+    },
+    {
+      "concept_id": "9puE_nYg_crq",
+      "term": "Kultur, media, design",
+      "by_year": [
+        7657,
+        7259,
+        7057,
+        6001,
+        4543,
+        6835,
+        8544,
+        5929,
+        4784,
+        4823
+      ]
+    },
+    {
+      "concept_id": "VuuL_7CH_adj",
+      "term": "Naturbruk",
+      "by_year": [
+        5505,
+        5552,
+        3825,
+        3486,
+        3386,
+        4182,
+        5189,
+        4686,
+        4350,
+        4073
+      ]
+    },
+    {
+      "concept_id": "Uuf1_GMh_Uvw",
+      "term": "Kropps- och skönhetsvård",
+      "by_year": [
+        4028,
+        3701,
+        3169,
+        2914,
+        1764,
+        2543,
+        3065,
+        2530,
+        2330,
+        2046
+      ]
+    },
+    {
+      "concept_id": "PaxQ_o1G_wWH",
+      "term": "Hantverksyrken",
+      "by_year": [
+        2241,
+        2115,
+        1661,
+        1809,
+        1347,
+        2235,
+        2927,
+        2463,
+        1853,
+        1858
+      ]
+    },
+    {
+      "concept_id": "bH5L_uXD_ZAX",
+      "term": "Militärt arbete",
+      "by_year": [
+        390,
+        503,
+        700,
+        924,
+        690,
+        796,
+        1015,
+        1171,
+        1129,
+        1368
+      ]
+    }
+  ]
+}

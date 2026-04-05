@@ -1,0 +1,245 @@
+{
+  "last_updated": "2026-04-05",
+  "weeks_tracked": 14,
+  "occupation_fields": [
+    {
+      "term": "Militära yrken",
+      "concept_id": "bH5L_uXD_ZAX",
+      "median_lifespan_days": 32,
+      "mean_lifespan_days": 40,
+      "pct_filled_under_7d": 0.9,
+      "pct_open_over_60d": 14.6,
+      "sample_size": 1368
+    },
+    {
+      "term": "Data/IT",
+      "concept_id": "apaJ_2ja_LuF",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 51,
+      "pct_filled_under_7d": 7.5,
+      "pct_open_over_60d": 22.4,
+      "sample_size": 36828
+    },
+    {
+      "term": "Hotell, restaurang, storhushåll",
+      "concept_id": "ScKy_FHB_7wT",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 47,
+      "pct_filled_under_7d": 2.1,
+      "pct_open_over_60d": 18.8,
+      "sample_size": 27162
+    },
+    {
+      "term": "Transport, distribution, lager",
+      "concept_id": "ASGV_zcE_bWf",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 43,
+      "pct_filled_under_7d": 5.5,
+      "pct_open_over_60d": 15.9,
+      "sample_size": 28690
+    },
+    {
+      "term": "Yrken med teknisk inriktning",
+      "concept_id": "6Hq3_tKo_V57",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 40,
+      "pct_filled_under_7d": 3.4,
+      "pct_open_over_60d": 13.0,
+      "sample_size": 28986
+    },
+    {
+      "term": "Installation, drift, underhåll",
+      "concept_id": "yhCP_AqT_tns",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 46,
+      "pct_filled_under_7d": 2.8,
+      "pct_open_over_60d": 17.6,
+      "sample_size": 25775
+    },
+    {
+      "term": "Bygg och anläggning",
+      "concept_id": "j7Cq_ZJe_GkT",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 42,
+      "pct_filled_under_7d": 3.6,
+      "pct_open_over_60d": 14.7,
+      "sample_size": 20844
+    },
+    {
+      "term": "Industriell tillverkning",
+      "concept_id": "wTEr_CBC_bqh",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 40,
+      "pct_filled_under_7d": 5.0,
+      "pct_open_over_60d": 13.1,
+      "sample_size": 25291
+    },
+    {
+      "term": "Sanering och renhållning",
+      "concept_id": "whao_Q6A_ScE",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 42,
+      "pct_filled_under_7d": 2.9,
+      "pct_open_over_60d": 16.0,
+      "sample_size": 17035
+    },
+    {
+      "term": "Naturbruk",
+      "concept_id": "VuuL_7CH_adj",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 38,
+      "pct_filled_under_7d": 2.2,
+      "pct_open_over_60d": 12.7,
+      "sample_size": 4073
+    },
+    {
+      "term": "Kropps- och skönhetsvård",
+      "concept_id": "Uuf1_GMh_Uvw",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 56,
+      "pct_filled_under_7d": 0.4,
+      "pct_open_over_60d": 27.2,
+      "sample_size": 2046
+    },
+    {
+      "term": "Hantverk",
+      "concept_id": "PaxQ_o1G_wWH",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 42,
+      "pct_filled_under_7d": 4.2,
+      "pct_open_over_60d": 16.5,
+      "sample_size": 1858
+    },
+    {
+      "term": "Yrken med social inriktning",
+      "concept_id": "GazW_2TU_kJw",
+      "median_lifespan_days": 28,
+      "mean_lifespan_days": 38,
+      "pct_filled_under_7d": 2.2,
+      "pct_open_over_60d": 12.3,
+      "sample_size": 48744
+    },
+    {
+      "term": "Säkerhet och bevakning",
+      "concept_id": "E7hm_BLq_fqZ",
+      "median_lifespan_days": 27,
+      "mean_lifespan_days": 36,
+      "pct_filled_under_7d": 2.2,
+      "pct_open_over_60d": 11.2,
+      "sample_size": 6800
+    },
+    {
+      "term": "Kultur, media, design",
+      "concept_id": "9puE_nYg_crq",
+      "median_lifespan_days": 26,
+      "mean_lifespan_days": 40,
+      "pct_filled_under_7d": 3.4,
+      "pct_open_over_60d": 15.0,
+      "sample_size": 4823
+    },
+    {
+      "term": "Hälso- och sjukvård",
+      "concept_id": "NYW6_mP6_vwf",
+      "median_lifespan_days": 24,
+      "mean_lifespan_days": 35,
+      "pct_filled_under_7d": 8.6,
+      "pct_open_over_60d": 12.7,
+      "sample_size": 82703
+    },
+    {
+      "term": "Naturvetenskap",
+      "concept_id": "kJeN_wmw_9wX",
+      "median_lifespan_days": 23,
+      "mean_lifespan_days": 32,
+      "pct_filled_under_7d": 2.4,
+      "pct_open_over_60d": 8.2,
+      "sample_size": 5379
+    },
+    {
+      "term": "Pedagogik",
+      "concept_id": "MVqp_eS8_kDZ",
+      "median_lifespan_days": 20,
+      "mean_lifespan_days": 26,
+      "pct_filled_under_7d": 2.9,
+      "pct_open_over_60d": 5.4,
+      "sample_size": 51989
+    }
+  ],
+  "overall": {
+    "median_lifespan_days": 28,
+    "mean_lifespan_days": 40,
+    "longest_running_ads": [
+      {
+        "id": "29465044",
+        "headline": "Kock till Turkiska köket",
+        "occupation_field": "Hotell, restaurang, storhushåll",
+        "days_open": 416,
+        "region": "Västra Götalands län"
+      },
+      {
+        "id": "29719109",
+        "headline": "Farmaceut till Apotek Hjärtat ICA Maxi, Visby",
+        "occupation_field": "Hälso- och sjukvård",
+        "days_open": 319,
+        "region": "Gotlands län"
+      },
+      {
+        "id": "29777436",
+        "headline": "Städare/Lokalvårdare",
+        "occupation_field": "Sanering och renhållning",
+        "days_open": 291,
+        "region": "Skåne län"
+      },
+      {
+        "id": "29799942",
+        "headline": "Massage Therapist - Accommodation Provided",
+        "occupation_field": "Kropps- och skönhetsvård",
+        "days_open": 280,
+        "region": "Skåne län"
+      },
+      {
+        "id": "29815251",
+        "headline": "Pizzabagare",
+        "occupation_field": "Hotell, restaurang, storhushåll",
+        "days_open": 274,
+        "region": "Västra Götalands län"
+      },
+      {
+        "id": "29820889",
+        "headline": "Städare med körkort och erfarenhet! ",
+        "occupation_field": "Sanering och renhållning",
+        "days_open": 271,
+        "region": "—"
+      },
+      {
+        "id": "29824618",
+        "headline": "Städare i Malmö ",
+        "occupation_field": "Sanering och renhållning",
+        "days_open": 270,
+        "region": "Skåne län"
+      },
+      {
+        "id": "29824626",
+        "headline": "Städare i Stockholm ",
+        "occupation_field": "Sanering och renhållning",
+        "days_open": 270,
+        "region": "Stockholms län"
+      },
+      {
+        "id": "29824638",
+        "headline": "Cleaner in Stockholm ",
+        "occupation_field": "Sanering och renhållning",
+        "days_open": 270,
+        "region": "Stockholms län"
+      },
+      {
+        "id": "29824645",
+        "headline": "Cleaner in Malmö ",
+        "occupation_field": "Sanering och renhållning",
+        "days_open": 270,
+        "region": "Skåne län"
+      }
+    ]
+  },
+  "method_note": "Field-level lifespan statistics are built from closed archive ads for the 2025 publication year. Longest-running ads are fetched live."
+}
