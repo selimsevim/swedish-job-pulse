@@ -47530,5 +47530,172 @@
         "count": 1271
       }
     ]
+  },
+  {
+    "week": "2026-W15",
+    "date": "2026-04-06",
+    "total_ads": 48166,
+    "total_positions": 124580,
+    "remote_ads": 749,
+    "remote_by_field": [
+      {
+        "concept_id": "X82t_awd_Qyc",
+        "term": "Administration, ekonomi, juridik",
+        "count": 194
+      },
+      {
+        "concept_id": "apaJ_2ja_LuF",
+        "term": "Data/IT",
+        "count": 182
+      },
+      {
+        "concept_id": "RPTn_bxG_ExZ",
+        "term": "Försäljning, inköp, marknadsföring",
+        "count": 122
+      },
+      {
+        "concept_id": "NYW6_mP6_vwf",
+        "term": "Hälso- och sjukvård",
+        "count": 75
+      },
+      {
+        "concept_id": "6Hq3_tKo_V57",
+        "term": "Yrken med teknisk inriktning",
+        "count": 60
+      }
+    ],
+    "entry_level_ads": 8221,
+    "entry_by_field": [
+      {
+        "concept_id": "NYW6_mP6_vwf",
+        "term": "Hälso- och sjukvård",
+        "count": 1975
+      },
+      {
+        "concept_id": "MVqp_eS8_kDZ",
+        "term": "Pedagogik",
+        "count": 1333
+      },
+      {
+        "concept_id": "GazW_2TU_kJw",
+        "term": "Yrken med social inriktning",
+        "count": 1211
+      },
+      {
+        "concept_id": "RPTn_bxG_ExZ",
+        "term": "Försäljning, inköp, marknadsföring",
+        "count": 704
+      },
+      {
+        "concept_id": "E7hm_BLq_fqZ",
+        "term": "Säkerhet och bevakning",
+        "count": 560
+      }
+    ],
+    "trainee_ads": 26,
+    "larling_ads": 26,
+    "by_occupation_field": [
+      {
+        "concept_id": "apaJ_2ja_LuF",
+        "term": "Data/IT",
+        "count": 9295
+      },
+      {
+        "concept_id": "NYW6_mP6_vwf",
+        "term": "Hälso- och sjukvård",
+        "count": 7453
+      },
+      {
+        "concept_id": "GazW_2TU_kJw",
+        "term": "Yrken med social inriktning",
+        "count": 4642
+      },
+      {
+        "concept_id": "MVqp_eS8_kDZ",
+        "term": "Pedagogik",
+        "count": 4607
+      }
+    ],
+    "by_occupation_group": [
+      {
+        "concept_id": "sq3e_WVv_Fjd",
+        "term": "Personliga assistenter",
+        "count": 2334
+      },
+      {
+        "concept_id": "Z8ci_bBE_tmx",
+        "term": "Grundutbildade sjuksköterskor",
+        "count": 2047
+      },
+      {
+        "concept_id": "oQUQ_D11_HPx",
+        "term": "Grundskollärare",
+        "count": 1701
+      },
+      {
+        "concept_id": "BAeH_eg8_T2d",
+        "term": "IT-säkerhetsspecialister",
+        "count": 1518
+      },
+      {
+        "concept_id": "DJh5_yyF_hEM",
+        "term": "Mjukvaru- och systemutvecklare m.fl.",
+        "count": 1420
+      }
+    ],
+    "by_region": [
+      {
+        "concept_id": "CifL_Rzy_Mku",
+        "term": "Stockholms län",
+        "count": 11491
+      },
+      {
+        "concept_id": "zdoY_6u5_Krt",
+        "term": "Västra Götalands län",
+        "count": 7270
+      },
+      {
+        "concept_id": "CaRE_1nn_cSU",
+        "term": "Skåne län",
+        "count": 5373
+      },
+      {
+        "concept_id": "oLT3_Q9p_3nn",
+        "term": "Östergötlands län",
+        "count": 2654
+      },
+      {
+        "concept_id": "MtbE_xWT_eMi",
+        "term": "Jönköpings län",
+        "count": 2012
+      }
+    ],
+    "by_municipality": [
+      {
+        "concept_id": "AvNB_uwa_6n6",
+        "term": "Stockholm",
+        "count": 6930
+      },
+      {
+        "concept_id": "PVZL_BQT_XtL",
+        "term": "Göteborg",
+        "count": 3170
+      },
+      {
+        "concept_id": "oYPt_yRA_Smm",
+        "term": "Malmö",
+        "count": 1646
+      },
+      {
+        "concept_id": "bm2x_1mr_Qhx",
+        "term": "Linköping",
+        "count": 1310
+      },
+      {
+        "concept_id": "otaF_bQY_4ZD",
+        "term": "Uppsala",
+        "count": 1234
+      }
+    ]
   }
 ]
