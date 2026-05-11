@@ -48375,5 +48375,177 @@
         "count": 1074
       }
     ]
+  },
+  {
+    "week": "2026-W20",
+    "date": "2026-05-11",
+    "total_ads": 46466,
+    "total_positions": 97563,
+    "remote_ads": 742,
+    "remote_by_field": [
+      {
+        "concept_id": "X82t_awd_Qyc",
+        "term": "Administration, ekonomi, juridik",
+        "count": 184
+      },
+      {
+        "concept_id": "apaJ_2ja_LuF",
+        "term": "Data/IT",
+        "count": 141
+      },
+      {
+        "concept_id": "RPTn_bxG_ExZ",
+        "term": "Försäljning, inköp, marknadsföring",
+        "count": 138
+      },
+      {
+        "concept_id": "NYW6_mP6_vwf",
+        "term": "Hälso- och sjukvård",
+        "count": 108
+      },
+      {
+        "concept_id": "6Hq3_tKo_V57",
+        "term": "Yrken med teknisk inriktning",
+        "count": 66
+      }
+    ],
+    "entry_level_ads": 1151,
+    "entry_by_field": [
+      {
+        "concept_id": "NYW6_mP6_vwf",
+        "term": "Hälso- och sjukvård",
+        "count": 285
+      },
+      {
+        "concept_id": "GazW_2TU_kJw",
+        "term": "Yrken med social inriktning",
+        "count": 229
+      },
+      {
+        "concept_id": "RPTn_bxG_ExZ",
+        "term": "Försäljning, inköp, marknadsföring",
+        "count": 139
+      },
+      {
+        "concept_id": "ScKy_FHB_7wT",
+        "term": "Hotell, restaurang, storhushåll",
+        "count": 70
+      },
+      {
+        "concept_id": "ASGV_zcE_bWf",
+        "term": "Transport, distribution, lager",
+        "count": 66
+      }
+    ],
+    "trainee_ads": 4,
+    "larling_ads": 23,
+    "by_occupation_field": [
+      {
+        "concept_id": "NYW6_mP6_vwf",
+        "term": "Hälso- och sjukvård",
+        "count": 6525
+      },
+      {
+        "concept_id": "RPTn_bxG_ExZ",
+        "term": "Försäljning, inköp, marknadsföring",
+        "count": 4786
+      },
+      {
+        "concept_id": "MVqp_eS8_kDZ",
+        "term": "Pedagogik",
+        "count": 4673
+      },
+      {
+        "concept_id": "GazW_2TU_kJw",
+        "term": "Yrken med social inriktning",
+        "count": 4514
+      },
+      {
+        "concept_id": "X82t_awd_Qyc",
+        "term": "Administration, ekonomi, juridik",
+        "count": 3923
+      }
+    ],
+    "by_occupation_group": [
+      {
+        "concept_id": "sq3e_WVv_Fjd",
+        "term": "Personliga assistenter",
+        "count": 2395
+      },
+      {
+        "concept_id": "Z8ci_bBE_tmx",
+        "term": "Grundutbildade sjuksköterskor",
+        "count": 1749
+      },
+      {
+        "concept_id": "oQUQ_D11_HPx",
+        "term": "Grundskollärare",
+        "count": 1624
+      },
+      {
+        "concept_id": "oXSW_fbY_XrY",
+        "term": "Företagssäljare",
+        "count": 1505
+      },
+      {
+        "concept_id": "DJh5_yyF_hEM",
+        "term": "Mjukvaru- och systemutvecklare m.fl.",
+        "count": 1350
+      }
+    ],
+    "by_region": [
+      {
+        "concept_id": "CifL_Rzy_Mku",
+        "term": "Stockholms län",
+        "count": 11470
+      },
+      {
+        "concept_id": "zdoY_6u5_Krt",
+        "term": "Västra Götalands län",
+        "count": 7259
+      },
+      {
+        "concept_id": "CaRE_1nn_cSU",
+        "term": "Skåne län",
+        "count": 5240
+      },
+      {
+        "concept_id": "oLT3_Q9p_3nn",
+        "term": "Östergötlands län",
+        "count": 2501
+      },
+      {
+        "concept_id": "MtbE_xWT_eMi",
+        "term": "Jönköpings län",
+        "count": 1855
+      }
+    ],
+    "by_municipality": [
+      {
+        "concept_id": "AvNB_uwa_6n6",
+        "term": "Stockholm",
+        "count": 7030
+      },
+      {
+        "concept_id": "PVZL_BQT_XtL",
+        "term": "Göteborg",
+        "count": 3345
+      },
+      {
+        "concept_id": "oYPt_yRA_Smm",
+        "term": "Malmö",
+        "count": 1634
+      },
+      {
+        "concept_id": "bm2x_1mr_Qhx",
+        "term": "Linköping",
+        "count": 1240
+      },
+      {
+        "concept_id": "otaF_bQY_4ZD",
+        "term": "Uppsala",
+        "count": 1154
+      }
+    ]
   }
 ]
