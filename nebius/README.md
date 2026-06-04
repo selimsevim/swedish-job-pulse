@@ -14,6 +14,13 @@ Nothing in this folder reads secrets. Do **not** commit credentials. Nebius auth
 is provided at run time through the platform (environment / secret store), never
 checked into the repo.
 
+**Reproduce the ML layer locally in one command** (Jobs 2 + 3 below), with a
+printed metric summary:
+
+```bash
+./scripts/rebuild_career_reality.sh
+```
+
 ---
 
 ## The pipeline as serverless jobs

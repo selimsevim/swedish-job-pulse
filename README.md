@@ -78,6 +78,26 @@ installed.
 
 ### How to generate the data
 
+**One command** rebuilds and validates everything (and prints the headline
+model metrics):
+
+```bash
+./scripts/rebuild_career_reality.sh
+```
+
+It trains the model, builds the artifacts, checks that all four JSON files are
+valid, and prints the ML-vs-baseline comparison — for example:
+
+```text
+ML trend accuracy:        0.61
+Baseline trend accuracy:  0.23
+ML macro-F1:              0.48
+Baseline macro-F1:        0.12
+```
+
+It prefers the repo `venv` (which has scikit-learn), then falls back to
+`python3`; override with `PYTHON=/path/to/python`. Or run the two steps by hand:
+
 ```bash
 python3 -m pip install -r requirements-ml.txt   # optional; enables the ML model
 python3 scripts/train_career_signal_model.py     # -> occupation_forecast.json, model_metrics.json
