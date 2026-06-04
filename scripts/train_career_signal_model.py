@@ -51,15 +51,32 @@ raises on missing inputs or a missing ML runtime; the website always gets a
 valid artifact (forecast may be flagged source="baseline").
 """
 
-import argparse
-import datetime as dt
-import json
 import os
+
+# Keep scikit-learn/joblib output quiet on platforms where physical-core
+# detection can fail inside restricted or serverless containers. This is set
+# before other imports so sklearn sees it as early as possible.
+os.environ["LOKY_MAX_CPU_COUNT"] = (
+    os.environ.get("LOKY_MAX_CPU_COUNT") or str(os.cpu_count() or 1)
+)
+
+import argparse
+import contextlib
+import datetime as dt
+import io
+import json
 import statistics
+import warnings
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 DATA_DIR = os.path.join(ROOT, "data")
+
+warnings.filterwarnings(
+    "ignore",
+    message="Could not find the number of physical cores.*",
+    category=UserWarning,
+)
 
 HORIZON_WEEKS = 4          # forecast this many weeks ahead
 MIN_HISTORY = 8            # weeks of contiguous history needed to build features
@@ -92,7 +109,8 @@ except Exception:  # pragma: no cover - defensive
 def load_regressor():
     """Return (estimator_factory, name) or (None, reason) if unavailable."""
     try:
-        from sklearn.ensemble import HistGradientBoostingRegressor
+        with contextlib.redirect_stderr(io.StringIO()):
+            from sklearn.ensemble import HistGradientBoostingRegressor
         return (lambda: HistGradientBoostingRegressor(
             max_iter=300, learning_rate=0.06, max_depth=4,
             min_samples_leaf=15, random_state=42),
@@ -100,7 +118,8 @@ def load_regressor():
     except Exception:
         pass
     try:
-        from sklearn.ensemble import RandomForestRegressor
+        with contextlib.redirect_stderr(io.StringIO()):
+            from sklearn.ensemble import RandomForestRegressor
         return (lambda: RandomForestRegressor(
             n_estimators=200, max_depth=8, min_samples_leaf=4,
             random_state=42, n_jobs=-1),
@@ -316,10 +335,12 @@ def build_forecast():
             ma4_te = [meta[i]["ma4"] for i in test_i]
             try:
                 model = factory()
-                model.fit(Xtr, ytr)
-                pred = [max(0.0, float(v)) for v in model.predict(Xte)]
+                with contextlib.redirect_stderr(io.StringIO()):
+                    model.fit(Xtr, ytr)
+                    pred = [max(0.0, float(v)) for v in model.predict(Xte)]
                 trained_model = factory()
-                trained_model.fit(X, y)  # refit on all data for live forecasting
+                with contextlib.redirect_stderr(io.StringIO()):
+                    trained_model.fit(X, y)  # refit on all data for live forecasting
 
                 acc, f1 = trend_accuracy_and_f1(yte, pred, last_te)
                 b_acc, b_f1 = trend_accuracy_and_f1(yte, last_te, last_te)
@@ -357,9 +378,9 @@ def build_forecast():
                 notes.append(f"Trained {model_name} on {len(train_i)} samples, "
                              f"tested on {len(test_i)}.")
                 if metrics["beats_baseline_trend_f1"] and not metrics["beats_baseline_mae"]:
-                    notes.append("Model matches the baseline on demand level (MAE) "
-                                 "but is far stronger at calling trend direction, "
-                                 "which is what the career advice consumes.")
+                    notes.append("Model does not beat the persistence baseline on "
+                                 "count MAE, but is far stronger at calling trend "
+                                 "direction, which is what the career advice consumes.")
             except Exception as exc:
                 trained_model = None
                 notes.append(f"ML training failed ({exc.__class__.__name__}); "
@@ -405,7 +426,8 @@ def build_forecast():
             continue
 
         if trained_model is not None:
-            pred = max(0.0, float(trained_model.predict([feature_row])[0]))
+            with contextlib.redirect_stderr(io.StringIO()):
+                pred = max(0.0, float(trained_model.predict([feature_row])[0]))
             source = "ml"
             confidence = "high" if len(counts) >= 12 else "medium"
         else:

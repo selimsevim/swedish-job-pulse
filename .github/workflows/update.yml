@@ -24,7 +24,9 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-ml.txt
 
       - name: Backfill historical snapshots
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.backfill_weeks != '0'
@@ -32,6 +34,9 @@ jobs:
 
       - name: Collect data
         run: python scripts/collect.py
+
+      - name: Rebuild Career Reality Check artifacts
+        run: ./scripts/rebuild_career_reality.sh
 
       - name: Commit data
         run: |

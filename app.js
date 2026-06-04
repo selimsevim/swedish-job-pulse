@@ -45,7 +45,7 @@
     // Free-text target -> occupation field. Ordered: first hit wins, so
     // Data/IT comes before Admin (so "data analyst" maps to IT, not admin).
     const CRC_TARGET_ALIASES = [
-      { field: "apaJ_2ja_LuF", kw: ["develop", "utveckl", "software", "mjukvar", "programmer", "programmer", "devops", "data scientist", "data engineer", "dataingenjör", "frontend", "backend", "fullstack", "it-säkerhet", "cyber", "systemutveckl", "webb"] },
+      { field: "apaJ_2ja_LuF", kw: ["develop", "utveckl", "software", "mjukvar", "programmer", "devops", "data analyst", "dataanalyt", "data scientist", "data engineer", "dataingenjör", "business intelligence", "bi developer", "frontend", "backend", "fullstack", "it-säkerhet", "cyber", "systemutveckl", "webb"] },
       { field: "NYW6_mP6_vwf", kw: ["nurse", "sjukskötersk", "undersköter", "läkare", "doctor", "vårdbiträd", "physician", "tandläk", "barnmorsk"] },
       { field: "GazW_2TU_kJw", kw: ["social worker", "socialsekret", "boendestöd", "behandlingsassist", "personlig assistent", "personal assistant", "socialpedagog", "fritidsled"] },
       { field: "MVqp_eS8_kDZ", kw: ["teacher", "lärare", "förskoll", "pedagog", "barnskötare", "teaching"] },
@@ -59,6 +59,19 @@
       { field: "whao_Q6A_ScE", kw: ["clean", "städ", "lokalvård"] },
       { field: "E7hm_BLq_fqZ", kw: ["security", "väktare", "bevakning"] },
       { field: "X82t_awd_Qyc", kw: ["admin", "ekonom", "economy", "accountant", "controller", "human resources", "receptionist", "kundtjänst", "customer service", "customer support", "analyst", "analytiker", "reporting", "rapporter", "coordinator", "koordinator", "handläggare", "utredare", "planerare"] }
+    ];
+
+    // Common user wording -> closest occupation-group label in JobTech data.
+    // These run before field-level aliases so evidence can anchor on a closer
+    // occupation when the public taxonomy has a clear match.
+    const CRC_TARGET_ROLE_ALIASES = [
+      { term: "Kundtjänstpersonal", kw: ["customer service", "customer support", "kundtjänst", "kundsupport"] },
+      { term: "Lager- och terminalpersonal", kw: ["warehouse", "lager", "warehouse worker"] },
+      { term: "Lastbilsförare", kw: ["truck driver", "lastbilsförare", "lastbilsför", "chaufför"] },
+      { term: "Mjukvaru- och systemutvecklare", kw: ["software developer", "system developer", "systemutvecklare", "mjukvaruutvecklare"] },
+      { term: "Grundutbildade sjuksköterskor", kw: ["nurse", "sjuksköterska", "registered nurse"] },
+      { term: "Grundskollärare", kw: ["teacher", "lärare", "school teacher"] },
+      { term: "Butikssäljare", kw: ["sales", "säljare", "retail sales"] }
     ];
 
     // Fields where roles usually expect working Swedish (customer/colleague
@@ -105,6 +118,18 @@
       return null;
     }
 
+    function crcOccupationFromRoleAlias(targetText) {
+      const t = crcNorm(targetText);
+      if (!t) return null;
+      for (const entry of CRC_TARGET_ROLE_ALIASES) {
+        if (!entry.kw.some((kw) => t.includes(kw))) continue;
+        const termNeedle = crcNorm(entry.term);
+        const hit = crcGetOccupations().find((occ) => crcNorm(occ.term).includes(termNeedle));
+        if (hit) return hit;
+      }
+      return null;
+    }
+
     function crcTopOccupationInField(fieldId) {
       if (!fieldId) return null;
       const inField = crcGetOccupations().filter((occ) => occ.field_id === fieldId);
@@ -131,7 +156,10 @@
       // 1) direct token/substring match against occupation terms
       const direct = crcMatchOccupation(targetText);
       if (direct) return { occ: direct, viaAlias: false };
-      // 2) stem-aware token overlap (handle multi-word free text + word forms)
+      // 2) curated common phrase -> occupation-group aliases
+      const roleAlias = crcOccupationFromRoleAlias(targetText);
+      if (roleAlias) return { occ: roleAlias, viaAlias: true, fieldId: roleAlias.field_id };
+      // 3) stem-aware token overlap (handle multi-word free text + word forms)
       const tokens = crcNorm(targetText).split(/[^a-zåäö0-9]+/).filter((w) => w.length >= 4);
       if (tokens.length) {
         let best = null;
@@ -143,7 +171,7 @@
         });
         if (best && bestScore > 0) return { occ: best, viaAlias: false };
       }
-      // 3) alias -> field -> strongest occupation in that field
+      // 4) alias -> field -> strongest occupation in that field
       const fieldId = crcFieldFromAlias(targetText);
       if (fieldId) {
         const occ = crcTopOccupationInField(fieldId);

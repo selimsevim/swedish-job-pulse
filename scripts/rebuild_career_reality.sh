@@ -19,7 +19,7 @@
 #   data/opportunity_scores.json
 #
 # Python selection (override with PYTHON=/path/to/python):
-#   $PYTHON  ->  repo venv (has scikit-learn)  ->  python3
+#   $PYTHON  ->  .venv created by the setup instructions  ->  python3
 # Without scikit-learn the pipeline still succeeds on a deterministic baseline.
 
 set -euo pipefail
@@ -30,13 +30,17 @@ cd "$ROOT"
 
 if [ -n "${PYTHON:-}" ]; then
   PY="$PYTHON"
-elif [ -x "venv/bin/python" ]; then
-  PY="venv/bin/python"
+elif [ -x ".venv/bin/python" ]; then
+  PY=".venv/bin/python"
 else
   PY="python3"
 fi
 
 echo "==> Python: $PY ($("$PY" --version 2>&1))"
+
+# Keep scikit-learn/joblib logs clean in restricted local/serverless runtimes
+# where physical CPU-core detection can fail.
+export LOKY_MAX_CPU_COUNT="${LOKY_MAX_CPU_COUNT:-4}"
 
 echo
 echo "==> [1/2] Training demand-forecast model..."
@@ -84,12 +88,16 @@ def fmt(x):
     return f"{x:.2f}" if isinstance(x, (int, float)) else "n/a"
 
 if model:
+    print(f"  ML MAE:                   {fmt(model.get('mae'))}")
+    print(f"  Baseline MAE:             {fmt(base.get('mae'))}")
     print(f"  ML trend accuracy:        {fmt(model.get('trend_accuracy'))}")
     print(f"  Baseline trend accuracy:  {fmt(base.get('trend_accuracy'))}")
     print(f"  ML macro-F1:              {fmt(model.get('trend_macro_f1'))}")
     print(f"  Baseline macro-F1:        {fmt(base.get('trend_macro_f1'))}")
-    print(f"  (ML MAE {fmt(model.get('mae'))} vs baseline MAE {fmt(base.get('mae'))} "
-          f"| {m.get('n_samples')} samples, horizon {m.get('horizon_weeks')} weeks)")
+    print(f"  Samples / horizon:        {m.get('n_samples')} samples, {m.get('horizon_weeks')} weeks")
+    if model.get("mae") is not None and base.get("mae") is not None and model.get("mae") > base.get("mae"):
+        print("  Note: baseline is better on count MAE; the site uses ML trend direction as")
+        print("        an advisory signal, while exact vacancy counts remain descriptive.")
 else:
     print("  ML model not trained (scikit-learn not installed).")
     print("  Forecasts came from the deterministic baseline — the site still works.")

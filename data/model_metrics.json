@@ -1,10 +1,10 @@
 {
-  "last_updated": "2026-06-04T20:48:18Z",
+  "last_updated": "2026-06-04T22:19:42Z",
   "methodology_version": "career-signal-forecast-v1",
   "model_source": "ml",
   "notes": [
     "Trained HistGradientBoostingRegressor on 651 samples, tested on 163.",
-    "Model matches the baseline on demand level (MAE) but is far stronger at calling trend direction, which is what the career advice consumes."
+    "Model does not beat the persistence baseline on count MAE, but is far stronger at calling trend direction, which is what the career advice consumes."
   ],
   "metrics": {
     "horizon_weeks": 4,

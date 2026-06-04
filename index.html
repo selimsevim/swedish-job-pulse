@@ -14,7 +14,7 @@
   <header class="page-shell site-header">
     <div>
       <h1 class="site-title">Swedish Job Pulse</h1>
-      <p class="site-subtitle">A blunt, data-driven career reality check for the Swedish job market</p>
+      <p class="site-subtitle">A public-data career reality check for Sweden - not a job board, not a generic career coach</p>
     </div>
   </header>
 
@@ -23,8 +23,8 @@
       <div class="crc">
         <div class="crc-head">
           <span class="crc-eyebrow">Career Reality Check</span>
-          <h2 class="crc-headline">Apply now, prepare first, or pick a nearby role?</h2>
-          <p class="crc-lede">A blunt, data-driven read on the Swedish job market. Tell us where you are and where you want to go. We use public job-ad signals and a 4-week demand forecast to tell you what is realistic now, what is reachable, and what to avoid for now. Not a guarantee &mdash; a reality check before you spend application effort.</p>
+          <h2 class="crc-headline">Before you spend weeks applying, check if the role is realistic.</h2>
+          <p class="crc-lede">A public-data career reality check for the Swedish labour market. Tell us where you are and where you want to go. We use public job-ad signals and a 4-week demand trend forecast to show what is realistic now, what is reachable, and what to avoid for now. Not a guarantee &mdash; practical evidence before you spend application effort.</p>
         </div>
 
         <form class="crc-form" id="crc-form" novalidate>
@@ -116,7 +116,7 @@
             <p>Career Reality Check reads public job-ad signals from Arbetsf&ouml;rmedlingen / JobTech and combines them into one practical view:</p>
             <ul>
               <li><strong>Demand</strong> &mdash; how many active ads each occupation has now.</li>
-              <li><strong>Trend</strong> &mdash; a 4-week demand forecast (a scikit-learn gradient-boosting model trained on weekly history, with a moving-average baseline). Where there is too little history, it falls back to transparent rules.</li>
+              <li><strong>Trend</strong> &mdash; a 4-week demand-direction forecast (a scikit-learn gradient-boosting model trained on weekly history, with a persistence baseline). The model is used for direction, not exact vacancy-count prediction.</li>
               <li><strong>Crowding</strong> &mdash; search attention versus actual demand.</li>
               <li><strong>Entry-level &amp; remote signal</strong> &mdash; how open a field is to beginners and to remote work.</li>
               <li><strong>Regional &amp; skill signal</strong> &mdash; where a field is over-weighted, and which skills are growing.</li>
