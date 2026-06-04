@@ -1,0 +1,5 @@
+# Optional ML dependencies for the Career Reality Check forecast model
+# (scripts/train_career_signal_model.py). Not required for the website or for
+# the deterministic fallback. Installing these enables the scikit-learn model.
+scikit-learn>=1.4
+numpy>=1.26

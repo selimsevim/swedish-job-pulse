@@ -3,228 +3,143 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Swedish Job Pulse | Labour Market Intelligence</title>
+  <title>Swedish Job Pulse | Career Reality Check</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23004ac6'/%3E%3Cpath d='M18 24h28a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V28a4 4 0 0 1 4-4zm8-6h12a4 4 0 0 1 4 4v2H22v-2a4 4 0 0 1 4-4z' fill='white'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-    <link rel="stylesheet" href="style.css">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="page-shell site-header">
     <div>
       <h1 class="site-title">Swedish Job Pulse</h1>
-      <p class="site-subtitle">Swedish labour market, updated weekly</p>
+      <p class="site-subtitle">A blunt, data-driven career reality check for the Swedish job market</p>
     </div>
   </header>
 
-  <nav class="sticky-nav">
-    <div class="page-shell">
-      <div class="section-nav" id="section-nav">
-        <a class="section-nav-link" href="#live-pulse">Live Pulse</a>
-        <a class="section-nav-link" href="#occupation-decay">Occupation Decay</a>
-        <a class="section-nav-link" href="#skill-velocity">Skill Velocity</a>
-        <a class="section-nav-link" href="#demand-gap">Demand Gap</a>
-        <a class="section-nav-link" href="#ad-lifespan">Ad Lifespan</a>
-        <a class="section-nav-link" href="#regional-split">Regional Split</a>
-      </div>
-    </div>
-  </nav>
-
   <main class="page-shell dashboard-main">
-    <section class="dashboard-section nav-target" id="live-pulse">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">Live Pulse</h2>
-          <p class="section-description">A weekly snapshot of active job ads, open positions, remote share, sectors, and regions across Sweden.</p>
+    <section class="dashboard-section nav-target" id="career-reality">
+      <div class="crc">
+        <div class="crc-head">
+          <span class="crc-eyebrow">Career Reality Check</span>
+          <h2 class="crc-headline">Apply now, prepare first, or pick a nearby role?</h2>
+          <p class="crc-lede">A blunt, data-driven read on the Swedish job market. Tell us where you are and where you want to go. We use public job-ad signals and a 4-week demand forecast to tell you what is realistic now, what is reachable, and what to avoid for now. Not a guarantee &mdash; a reality check before you spend application effort.</p>
         </div>
-        <div class="section-meta">
-          <span class="section-meta-label">Last updated</span>
-          <span class="section-meta-value" id="live-pulse-updated">---</span>
-        </div>
-      </div>
 
-      <div class="section-body">
-        <div class="metrics-grid">
-          <div class="metric-card" id="metric-card-total-ads">
-            <p class="metric-label">Active job ads</p>
-            <h3 class="metric-value" id="metric-total-ads">---</h3>
+        <form class="crc-form" id="crc-form" novalidate>
+          <div class="crc-grid">
+            <label class="crc-field">
+              <span class="crc-label">Region</span>
+              <select class="crc-select" id="crc-region" name="region"></select>
+            </label>
+
+            <label class="crc-field">
+              <span class="crc-label">Swedish level</span>
+              <select class="crc-select" id="crc-swedish" name="swedish">
+                <option value="native">Native / fluent</option>
+                <option value="good">Good working Swedish</option>
+                <option value="basic">Basic Swedish</option>
+                <option value="english">English only</option>
+              </select>
+            </label>
+
+            <label class="crc-field">
+              <span class="crc-label">Current experience area</span>
+              <select class="crc-select" id="crc-experience" name="experience">
+                <option value="customer_service">Customer service</option>
+                <option value="sales">Sales</option>
+                <option value="admin">Admin</option>
+                <option value="it">IT / tech</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="education">Education</option>
+                <option value="restaurant">Restaurant / service</option>
+                <option value="logistics">Logistics / warehouse</option>
+                <option value="none">No clear experience</option>
+              </select>
+            </label>
+
+            <label class="crc-field">
+              <span class="crc-label">Target job</span>
+              <input class="crc-input" id="crc-target" name="target" type="text"
+                     placeholder="e.g. data analyst, undersköterska, developer" autocomplete="off">
+            </label>
+
+            <label class="crc-field crc-field--wide">
+              <span class="crc-label">Skills <span class="crc-label-hint">comma-separated</span></span>
+              <input class="crc-input" id="crc-skills" name="skills" type="text"
+                     placeholder="e.g. excel, customer service, python, swedish" autocomplete="off">
+            </label>
           </div>
-          <div class="metric-card" id="metric-card-total-positions">
-            <p class="metric-label">Open positions</p>
-            <h3 class="metric-value" id="metric-total-positions">---</h3>
+
+          <div class="crc-choices">
+            <fieldset class="crc-fieldset">
+              <legend class="crc-label">Level</legend>
+              <div class="crc-pills" id="crc-level">
+                <label class="crc-pill is-active"><input type="radio" name="level" value="entry" checked>Entry-level</label>
+                <label class="crc-pill"><input type="radio" name="level" value="some">Some experience</label>
+                <label class="crc-pill"><input type="radio" name="level" value="experienced">Experienced</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="crc-fieldset">
+              <legend class="crc-label">Remote preference</legend>
+              <div class="crc-pills" id="crc-remote">
+                <label class="crc-pill"><input type="radio" name="remote" value="important">Important</label>
+                <label class="crc-pill is-active"><input type="radio" name="remote" value="nice" checked>Nice to have</label>
+                <label class="crc-pill"><input type="radio" name="remote" value="no">Not important</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="crc-fieldset">
+              <legend class="crc-label">Study willingness</legend>
+              <div class="crc-pills" id="crc-study">
+                <label class="crc-pill is-active"><input type="radio" name="study" value="none" checked>No extra study</label>
+                <label class="crc-pill"><input type="radio" name="study" value="short">1&ndash;3 months</label>
+                <label class="crc-pill"><input type="radio" name="study" value="mid">3&ndash;6 months</label>
+                <label class="crc-pill"><input type="radio" name="study" value="long">6+ months</label>
+              </div>
+            </fieldset>
           </div>
-          <div class="metric-card" id="metric-card-remote-ads">
-            <p class="metric-label">Remote ads</p>
-            <h3 class="metric-value" id="metric-remote-ads">---</h3>
+
+          <div class="crc-actions">
+            <button class="crc-btn" type="submit" id="crc-submit">Check my career reality</button>
+            <span class="crc-model-tag" id="crc-model-tag" hidden></span>
           </div>
-          <div class="metric-card" id="metric-card-remote-share">
-            <p class="metric-label">Remote share</p>
-            <h3 class="metric-value" id="metric-remote-share">---</h3>
+        </form>
+
+        <div class="crc-results" id="crc-results" hidden></div>
+
+        <details class="crc-method">
+          <summary class="crc-method-summary">How this works &amp; its limits</summary>
+          <div class="crc-method-body">
+            <p>Career Reality Check reads public job-ad signals from Arbetsf&ouml;rmedlingen / JobTech and combines them into one practical view:</p>
+            <ul>
+              <li><strong>Demand</strong> &mdash; how many active ads each occupation has now.</li>
+              <li><strong>Trend</strong> &mdash; a 4-week demand forecast (a scikit-learn gradient-boosting model trained on weekly history, with a moving-average baseline). Where there is too little history, it falls back to transparent rules.</li>
+              <li><strong>Crowding</strong> &mdash; search attention versus actual demand.</li>
+              <li><strong>Entry-level &amp; remote signal</strong> &mdash; how open a field is to beginners and to remote work.</li>
+              <li><strong>Regional &amp; skill signal</strong> &mdash; where a field is over-weighted, and which skills are growing.</li>
+            </ul>
+            <p>It is <strong>not</strong> a guarantee of employment and does not replace professional career counselling. Use it as a labour-market reality check before deciding where to spend your application effort. Model evaluation lives in <code>data/model_metrics.json</code>.</p>
           </div>
-          <div class="metric-card" id="metric-card-entry-level" hidden>
-            <p class="metric-label">Entry-level ads</p>
-            <h3 class="metric-value" id="metric-entry-level-ads">---</h3>
-            <p class="metric-note" id="metric-entry-level-share">---</p>
-          </div>
-        </div>
-        <div class="secondary-metrics" id="secondary-metrics" hidden></div>
-
-        <div class="controls-row">
-          <div class="timeframe-selector" id="timeframe-selector">
-            <button class="timeframe-button" data-weeks="4" type="button">4 weeks</button>
-            <button class="timeframe-button is-active" data-weeks="12" type="button">12 weeks</button>
-            <button class="timeframe-button" data-weeks="26" type="button">26 weeks</button>
-            <button class="timeframe-button" data-weeks="0" type="button">All</button>
-          </div>
-          <div class="trend-note" id="trend-note" hidden>More data needed for trend view.</div>
-        </div>
-
-        <div class="charts-layout">
-          <section class="timeseries-section">
-            <h3 class="section-title">Active job ads over time</h3>
-            <canvas class="timeseries-canvas" id="chart-ads-timeline"></canvas>
-          </section>
-
-          <section class="timeseries-section">
-            <h3 class="section-title">Open positions vs active ads over time</h3>
-            <div class="inline-legend">
-              <span class="legend-dot" style="background:#2563eb"></span><span>Active ads</span>
-              <span class="legend-dot" style="background:#006a61"></span><span>Open positions</span>
-            </div>
-            <canvas class="timeseries-canvas" id="chart-ads-vs-positions"></canvas>
-          </section>
-
-          <section>
-            <h3 class="section-title">Job ads by sector this week</h3>
-            <canvas class="bar-canvas" id="chart-sectors"></canvas>
-          </section>
-
-          <section>
-            <h3 class="section-title">Job ads by region this week</h3>
-            <canvas class="bar-canvas" id="chart-regions"></canvas>
-          </section>
-
-          <section class="timeseries-section">
-            <h3 class="section-title">Remote share over time</h3>
-            <div class="inline-legend" id="chart-remote-legend">
-              <span class="legend-dot" style="background:#2563eb"></span><span>Remote share %</span>
-              <span class="legend-group" id="entry-level-legend-item">
-                <span class="legend-dot" style="background:#7c3aed"></span><span>Entry-level share %</span>
-              </span>
-            </div>
-            <canvas class="timeseries-canvas" id="chart-remote-timeline"></canvas>
-          </section>
-
-          <section>
-            <h3 class="section-title">Remote work concentration by sector</h3>
-            <p class="chart-subtitle">Index: 1.0 = national average. Above 1.0 means this sector has more remote ads than average.</p>
-            <p class="helper-copy" id="chart-remote-concentration-empty" hidden>Remote concentration data will appear after the next pipeline run.</p>
-            <canvas class="bar-canvas" id="chart-remote-concentration"></canvas>
-          </section>
-
-          <section>
-            <h3 class="section-title">Entry-level ads by sector</h3>
-            <p class="helper-copy" id="chart-entry-level-empty" hidden>Entry-level sector data will appear after the next pipeline run.</p>
-            <canvas class="bar-canvas" id="chart-entry-level-sectors"></canvas>
-          </section>
-        </div>
+        </details>
       </div>
-    </section>
-
-    <section class="dashboard-section nav-target" id="occupation-decay">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">Occupation Decay</h2>
-          <p class="section-description">Which job categories were common years ago, faded away, or emerged into the mainstream over time.</p>
-        </div>
-        <div class="section-meta">
-          <span class="section-meta-label">Last updated</span>
-          <span class="section-meta-value" id="occupation-decay-updated">---</span>
-        </div>
-      </div>
-      <div class="section-body" id="occupation-decay-body"></div>
-    </section>
-
-    <section class="dashboard-section nav-target" id="skill-velocity">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">Skill Velocity</h2>
-          <p class="section-description">Which specific skills are accelerating, peaking, or fading across Swedish job ads.</p>
-        </div>
-        <div class="section-meta">
-          <span class="section-meta-label">Last updated</span>
-          <span class="section-meta-value" id="skill-velocity-updated">---</span>
-        </div>
-      </div>
-      <div class="section-body" id="skill-velocity-body"></div>
-    </section>
-
-    <section class="dashboard-section nav-target" id="demand-gap">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">Demand Gap</h2>
-          <p class="section-description">Where employer demand and job seeker attention are most out of sync this week.</p>
-        </div>
-        <div class="section-meta">
-          <span class="section-meta-label">Last updated</span>
-          <span class="section-meta-value" id="demand-gap-updated">---</span>
-        </div>
-      </div>
-      <div class="section-body" id="demand-gap-body"></div>
-    </section>
-
-    <section class="dashboard-section nav-target" id="ad-lifespan">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">Ad Lifespan</h2>
-          <p class="section-description">Which roles stay open the longest before being filled or removed, and which disappear almost immediately.</p>
-        </div>
-        <div class="section-meta">
-          <span class="section-meta-label">Last updated</span>
-          <span class="section-meta-value" id="ad-lifespan-updated">---</span>
-        </div>
-      </div>
-      <div class="section-body" id="ad-lifespan-body"></div>
-    </section>
-
-    <section class="dashboard-section nav-target" id="regional-split">
-      <div class="section-head">
-        <div>
-          <h2 class="section-title">Regional Split</h2>
-          <p class="section-description">How each Swedish region is over- or under-weighted in specific occupation fields compared with the national market.</p>
-        </div>
-        <div class="section-meta">
-          <span class="section-meta-label">Last updated</span>
-          <span class="section-meta-value" id="regional-split-updated">---</span>
-        </div>
-      </div>
-      <div class="section-body" id="regional-split-body"></div>
     </section>
   </main>
 
   <footer class="page-shell site-footer">
-    <p class="footer-copy">Data sourced from Arbetsförmedlingen JobTech Development. Updated every Monday.</p>
+    <p class="footer-copy">Data sourced from Arbetsförmedlingen JobTech Development. Not a guarantee of employment.</p>
     <a class="footer-link" href="https://jobtechdev.se" target="_blank" rel="noreferrer">jobtechdev.se</a>
   </footer>
 
   <div class="overlay" id="loading-overlay">
     <div class="overlay-card">
       <div class="overlay-spinner"></div>
-      <p class="helper-copy" style="margin:0;">Loading pulse data...</p>
+      <p class="helper-copy" style="margin:0;">Loading career signals...</p>
     </div>
   </div>
 
-  <div class="overlay hidden" id="error-overlay">
-    <div class="overlay-card">
-      <h2 class="section-title" style="font-size:1.125rem;">Connection Error</h2>
-      <p class="helper-copy" style="margin:0;">Could not load market data from local files. The dashboard fell back to sample pulse data.</p>
-    </div>
-  </div>
-
-    <script src="app.js" defer></script>
-
+  <script src="app.js" defer></script>
 </body>
 </html>

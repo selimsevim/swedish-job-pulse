@@ -1,1 +1,7 @@
 requests==2.32.3
+
+# Optional ML layer (Career Reality Check forecast model).
+# The data pipeline and website run fine without these: train_career_signal_model.py
+# falls back to a pure-stdlib moving-average baseline when scikit-learn is absent.
+# Install them to enable the real ML forecast:
+#   python3 -m pip install -r requirements-ml.txt

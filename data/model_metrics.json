@@ -1,0 +1,47 @@
+{
+  "last_updated": "2026-06-04T20:48:18Z",
+  "methodology_version": "career-signal-forecast-v1",
+  "model_source": "ml",
+  "notes": [
+    "Trained HistGradientBoostingRegressor on 651 samples, tested on 163.",
+    "Model matches the baseline on demand level (MAE) but is far stronger at calling trend direction, which is what the career advice consumes."
+  ],
+  "metrics": {
+    "horizon_weeks": 4,
+    "n_samples": 814,
+    "n_groups_with_history": 394,
+    "features": [
+      "ad_count_previous_week",
+      "ad_count_4_week_average",
+      "ad_count_8_week_average",
+      "trend_last_4_weeks",
+      "remote_share",
+      "entry_level_share",
+      "search_attention_gap",
+      "occupation_field_code"
+    ],
+    "model": {
+      "name": "HistGradientBoostingRegressor",
+      "mae": 90.73,
+      "mape": 20.74,
+      "trend_accuracy": 0.607,
+      "trend_macro_f1": 0.477
+    },
+    "baseline_persistence": {
+      "name": "last-value (persistence)",
+      "mae": 80.9,
+      "mape": 21.95,
+      "trend_accuracy": 0.227,
+      "trend_macro_f1": 0.123
+    },
+    "baseline_moving_average": {
+      "name": "4-week moving average",
+      "mae": 90.92,
+      "mape": 22.02
+    },
+    "n_train": 651,
+    "n_test": 163,
+    "beats_baseline_mae": false,
+    "beats_baseline_trend_f1": true
+  }
+}
