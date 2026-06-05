@@ -13,9 +13,11 @@ FROM python:3.12-slim
 WORKDIR /app
 COPY . /app
 
+# The endpoint needs only FastAPI/uvicorn/pydantic + stdlib; the TF-IDF
+# retrieval uses no ML stack (neural BGE-M3/Qwen3 deps are optional, installed
+# separately per requirements-endpoint.txt). Keeps the image small + fast.
 RUN python -m pip install --no-cache-dir --upgrade pip \
-    && python -m pip install --no-cache-dir -r nebius/cv_fit_endpoint/requirements-endpoint.txt \
-    && python -m pip install --no-cache-dir -r requirements-ml.txt || true
+    && python -m pip install --no-cache-dir -r nebius/cv_fit_endpoint/requirements-endpoint.txt
 
 # Ensure the CV index exists (does not require the optional ML deps).
 RUN python3 scripts/build_cv_match_index.py

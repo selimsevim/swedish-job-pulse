@@ -26,3 +26,6 @@ site_export/
 *.tmp
 
 UI_Screenshots/
+
+# Local Nebius challenge proof (may contain project/registry IDs + tokens) — keep out of git
+challenge_evidence/
