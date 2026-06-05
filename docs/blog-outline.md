@@ -1,8 +1,8 @@
-# Blog Outline: Swedish Job Pulse - Career Reality Check
+# Blog Outline: Swedish Job Pulse - CV Job Fit Scanner
 
 Working title:
 
-`A Public-Data Career Reality Check for Sweden with Serverless ML`
+`A Public-Data CV-to-Job-Market Fit Engine for Sweden with Serverless ML`
 
 Target length: 600-900 words
 
@@ -10,9 +10,9 @@ Hashtag: `#NebiusServerlessChallenge`
 
 ## 1. Problem
 
-People in Sweden often spend weeks applying to roles without knowing whether the role is realistic for their region, experience level, language level, and study runway. Job boards answer "what jobs exist?" but not "is this path realistic for me right now?"
+People in Sweden often spend weeks applying to roles without knowing whether their actual CV fits the public job-ad market. Job boards answer "what jobs exist?" but not "which role family does this CV credibly match right now?"
 
-The goal is not to build a generic career coach. The goal is a public-data career reality check: use Swedish labour-market signals to separate realistic-now paths, reachable paths, and risky or crowded paths.
+The goal is not to build a generic career coach or a complete view of every Swedish job. The goal is a public-data CV-to-market fit layer: extract a career identity from a CV, match it to a Swedish role ontology, then add public job-ad market signals.
 
 ## 2. Why Public Job Data
 
@@ -32,15 +32,18 @@ Static-first architecture:
 
 - Python data and ML scripts generate JSON artifacts.
 - The website is plain HTML/CSS/JS.
-- The frontend reads `data/career_reality.json` and `data/opportunity_scores.json`.
-- There is no backend, database, authentication, or live LLM dependency.
+- The frontend reads `data/cv_match_index.json`, `data/career_reality.json`, and synthetic sample CVs.
+- The static site uses TF-IDF vector retrieval with synonym/domain expansion.
+- There is no backend, database, authentication, or live LLM dependency for the static baseline.
+- Optional `/cv-fit` endpoint uses neural embeddings such as BGE-M3/Qwen-style models when available, with TF-IDF fallback.
 
 Serverless mapping:
 
 - Job 1: public data processing and feature generation.
 - Job 2: ML training and evaluation.
 - Job 3: batch scoring and JSON artifact generation.
-- Optional Endpoint `/career-signal`: live per-user scoring using the same artifacts.
+- Job 4: CV role-skill index build and synthetic CV evaluation.
+- Optional Endpoint `/cv-fit`: server-side CV matching with neural embeddings when available.
 
 ## 4. ML Approach
 
@@ -81,25 +84,23 @@ Avoid claiming that the ML model forecasts counts better than the baseline.
 
 ## 6. Website Output
 
-The user enters:
+The primary user flow:
 
-- Region
-- Swedish level
-- Current experience area
-- Target job
-- Skills
-- Experience level
-- Remote preference
-- Study willingness
+- Upload a PDF CV or paste CV text.
+- Extract skills, role language, seniority, tools, and language signal in-browser.
+- Match the profile to a role ontology with TF-IDF cosine similarity and reranking.
+- Add public market context: demand direction, crowding, regional fit, remote signal.
 
 The website returns:
 
-- Verdict: realistic now, reachable in 3-6 months, risky for now, or not enough signal
-- Evidence panel: trend, forecast, crowding risk, entry-level signal, remote signal, regional fit, matched skills
-- Three role buckets: realistic now, reachable with upgrades, risky/crowded
-- Skills to add
-- Search keywords in Swedish and English
-- Concrete 2-week action plan
+- Main answer
+- Best-fit roles now
+- Adjacent / stretch roles
+- Not your main lane
+- Missing skills and CV improvements
+- Search keywords
+- 7-day action plan
+- Compact market signal
 
 ## 7. Nebius Serverless AI Jobs Mapping
 
@@ -117,21 +118,28 @@ Artifacts produced:
 - `data/model_metrics.json`
 - `data/career_reality.json`
 - `data/opportunity_scores.json`
+- `data/cv_match_index.json`
+- `data/sample_cvs.json`
+- `data/cv_match_metrics.json`
 
 Proof to include:
 
 - Job logs showing `./scripts/rebuild_career_reality.sh`
 - Metric summary from `data/model_metrics.json`
 - Artifact listing or commit diff
-- Optional Endpoint request/response if implemented
+- `/cv-fit` health and response screenshot if demonstrating the endpoint
 
 ## 8. Limitations
 
 - National occupation forecast only; regional fit is a transparent specialization weight.
-- Public job ads are a proxy for labour demand, not a guarantee of employment.
+- Public job ads are a proxy for labour demand, not a guarantee of employment and not all jobs in Sweden.
+- Employers are not generally required to publish every job through Arbetsformedlingen / JobTech.
+- Search pressure is not the same as applicant count.
 - Entry-level, remote, crowding, and skill momentum signals are approximate.
 - Some exact user target titles are mapped to broader public taxonomy fields.
 - Model count MAE does not beat baseline persistence; direction metrics are the reason the ML signal is useful.
+- CV analysis is advisory and should not be treated as hiring certainty.
+- Uploaded or pasted CVs must not be stored.
 
 ## 9. Reproducibility
 

@@ -15,8 +15,8 @@ Public JobTech data
   -> Job 2: ML training and evaluation
   -> Job 3: batch scoring and JSON artifacts
   -> Job 4: CV role-skill index + synthetic-CV evaluation
-  -> Static website  (CV PDF parsed in-browser; nothing uploaded)
-  -> Optional Endpoint: /career-signal, /cv-fit
+  -> Static website  (PDF or pasted CV text parsed in-browser; nothing uploaded)
+  -> Optional Endpoint: /cv-fit
 ```
 
 No credentials are hardcoded here. Nebius authentication, registry credentials, or object-storage credentials must be provided at runtime through the Nebius platform, CLI profile, or secret store.
@@ -35,6 +35,9 @@ It writes and validates:
 - `data/model_metrics.json`
 - `data/career_reality.json`
 - `data/opportunity_scores.json`
+- `data/cv_match_index.json`
+- `data/sample_cvs.json`
+- `data/cv_match_metrics.json`
 
 ## Job 1 - Public Data Processing / Feature Generation
 
@@ -202,7 +205,7 @@ Outputs:
 
 - `data/cv_match_index.json` - roles, skills, seniority, language fit
 - `data/sample_cvs.json` - synthetic CVs for the in-browser demo
-- `data/cv_match_metrics.json` - top-1 / top-3 role-field accuracy
+- `data/cv_match_metrics.json` - primary-domain accuracy and no-collapse metrics
 
 Notes:
 
@@ -233,8 +236,9 @@ runtime online search (which would break reproducibility and static-first):
    consumes a *generated* synonym map instead of a hand-typed one — scalable and
    still fully reproducible (the generation is the job; its output is committed).
 
-The LLM is used only to extract / normalise structure and to write the final
-wording. It never invents the role matching — retrieval + ranking own that.
+No LLM is required in the current repo. If an optional alias-expansion job is
+added later, it should only normalize alias clusters; retrieval and ranking
+still own the role matching.
 
 ## One Combined Serverless Job
 
@@ -269,51 +273,7 @@ docker run --rm -p 8000:8000 swedish-job-pulse
 
 For Nebius, publish the image to a public or Nebius-accessible registry, then reference that image in the Serverless AI Job.
 
-## Optional Endpoint - `/career-signal`
-
-The website does not require a live endpoint. It reads precomputed JSON files.
-
-If an Endpoint is added later, it should expose the same scoring logic for live user-profile requests:
-
-```http
-POST /career-signal
-Content-Type: application/json
-```
-
-Example request:
-
-```json
-{
-  "region": "Stockholms län",
-  "swedish_level": "good",
-  "experience": "customer_service",
-  "target": "data analyst",
-  "skills": ["excel", "sql"],
-  "level": "entry",
-  "remote": "nice",
-  "study": "mid"
-}
-```
-
-Example response shape:
-
-```json
-{
-  "verdict": "reachable",
-  "opportunity_score": 58,
-  "evidence": {
-    "forecast_direction": "grow",
-    "crowding_risk": "medium",
-    "entry_level_signal": "weak",
-    "regional_fit": "medium"
-  },
-  "next_actions": ["Apply to nearby roles", "Add SQL", "Build a small reporting portfolio"]
-}
-```
-
-This is intentionally marked optional because the challenge story works with Jobs alone: public data processing, ML training, batch scoring, and static delivery.
-
-### Optional Endpoint - `/cv-fit`
+## Optional Endpoint - `/cv-fit`
 
 This endpoint is **implemented** (FastAPI) in
 [`nebius/cv_fit_endpoint/`](cv_fit_endpoint/) — see its README to run it.
@@ -350,7 +310,7 @@ secrets or credentials. The model needs no fine-tuning.
 ## Hardware And Cost Notes
 
 - CPU is enough for all current scripts.
-- The dataset is small: the four challenge artifacts total under 1 MB in the current repo.
+- The dataset is small: the core challenge artifacts are lightweight JSON files in the current repo.
 - No persistent server is required after artifacts are generated.
 - Serverless Jobs are a good fit because the workload starts, writes artifacts, and exits.
 - Endpoint costs should be avoided unless live per-request scoring is actually needed.
@@ -363,7 +323,7 @@ Capture:
 - Job logs for rebuild command and metrics
 - Generated artifact listing or commit diff
 - Static website screenshot after artifact generation
-- Optional Endpoint request/response if implemented
+- `/cv-fit` `/health` and request/response screenshots if using the endpoint path
 
 Do not capture:
 

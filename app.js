@@ -834,11 +834,20 @@
       const skills = (cvIndex?.skill_vocab || [])
         .filter((s) => s.variants.some((v) => low.includes(v)))
         .map((s) => s.skill);
+      const roles = (cvIndex?.roles || [])
+        .filter((r) => (r.aliases || []).some((a) => low.includes(a)))
+        .map((r) => r.title);
 
       let swedish = "none";
       if (/svenska|swedish/.test(low)) {
-        if (/(modersmål|native|flytande|fluent|professional)/.test(low)) swedish = "native";
-        else if (/(good|goda|arbetsnivå|working)/.test(low)) swedish = "good";
+        const nearAfter = (words) => new RegExp(`(svenska|swedish)\\s*[:/,-]?\\s*[^.;,\\n]{0,30}${words}`).test(low);
+        const nearBefore = (words) => new RegExp(`${words}\\s*[^.;,\\n]{0,15}(svenska|swedish)`).test(low);
+        const native = "(modersmål|native|flytande|fluent)";
+        const good = "(good|goda|arbetsnivå|working|professional|b2|c1)";
+        const basic = "(basic|grundläggande|sfi|a1|a2|b1)";
+        if (nearAfter(native) || nearBefore(native)) swedish = "native";
+        else if (nearAfter(good) || nearBefore(good)) swedish = "good";
+        else if (nearAfter(basic) || nearBefore(basic)) swedish = "basic";
         else swedish = "basic";
       }
       const languages = [];
@@ -855,7 +864,7 @@
       else seniority = "entry";
 
       return {
-        text: String(text || ""), skills, languages, swedish, seniority,
+        text: String(text || ""), skills, roles, languages, swedish, seniority,
         years: maxY, weakSwedish: swedish === "none" || swedish === "basic"
       };
     }
@@ -884,7 +893,7 @@
     function crcCvBucket(profile, scored) {
       const weights = {};
       scored.slice(0, 6).forEach((s) => { weights[s.domain] = (weights[s.domain] || 0) + s.fit; });
-      let pdomain = null, bw = -1;
+      let pdomain = null, bw = 0;
       for (const d in weights) if (weights[d] > bw) { bw = weights[d]; pdomain = d; }
       const adjMap = cvIndex?.domain_adjacency || {};
       const adjacent = new Set(adjMap[pdomain] || []);
@@ -1064,11 +1073,24 @@
       el.hidden = false;
     }
 
+    function crcCvClearReport() {
+      const container = document.getElementById("cv-results");
+      if (!container) return;
+      container.hidden = true;
+      container.innerHTML = "";
+    }
+
     function crcCvAnalyseText(text, sourceLabel) {
       if (!cvIndex) { crcCvSetStatus("CV index not loaded — run scripts/build_cv_match_index.py.", true); return; }
-      const profile = crcCvExtract(text);
+      crcCvClearReport();
+      const cleanText = String(text || "").trim();
+      if (cleanText.length < 40) {
+        crcCvSetStatus("Not enough CV information yet. Add role titles, skills, tools, language level, and recent work or study history.", true);
+        return;
+      }
+      const profile = crcCvExtract(cleanText);
       if (!profile.skills.length && !profile.roles.length) {
-        crcCvSetStatus("Couldn't read recognisable skills from this PDF. It may be a scanned image — try a text-based PDF or a sample below.", true);
+        crcCvSetStatus("Not enough recognisable CV information yet. Add role titles, skills, tools, language level, and recent work or study history.", true);
         return;
       }
       const report = crcCvBuildReport(profile);
@@ -1095,6 +1117,7 @@
     async function crcCvHandleFile(file) {
       if (!file) return;
       if (!/pdf$/i.test(file.name) && file.type !== "application/pdf") {
+        crcCvClearReport();
         crcCvSetStatus("Please choose a PDF file.", true);
         return;
       }
@@ -1115,8 +1138,13 @@
       const fileInput = document.getElementById("cv-file");
       const browse = document.getElementById("cv-browse");
       const drop = document.getElementById("cv-drop");
+      const textArea = document.getElementById("cv-text");
+      const analyseText = document.getElementById("cv-analyse-text");
       if (browse && fileInput) browse.addEventListener("click", () => fileInput.click());
       if (fileInput) fileInput.addEventListener("change", (e) => crcCvHandleFile(e.target.files && e.target.files[0]));
+      if (analyseText && textArea) {
+        analyseText.addEventListener("click", () => crcCvAnalyseText(textArea.value, "pasted CV text"));
+      }
       if (drop) {
         ["dragenter", "dragover"].forEach((ev) => drop.addEventListener(ev, (e) => {
           e.preventDefault(); drop.classList.add("is-drag");

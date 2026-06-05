@@ -176,6 +176,31 @@ class _Engine:
     # ---- public entry point --------------------------------------------
     def analyze(self, cv_text, region=None, swedish_level=None, target_role=None):
         profile = bm.extract_cv(cv_text or "")
+        if not profile["skills"] and not profile["roles"] and len(bm.tokenize(cv_text or "")) < 4:
+            return {
+                "main_answer": "Not enough CV information to produce a job-fit report.",
+                "primary_domain": None,
+                "domain_label": None,
+                "best_fit_roles": [],
+                "adjacent_roles": [],
+                "not_your_main_lane_roles": [],
+                "missing_skills": [],
+                "cv_improvements": [
+                    "Add role titles, skills, tools, language level, and recent work or study history."
+                ],
+                "search_keywords": [],
+                "action_plan_7_day": [
+                    "Paste a fuller CV or provide a text-based PDF before using the report."
+                ],
+                "market_signal": None,
+                "backend": self.backend,
+                "extracted": {
+                    "seniority": profile["seniority"],
+                    "domain": None,
+                    "tools": [],
+                    "languages": profile["languages"],
+                },
+            }
         if swedish_level in ("native", "good", "basic", "none"):
             profile["swedish"] = swedish_level
             profile["weak_swedish"] = swedish_level in ("none", "basic")

@@ -2,7 +2,7 @@
 
 Swedish Job Pulse is a public-data career guidance website for people in Sweden. It has two ways in:
 
-1. **CV Job Fit Scanner** (primary) &mdash; upload a PDF CV and get a one-page CV-to-market fit report: best-fit roles now, stretch roles, roles to avoid for now, missing skills, CV fixes, search keywords and a 7-day plan.
+1. **CV Job Fit Scanner** (primary) &mdash; upload a PDF CV or paste CV text and get a one-page CV-to-market fit report: best-fit roles now, stretch roles, roles to avoid for now, missing skills, CV fixes, search keywords and a 7-day plan.
 2. **Career Reality Check** (fallback) &mdash; answer a few questions (target job, region, skills, level) instead of uploading a CV.
 
 It answers one practical question:
@@ -13,14 +13,14 @@ This is not a job board and not a generic AI career coach. It is a static websit
 
 ## CV Job Fit Scanner
 
-Upload a PDF CV &rarr; get a one-page job-fit report.
+Upload a PDF CV, or paste CV text, &rarr; get a one-page job-fit report.
 
-**Privacy / reproducibility.** The CV is parsed **entirely in your browser** (pdf.js). It is **never uploaded and never stored**, and no real CV is committed to this repo. The challenge build is demoed and evaluated only on **synthetic, fictional CVs** in [`data/sample_cvs.json`](data/sample_cvs.json).
+**Privacy / reproducibility.** PDFs are parsed **entirely in your browser** with pdf.js, and pasted CV text is analyzed locally in the page. CV content is **never uploaded and never stored**, and no real CV is committed to this repo. The challenge build is demoed and evaluated only on **synthetic, fictional CVs** in [`data/sample_cvs.json`](data/sample_cvs.json).
 
 Three layers:
 
-- **Extraction** &mdash; the PDF text is parsed in-browser into `{skills, roles, languages, seniority}`.
-- **Retrieval + ranking** &mdash; the profile is embedded and matched against a role ontology ([`data/cv_match_index.json`](data/cv_match_index.json)), then reranked by skill overlap, seniority, domain fit and Swedish-language fit, enriched with public demand / crowding / regional / trend signals. The shipped static site uses a reproducible **multilingual TF-IDF vector space** with synonym/domain expansion (so `SFMC == Salesforce Marketing Cloud == Martech` and a technical martech CV is not flattened into "digital marketing"). The hand-written synonym list is a **bootstrap**; the scalable replacement is a **neural embedding model (BGE-M3 / Qwen3) at the Nebius `/cv-fit` endpoint** (no synonym list needed) — see [`nebius/README.md`](nebius/README.md).
+- **Extraction** &mdash; PDF or pasted CV text is parsed in-browser into `{skills, roles, languages, seniority}`.
+- **Retrieval + ranking** &mdash; the profile is vectorized and matched against a role ontology ([`data/cv_match_index.json`](data/cv_match_index.json)), then reranked by skill overlap, seniority, domain fit and Swedish-language fit, enriched with public demand / crowding / regional / trend signals. The shipped static site uses a reproducible **multilingual TF-IDF vector space** with synonym/domain expansion (so `SFMC == Salesforce Marketing Cloud == Martech` and a technical martech CV is not flattened into "digital marketing"). The hand-written synonym list is a **bootstrap**; the scalable replacement is a **neural embedding model (BGE-M3 / Qwen3) at the Nebius `/cv-fit` endpoint** (no synonym list needed) — see [`nebius/README.md`](nebius/README.md).
 - **Gap analysis** &mdash; what blocks stronger matches: missing skills, weak proof, language.
 
 The report:
@@ -36,7 +36,7 @@ It reflects **public Swedish job-ad data, not the entire hidden job market**, an
 python3 scripts/build_cv_match_index.py
 ```
 
-Outputs `data/cv_match_index.json`, `data/sample_cvs.json` and `data/cv_match_metrics.json` (top-1 / top-3 role-field accuracy on the synthetic CVs). The matcher in `app.js` mirrors the Python matcher in that script, so the evaluation tests the same pipeline.
+Outputs `data/cv_match_index.json`, `data/sample_cvs.json` and `data/cv_match_metrics.json`. The current metrics are primary-domain accuracy and no-collapse rate on synthetic CVs; they prove the demo matcher stays in the right role family and does not collapse specialist profiles into generic jobs. The matcher in `app.js` mirrors the Python matcher in that script, so the evaluation tests the same pipeline.
 
 ## Career Reality Check (fallback)
 
@@ -85,7 +85,7 @@ The project uses public Arbetsformedlingen / JobTech data only. No API key is re
 
 - JobSearch API: current active ads, positions, remote share, entry-level share, occupation and region aggregates
 - Historical ads and archive-derived files: weekly history, skill momentum, long-range occupation signals
-- Search Trends: search attention versus demand, used as a crowding-risk proxy
+- Search Trends: search attention versus demand, used as a crowding-risk proxy. Search pressure is not the same as applicant count.
 - JobTech taxonomy: occupation groups, occupation fields, regions, and skills
 
 No private data, no personal data, and no secrets are used or committed.
@@ -198,7 +198,7 @@ The script:
 
 1. Runs `scripts/train_career_signal_model.py`
 2. Runs `scripts/process_career_reality.py`
-3. Validates that all four challenge artifacts exist and are valid JSON
+3. Validates that all seven challenge artifacts exist and are valid JSON
 4. Prints ML and baseline metrics from `data/model_metrics.json`
 
 Expected files:
@@ -208,6 +208,9 @@ data/occupation_forecast.json
 data/model_metrics.json
 data/career_reality.json
 data/opportunity_scores.json
+data/cv_match_index.json
+data/sample_cvs.json
+data/cv_match_metrics.json
 ```
 
 ## Docker
@@ -232,7 +235,7 @@ Nebius Serverless AI runs containerized AI workloads as Jobs or Endpoints withou
 - Job 1: public data processing / feature generation
 - Job 2: ML training and evaluation
 - Job 3: batch scoring and JSON artifact generation
-- Optional Endpoint: `/career-signal` for live user-profile scoring
+- Optional Endpoint: `/cv-fit` for server-side CV analysis with neural embeddings when available
 
 The current workload is CPU-friendly. A GPU is unnecessary for the dataset size; runtime is dominated by JSON parsing and a small scikit-learn model.
 
@@ -288,11 +291,16 @@ requests==2.32.3
 
 ## Known Limitations
 
+- This is based on public job-ad signals, not all jobs in Sweden.
+- Employers are not generally required to publish every job through Arbetsformedlingen / JobTech.
 - Public job ads are demand signals, not a guarantee of employment.
+- Search pressure is not the same as applicant count.
 - Active ad counts are not official employment totals.
 - The ML model improves trend classification, not count MAE.
 - The forecast is national by occupation group; regional fit is a transparent specialization weight.
 - Entry-level, remote, crowding, and skill momentum signals are approximations from public data.
+- CV analysis is advisory and should not be treated as hiring certainty.
+- Uploaded or pasted CVs must not be stored.
 - Some target-role anchoring uses transparent aliases because user wording and public taxonomy labels do not always match exactly.
 - The advice is practical labour-market guidance, not professional counselling.
 

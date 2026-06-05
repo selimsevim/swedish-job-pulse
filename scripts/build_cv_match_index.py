@@ -517,16 +517,17 @@ def build_index_vectors(catalog):
     n = len(catalog)
     df = {}
     for toks in docs.values():
-        for t in set(toks):
+        for t in sorted(set(toks)):
             df[t] = df.get(t, 0) + 1
-    idf = {t: round(math.log((n + 1) / (d + 1)) + 1.0, 5) for t, d in df.items()}
+    idf = {t: round(math.log((n + 1) / (d + 1)) + 1.0, 5)
+           for t, d in sorted(df.items())}
 
     vectors = {}
     for rid, toks in docs.items():
         tf = tf_weights(toks)
-        vec = {t: tf[t] * idf.get(t, 0.0) for t in tf}
+        vec = {t: tf[t] * idf.get(t, 0.0) for t in sorted(tf)}
         norm = math.sqrt(sum(v * v for v in vec.values())) or 1.0
-        vectors[rid] = {t: round(v / norm, 5) for t, v in vec.items()}
+        vectors[rid] = {t: round(vec[t] / norm, 5) for t in sorted(vec)}
     return idf, vectors
 
 
@@ -554,10 +555,17 @@ def extract_cv(text):
 
     swedish = "none"
     if re.search(r"svenska|swedish", low):
-        if re.search(r"(modersmål|native|flytande|fluent|professional)", low):
+        native = r"(modersmål|native|flytande|fluent)"
+        good = r"(good|goda|arbetsnivå|working|professional|b2|c1)"
+        basic = r"(basic|grundläggande|sfi|a1|a2|b1)"
+        after = lambda words: re.search(r"(svenska|swedish)\s*[:/,-]?\s*[^.;,\n]{0,30}" + words, low)
+        before = lambda words: re.search(words + r"\s*[^.;,\n]{0,15}(svenska|swedish)", low)
+        if after(native) or before(native):
             swedish = "native"
-        elif re.search(r"(good|goda|arbetsnivå|working)", low):
+        elif after(good) or before(good):
             swedish = "good"
+        elif after(basic) or before(basic):
+            swedish = "basic"
         else:
             swedish = "basic"
     languages = []
@@ -623,9 +631,11 @@ def primary_domain(profile, scored):
     weights = {}
     for s in scored[:6]:
         weights[s["domain"]] = weights.get(s["domain"], 0.0) + s["fit"]
-    if not weights:
-        return None
-    return max(weights, key=weights.get)
+    best_domain, best_weight = None, 0.0
+    for domain, weight in weights.items():
+        if weight > best_weight:
+            best_domain, best_weight = domain, weight
+    return best_domain
 
 
 def bucket(profile, scored):

@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-05T10:47:28Z",
+  "last_updated": "2026-06-05T13:34:13Z",
   "version": "cv-fit-engine-v2",
   "metrics": {
     "n_synthetic_cvs": 6,
@@ -44,13 +44,13 @@
         "best": [
           "Marketing Automation Specialist",
           "Campaign Operations Specialist",
-          "CRM Coordinator",
-          "Salesforce Marketing Cloud Consultant"
+          "Salesforce Marketing Cloud Consultant",
+          "Martech Consultant"
         ],
         "adjacent": [
           "CRM Analyst",
           "Marketing Operations Engineer",
-          "Sales Coordinator"
+          "Operations Analyst"
         ],
         "avoid": [
           "Marketing Automation Tech Lead",

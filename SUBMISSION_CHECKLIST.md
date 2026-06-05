@@ -1,13 +1,23 @@
 # Submission Checklist
 
-Project: Swedish Job Pulse - Career Reality Check
+Project: Swedish Job Pulse - CV-to-Swedish-job-market fit engine
 
-## Links To Fill In
+## Submission Fields To Fill In
 
-- Public repository URL: `https://github.com/selimsevim/swedish-job-pulse`
+- Repository URL: `https://github.com/selimsevim/swedish-job-pulse`
 - Live website URL: `TODO`
-- Technical blog post URL: `TODO`
-- Optional demo video URL: `TODO`
+- Nebius Job logs screenshot: `TODO`
+- Nebius Job successful status screenshot: `TODO`
+- Nebius Endpoint `/health` screenshot: `TODO`
+- Nebius Endpoint `/cv-fit` response screenshot: `TODO`
+- Blog post URL: `TODO`
+- Video URL: `TODO`
+- Docker build confirmation: `TODO`
+- Rebuild command confirmation: `TODO`
+- Metrics summary: `TODO`
+- Known limitations: `TODO`
+- License confirmed: `TODO`
+- No secrets confirmed: `TODO`
 
 ## Reproduce From A Clean Clone
 
@@ -29,6 +39,9 @@ Open `http://127.0.0.1:8000/index.html`.
 - `data/model_metrics.json`
 - `data/career_reality.json`
 - `data/opportunity_scores.json`
+- `data/cv_match_index.json`
+- `data/sample_cvs.json`
+- `data/cv_match_metrics.json`
 
 `./scripts/rebuild_career_reality.sh` validates that each file exists and is valid JSON.
 
@@ -60,8 +73,9 @@ Capture these screenshots or logs before final submission:
 - Nebius Serverless AI Job 2: model training and evaluation
 - Nebius Serverless AI Job 3: batch scoring and JSON artifact generation
 - Job logs showing the rebuild command and metric summary
-- Job output or artifact store listing the four generated JSON files
-- Optional Endpoint `/career-signal` request and response, if implemented
+- Job output or artifact store listing the generated JSON files
+- Endpoint `/health` response screenshot if demonstrating `/cv-fit`
+- Endpoint `/cv-fit` response screenshot if demonstrating `/cv-fit`
 
 No screenshots should include secrets, tokens, private project IDs, or personal data.
 
@@ -78,7 +92,7 @@ Open `http://127.0.0.1:8000/index.html`.
 
 - Public repository: confirmed once the GitHub repo is public
 - Uses / is prepared for Nebius Serverless AI Jobs: documented in `nebius/README.md`
-- Optional Nebius Endpoint mapping: documented as `/career-signal`
+- Optional Nebius Endpoint mapping: implemented and documented as `/cv-fit`
 - Dockerfile: present
 - README setup/runtime/cost/outputs: present
 - Open-source license: MIT in `LICENSE`
@@ -90,7 +104,12 @@ Open `http://127.0.0.1:8000/index.html`.
 
 - The forecast is national by occupation group; regional fit is a transparent specialization weight, not a regional time-series forecast.
 - The model is better than the baseline on trend classification, not count MAE.
+- This is based on public job-ad signals, not all jobs in Sweden.
+- Employers are not generally required to publish every job through Arbetsformedlingen / JobTech.
 - Public job ads are demand signals, not employment guarantees or official labour-force totals.
+- Search pressure is not the same as applicant count.
+- CV analysis is advisory and should not be treated as hiring certainty.
+- Uploaded or pasted CVs must not be stored.
 - Entry-level, remote, crowding, and skill momentum signals are approximations from public data.
 - Some target-role matching uses transparent aliases when the public taxonomy lacks the user's exact wording.
 
@@ -98,6 +117,7 @@ Open `http://127.0.0.1:8000/index.html`.
 
 ```bash
 ./scripts/rebuild_career_reality.sh
+python3 nebius/cv_fit_endpoint/test_cv_fit.py
 python3 -m http.server 8000
 git status --short
 ```
@@ -107,5 +127,5 @@ Confirm:
 - Working tree is clean
 - Rebuild passes
 - Website loads
-- Career Reality Check works for realistic inputs
+- CV Job Fit Scanner works for realistic, weak, and synthetic inputs
 - README and blog outline include the MAE nuance

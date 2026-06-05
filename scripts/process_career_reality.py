@@ -933,9 +933,11 @@ def build_career_reality():
 
 
 def build_opportunity_scores(career_reality):
-    """Compact occupation x region signal table (the artifact a /career-signal
-    endpoint would return). Combines the ML/rule opportunity score with the
-    regional specialisation weight for every occupation/region pair."""
+    """Compact occupation x region signal table for downstream consumers.
+
+    Combines the ML/rule opportunity score with the regional specialisation
+    weight for every occupation/region pair.
+    """
     rfs = career_reality.get("regional_field_strength", {})
     rows = []
     for occ in career_reality.get("occupations", []):
