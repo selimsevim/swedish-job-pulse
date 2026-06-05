@@ -366,10 +366,7 @@
     .crc-verdict {
       border: 2px solid var(--crc-ink);
       border-radius: 3px;
-      padding: 22px 24px;
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
+      padding: 26px 28px;
       color: var(--crc-paper);
     }
 
@@ -378,138 +375,16 @@
     .crc-verdict--risky { background: var(--crc-risk); border-color: var(--crc-risk); }
     .crc-verdict--unknown { background: var(--crc-ink); }
 
-    .crc-verdict-stamp {
-      flex: 0 0 auto;
-      border: 2px solid currentColor;
-      border-radius: 2px;
-      padding: 6px 10px;
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
-
     .crc-verdict-body { flex: 1 1 auto; }
     .crc-verdict-title {
       margin: 0;
-      font-size: 1.375rem;
+      font-size: 1.5rem;
       font-weight: 600;
       letter-spacing: -0.01em;
-      line-height: 1.1;
-    }
-    .crc-verdict-text {
-      margin: 10px 0 0;
-      font-size: 0.9375rem;
-      line-height: 1.55;
-      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.18;
     }
 
-    /* signal chips (anchor read-out) */
-    .crc-signals { display: flex; flex-wrap: wrap; gap: 8px; }
-    .crc-signal {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border: 1.5px solid var(--crc-ink);
-      border-radius: 2px;
-      padding: 5px 9px;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      background: var(--crc-paper);
-      color: var(--crc-ink);
-    }
-    .crc-signal b { font-weight: 700; }
-    .crc-signal--good { border-color: var(--crc-go); color: var(--crc-go); }
-    .crc-signal--warn { border-color: var(--crc-prep); color: var(--crc-prep); }
-    .crc-signal--bad { border-color: var(--crc-risk); color: var(--crc-risk); }
-
-    /* ---- Buckets ---- */
-    .crc-buckets {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .crc-bucket {
-      border: 1.5px solid var(--crc-ink);
-      border-radius: 3px;
-      background: var(--crc-paper);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .crc-bucket-head {
-      padding: 10px 14px;
-      color: var(--crc-paper);
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8px;
-    }
-    .crc-bucket-head span { font-weight: 500; letter-spacing: 0.04em; opacity: 0.9; }
-
-    .crc-bucket--now .crc-bucket-head { background: var(--crc-go); }
-    .crc-bucket--reach .crc-bucket-head { background: var(--crc-prep); }
-    .crc-bucket--risk .crc-bucket-head { background: var(--crc-risk); }
-
-    .crc-bucket-list { list-style: none; margin: 0; padding: 4px 0; }
-    .crc-role {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 11px 14px;
-      border-top: 1px solid var(--crc-soft);
-    }
-    .crc-bucket-list .crc-role:first-child { border-top: none; }
-    .crc-role-name {
-      flex: 1 1 auto;
-      font-size: 0.875rem;
-      font-weight: 500;
-      line-height: 1.35;
-      color: var(--crc-ink);
-    }
-    .crc-role-tag {
-      flex: 0 0 auto;
-      font-size: 0.625rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--crc-muted);
-    }
-
-    .crc-chip {
-      flex: 0 0 auto;
-      min-width: 30px;
-      text-align: center;
-      border: 1.5px solid var(--crc-ink);
-      border-radius: 2px;
-      padding: 3px 6px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-      color: var(--crc-ink);
-      background: var(--crc-paper);
-    }
-    .crc-chip--go { border-color: var(--crc-go); color: var(--crc-go); }
-    .crc-chip--prep { border-color: var(--crc-prep); color: var(--crc-prep); }
-    .crc-chip--risk { border-color: var(--crc-risk); color: var(--crc-risk); }
-
-    .crc-empty {
-      padding: 14px;
-      font-size: 0.8125rem;
-      color: var(--crc-muted);
-      line-height: 1.5;
-    }
-
-    /* ---- Panels (skills / keywords / plan / caution) ---- */
+    /* ---- Result sections ---- */
     .crc-panel {
       border: 1.5px solid var(--crc-ink);
       border-radius: 3px;
@@ -526,29 +401,67 @@
       color: var(--crc-ink);
     }
 
-    .crc-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .crc-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      border: 1.5px solid var(--crc-ink);
-      border-radius: 2px;
-      padding: 6px 11px;
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: var(--crc-ink);
-      background: var(--crc-paper);
-    }
-    .crc-tag--grow { border-color: var(--crc-go); color: var(--crc-go); }
-    .crc-tag-dot {
-      width: 7px; height: 7px; border-radius: 999px;
-      background: currentColor; flex: 0 0 auto;
+    /* Hero "Main answer" kicker inside the verdict block */
+    .crc-verdict-kicker {
+      display: block;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 8px;
     }
 
-    .crc-cols {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+    /* Why — short reason list */
+    .crc-reasons { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+    .crc-reason {
+      position: relative;
+      padding-left: 18px;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--crc-ink);
+    }
+    .crc-reason::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 7px;
+      height: 7px;
+      border-radius: 1px;
+      background: var(--crc-ink);
+    }
+
+    /* Apply-first / stretch role lists (no scores, no chips) */
+    .crc-rolelist { list-style: none; margin: 0; padding: 0; }
+    .crc-role-simple {
+      padding: 11px 0 11px 14px;
+      border-left: 3px solid var(--crc-go);
+      border-bottom: 1px solid var(--crc-soft);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--crc-ink);
+    }
+    .crc-role-simple:last-child { border-bottom: none; }
+    .crc-rolelist--stretch .crc-role-simple {
+      border-left-color: var(--crc-prep);
+      font-weight: 500;
+    }
+
+    /* Data signal — one compact muted line */
+    .crc-signal-line {
+      margin: 2px 2px 0;
+      font-size: 0.8125rem;
+      line-height: 1.55;
+      color: var(--crc-muted);
+    }
+    .crc-signal-line b {
+      color: var(--crc-ink);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.625rem;
+      margin-right: 4px;
     }
 
     .crc-plan { border-left: 5px solid var(--crc-ink); }
@@ -566,20 +479,6 @@
       font-variant-numeric: tabular-nums;
     }
     .crc-plan-item strong { font-weight: 600; }
-
-    .crc-caution {
-      border: 1.5px solid var(--crc-risk);
-      border-left: 5px solid var(--crc-risk);
-      border-radius: 3px;
-      background: #fbeceb;
-      padding: 16px 18px;
-    }
-    .crc-caution-label {
-      margin: 0 0 6px;
-      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--crc-risk);
-    }
-    .crc-caution-text { margin: 0; font-size: 0.9375rem; line-height: 1.5; color: var(--crc-ink); }
 
     /* ---- Methodology ---- */
     .crc-method {
@@ -609,48 +508,129 @@
       font-size: 0.8125rem; background: var(--crc-wash); padding: 1px 5px; border-radius: 2px;
     }
 
-    /* ---- "Why this verdict?" evidence panel ---- */
-    .crc-evidence-sub {
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      text-transform: none;
-      color: var(--crc-muted);
-    }
-    .crc-evidence-list { display: flex; flex-direction: column; }
-    .crc-ev-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 14px;
-      padding: 9px 0;
-      border-top: 1px solid var(--crc-soft);
-    }
-    .crc-ev-row:first-child { border-top: none; }
-    .crc-ev-label {
-      flex: 0 0 auto;
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--crc-muted);
-    }
-    .crc-ev-value {
-      text-align: right;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--crc-ink);
-      font-variant-numeric: tabular-nums;
-    }
-    .crc-ev-value--good { color: var(--crc-go); }
-    .crc-ev-value--warn { color: var(--crc-prep); }
-    .crc-ev-value--bad { color: var(--crc-risk); }
-
     @media (max-width: 767px) {
       .crc { padding: 22px; }
       .crc-headline { font-size: 1.4rem; }
       .crc-grid { grid-template-columns: 1fr; }
-      .crc-buckets { grid-template-columns: 1fr; }
-      .crc-cols { grid-template-columns: 1fr; }
       .crc-choices { gap: 18px; }
       .crc-verdict { flex-direction: column; gap: 14px; }
+    }
+
+    /* ====================================================================
+       CV Job Fit Scanner — reuses the .crc flat identity, adds an upload
+       dropzone, synthetic-sample buttons, skill/keyword chips and an
+       "avoid" role list. Scoped under .cv-* / .crc-rolelist--avoid.
+       ==================================================================== */
+    .cv-drop {
+      border: 2px dashed var(--crc-ink);
+      border-radius: 3px;
+      background: var(--crc-paper);
+      padding: 30px 24px;
+      text-align: center;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+    .cv-drop.is-drag { background: var(--crc-wash); border-color: var(--crc-go); }
+    .cv-drop-title { margin: 0; font-size: 1rem; font-weight: 600; color: var(--crc-ink); }
+    .cv-drop-note { margin: 8px 0 0; font-size: 0.8125rem; color: var(--crc-muted); }
+    .cv-link {
+      border: none;
+      background: none;
+      padding: 0;
+      font: inherit;
+      font-weight: 700;
+      color: var(--crc-go);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .cv-samples {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .cv-sample-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cv-sample-btn {
+      border: 1.5px solid var(--crc-ink);
+      border-radius: 2px;
+      background: var(--crc-paper);
+      color: var(--crc-ink);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      padding: 7px 12px;
+      cursor: pointer;
+      transition: background-color 0.12s ease, color 0.12s ease;
+    }
+    .cv-sample-btn:hover { background: var(--crc-ink); color: var(--crc-paper); }
+
+    .cv-status {
+      margin: 16px 2px 0;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--crc-muted);
+    }
+    .cv-status--error { color: var(--crc-risk); }
+
+    /* Extracted-from-CV transparency line */
+    .cv-summary {
+      margin: 0;
+      font-size: 0.8125rem;
+      line-height: 1.55;
+      color: var(--crc-muted);
+    }
+    .cv-summary b {
+      color: var(--crc-ink);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.625rem;
+      margin-right: 4px;
+    }
+
+    /* Skill / keyword chips */
+    .cv-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cv-tag {
+      display: inline-flex;
+      align-items: center;
+      border: 1.5px solid var(--crc-ink);
+      border-radius: 2px;
+      padding: 6px 11px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--crc-ink);
+      background: var(--crc-paper);
+    }
+    .cv-tag--gap { border-color: var(--crc-prep); color: var(--crc-prep); }
+
+    /* Avoid role list (red) — pairs with .crc-rolelist / .crc-rolelist--stretch */
+    .crc-rolelist--avoid .crc-role-simple {
+      border-left-color: var(--crc-risk);
+      font-weight: 500;
+    }
+
+    /* Collapsed manual-form fallback */
+    .crc-altform {
+      margin-top: 26px;
+      border-top: 1.5px solid var(--crc-soft);
+      padding-top: 16px;
+    }
+    .crc-altform-summary {
+      cursor: pointer;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--crc-muted);
+      list-style: none;
+    }
+    .crc-altform-summary::-webkit-details-marker { display: none; }
+    .crc-altform-summary::before { content: "+ "; font-weight: 700; }
+    .crc-altform[open] .crc-altform-summary::before { content: "\2212  "; }
+    .crc-altform[open] { padding-bottom: 8px; }
+    .crc-altform .dashboard-section { margin-top: 16px; }
+
+    @media (max-width: 767px) {
+      .cv-drop { padding: 22px 16px; }
+      .cv-samples { flex-direction: column; align-items: flex-start; }
     }

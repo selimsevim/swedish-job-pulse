@@ -1,0 +1,30 @@
+{
+  "last_updated": "2026-06-05T10:47:28Z",
+  "note": "Synthetic, fictional CVs for demoing the CV Job Fit Scanner. No real or personal data.",
+  "cvs": [
+    {
+      "name": "SFMC / Martech Integration (senior)",
+      "text": "Sasha Lindqvist — Senior Salesforce Marketing Cloud / Martech Integration Specialist\n8 years in marketing technology and CRM automation.\nBuilt SFMC journeys with AMPscript and SSJS, integrated systems via REST and SOAP APIs.\nStrong SQL, Python, AWS and Azure. Led marketing automation architecture and integrations.\nTarget roles: Solution Architect, Martech Consultant, Integration Specialist.\nLanguages: English fluent, Swedish basic."
+    },
+    {
+      "name": "Marketing / CRM (mid)",
+      "text": "Alex Persson — Marketing Automation Coordinator, 4 years.\nSalesforce Marketing Cloud, HubSpot, CRM, email marketing. Built segmentation and campaign flows.\nReported KPIs in Excel. English fluent, Swedish basic."
+    },
+    {
+      "name": "Junior developer (entry)",
+      "text": "Robin Lind — Junior Developer. Recent graduate.\nJavaScript, React, HTML, CSS, Git, some Python and SQL. Built web apps and REST APIs.\nEnglish fluent, Swedish basic."
+    },
+    {
+      "name": "Admin / reporting (mid)",
+      "text": "Robin Ek — Administrative Coordinator, 5 years.\nStrong Excel, reporting, planning and scheduling. Some SQL and Power BI.\nSwedish flytande, English good."
+    },
+    {
+      "name": "Assistant nurse (entry)",
+      "text": "Kim Andersson — Undersköterska. 3 years elderly care (hemtjänst).\nPatient care and documentation (journal). Swedish modersmål, English basic."
+    },
+    {
+      "name": "Warehouse / logistics (entry)",
+      "text": "Jamie Berg — Lagerarbetare. 2 years warehouse, forklift (truckkort), inventory.\nDriving license. Swedish good, English basic."
+    }
+  ]
+}

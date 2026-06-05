@@ -85,6 +85,31 @@
 
     const CRC_STUDY_TIER = { none: 0, short: 1, mid: 2, long: 3 };
 
+    // Target-field guardrail. The target job decides which career-path template
+    // drives the role/skill recommendations — NOT the user's current experience.
+    // This stops a "data analyst" target from being answered with education
+    // roles. Maps a target phrase to a career_paths experience_key. First hit
+    // wins, so analytics ("data analyst") resolves to the reporting/admin
+    // bridge, while "developer" resolves to the IT track.
+    const CRC_TARGET_PATHS = [
+      { path: "admin", kw: ["data analyst", "dataanalyt", "analyst", "analytiker", "business intelligence", "bi assistant", "bi developer", "reporting", "rapporter", "controller", "utredare", "operations coordinator", "verksamhetsutvecklare"] },
+      { path: "it", kw: ["developer", "utveckl", "software", "mjukvar", "programmer", "devops", "frontend", "backend", "fullstack", "systemutveckl", "data engineer", "dataingenjör", "data scientist", "cyber", "it-säkerhet", "fullstack"] },
+      { path: "education", kw: ["teacher", "lärare", "förskoll", "pedagog", "barnskötare", "elevassistent", "fritidsled", "teaching", "preschool", "school teacher"] },
+      { path: "healthcare", kw: ["nurse", "sjukskötersk", "undersköter", "läkare", "doctor", "vårdbiträd", "healthcare", "barnmorsk", "tandläk"] },
+      { path: "logistics", kw: ["truck", "lastbil", "warehouse", "lager", "logistic", "logistik", "chaufför", "terminal", "forklift", "driver"] },
+      { path: "sales", kw: ["sales", "säljare", "marketing", "marknadsför", "account manager", "key account", "retail", "butikssälj"] },
+      { path: "restaurant", kw: ["chef", "kock", "waiter", "servit", "restaurant", "restaurang", "barista", "kitchen", "kök", "bartender"] },
+      { path: "customer_service", kw: ["customer service", "customer support", "kundtjänst", "kundsupport", "support specialist"] },
+      { path: "admin", kw: ["admin", "coordinator", "koordinator", "ekonom", "accountant", "receptionist", "handläggare", "planerare"] }
+    ];
+
+    // Human-readable label for the user's current experience area.
+    const CRC_EXPERIENCE_LABEL = {
+      customer_service: "customer service", sales: "sales", admin: "admin",
+      it: "IT/tech", healthcare: "healthcare", education: "education",
+      restaurant: "restaurant/service", logistics: "logistics", none: "no fixed field"
+    };
+
     function crcNorm(value) {
       return String(value || "").toLowerCase().trim();
     }
@@ -114,6 +139,17 @@
       if (!t) return null;
       for (const entry of CRC_TARGET_ALIASES) {
         if (entry.kw.some((kw) => t.includes(kw))) return entry.field;
+      }
+      return null;
+    }
+
+    // Which career-path template should drive the recommendations, based on the
+    // TARGET job. Returns a career_paths experience_key, or null when unknown.
+    function crcTargetPathKey(targetText) {
+      const t = crcNorm(targetText);
+      if (!t) return null;
+      for (const entry of CRC_TARGET_PATHS) {
+        if (entry.kw.some((kw) => t.includes(kw))) return entry.path;
       }
       return null;
     }
@@ -246,7 +282,7 @@
       return obj;
     }
 
-    function crcBuildBuckets(path, anchor, inputs, verdictKey) {
+    function crcBuildBuckets(path, anchor, inputs, verdictKey, pathKey) {
       const tier = CRC_STUDY_TIER[inputs.study] ?? 0;
       let now = [...(path?.realistic_now_roles || [])];
       let reach = [...(path?.reachable_roles || [])];
@@ -312,10 +348,11 @@
       const reachRoles = take(reach, "reach");
       const riskRoles = take(risk, "risk");
 
-      // Backfill "realistic now" from the strongest occupations in the user's
-      // experience field if the curated list came up short.
+      // Backfill "realistic now" from the strongest occupations in the path's
+      // own field (the target field when a target was given) if the curated
+      // list came up short — never from an unrelated field.
       if (nowRoles.length < 3) {
-        const fieldId = CRC_EXPERIENCE_FIELDS[inputs.experience];
+        const fieldId = CRC_EXPERIENCE_FIELDS[pathKey] || CRC_EXPERIENCE_FIELDS[inputs.experience];
         crcGetOccupations()
           .filter((o) => (!fieldId || o.field_id === fieldId) && o.demand_level !== "low")
           .sort((a, b) => crcUserScore(b, inputs) - crcUserScore(a, inputs))
@@ -334,19 +371,21 @@
       const have = new Set(inputs.skills.map(crcNorm));
       const out = [];
       const seen = new Set();
-      const push = (skill, growing) => {
+      // Skills the target field's growing-signal skills, for the "growing" tag.
+      const growingSet = new Set((anchor?.occ?.related_skills || [])
+        .filter((s) => s.signal === "growing").map((s) => crcNorm(s.skill)));
+      const push = (skill) => {
         const key = crcNorm(skill);
         if (!key || seen.has(key) || have.has(key)) return;
         seen.add(key);
-        out.push({ skill, growing: !!growing });
+        out.push({ skill, growing: growingSet.has(key) });
       };
-      // Growing, field-relevant skills from the anchor first (highest signal).
+      // Lead with the curated skills for the TARGET path (these are the
+      // field-correct ones: e.g. SQL / Excel / Power BI for an analytics
+      // target), then add any market-growing skills for the target field.
+      (path?.skills_to_add || []).forEach(push);
       (anchor?.occ?.related_skills || []).forEach((s) => {
-        if (s.signal === "growing") push(s.skill, true);
-      });
-      (path?.skills_to_add || []).forEach((s) => push(s, false));
-      (anchor?.occ?.related_skills || []).forEach((s) => {
-        if (s.signal !== "growing") push(s.skill, false);
+        if (s.signal === "growing") push(s.skill);
       });
       return out.slice(0, 6);
     }
@@ -396,243 +435,188 @@
       return matched.slice(0, 3);
     }
 
-    // The "Why this verdict?" evidence rows — the signals behind the call.
-    function crcBuildEvidence(occ, inputs, matchedSkills) {
-      const rows = [];
-      if (occ) {
-        const trendTone = { rising: "good", declining: "bad", stable: "", unknown: "" };
-        const arrow = { rising: "↗", declining: "↘", stable: "→", unknown: "" };
-        rows.push({
-          label: "Demand trend",
-          value: `${crcCapitalize(occ.demand_trend)} ${arrow[occ.demand_trend] || ""}`.trim(),
-          tone: trendTone[occ.demand_trend] || ""
-        });
-
-        // ML / baseline forecast direction + magnitude where available.
-        if (occ.forecast && occ.forecast.source && occ.forecast.source !== "none") {
-          const pct = Number(occ.forecast.pct_change);
-          const horizon = occ.forecast.horizon_weeks || 4;
-          const src = occ.forecast.source === "ml" ? "ML" : "baseline";
-          let value;
-          if (Number.isFinite(pct)) {
-            const signed = `${pct >= 0 ? "+" : ""}${Math.round(pct * 100)}%`;
-            value = `${signed} over next ${horizon} wks (${src})`;
-          } else {
-            value = `${crcCapitalize(occ.forecast.trend_class)} (${src})`;
-          }
-          const fTone = occ.forecast.trend_class === "grow" ? "good"
-            : (occ.forecast.trend_class === "decline" ? "bad" : "");
-          rows.push({ label: "Forecast", value, tone: fTone });
-        }
-
-        const crowdTone = { high: "bad", medium: "warn", low: "good", unknown: "" };
-        rows.push({ label: "Crowding risk", value: crcCapitalize(occ.crowding_risk), tone: crowdTone[occ.crowding_risk] || "" });
-
-        const entryTone = { strong: "good", medium: "", weak: "bad", unknown: "" };
-        rows.push({ label: "Entry-level signal", value: crcCapitalize(occ.entry_level_signal), tone: entryTone[occ.entry_level_signal] || "" });
-
-        const remoteTone = { strong: "good", medium: "", weak: "warn", unknown: "" };
-        rows.push({ label: "Remote signal", value: crcCapitalize(occ.remote_signal), tone: remoteTone[occ.remote_signal] || "" });
-
-        // Regional fit (only when a specific region is chosen).
-        if (inputs.region) {
-          const sig = crcRegionSignal(occ.field_id, inputs.region);
-          if (sig) {
-            const map = { strong: "good", medium: "", weak: "bad" };
-            rows.push({ label: "Regional fit", value: `${crcCapitalize(sig)} in ${inputs.region}`, tone: map[sig] || "" });
-          }
-        }
-      }
-
-      if (matchedSkills && matchedSkills.length) {
-        const names = matchedSkills.map((m) => m.skill).join(", ");
-        rows.push({ label: "Your matched skills", value: names, tone: "good" });
-      }
-      return rows;
+    // Join a short list into readable prose: "a", "a and b", "a, b, and c".
+    function crcJoinList(items) {
+      const list = (items || []).filter(Boolean);
+      if (!list.length) return "";
+      if (list.length === 1) return list[0];
+      if (list.length === 2) return `${list[0]} and ${list[1]}`;
+      return `${list.slice(0, -1).join(", ")}, and ${list[list.length - 1]}`;
     }
 
-    function crcComposeVerdictText(key, anchor, inputs, buckets, skills) {
+    // 1) Main answer — one plain-language sentence the user reads first.
+    function crcComposeMainAnswer(key, anchor, inputs) {
       const occ = anchor?.occ;
-      // Echo the user's own wording where they gave one; fall back to the term.
       const target = inputs.targetRaw.trim() || (occ ? occ.term : null);
-      const altRoles = (buckets.reach.length ? buckets.reach : buckets.now)
-        .slice(0, 3).map((r) => r.name);
-      const topSkills = skills.slice(0, 2).map((s) => s.skill);
-      const region = inputs.region;
-      const parts = [];
+      if (key === "now") {
+        return target
+          ? `Apply now — ${target} is a realistic target for you.`
+          : "Apply now — you have realistic options from your experience.";
+      }
+      if (key === "soon") {
+        return target
+          ? `Don't make ${target} your main application lane yet.`
+          : "This direction is reachable — but not your first lane yet.";
+      }
+      if (key === "risky") {
+        return target
+          ? `${crcCapitalize(target)} is a long shot right now — don't lead with it.`
+          : "This path is a long shot right now — don't lead with it.";
+      }
+      return "Add a target job for a sharper read. Meanwhile, here's a safe place to start.";
+    }
 
-      const regionNote = () => {
-        if (!occ || !region) return "";
-        const sig = crcRegionSignal(occ.field_id, region);
-        if (sig === "strong") return ` ${region} is a strong region for this field.`;
-        if (sig === "weak") return ` In ${region}, this field is under-weighted, so expect fewer local openings.`;
-        return "";
-      };
-      const forecastNote = () => {
-        if (!occ?.forecast || occ.forecast.source === "none") return "";
-        if (occ.demand_trend === "rising") return " The 4-week forecast points up for this area.";
-        if (occ.demand_trend === "declining") return " The 4-week forecast points down for this area, so move quickly.";
-        return "";
-      };
+    // 2) Why — 3–4 plain reasons. Never shows "unknown" as a reason.
+    function crcBuildReasons(key, occ, anchor, inputs, buckets, skills, matchedSkills, bridgeNote) {
+      const reasons = [];
+      const fieldLabel = occ?.field_label || "this field";
+      const targetWord = (inputs.targetRaw.trim() || occ?.term || "these").toLowerCase();
+      const nowNames = buckets.now.slice(0, 3).map((r) => r.name);
+      const toAdd = skills.slice(0, 2).map((s) => s.skill);
+      const regionSig = occ ? crcRegionSignal(occ.field_id, inputs.region) : null;
+      const heavy = occ && CRC_LANGUAGE_HEAVY.has(occ.field_id);
+      const englishOk = occ && (CRC_ENGLISH_OK.has(occ.field_id) || occ.remote_signal === "strong");
+      const isIt = occ?.field_id === "apaJ_2ja_LuF";
 
       if (key === "now") {
-        if (target) parts.push(`${target} is a realistic target right now.`);
-        else parts.push("Based on your experience, you have realistic options right now.");
-        if (occ) parts.push(occ.consultant_summary);
-        parts.push("Apply now — but spread applications across the realistic-now roles below, don't sit on a single title." + regionNote() + forecastNote());
-      } else if (key === "soon") {
-        if (target) parts.push(`${target} is reachable, but not as your first step.`);
-        else parts.push("This direction is reachable, but not as your first step.");
-        if (anchor?.viaAlias && occ?.field_label) parts.push(`(We matched it to the ${occ.field_label} field — name an exact role for a sharper read.)`);
-        const why = occ
-          ? (occ.crowding_risk === "high"
-              ? "The market signal is competitive"
-              : (occ.entry_level_signal === "weak" ? "Entry-level access looks limited" : "The current fit is only moderate"))
-          : "The current signal is mixed";
-        let line = `${why}. Start with ${altRoles.slice(0, 3).join(", ") || "the realistic-now roles below"}`;
-        if (topSkills.length) line += ` while adding ${topSkills.join(" and ")}`;
-        parts.push(line + "." + regionNote() + forecastNote());
-      } else if (key === "risky") {
-        if (target) parts.push(`${target} is a crowded or weak-entry path for you right now.`);
-        else parts.push("This is a crowded or weak-entry path for you right now.");
-        parts.push(`Apply to the realistic-now roles instead${altRoles.length ? ` (${altRoles.slice(0, 2).join(", ")})` : ""} and prepare before targeting it.` + regionNote());
+        if (regionSig === "strong" && inputs.region) reasons.push(`${fieldLabel} demand is strong in ${inputs.region}.`);
+        if (occ?.demand_level === "high") reasons.push("Demand is healthy right now.");
+        else if (occ?.demand_level === "medium") reasons.push("Demand is steady right now.");
+        if (matchedSkills.length) reasons.push(`Your ${crcJoinList(matchedSkills.map((m) => m.skill))} match what these roles ask for.`);
+        if (occ?.demand_trend === "rising") reasons.push("The 4-week demand forecast is trending up.");
+        if (occ?.crowding_risk === "high") reasons.push("It's competitive — apply broadly, not to one title.");
+        if (!reasons.length) reasons.push("Your profile is a reasonable fit for current openings.");
       } else {
-        parts.push("Not enough signal to judge a specific target. Start with the entry-friendly, high-volume roles below, and add a target job for a sharper read.");
+        if (regionSig === "weak" && inputs.region) reasons.push(`Local ${fieldLabel} demand is weaker in ${inputs.region}.`);
+        if (occ?.crowding_risk === "high") reasons.push(`${crcCapitalize(targetWord)} roles are competitive right now.`);
+        if (inputs.level === "entry" && occ?.entry_level_signal === "weak") reasons.push("Most ads here still expect some experience.");
+        if (inputs.swedish === "english" && heavy && !englishOk) reasons.push(`Most ${fieldLabel} roles expect working Swedish.`);
+        if (toAdd.length) {
+          const proof = isIt ? [...toAdd, "a portfolio project"] : toAdd;
+          if (matchedSkills.length) reasons.push(`${crcCapitalize(matchedSkills[0].skill)} helps, but your profile still needs ${crcJoinList(proof)}.`);
+          else reasons.push(`Your profile still needs ${crcJoinList(proof)}.`);
+        }
+        if (occ?.demand_trend === "declining") reasons.push("Demand is cooling over the next few weeks.");
+        if (nowNames.length) reasons.push(`Stronger entry routes exist: ${crcJoinList(nowNames)}.`);
       }
-      return parts.filter(Boolean).join(" ");
+      const ordered = reasons.filter(Boolean);
+      if (bridgeNote) ordered.unshift(bridgeNote);  // lead with the bridge framing
+      return ordered.slice(0, 4);
     }
 
-    function crcBuildCaution(anchor, inputs) {
-      const occ = anchor?.occ;
-      if (!occ) return null;
-      const heavy = CRC_LANGUAGE_HEAVY.has(occ.field_id);
-      const englishOk = CRC_ENGLISH_OK.has(occ.field_id) || occ.remote_signal === "strong";
-      if (inputs.swedish === "english" && heavy && !englishOk) {
-        return `English-only is a real barrier for ${occ.field_label || "these"} roles in Sweden — most expect working Swedish. Prioritise English-tolerant or remote roles, or plan Swedish study before you commit.`;
-      }
-      if (inputs.level === "entry" && occ.entry_level_signal === "weak") {
-        return occ.caution || "Entry-level access looks limited compared with total demand. Get a nearby role first.";
-      }
-      if (occ.caution) return occ.caution;
-      return null;
+    // 4) Keep as stretch target — the target plus nearby reachable roles.
+    // Reachable roles only: the "risky / senior" list would add far-fetched
+    // titles (e.g. Specialistläkare for an admin seeker) and read as noise.
+    function crcBuildStretch(anchor, inputs, buckets) {
+      const out = [];
+      const seen = new Set();
+      const push = (name) => {
+        const k = crcNorm(name);
+        if (k && !seen.has(k)) { seen.add(k); out.push(name); }
+      };
+      // The user's own target is the headline stretch item.
+      if (anchor && !anchor.viaAlias) push(anchor.occ.term);
+      else if (inputs.targetRaw.trim()) push(crcCapitalize(inputs.targetRaw.trim()));
+      buckets.reach.forEach((r) => push(r.name));
+      return out.slice(0, 4);
     }
 
-    function crcBuildPlan(buckets, skills, inputs, anchor) {
+    // 5) Do this next — max 4 concrete bullets.
+    function crcBuildNextSteps(key, anchor, inputs, buckets, skills, keywords) {
+      const steps = [];
       const nowNames = buckets.now.slice(0, 3).map((r) => r.name);
-      const reachNames = buckets.reach.slice(0, 2).map((r) => r.name);
-      const riskNames = buckets.risk.slice(0, 2).map((r) => r.name);
-      const learn = skills.slice(0, 3).map((s) => s.skill);
-      const cvBits = [];
-      const expLabel = {
-        customer_service: "customer communication", sales: "sales and pipeline",
-        admin: "coordination and reporting", it: "your technical stack",
-        healthcare: "patient care", education: "teaching and group leadership",
-        restaurant: "service and pace", logistics: "operations and accuracy",
-        none: "reliability and availability"
-      }[inputs.experience];
-      if (expLabel) cvBits.push(expLabel);
-      learn.slice(0, 2).forEach((s) => cvBits.push(s));
+      const toAdd = skills.slice(0, 2).map((s) => s.skill);
+      const kw = keywords.slice(0, 5);
+      const target = inputs.targetRaw.trim() || anchor?.occ?.term || null;
+      const isIt = anchor?.occ?.field_id === "apaJ_2ja_LuF";
 
-      const items = [];
-      items.push(`Apply to ${Math.max(6, nowNames.length * 2)} realistic-now roles${nowNames.length ? ` — e.g. ${nowNames.join(", ")}` : ""}.`);
-      if (reachNames.length) items.push(`Send ${reachNames.length >= 2 ? 4 : 3} applications to reachable roles — e.g. ${reachNames.join(", ")}.`);
-      if (cvBits.length) items.push(`Rewrite your CV around ${cvBits.join(", ")}.`);
-      if (learn.length) items.push(`Start learning ${learn.join(" and ")} this week.`);
-      if (riskNames.length) items.push(`Avoid ${riskNames.join(" and ")} for now — revisit once you have stronger proof.`);
-      return items;
+      if (key === "now") {
+        steps.push(`Apply to 6–8 of the roles above this week${nowNames.length ? ` (start with ${crcJoinList(nowNames.slice(0, 2))})` : ""}.`);
+        if (toAdd.length) steps.push(`Sharpen ${crcJoinList(toAdd)} to stand out.`);
+        if (kw.length) steps.push(`Search for ${kw.map((k) => `"${k}"`).join(", ")}.`);
+        steps.push("Tailor each CV to the specific ad — don't send the same one everywhere.");
+      } else {
+        steps.push(`Apply to 6–8 realistic roles this week${nowNames.length ? ` — ${crcJoinList(nowNames)}` : ""}.`);
+        if (toAdd.length) {
+          steps.push(isIt
+            ? `Add ${crcJoinList(toAdd)}, and build one small portfolio project to prove it.`
+            : `Add ${crcJoinList(toAdd)} to your CV.`);
+        }
+        if (kw.length) steps.push(`Search for ${kw.map((k) => `"${k}"`).join(", ")}.`);
+        if (target) {
+          steps.push(isIt
+            ? `Apply to ${target.toLowerCase()} roles only when the ad accepts junior applicants or portfolio proof.`
+            : `Apply to ${target.toLowerCase()} roles only when the ad welcomes junior or entry-level applicants.`);
+        } else {
+          steps.push("Add a target job above for a sharper, role-specific read.");
+        }
+      }
+      return steps.slice(0, 4);
     }
 
-    function crcChipClass(bucket) {
-      return { now: "crc-chip--go", reach: "crc-chip--prep", risk: "crc-chip--risk" }[bucket] || "";
-    }
-
-    function crcRenderBucket(title, note, modifier, roles, chipBucket) {
-      const items = roles.length
-        ? roles.map((r) => `
-            <li class="crc-role">
-              ${Number.isFinite(r.score) ? `<span class="crc-chip ${crcChipClass(chipBucket)}">${r.score}</span>` : ""}
-              <span class="crc-role-name">${escapeHtml(r.name)}</span>
-              <span class="crc-role-tag">${escapeHtml(r.tag)}</span>
-            </li>`).join("")
-        : `<li class="crc-empty">No clear roles in this bucket for your inputs.</li>`;
-      return `
-        <div class="crc-bucket crc-bucket--${modifier}">
-          <div class="crc-bucket-head">${escapeHtml(title)}<span>${escapeHtml(note)}</span></div>
-          <ul class="crc-bucket-list">${items}</ul>
-        </div>`;
+    // 6) Data signal — one compact muted line. Skips "unknown" tokens entirely.
+    // Demand is shown as a forecast direction word ("Rising/Stable/Cooling
+    // demand") rather than a raw percentage, which keeps the ML influence
+    // visible without surfacing noisy or alarming numbers.
+    function crcBuildSignalLine(occ, inputs) {
+      if (!occ) return null;
+      const parts = [];
+      const trendWord = { rising: "Rising", stable: "Stable", declining: "Cooling" }[occ.demand_trend];
+      if (trendWord) parts.push(`${trendWord} demand`);
+      else if (occ.demand_level && occ.demand_level !== "unknown") parts.push(`${occ.demand_level} demand`);
+      if (occ.crowding_risk && occ.crowding_risk !== "unknown") parts.push(`${occ.crowding_risk} crowding`);
+      const rs = crcRegionSignal(occ.field_id, inputs.region);
+      if (rs) parts.push(`${rs} regional fit`);
+      if (occ.remote_signal && occ.remote_signal !== "unknown") parts.push(`${occ.remote_signal} remote signal`);
+      return parts.length ? parts.join(" · ") : null;
     }
 
     function crcRenderResult(model) {
       const container = document.getElementById("crc-results");
       if (!container) return;
 
-      const verdictTitles = {
-        now: "Realistic now", soon: "Reachable in 3–6 months",
-        risky: "Risky for now", unknown: "Not enough signal"
-      };
-      const verdictMod = { now: "now", soon: "soon", risky: "risky", unknown: "unknown" }[model.verdictKey];
-      const stamp = { now: "Apply now", soon: "Prepare first", risky: "Avoid for now", unknown: "Tell us more" }[model.verdictKey];
+      const verdictMod = { now: "now", soon: "soon", risky: "risky", unknown: "unknown" }[model.verdictKey] || "unknown";
 
-      const evidenceHtml = model.evidence.length ? `
-        <div class="crc-panel crc-evidence">
-          <p class="crc-panel-label">Why this verdict?${model.anchorTerm ? ` <span class="crc-evidence-sub">based on ${escapeHtml(model.anchorTerm)}</span>` : ""}</p>
-          <div class="crc-evidence-list">
-            ${model.evidence.map((r) => `<div class="crc-ev-row"><span class="crc-ev-label">${escapeHtml(r.label)}</span><span class="crc-ev-value${r.tone ? ` crc-ev-value--${r.tone}` : ""}">${escapeHtml(r.value)}</span></div>`).join("")}
-          </div>
-        </div>` : "";
-
-      const skillsHtml = `
+      const roleList = (items, label, stretch) => items.length ? `
         <div class="crc-panel">
-          <p class="crc-panel-label">Skills to add</p>
-          <div class="crc-tags">
-            ${model.skills.length
-              ? model.skills.map((s) => `<span class="crc-tag${s.growing ? " crc-tag--grow" : ""}">${s.growing ? '<span class="crc-tag-dot"></span>' : ""}${escapeHtml(s.skill)}</span>`).join("")
-              : '<span class="crc-empty">No extra skills flagged.</span>'}
-          </div>
-        </div>`;
-
-      const keywordsHtml = `
-        <div class="crc-panel">
-          <p class="crc-panel-label">Best search keywords</p>
-          <div class="crc-tags">
-            ${model.keywords.map((k) => `<span class="crc-tag">${escapeHtml(k)}</span>`).join("")}
-          </div>
-        </div>`;
-
-      const planHtml = `
-        <div class="crc-panel crc-plan">
-          <p class="crc-panel-label">Your 2-week action plan</p>
-          <ul class="crc-plan-list">
-            ${model.plan.map((item, i) => `<li class="crc-plan-item"><span class="crc-plan-num">${i + 1}</span><span>${escapeHtml(item)}</span></li>`).join("")}
+          <p class="crc-panel-label">${escapeHtml(label)}</p>
+          <ul class="crc-rolelist${stretch ? " crc-rolelist--stretch" : ""}">
+            ${items.map((n) => `<li class="crc-role-simple">${escapeHtml(n)}</li>`).join("")}
           </ul>
-        </div>`;
-
-      const cautionHtml = model.caution ? `
-        <div class="crc-caution">
-          <p class="crc-caution-label">Caution</p>
-          <p class="crc-caution-text">${escapeHtml(model.caution)}</p>
         </div>` : "";
+
+      const whyHtml = model.reasons.length ? `
+        <div class="crc-panel">
+          <p class="crc-panel-label">Why</p>
+          <ul class="crc-reasons">
+            ${model.reasons.map((r) => `<li class="crc-reason">${escapeHtml(r)}</li>`).join("")}
+          </ul>
+        </div>` : "";
+
+      const nextHtml = model.nextSteps.length ? `
+        <div class="crc-panel crc-plan">
+          <p class="crc-panel-label">Do this next</p>
+          <ul class="crc-plan-list">
+            ${model.nextSteps.map((s, i) => `<li class="crc-plan-item"><span class="crc-plan-num">${i + 1}</span><span>${escapeHtml(s)}</span></li>`).join("")}
+          </ul>
+        </div>` : "";
+
+      const signalHtml = model.signalLine
+        ? `<p class="crc-signal-line"><b>Data signal</b> ${escapeHtml(model.signalLine)}</p>`
+        : "";
 
       container.innerHTML = `
         <div class="crc-verdict crc-verdict--${verdictMod}">
-          <span class="crc-verdict-stamp">${escapeHtml(stamp)}</span>
           <div class="crc-verdict-body">
-            <h3 class="crc-verdict-title">${escapeHtml(verdictTitles[model.verdictKey])}</h3>
-            <p class="crc-verdict-text">${escapeHtml(model.verdictText)}</p>
+            <span class="crc-verdict-kicker">Main answer</span>
+            <h3 class="crc-verdict-title">${escapeHtml(model.mainAnswer)}</h3>
           </div>
         </div>
-        ${evidenceHtml}
-        <div class="crc-buckets">
-          ${crcRenderBucket("Realistic now", "apply", "now", model.buckets.now, "now")}
-          ${crcRenderBucket("Reachable with upgrades", "prepare", "reach", model.buckets.reach, "reach")}
-          ${crcRenderBucket("Risky / crowded", "avoid for now", "risk", model.buckets.risk, "risk")}
-        </div>
-        <div class="crc-cols">
-          ${skillsHtml}
-          ${keywordsHtml}
-        </div>
-        ${planHtml}
-        ${cautionHtml}`;
+        ${whyHtml}
+        ${roleList(model.applyFirst, "Apply for these first", false)}
+        ${roleList(model.stretch, "Keep as stretch target", true)}
+        ${nextHtml}
+        ${signalHtml}`;
 
       container.hidden = false;
     }
@@ -664,25 +648,39 @@
       }
       const inputs = crcReadInputs();
       const anchor = crcFindAnchor(inputs.targetRaw);
-      const path = crcGetPath(inputs.experience);
+
+      // Target-field guardrail: the TARGET job decides which career path drives
+      // the role / skill / keyword recommendations, so they never drift into an
+      // unrelated field (e.g. education roles under a "data analyst" verdict).
+      // Falls back to the experience path only when the target is unknown.
+      const targetPathKey = crcTargetPathKey(inputs.targetRaw);
+      const pathKey = targetPathKey || inputs.experience;
+      const path = crcGetPath(pathKey);
+
       const verdictKey = crcDecideVerdict(anchor, inputs);
-      const buckets = crcBuildBuckets(path, anchor, inputs, verdictKey);
+      const buckets = crcBuildBuckets(path, anchor, inputs, verdictKey, pathKey);
       const skills = crcBuildSkills(path, anchor, inputs);
       const keywords = crcBuildKeywords(path, anchor, buckets);
-      const verdictText = crcComposeVerdictText(verdictKey, anchor, inputs, buckets, skills);
-      const caution = crcBuildCaution(anchor, inputs);
-      const plan = crcBuildPlan(buckets, skills, inputs, anchor);
-
-      // Evidence is anchored on the target; with no target it falls back to the
-      // strongest occupation in the user's experience field so the panel still
-      // shows the data behind the verdict.
-      const evidenceOcc = anchor?.occ || crcTopOccupationInField(CRC_EXPERIENCE_FIELDS[inputs.experience]);
       const matchedSkills = crcMatchedSkills(anchor, inputs);
-      const evidence = crcBuildEvidence(evidenceOcc, inputs, matchedSkills);
+
+      // The reference occupation for the verdict / signal stays on the TARGET;
+      // with no target it falls back to the experience field.
+      const occ = anchor?.occ || crcTopOccupationInField(CRC_EXPERIENCE_FIELDS[inputs.experience]);
+
+      // Bridge framing when the user's experience and target are different
+      // fields, so the cross-field recommendation is explained, not silent.
+      const bridge = (targetPathKey && inputs.experience !== "none" && targetPathKey !== inputs.experience)
+        ? `Your background is in ${CRC_EXPERIENCE_LABEL[inputs.experience] || inputs.experience}, but you're targeting ${inputs.targetRaw.trim() || (anchor && anchor.occ.term) || "a different field"} — the roles below are the bridge.`
+        : null;
 
       crcRenderResult({
-        verdictKey, verdictText, evidence, buckets, skills, keywords, plan, caution,
-        anchorTerm: evidenceOcc ? evidenceOcc.term : null
+        verdictKey,
+        mainAnswer: crcComposeMainAnswer(verdictKey, anchor, inputs),
+        reasons: crcBuildReasons(verdictKey, occ, anchor, inputs, buckets, skills, matchedSkills, bridge),
+        applyFirst: buckets.now.slice(0, 5).map((r) => r.name),
+        stretch: verdictKey === "now" ? [] : crcBuildStretch(anchor, inputs, buckets),
+        nextSteps: crcBuildNextSteps(verdictKey, anchor, inputs, buckets, skills, keywords),
+        signalLine: crcBuildSignalLine(occ, inputs)
       });
       document.getElementById("crc-results").scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
@@ -730,9 +728,430 @@
       }
     }
 
+    // =====================================================================
+    // CV Job Fit Scanner
+    // The PDF is parsed in the browser (pdf.js) and never leaves the device.
+    // Extraction + matching mirror scripts/build_cv_match_index.py so the
+    // offline synthetic-CV evaluation tests the same pipeline. Live demand /
+    // crowding / trend signals are reused from career_reality.json.
+    // =====================================================================
+    let cvIndex = null;
+    let cvSamples = [];
+
+    // Display names for canonical (lower_snake) skill / token ids.
+    const CV_PRETTY = {
+      sfmc: "SFMC", ampscript: "AMPscript", ssjs: "SSJS", crm: "CRM", sql: "SQL",
+      apis: "APIs", api: "API", etl: "ETL", kpi: "KPI", seo: "SEO", bi: "BI",
+      power_bi: "Power BI", html_css: "HTML/CSS", cicd: "CI/CD", devops: "DevOps",
+      data_cloud: "Salesforce Data Cloud", machine_learning: "Machine learning",
+      marketing_automation: "Marketing automation", customer_service: "Customer service",
+      office_tools: "Office tools", account_management: "Account management",
+      data_visualization: "Data visualization", supply_chain: "Supply chain",
+      driving_license: "Driving licence", elderly_care: "Elderly care",
+      patient_care: "Patient care", incident_response: "Incident response",
+      test_automation: "Test automation", project_management: "Project management",
+      financial_analysis: "Financial analysis", social_media: "Social media",
+      google_analytics: "Google Analytics", email_marketing: "Email marketing"
+    };
+    const CV_WORD_ACRONYM = { sql: "SQL", crm: "CRM", api: "API", apis: "APIs", etl: "ETL", kpi: "KPI", seo: "SEO", bi: "BI", sfmc: "SFMC" };
+    function crcCvPretty(skill) {
+      const s = String(skill || "").toLowerCase();
+      if (CV_PRETTY[s]) return CV_PRETTY[s];
+      return s.replace(/_/g, " ").split(" ")
+        .map((w) => CV_WORD_ACRONYM[w] || (w.charAt(0).toUpperCase() + w.slice(1))).join(" ");
+    }
+
+    // Friendly role-family wording for the headline (field_label is too formal).
+    const CV_FIELD_PHRASE = {
+      RPTn_bxG_ExZ: "CRM / marketing", X82t_awd_Qyc: "analytics / reporting",
+      apaJ_2ja_LuF: "data / developer", NYW6_mP6_vwf: "healthcare",
+      ASGV_zcE_bWf: "logistics", MVqp_eS8_kDZ: "education",
+      ScKy_FHB_7wT: "hospitality", GazW_2TU_kJw: "social care"
+    };
+    function crcCvFieldPhrase(role) {
+      return (role && CV_FIELD_PHRASE[role.field_id]) || role?.field_label || "these";
+    }
+
+    // Hard / technical skills are the gaps worth surfacing first.
+    const CV_HARD_GAPS = new Set([
+      "sql", "power bi", "statistics", "python", "dashboards", "etl",
+      "machine learning", "data visualization", "salesforce marketing cloud",
+      "marketing automation", "segmentation", "google analytics", "seo",
+      "cloud", "docker", "kubernetes", "ci/cd", "test automation", "apis",
+      "javascript", "financial analysis", "accounting", "crm", "excel"
+    ]);
+
+    // Extract a structured profile from raw CV text (mirror of the Python).
+    // ---- Layer 2: retrieval (TF-IDF cosine; mirrors build_cv_match_index.py).
+    // Synonym/domain expansion collapses surface forms (SFMC == Salesforce
+    // Marketing Cloud == Martech) so technical CRM/martech CVs don't get
+    // flattened into "digital marketing". A Nebius job swaps this vector space
+    // for BGE-M3 / Qwen3 embeddings behind the same cosine contract.
+    let cvStopSet = null;
+    const CV_TOKEN_RE = /[a-z0-9_+#]+/g;
+    const CV_SEN_ORDER = { entry: 0, mid: 1, senior: 2 };
+
+    function crcCvCanon(text) {
+      let low = " " + String(text || "").toLowerCase() + " ";
+      (cvIndex?.synonyms || []).forEach(([phrase, repl]) => { low = low.split(phrase).join(repl); });
+      return low;
+    }
+    function crcCvTokenize(text) {
+      if (!cvStopSet) cvStopSet = new Set(cvIndex?.stopwords || []);
+      return (crcCvCanon(text).match(CV_TOKEN_RE) || [])
+        .filter((t) => t.length >= 2 && !cvStopSet.has(t));
+    }
+    function crcCvTf(tokens) {
+      const c = {};
+      tokens.forEach((t) => { c[t] = (c[t] || 0) + 1; });
+      const o = {};
+      for (const t in c) o[t] = 1 + Math.log(c[t]);
+      return o;
+    }
+    function crcCvEmbedQuery(text) {
+      const idf = cvIndex?.idf || {};
+      const tf = crcCvTf(crcCvTokenize(text));
+      const vec = {};
+      let norm = 0;
+      for (const t in tf) {
+        if (idf[t] !== undefined) { const v = tf[t] * idf[t]; vec[t] = v; norm += v * v; }
+      }
+      norm = Math.sqrt(norm) || 1;
+      for (const t in vec) vec[t] /= norm;
+      return vec;
+    }
+    function crcCvCosine(q, r) {
+      let a = q, b = r;
+      if (Object.keys(q).length > Object.keys(r).length) { a = r; b = q; }
+      let s = 0;
+      for (const t in a) if (b[t] !== undefined) s += a[t] * b[t];
+      return s;
+    }
+
+    // ---- Layer 1: CV understanding (structured profile).
+    function crcCvExtract(text) {
+      const low = crcCvCanon(text);
+      const skills = (cvIndex?.skill_vocab || [])
+        .filter((s) => s.variants.some((v) => low.includes(v)))
+        .map((s) => s.skill);
+
+      let swedish = "none";
+      if (/svenska|swedish/.test(low)) {
+        if (/(modersmål|native|flytande|fluent|professional)/.test(low)) swedish = "native";
+        else if (/(good|goda|arbetsnivå|working)/.test(low)) swedish = "good";
+        else swedish = "basic";
+      }
+      const languages = [];
+      if (low.includes("english") || low.includes("engelska")) languages.push("English");
+      if (swedish !== "none") languages.push("Swedish (" + swedish + ")");
+
+      const years = [...low.matchAll(/(\d{1,2})\+?\s*(?:years|år)/g)].map((m) => Number(m[1]));
+      const maxY = years.length ? Math.max(...years) : 0;
+      let seniority;
+      if (/\b(senior|lead|head|principal|architect|chef)\b/.test(low)) seniority = "senior";
+      else if (/\b(junior|intern|trainee|student|entry)\b/.test(low)) seniority = "entry";
+      else if (maxY >= 6) seniority = "senior";
+      else if (maxY >= 2) seniority = "mid";
+      else seniority = "entry";
+
+      return {
+        text: String(text || ""), skills, languages, swedish, seniority,
+        years: maxY, weakSwedish: swedish === "none" || swedish === "basic"
+      };
+    }
+
+    // ---- Layer 3: rerank (semantic + skill + seniority + language).
+    function crcCvRank(profile) {
+      const qvec = crcCvEmbedQuery(profile.text);
+      const cv = new Set(profile.skills);
+      return (cvIndex?.roles || []).map((r) => {
+        const sem = crcCvCosine(qvec, r.vector || {});
+        const req = r.required_skills || [];
+        const cov = req.length ? req.filter((s) => cv.has(s)).length / req.length : 0;
+        const gap = CV_SEN_ORDER[r.seniority] - (CV_SEN_ORDER[profile.seniority] ?? 0);
+        const senPen = gap > 0 ? 0.12 * gap : 0;
+        const langPen = (r.language_sensitive && profile.weakSwedish) ? 0.12 : 0;
+        const fit = Math.max(0, 0.55 * sem + 0.30 * cov - senPen - langPen);
+        return {
+          title: r.title, domain: r.domain, field_id: r.field_id, field_label: r.field_label,
+          seniority: r.seniority, semantic: sem, coverage: cov, gap, fit,
+          missing: req.filter((s) => !cv.has(s)),
+          languageSensitive: !!r.language_sensitive, keywords: r.search_keywords || []
+        };
+      }).sort((a, b) => b.fit - a.fit);
+    }
+
+    function crcCvBucket(profile, scored) {
+      const weights = {};
+      scored.slice(0, 6).forEach((s) => { weights[s.domain] = (weights[s.domain] || 0) + s.fit; });
+      let pdomain = null, bw = -1;
+      for (const d in weights) if (weights[d] > bw) { bw = weights[d]; pdomain = d; }
+      const adjMap = cvIndex?.domain_adjacency || {};
+      const adjacent = new Set(adjMap[pdomain] || []);
+      if (pdomain) adjacent.add(pdomain);
+      // "Confusable" domains: ones that treat your domain as adjacent, but you
+      // don't treat as yours (e.g. digital marketing vs a technical martech CV).
+      // These belong in "not your main lane" even at low fit, to make the point.
+      const confusable = new Set();
+      if (pdomain) {
+        for (const d in adjMap) {
+          if (d !== pdomain && (adjMap[d] || []).includes(pdomain) && !adjacent.has(d)) confusable.add(d);
+        }
+      }
+      const best = [], adj = [], avoid = [];
+      scored.forEach((s) => {
+        const overreach = s.gap >= 2 || (s.seniority === "senior" && s.gap > 0);
+        const onLane = s.domain === pdomain;
+        const nearLane = adjacent.has(s.domain);
+        const strong = s.fit >= 0.30 && (s.semantic >= 0.12 || s.coverage >= 0.5);
+        if (overreach) {
+          if (s.fit >= 0.12) avoid.push(s);            // aspirational over-reach with real signal
+        } else if (onLane && strong) {
+          best.push(s);
+        } else if ((onLane || nearLane) && (s.fit >= 0.20 || s.semantic >= 0.15)) {
+          adj.push(s);
+        } else if (confusable.has(s.domain)) {
+          avoid.push(s);                                // looks adjacent but isn't your lane
+        } else if (s.fit >= 0.22) {
+          avoid.push(s);                                // off-lane but a notable, mismatched pull
+        }
+        // else: irrelevant / near-zero fit -> not shown at all
+      });
+      return { pdomain, best: best.slice(0, 6), adj: adj.slice(0, 5), avoid: avoid.slice(0, 5) };
+    }
+
+    function crcCvDomainLabel(domain) {
+      return (cvIndex?.domain_label || {})[domain] || domain || "these";
+    }
+
+    function crcCvBuildReport(profile) {
+      const scored = crcCvRank(profile);
+      const { pdomain, best, adj, avoid } = crcCvBucket(profile, scored);
+
+      let tone, mainAnswer;
+      if (best.length) {
+        tone = "now";
+        mainAnswer = `Your CV is strongest for ${crcCvDomainLabel(pdomain)} roles.`;
+      } else if (adj.length) {
+        tone = "soon";
+        mainAnswer = `Your CV is close to ${crcCvDomainLabel(adj[0].domain)} roles — strengthen the proof first.`;
+      } else {
+        tone = "risky";
+        mainAnswer = "Your CV doesn't match a clear role family yet — here's what to strengthen.";
+      }
+
+      // Missing skills: gaps from best + adjacent roles, hard/technical first.
+      const freq = new Map();
+      [...best, ...adj].forEach((r) => r.missing.forEach((s) => freq.set(s, (freq.get(s) || 0) + 1)));
+      let missing = [...freq.entries()]
+        .sort((a, b) => ((CV_HARD_GAPS.has(b[0]) ? 1 : 0) - (CV_HARD_GAPS.has(a[0]) ? 1 : 0)) || (b[1] - a[1]))
+        .map((e) => e[0]).slice(0, 6);
+      if (profile.weakSwedish && [...best, ...adj].some((r) => r.languageSensitive)) {
+        missing = missing.slice(0, 5);
+        missing.push("swedish working proficiency");
+      }
+
+      // CV weaknesses (heuristics on the raw text + profile).
+      const t = profile.text || "";
+      const resultWords = /(increase|increased|reduc|grew|growth|%|procent|\bkpi\b|results?|resultat|saved|boosted|improv|ökade|minskade)/i.test(t);
+      const weaknesses = [];
+      if (!resultWords) weaknesses.push("Add measurable impact — numbers, %, and what changed because of your work.");
+      if (profile.skills.length < 5) weaknesses.push("Add a clear technical skills section that lists your tools.");
+      if (!profile.languages.length) weaknesses.push("State your Swedish and English level explicitly.");
+      if (profile.seniority === "senior" && pdomain === "crm_martech") {
+        weaknesses.push("Frame senior scope explicitly — architecture ownership and 'solution architect' positioning.");
+      }
+      if (!weaknesses.length) weaknesses.push("Strong structure — focus on closing the missing skills above.");
+
+      // Keywords from best + adjacent roles.
+      const seen = new Set();
+      const keywords = [];
+      [...best, ...adj].forEach((r) => (r.keywords || []).forEach((k) => {
+        const key = k.toLowerCase();
+        if (!seen.has(key)) { seen.add(key); keywords.push(k); }
+      }));
+
+      // 7-day action plan (max 4).
+      const plan = [];
+      const bestTitles = best.slice(0, 2).map((r) => r.title);
+      plan.push(`Apply to ${Math.max(6, best.length * 2)} best-fit roles this week${bestTitles.length ? ` — e.g. ${bestTitles.join(", ")}` : ""}.`);
+      if (missing.length) {
+        const gaps = missing.slice(0, 2).map(crcCvPretty);
+        plan.push(`Build proof for ${gaps.join(" and ")} — a focused project or short course.`);
+      }
+      plan.push("Rewrite your CV: add measurable impact and a clear skills section.");
+      if (keywords.length) plan.push(`Search Platsbanken for ${keywords.slice(0, 4).map((k) => `"${k}"`).join(", ")}.`);
+
+      const sigOcc = best[0] ? crcTopOccupationInField(best[0].field_id)
+        : (adj[0] ? crcTopOccupationInField(adj[0].field_id) : null);
+      const signalLine = sigOcc ? crcBuildSignalLine(sigOcc, { region: "" }) : null;
+
+      return {
+        tone, mainAnswer, primaryDomain: pdomain, domainLabel: crcCvDomainLabel(pdomain),
+        best: best.map((r) => r.title), adjacent: adj.map((r) => r.title), avoid: avoid.map((r) => r.title),
+        missing, weaknesses, keywords: keywords.slice(0, 7), plan, signalLine,
+        tools: profile.skills.slice(0, 7).map(crcCvPretty)
+      };
+    }
+
+    function crcCvRenderReport(report, profile) {
+      const container = document.getElementById("cv-results");
+      if (!container) return;
+
+      const rolePanel = (label, items, modifier) => items.length ? `
+        <div class="crc-panel">
+          <p class="crc-panel-label">${escapeHtml(label)}</p>
+          <ul class="crc-rolelist${modifier ? ` crc-rolelist--${modifier}` : ""}">
+            ${items.map((n) => `<li class="crc-role-simple">${escapeHtml(n)}</li>`).join("")}
+          </ul>
+        </div>` : "";
+
+      const tagPanel = (label, items, gap) => items.length ? `
+        <div class="crc-panel">
+          <p class="crc-panel-label">${escapeHtml(label)}</p>
+          <div class="cv-tags">
+            ${items.map((s) => `<span class="cv-tag${gap ? " cv-tag--gap" : ""}">${escapeHtml(gap ? crcCvPretty(s) : s)}</span>`).join("")}
+          </div>
+        </div>` : "";
+
+      const weaknessHtml = report.weaknesses.length ? `
+        <div class="crc-panel">
+          <p class="crc-panel-label">Improve your CV by adding</p>
+          <ul class="crc-reasons">
+            ${report.weaknesses.map((w) => `<li class="crc-reason">${escapeHtml(w)}</li>`).join("")}
+          </ul>
+        </div>` : "";
+
+      const planHtml = report.plan.length ? `
+        <div class="crc-panel crc-plan">
+          <p class="crc-panel-label">7-day action plan</p>
+          <ul class="crc-plan-list">
+            ${report.plan.map((s, i) => `<li class="crc-plan-item"><span class="crc-plan-num">${i + 1}</span><span>${escapeHtml(s)}</span></li>`).join("")}
+          </ul>
+        </div>` : "";
+
+      const signalHtml = report.signalLine
+        ? `<p class="crc-signal-line"><b>Market signal</b> ${escapeHtml(report.signalLine)}</p>` : "";
+
+      const tools = (report.tools && report.tools.length) ? report.tools.join(", ") : "no clear tools detected";
+      const summary = `<p class="cv-summary"><b>Read from your CV</b> ${escapeHtml(profile.seniority)} level · ${escapeHtml(report.domainLabel)} · ${escapeHtml(tools)} · ${escapeHtml(profile.languages.join(", ") || "no language level stated")}</p>`;
+
+      container.innerHTML = `
+        ${summary}
+        <div class="crc-verdict crc-verdict--${report.tone}">
+          <div class="crc-verdict-body">
+            <span class="crc-verdict-kicker">Job fit report</span>
+            <h3 class="crc-verdict-title">${escapeHtml(report.mainAnswer)}</h3>
+          </div>
+        </div>
+        ${rolePanel("Best-fit roles now", report.best, "")}
+        ${rolePanel("Adjacent roles", report.adjacent, "stretch")}
+        ${rolePanel("Not your main lane", report.avoid, "avoid")}
+        ${tagPanel("Your CV is missing", report.missing, true)}
+        ${weaknessHtml}
+        ${tagPanel("Search keywords", report.keywords, false)}
+        ${planHtml}
+        ${signalHtml}`;
+      container.hidden = false;
+    }
+
+    function crcCvSetStatus(message, isError) {
+      const el = document.getElementById("cv-status");
+      if (!el) return;
+      if (!message) { el.hidden = true; return; }
+      el.textContent = message;
+      el.classList.toggle("cv-status--error", !!isError);
+      el.hidden = false;
+    }
+
+    function crcCvAnalyseText(text, sourceLabel) {
+      if (!cvIndex) { crcCvSetStatus("CV index not loaded — run scripts/build_cv_match_index.py.", true); return; }
+      const profile = crcCvExtract(text);
+      if (!profile.skills.length && !profile.roles.length) {
+        crcCvSetStatus("Couldn't read recognisable skills from this PDF. It may be a scanned image — try a text-based PDF or a sample below.", true);
+        return;
+      }
+      const report = crcCvBuildReport(profile);
+      crcCvRenderReport(report, profile);
+      crcCvSetStatus(sourceLabel ? `Analysed ${sourceLabel}. Nothing was uploaded or stored.` : null, false);
+      document.getElementById("cv-results").scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    async function crcCvReadPdf(file) {
+      if (!window.pdfjsLib) throw new Error("pdf.js not available");
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+      const buffer = await file.arrayBuffer();
+      const pdf = await window.pdfjsLib.getDocument({ data: buffer }).promise;
+      let text = "";
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        text += content.items.map((it) => it.str).join(" ") + "\n";
+      }
+      return text;
+    }
+
+    async function crcCvHandleFile(file) {
+      if (!file) return;
+      if (!/pdf$/i.test(file.name) && file.type !== "application/pdf") {
+        crcCvSetStatus("Please choose a PDF file.", true);
+        return;
+      }
+      crcCvSetStatus("Reading your CV in your browser…", false);
+      try {
+        const text = await crcCvReadPdf(file);
+        crcCvAnalyseText(text, file.name);
+      } catch (error) {
+        console.error("CV read failed", error);
+        crcCvSetStatus("Could not read that PDF in the browser. Try another PDF, or use a sample below.", true);
+      }
+    }
+
+    function crcCvInit(index, samples) {
+      cvIndex = index || null;
+      cvSamples = Array.isArray(samples?.cvs) ? samples.cvs : [];
+
+      const fileInput = document.getElementById("cv-file");
+      const browse = document.getElementById("cv-browse");
+      const drop = document.getElementById("cv-drop");
+      if (browse && fileInput) browse.addEventListener("click", () => fileInput.click());
+      if (fileInput) fileInput.addEventListener("change", (e) => crcCvHandleFile(e.target.files && e.target.files[0]));
+      if (drop) {
+        ["dragenter", "dragover"].forEach((ev) => drop.addEventListener(ev, (e) => {
+          e.preventDefault(); drop.classList.add("is-drag");
+        }));
+        ["dragleave", "drop"].forEach((ev) => drop.addEventListener(ev, (e) => {
+          e.preventDefault(); drop.classList.remove("is-drag");
+        }));
+        drop.addEventListener("drop", (e) => {
+          const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+          crcCvHandleFile(file);
+        });
+      }
+
+      const row = document.getElementById("cv-sample-row");
+      if (row) {
+        row.innerHTML = "";
+        cvSamples.forEach((cv) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "cv-sample-btn";
+          btn.textContent = cv.name;
+          btn.addEventListener("click", () => crcCvAnalyseText(cv.text, `synthetic sample "${cv.name}"`));
+          row.appendChild(btn);
+        });
+      }
+    }
+
     async function init() {
-      const data = await fetchLocalJson("data/career_reality.json");
+      const [data, cvIndexData, cvSampleData] = await Promise.all([
+        fetchLocalJson("data/career_reality.json"),
+        fetchLocalJson("data/cv_match_index.json"),
+        fetchLocalJson("data/sample_cvs.json")
+      ]);
       crcInitSection(data);
+      crcCvInit(cvIndexData, cvSampleData);
       const overlay = document.getElementById("loading-overlay");
       if (overlay) overlay.classList.add("hidden");
     }

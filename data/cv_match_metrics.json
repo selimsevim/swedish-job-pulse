@@ -1,0 +1,138 @@
+{
+  "last_updated": "2026-06-05T10:47:28Z",
+  "version": "cv-fit-engine-v2",
+  "metrics": {
+    "n_synthetic_cvs": 6,
+    "primary_domain_accuracy": 1.0,
+    "no_collapse_rate": 1.0,
+    "retrieval": "tf-idf cosine over role ontology (multilingual, synonym-expanded)",
+    "embedding_upgrade": "BGE-M3 / Qwen3-Embedding via Nebius job + /cv-fit endpoint (same cosine contract)",
+    "per_cv": [
+      {
+        "cv": "SFMC / Martech Integration (senior)",
+        "extracted_skills": 13,
+        "seniority": "senior",
+        "primary_domain": "crm_martech",
+        "expected_domain": "crm_martech",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Salesforce Marketing Cloud Consultant",
+          "Solution Architect, Marketing Technology",
+          "Martech Consultant",
+          "Integration Specialist"
+        ],
+        "adjacent": [
+          "Data Engineer",
+          "CRM Analyst",
+          "Senior Developer"
+        ],
+        "avoid": [
+          "Digital Marketing Specialist",
+          "SEO Specialist",
+          "Social Media Specialist"
+        ]
+      },
+      {
+        "cv": "Marketing / CRM (mid)",
+        "extracted_skills": 9,
+        "seniority": "mid",
+        "primary_domain": "crm_martech",
+        "expected_domain": "crm_martech",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Marketing Automation Specialist",
+          "Campaign Operations Specialist",
+          "CRM Coordinator",
+          "Salesforce Marketing Cloud Consultant"
+        ],
+        "adjacent": [
+          "CRM Analyst",
+          "Marketing Operations Engineer",
+          "Sales Coordinator"
+        ],
+        "avoid": [
+          "Marketing Automation Tech Lead",
+          "Solution Architect, Marketing Technology",
+          "Digital Marketing Specialist"
+        ]
+      },
+      {
+        "cv": "Junior developer (entry)",
+        "extracted_skills": 7,
+        "seniority": "entry",
+        "primary_domain": "software",
+        "expected_domain": "software",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Junior Developer",
+          "Software Developer"
+        ],
+        "adjacent": [
+          "Integration Specialist"
+        ],
+        "avoid": [
+          "Senior Developer"
+        ]
+      },
+      {
+        "cv": "Admin / reporting (mid)",
+        "extracted_skills": 6,
+        "seniority": "mid",
+        "primary_domain": "admin_ops",
+        "expected_domain": "admin_ops",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Admin Coordinator",
+          "Reporting Assistant",
+          "Operations Coordinator"
+        ],
+        "adjacent": [
+          "BI / Reporting Specialist",
+          "Operations Analyst",
+          "Data Analyst"
+        ],
+        "avoid": [
+          "Logistics Coordinator",
+          "Warehouse Worker",
+          "Truck Driver"
+        ]
+      },
+      {
+        "cv": "Assistant nurse (entry)",
+        "extracted_skills": 3,
+        "seniority": "mid",
+        "primary_domain": "healthcare",
+        "expected_domain": "healthcare",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Assistant Nurse",
+          "Registered Nurse"
+        ],
+        "adjacent": [],
+        "avoid": []
+      },
+      {
+        "cv": "Warehouse / logistics (entry)",
+        "extracted_skills": 4,
+        "seniority": "mid",
+        "primary_domain": "logistics",
+        "expected_domain": "logistics",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Warehouse Worker"
+        ],
+        "adjacent": [
+          "Truck Driver",
+          "Logistics Coordinator"
+        ],
+        "avoid": []
+      }
+    ]
+  }
+}

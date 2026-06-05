@@ -1,16 +1,46 @@
 # Swedish Job Pulse
 
-Swedish Job Pulse is **Career Reality Check**: a public-data career guidance website for people in Sweden.
+Swedish Job Pulse is a public-data career guidance website for people in Sweden. It has two ways in:
+
+1. **CV Job Fit Scanner** (primary) &mdash; upload a PDF CV and get a one-page CV-to-market fit report: best-fit roles now, stretch roles, roles to avoid for now, missing skills, CV fixes, search keywords and a 7-day plan.
+2. **Career Reality Check** (fallback) &mdash; answer a few questions (target job, region, skills, level) instead of uploading a CV.
 
 It answers one practical question:
 
-> Before you spend weeks applying, is your target role realistic in the current Swedish labour market?
+> Before you spend weeks applying, is this role realistic for you in the current Swedish labour market &mdash; and if not, what should you apply for and add?
 
-This is not a job board and not a generic AI career coach. It is a static website backed by public Arbetsformedlingen / JobTech labour-market data, an occupation demand trend forecast, and transparent scoring rules for crowding risk, entry-level access, regional fit, remote signal, and skill momentum.
+This is not a job board and not a generic AI career coach. It is a static website backed by public Arbetsformedlingen / JobTech labour-market data, an occupation demand trend forecast, a role-skill index, and transparent scoring rules for crowding risk, entry-level access, regional fit, remote signal, and skill momentum.
 
-## What It Does
+## CV Job Fit Scanner
 
-A user enters:
+Upload a PDF CV &rarr; get a one-page job-fit report.
+
+**Privacy / reproducibility.** The CV is parsed **entirely in your browser** (pdf.js). It is **never uploaded and never stored**, and no real CV is committed to this repo. The challenge build is demoed and evaluated only on **synthetic, fictional CVs** in [`data/sample_cvs.json`](data/sample_cvs.json).
+
+Three layers:
+
+- **Extraction** &mdash; the PDF text is parsed in-browser into `{skills, roles, languages, seniority}`.
+- **Retrieval + ranking** &mdash; the profile is embedded and matched against a role ontology ([`data/cv_match_index.json`](data/cv_match_index.json)), then reranked by skill overlap, seniority, domain fit and Swedish-language fit, enriched with public demand / crowding / regional / trend signals. The shipped static site uses a reproducible **multilingual TF-IDF vector space** with synonym/domain expansion (so `SFMC == Salesforce Marketing Cloud == Martech` and a technical martech CV is not flattened into "digital marketing"). The hand-written synonym list is a **bootstrap**; the scalable replacement is a **neural embedding model (BGE-M3 / Qwen3) at the Nebius `/cv-fit` endpoint** (no synonym list needed) — see [`nebius/README.md`](nebius/README.md).
+- **Gap analysis** &mdash; what blocks stronger matches: missing skills, weak proof, language.
+
+The report:
+
+- **Best-fit roles now** / **Stretch roles** / **Roles to avoid for now**
+- **Your CV is missing** (priority skill gaps, technical first)
+- **Improve your CV by adding** (measurable results, skills section, clearer titles, language level)
+- **Search keywords** and a **7-day action plan**
+
+It reflects **public Swedish job-ad data, not the entire hidden job market**, and is not a guarantee of employment. Build the index and run the synthetic-CV evaluation with:
+
+```bash
+python3 scripts/build_cv_match_index.py
+```
+
+Outputs `data/cv_match_index.json`, `data/sample_cvs.json` and `data/cv_match_metrics.json` (top-1 / top-3 role-field accuracy on the synthetic CVs). The matcher in `app.js` mirrors the Python matcher in that script, so the evaluation tests the same pipeline.
+
+## Career Reality Check (fallback)
+
+If you would rather not upload a CV, a collapsed form lets you answer a few questions instead. A user enters:
 
 - Region
 - Swedish level
@@ -21,14 +51,16 @@ A user enters:
 - Remote preference
 - Study willingness
 
-The site returns:
+The site returns one clear consultant answer, in a single vertical flow:
 
-- A verdict: `Realistic now`, `Reachable in 3-6 months`, `Risky for now`, or `Not enough signal`
-- A "Why this verdict?" evidence panel
-- Role buckets: realistic now, reachable with upgrades, risky/crowded
-- Skills to add
-- Search keywords in Swedish and English
-- A concrete 2-week action plan
+- **Main answer** - a plain-language verdict, e.g. "Don't make developer your main application lane yet" or "Apply now - this target is realistic"
+- **Why** - 3-4 short reasons behind the call (no full signal table)
+- **Apply for these first** - realistic roles to apply to right now
+- **Keep as stretch target** - the target role plus nearby reachable roles (hidden when the target is already realistic)
+- **Do this next** - a short action plan (max 4 steps), including search keywords
+- **Data signal** - one compact muted line summarising demand direction, crowding, regional fit, and remote signal
+
+The verdict is still computed internally as `Realistic now`, `Reachable in 3-6 months`, `Risky for now`, or `Not enough signal`, but the user sees a single plain-language answer rather than a label plus a data dashboard.
 
 The intended project story is:
 
@@ -132,6 +164,9 @@ Important generated outputs:
 - [`data/model_metrics.json`](data/model_metrics.json) - model and baseline evaluation
 - [`data/career_reality.json`](data/career_reality.json) - full UI model for Career Reality Check
 - [`data/opportunity_scores.json`](data/opportunity_scores.json) - compact occupation x region scoring table
+- [`data/cv_match_index.json`](data/cv_match_index.json) - CV role-skill index (roles, skills, seniority, language fit)
+- [`data/sample_cvs.json`](data/sample_cvs.json) - synthetic, fictional CVs for the scanner demo (no personal data)
+- [`data/cv_match_metrics.json`](data/cv_match_metrics.json) - CV matcher evaluation on the synthetic CVs
 
 Artifacts are deterministic enough for judging: model random state is fixed, the same input files produce the same scores and metrics, and only `last_updated` timestamps change on rebuild.
 
@@ -143,6 +178,7 @@ source .venv/bin/activate
 python3 -m pip install -r requirements-ml.txt
 python3 scripts/train_career_signal_model.py
 python3 scripts/process_career_reality.py
+python3 scripts/build_cv_match_index.py
 python3 -m http.server 8000
 ```
 

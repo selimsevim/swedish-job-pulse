@@ -1,0 +1,3008 @@
+{
+  "last_updated": "2026-06-05T10:47:28Z",
+  "version": "cv-fit-engine-v2",
+  "retrieval": "tf-idf-cosine",
+  "domain_label": {
+    "crm_martech": "CRM / marketing automation",
+    "digital_marketing": "digital marketing",
+    "sales": "sales",
+    "data_analytics": "analytics / BI",
+    "software": "software / IT",
+    "admin_ops": "admin / operations",
+    "healthcare": "healthcare",
+    "logistics": "logistics",
+    "education": "education",
+    "hospitality": "hospitality"
+  },
+  "domain_adjacency": {
+    "crm_martech": [
+      "admin_ops",
+      "data_analytics",
+      "sales",
+      "software"
+    ],
+    "data_analytics": [
+      "admin_ops",
+      "crm_martech",
+      "software"
+    ],
+    "software": [
+      "crm_martech",
+      "data_analytics"
+    ],
+    "admin_ops": [
+      "crm_martech",
+      "data_analytics",
+      "sales"
+    ],
+    "sales": [
+      "admin_ops",
+      "crm_martech"
+    ],
+    "digital_marketing": [
+      "crm_martech",
+      "sales"
+    ],
+    "healthcare": [],
+    "logistics": [
+      "admin_ops"
+    ],
+    "education": [],
+    "hospitality": [
+      "sales"
+    ]
+  },
+  "synonyms": [
+    [
+      "salesforce marketing cloud",
+      " sfmc "
+    ],
+    [
+      "marketing cloud",
+      " sfmc "
+    ],
+    [
+      "salesforce data cloud",
+      " data_cloud "
+    ],
+    [
+      "data cloud",
+      " data_cloud "
+    ],
+    [
+      "journey builder",
+      " sfmc journeys "
+    ],
+    [
+      "email studio",
+      " sfmc email "
+    ],
+    [
+      "marketing automation",
+      " marketing_automation "
+    ],
+    [
+      "martech",
+      " martech marketing_automation "
+    ],
+    [
+      "solution architect",
+      " solution_architect architecture "
+    ],
+    [
+      "integration specialist",
+      " integration "
+    ],
+    [
+      "api integration",
+      " integration apis "
+    ],
+    [
+      "system integration",
+      " integration "
+    ],
+    [
+      "middleware",
+      " integration "
+    ],
+    [
+      "rest api",
+      " rest apis "
+    ],
+    [
+      "restful",
+      " rest apis "
+    ],
+    [
+      "power bi",
+      " power_bi "
+    ],
+    [
+      "business intelligence",
+      " bi "
+    ],
+    [
+      "data analyst",
+      " data_analyst analytics "
+    ],
+    [
+      "machine learning",
+      " machine_learning "
+    ],
+    [
+      "ci/cd",
+      " cicd "
+    ],
+    [
+      "customer relationship management",
+      " crm "
+    ],
+    [
+      "key account",
+      " account_management "
+    ],
+    [
+      "account management",
+      " account_management "
+    ],
+    [
+      "search engine optimization",
+      " seo "
+    ],
+    [
+      "search engine optimisation",
+      " seo "
+    ],
+    [
+      "social media",
+      " social_media "
+    ],
+    [
+      "content marketing",
+      " content "
+    ],
+    [
+      "supply chain",
+      " supply_chain logistics "
+    ],
+    [
+      "driving license",
+      " driving_license "
+    ],
+    [
+      "driver's license",
+      " driving_license "
+    ],
+    [
+      "ce license",
+      " ce_license driving_license "
+    ],
+    [
+      "patient care",
+      " patient_care care "
+    ],
+    [
+      "elderly care",
+      " elderly_care care "
+    ]
+  ],
+  "stopwords": [
+    "a",
+    "an",
+    "and",
+    "ar",
+    "are",
+    "as",
+    "at",
+    "av",
+    "be",
+    "by",
+    "de",
+    "det",
+    "en",
+    "ett",
+    "experience",
+    "for",
+    "from",
+    "har",
+    "i",
+    "in",
+    "inte",
+    "is",
+    "jag",
+    "man",
+    "med",
+    "och",
+    "of",
+    "on",
+    "or",
+    "our",
+    "pa",
+    "som",
+    "that",
+    "the",
+    "this",
+    "to",
+    "vi",
+    "we",
+    "with",
+    "work",
+    "worked",
+    "working",
+    "year",
+    "years",
+    "you",
+    "your"
+  ],
+  "idf": {
+    "rest": 3.63906,
+    "martech": 2.17272,
+    "soap": 3.63906,
+    "sql": 1.8473,
+    "crm_": 2.17272,
+    "email": 3.35138,
+    "integration": 2.43508,
+    "sfmc": 2.65823,
+    "ampscript": 4.04452,
+    "crm": 2.25276,
+    "journeys": 4.04452,
+    "marketing_automation": 2.17272,
+    "consultant": 3.35138,
+    "ssjs": 4.04452,
+    "tech": 3.63906,
+    "lead": 3.63906,
+    "team": 4.04452,
+    "leadership": 3.35138,
+    "architecture": 3.35138,
+    "technology": 3.63906,
+    "marketing": 3.12823,
+    "platform": 3.63906,
+    "apis": 2.33977,
+    "developer": 2.94591,
+    "salesforce": 3.35138,
+    "technical": 4.04452,
+    "data": 2.43508,
+    "engineer": 2.65823,
+    "python": 2.54045,
+    "cloud": 2.43508,
+    "software": 2.17272,
+    "systems": 4.04452,
+    "architect": 4.04452,
+    "design": 4.04452,
+    "solution_architect": 4.04452,
+    "data_analytics": 2.65823,
+    "ops": 4.04452,
+    "campaign": 2.94591,
+    "operations": 3.12823,
+    "analytics": 3.63906,
+    "automation": 3.35138,
+    "pipelines": 3.35138,
+    "data_cloud": 4.04452,
+    "etl": 3.63906,
+    "specialist": 2.54045,
+    "segmentation": 3.35138,
+    "email_marketing": 3.12823,
+    "html_css": 3.63906,
+    "manager": 3.35138,
+    "google_analytics": 2.94591,
+    "reporting": 2.33977,
+    "customer": 4.04452,
+    "koordinator": 3.63906,
+    "coordinator": 2.94591,
+    "excel": 2.25276,
+    "customer_service": 3.63906,
+    "analyst": 3.35138,
+    "power_bi": 2.79176,
+    "analytiker": 3.63906,
+    "assistant": 3.12823,
+    "dashboards": 3.35138,
+    "bi": 4.04452,
+    "data_visualization": 3.35138,
+    "data_analyst": 4.04452,
+    "dataanalytiker": 4.04452,
+    "statistics": 3.35138,
+    "kpi": 3.63906,
+    "process": 3.63906,
+    "admin_ops": 2.94591,
+    "operativ": 3.63906,
+    "docker": 3.12823,
+    "data_engineer": 4.04452,
+    "dataingenj": 4.04452,
+    "admin": 3.63906,
+    "rapporteringsassistent": 4.04452,
+    "office_tools": 3.63906,
+    "planning": 3.35138,
+    "coordination": 3.12823,
+    "project_management": 4.04452,
+    "stakeholder": 4.04452,
+    "administrator": 4.04452,
+    "scheduling": 4.04452,
+    "administrative": 4.04452,
+    "support": 3.63906,
+    "administration": 4.04452,
+    "office": 4.04452,
+    "business": 4.04452,
+    "junior": 3.63906,
+    "finance": 4.04452,
+    "controller": 4.04452,
+    "budget": 4.04452,
+    "accounting": 4.04452,
+    "financial_analysis": 4.04452,
+    "ljare": 4.04452,
+    "account_management": 3.63906,
+    "sales": 3.63906,
+    "innes": 4.04452,
+    "pipeline": 4.04452,
+    "communication": 2.94591,
+    "clients": 4.04452,
+    "kundansvarig": 4.04452,
+    "account": 4.04452,
+    "negotiation": 4.04452,
+    "relationship": 4.04452,
+    "seo": 3.12823,
+    "search": 4.04452,
+    "ranking": 4.04452,
+    "content": 3.12823,
+    "social_media": 3.12823,
+    "digital_marketing": 3.12823,
+    "keywords": 4.04452,
+    "instagram": 4.04452,
+    "community": 4.04452,
+    "posts": 4.04452,
+    "copywriting": 4.04452,
+    "copywriter": 4.04452,
+    "editorial": 4.04452,
+    "rare": 3.63906,
+    "digital": 4.04452,
+    "marknadsf": 4.04452,
+    "ads": 4.04452,
+    "troubleshooting": 4.04452,
+    "supporttekniker": 4.04452,
+    "helpdesk": 4.04452,
+    "technician": 4.04452,
+    "desk": 4.04452,
+    "networking": 3.63906,
+    "linux": 3.35138,
+    "service": 3.63906,
+    "ticketing": 4.04452,
+    "it": 4.04452,
+    "test_automation": 4.04452,
+    "test": 4.04452,
+    "cicd": 3.63906,
+    "selenium": 4.04452,
+    "testare": 4.04452,
+    "testing": 4.04452,
+    "qa": 4.04452,
+    "utvecklare": 4.04452,
+    "react": 4.04452,
+    "git": 3.12823,
+    "javascript": 3.35138,
+    "code": 3.35138,
+    "trainee": 4.04452,
+    "systemutvecklare": 4.04452,
+    "java": 4.04452,
+    "programmer": 4.04452,
+    "devops": 4.04452,
+    "infrastructure": 4.04452,
+    "kubernetes": 4.04452,
+    "ml": 4.04452,
+    "scientist": 4.04452,
+    "machine_learning": 4.04452,
+    "data_scientist": 4.04452,
+    "models": 4.04452,
+    "senior": 4.04452,
+    "soc": 4.04452,
+    "network": 4.04452,
+    "cyber": 4.04452,
+    "threats": 4.04452,
+    "cybersecurity": 4.04452,
+    "incident": 4.04452,
+    "incident_response": 4.04452,
+    "security": 4.04452,
+    "nurse": 3.63906,
+    "elderly_care": 4.04452,
+    "rdbitr": 4.04452,
+    "terska": 3.63906,
+    "elderly": 4.04452,
+    "hemtj": 4.04452,
+    "documentation": 3.63906,
+    "healthcare": 3.63906,
+    "undersk": 4.04452,
+    "patient": 4.04452,
+    "nst": 4.04452,
+    "patient_care": 3.63906,
+    "care": 3.63906,
+    "medication": 4.04452,
+    "nursing": 4.04452,
+    "sjuksk": 4.04452,
+    "legitimerad": 4.04452,
+    "registered": 4.04452,
+    "logistics": 3.35138,
+    "forklift": 3.63906,
+    "lagerarbetare": 4.04452,
+    "worker": 4.04452,
+    "lager": 4.04452,
+    "picking": 4.04452,
+    "warehouse": 3.63906,
+    "inventory": 3.63906,
+    "supply_chain": 3.63906,
+    "logistikkoordinator": 4.04452,
+    "lastbilsf": 4.04452,
+    "truck": 4.04452,
+    "delivery": 4.04452,
+    "transport": 4.04452,
+    "driver": 4.04452,
+    "driving_license": 4.04452,
+    "chauff": 4.04452,
+    "rarassistent": 4.04452,
+    "pedagogy": 4.04452,
+    "teaching": 4.04452,
+    "classroom": 4.04452,
+    "children": 4.04452,
+    "education": 4.04452,
+    "barnsk": 4.04452,
+    "school": 4.04452,
+    "childcare": 4.04452,
+    "tare": 4.04452,
+    "elevassistent": 4.04452,
+    "coffee": 4.04452,
+    "customers": 4.04452,
+    "servit": 4.04452,
+    "hospitality": 4.04452,
+    "caf": 4.04452,
+    "waiter": 4.04452,
+    "barista": 4.04452
+  },
+  "skill_vocab": [
+    {
+      "skill": "sfmc",
+      "variants": [
+        "sfmc"
+      ]
+    },
+    {
+      "skill": "ampscript",
+      "variants": [
+        "ampscript"
+      ]
+    },
+    {
+      "skill": "ssjs",
+      "variants": [
+        "ssjs"
+      ]
+    },
+    {
+      "skill": "marketing_automation",
+      "variants": [
+        "marketing_automation"
+      ]
+    },
+    {
+      "skill": "crm",
+      "variants": [
+        "crm",
+        "salesforce"
+      ]
+    },
+    {
+      "skill": "data_cloud",
+      "variants": [
+        "data_cloud"
+      ]
+    },
+    {
+      "skill": "integration",
+      "variants": [
+        "integration"
+      ]
+    },
+    {
+      "skill": "apis",
+      "variants": [
+        "apis",
+        "api"
+      ]
+    },
+    {
+      "skill": "rest",
+      "variants": [
+        "rest"
+      ]
+    },
+    {
+      "skill": "soap",
+      "variants": [
+        "soap"
+      ]
+    },
+    {
+      "skill": "architecture",
+      "variants": [
+        "architecture",
+        "solution_architect"
+      ]
+    },
+    {
+      "skill": "email_marketing",
+      "variants": [
+        "email marketing",
+        "newsletter",
+        "e-post"
+      ]
+    },
+    {
+      "skill": "segmentation",
+      "variants": [
+        "segmentation",
+        "segmentering"
+      ]
+    },
+    {
+      "skill": "campaign",
+      "variants": [
+        "campaign",
+        "kampanj"
+      ]
+    },
+    {
+      "skill": "seo",
+      "variants": [
+        "seo"
+      ]
+    },
+    {
+      "skill": "social_media",
+      "variants": [
+        "social_media"
+      ]
+    },
+    {
+      "skill": "content",
+      "variants": [
+        "content",
+        "copywriting"
+      ]
+    },
+    {
+      "skill": "google_analytics",
+      "variants": [
+        "google analytics",
+        "ga4"
+      ]
+    },
+    {
+      "skill": "excel",
+      "variants": [
+        "excel",
+        "pivot"
+      ]
+    },
+    {
+      "skill": "power_bi",
+      "variants": [
+        "power_bi"
+      ]
+    },
+    {
+      "skill": "sql",
+      "variants": [
+        "sql"
+      ]
+    },
+    {
+      "skill": "python",
+      "variants": [
+        "python",
+        "pandas"
+      ]
+    },
+    {
+      "skill": "statistics",
+      "variants": [
+        "statistics",
+        "statistik",
+        "regression"
+      ]
+    },
+    {
+      "skill": "machine_learning",
+      "variants": [
+        "machine_learning",
+        "scikit"
+      ]
+    },
+    {
+      "skill": "etl",
+      "variants": [
+        "etl",
+        "airflow"
+      ]
+    },
+    {
+      "skill": "dashboards",
+      "variants": [
+        "dashboard",
+        "instrumentpanel"
+      ]
+    },
+    {
+      "skill": "data_visualization",
+      "variants": [
+        "tableau",
+        "looker",
+        "visualisering"
+      ]
+    },
+    {
+      "skill": "kpi",
+      "variants": [
+        "kpi",
+        "nyckeltal"
+      ]
+    },
+    {
+      "skill": "reporting",
+      "variants": [
+        "reporting",
+        "rapportering",
+        "report"
+      ]
+    },
+    {
+      "skill": "financial_analysis",
+      "variants": [
+        "budget",
+        "forecasting",
+        "controlling"
+      ]
+    },
+    {
+      "skill": "accounting",
+      "variants": [
+        "accounting",
+        "bokföring",
+        "redovisning"
+      ]
+    },
+    {
+      "skill": "javascript",
+      "variants": [
+        "javascript",
+        "typescript",
+        "react",
+        "node"
+      ]
+    },
+    {
+      "skill": "java",
+      "variants": [
+        "java "
+      ]
+    },
+    {
+      "skill": "html_css",
+      "variants": [
+        "html",
+        "css"
+      ]
+    },
+    {
+      "skill": "git",
+      "variants": [
+        "git",
+        "github"
+      ]
+    },
+    {
+      "skill": "cloud",
+      "variants": [
+        "cloud",
+        "aws",
+        "azure",
+        "gcp",
+        "moln"
+      ]
+    },
+    {
+      "skill": "docker",
+      "variants": [
+        "docker",
+        "container"
+      ]
+    },
+    {
+      "skill": "kubernetes",
+      "variants": [
+        "kubernetes",
+        "k8s"
+      ]
+    },
+    {
+      "skill": "cicd",
+      "variants": [
+        "cicd",
+        "jenkins"
+      ]
+    },
+    {
+      "skill": "linux",
+      "variants": [
+        "linux",
+        "bash"
+      ]
+    },
+    {
+      "skill": "networking",
+      "variants": [
+        "networking",
+        "nätverk"
+      ]
+    },
+    {
+      "skill": "troubleshooting",
+      "variants": [
+        "troubleshooting",
+        "felsökning"
+      ]
+    },
+    {
+      "skill": "testing",
+      "variants": [
+        "testing",
+        "qa"
+      ]
+    },
+    {
+      "skill": "test_automation",
+      "variants": [
+        "test_automation",
+        "selenium",
+        "cypress"
+      ]
+    },
+    {
+      "skill": "security",
+      "variants": [
+        "security",
+        "säkerhet"
+      ]
+    },
+    {
+      "skill": "incident_response",
+      "variants": [
+        "incident",
+        "soc",
+        "siem"
+      ]
+    },
+    {
+      "skill": "customer_service",
+      "variants": [
+        "customer_service",
+        "kundtjänst",
+        "kundsupport"
+      ]
+    },
+    {
+      "skill": "communication",
+      "variants": [
+        "communication",
+        "kommunikation"
+      ]
+    },
+    {
+      "skill": "ticketing",
+      "variants": [
+        "ticketing",
+        "zendesk",
+        "ärendehantering"
+      ]
+    },
+    {
+      "skill": "account_management",
+      "variants": [
+        "account_management"
+      ]
+    },
+    {
+      "skill": "sales",
+      "variants": [
+        "sales",
+        "försäljning"
+      ]
+    },
+    {
+      "skill": "negotiation",
+      "variants": [
+        "negotiation",
+        "förhandling"
+      ]
+    },
+    {
+      "skill": "pipeline",
+      "variants": [
+        "pipeline"
+      ]
+    },
+    {
+      "skill": "patient_care",
+      "variants": [
+        "patient_care"
+      ]
+    },
+    {
+      "skill": "elderly_care",
+      "variants": [
+        "elderly_care",
+        "hemtjänst"
+      ]
+    },
+    {
+      "skill": "nursing",
+      "variants": [
+        "nursing",
+        "sjuksköterska"
+      ]
+    },
+    {
+      "skill": "documentation",
+      "variants": [
+        "documentation",
+        "dokumentation",
+        "journal"
+      ]
+    },
+    {
+      "skill": "medication",
+      "variants": [
+        "medication",
+        "läkemedel"
+      ]
+    },
+    {
+      "skill": "warehouse",
+      "variants": [
+        "warehouse",
+        "lager"
+      ]
+    },
+    {
+      "skill": "forklift",
+      "variants": [
+        "forklift",
+        "truck",
+        "truckkort"
+      ]
+    },
+    {
+      "skill": "inventory",
+      "variants": [
+        "inventory",
+        "wms"
+      ]
+    },
+    {
+      "skill": "supply_chain",
+      "variants": [
+        "supply_chain",
+        "logistics"
+      ]
+    },
+    {
+      "skill": "driving_license",
+      "variants": [
+        "driving_license"
+      ]
+    },
+    {
+      "skill": "project_management",
+      "variants": [
+        "project_management",
+        "scrum",
+        "agile"
+      ]
+    },
+    {
+      "skill": "coordination",
+      "variants": [
+        "coordination",
+        "samordning"
+      ]
+    },
+    {
+      "skill": "planning",
+      "variants": [
+        "planning",
+        "planering",
+        "scheduling"
+      ]
+    },
+    {
+      "skill": "leadership",
+      "variants": [
+        "leadership",
+        "ledarskap",
+        "team lead"
+      ]
+    },
+    {
+      "skill": "stakeholder",
+      "variants": [
+        "stakeholder",
+        "intressent"
+      ]
+    },
+    {
+      "skill": "office_tools",
+      "variants": [
+        "powerpoint",
+        "word",
+        "officepaket"
+      ]
+    },
+    {
+      "skill": "administration",
+      "variants": [
+        "administration",
+        "administrativ",
+        "admin"
+      ]
+    },
+    {
+      "skill": "pedagogy",
+      "variants": [
+        "pedagogy",
+        "pedagogik",
+        "teaching"
+      ]
+    },
+    {
+      "skill": "childcare",
+      "variants": [
+        "childcare",
+        "förskola"
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "role_id": "sfmc_consultant",
+      "title": "Salesforce Marketing Cloud Consultant",
+      "domain": "crm_martech",
+      "secondary_domains": [],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "mid",
+      "required_skills": [
+        "sfmc",
+        "marketing_automation",
+        "crm",
+        "sql"
+      ],
+      "nice_skills": [
+        "ampscript",
+        "ssjs",
+        "rest",
+        "soap",
+        "integration"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "sfmc",
+        "salesforce marketing cloud",
+        "marketing cloud consultant",
+        "sfmc consultant"
+      ],
+      "search_keywords": [
+        "SFMC Consultant",
+        "Salesforce Marketing Cloud"
+      ],
+      "terms": [
+        "sfmc",
+        "ampscript",
+        "ssjs",
+        "journeys",
+        "email",
+        "crm",
+        "consultant",
+        "martech"
+      ],
+      "vector": {
+        "sfmc": 0.42716,
+        "consultant": 0.43624,
+        "ampscript": 0.37354,
+        "ssjs": 0.37354,
+        "journeys": 0.22062,
+        "email": 0.18281,
+        "crm": 0.20806,
+        "martech": 0.20067,
+        "marketing_automation": 0.24872,
+        "sql": 0.10077,
+        "rest": 0.1985,
+        "soap": 0.1985,
+        "integration": 0.13283,
+        "crm_": 0.11852
+      }
+    },
+    {
+      "role_id": "ma_techlead",
+      "title": "Marketing Automation Tech Lead",
+      "domain": "crm_martech",
+      "secondary_domains": [],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "senior",
+      "required_skills": [
+        "marketing_automation",
+        "sfmc",
+        "crm",
+        "leadership"
+      ],
+      "nice_skills": [
+        "integration",
+        "sql",
+        "architecture"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "marketing automation tech lead",
+        "martech lead",
+        "marketing automation lead"
+      ],
+      "search_keywords": [
+        "Marketing Automation Tech Lead"
+      ],
+      "terms": [
+        "marketing_automation",
+        "sfmc",
+        "lead",
+        "team",
+        "architecture",
+        "martech"
+      ],
+      "vector": {
+        "marketing_automation": 0.39096,
+        "tech": 0.36003,
+        "lead": 0.55487,
+        "martech": 0.26644,
+        "sfmc": 0.26299,
+        "team": 0.23633,
+        "architecture": 0.33157,
+        "crm": 0.13164,
+        "leadership": 0.19583,
+        "integration": 0.14229,
+        "sql": 0.10794,
+        "crm_": 0.12696
+      }
+    },
+    {
+      "role_id": "martech_consultant",
+      "title": "Martech Consultant",
+      "domain": "crm_martech",
+      "secondary_domains": [],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "mid",
+      "required_skills": [
+        "marketing_automation",
+        "crm",
+        "integration"
+      ],
+      "nice_skills": [
+        "sfmc",
+        "sql",
+        "apis"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "martech consultant",
+        "marketing technology consultant"
+      ],
+      "search_keywords": [
+        "Martech Consultant",
+        "Marketing Technology Consultant"
+      ],
+      "terms": [
+        "martech",
+        "marketing_automation",
+        "consultant",
+        "crm",
+        "integration",
+        "platform"
+      ],
+      "vector": {
+        "martech": 0.35268,
+        "marketing_automation": 0.4126,
+        "consultant": 0.544,
+        "marketing": 0.21279,
+        "technology": 0.24754,
+        "crm": 0.25945,
+        "integration": 0.28045,
+        "platform": 0.24754,
+        "sfmc": 0.18082,
+        "sql": 0.12566,
+        "apis": 0.15916,
+        "crm_": 0.14779
+      }
+    },
+    {
+      "role_id": "crm_tech_consultant",
+      "title": "CRM Technical Consultant",
+      "domain": "crm_martech",
+      "secondary_domains": [],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "mid",
+      "required_skills": [
+        "crm",
+        "sql",
+        "integration"
+      ],
+      "nice_skills": [
+        "sfmc",
+        "apis",
+        "marketing_automation"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "crm technical consultant",
+        "crm consultant",
+        "crm developer"
+      ],
+      "search_keywords": [
+        "CRM Technical Consultant",
+        "CRM Consultant"
+      ],
+      "terms": [
+        "crm",
+        "technical",
+        "consultant",
+        "integration",
+        "sql",
+        "salesforce"
+      ],
+      "vector": {
+        "crm": 0.39173,
+        "technical": 0.52868,
+        "consultant": 0.49812,
+        "developer": 0.18349,
+        "integration": 0.2568,
+        "sql": 0.19481,
+        "salesforce": 0.20874,
+        "sfmc": 0.16557,
+        "apis": 0.14573,
+        "marketing_automation": 0.22913,
+        "crm_": 0.13533,
+        "martech": 0.13533
+      }
+    },
+    {
+      "role_id": "integration_specialist",
+      "title": "Integration Specialist",
+      "domain": "crm_martech",
+      "secondary_domains": [
+        "software"
+      ],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "mid",
+      "required_skills": [
+        "integration",
+        "apis",
+        "rest"
+      ],
+      "nice_skills": [
+        "soap",
+        "sql",
+        "cloud",
+        "python"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "integration specialist",
+        "integration engineer",
+        "integration developer"
+      ],
+      "search_keywords": [
+        "Integration Specialist",
+        "API Integration"
+      ],
+      "terms": [
+        "integration",
+        "apis",
+        "rest",
+        "soap",
+        "middleware",
+        "systems",
+        "data"
+      ],
+      "vector": {
+        "integration": 0.48833,
+        "engineer": 0.18096,
+        "developer": 0.20054,
+        "apis": 0.26968,
+        "rest": 0.41944,
+        "soap": 0.41944,
+        "systems": 0.27533,
+        "data": 0.16577,
+        "sql": 0.12575,
+        "cloud": 0.16577,
+        "python": 0.17294,
+        "crm_": 0.14791,
+        "martech": 0.14791,
+        "marketing_automation": 0.14791,
+        "software": 0.14791
+      }
+    },
+    {
+      "role_id": "solution_architect_martech",
+      "title": "Solution Architect, Marketing Technology",
+      "domain": "crm_martech",
+      "secondary_domains": [
+        "software"
+      ],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "senior",
+      "required_skills": [
+        "architecture",
+        "marketing_automation",
+        "integration",
+        "crm"
+      ],
+      "nice_skills": [
+        "sfmc",
+        "cloud",
+        "apis",
+        "leadership"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "solution architect",
+        "martech architect",
+        "marketing technology architect"
+      ],
+      "search_keywords": [
+        "Solution Architect Marketing Technology",
+        "Martech Architect"
+      ],
+      "terms": [
+        "solution_architect",
+        "architecture",
+        "martech",
+        "integration",
+        "cloud",
+        "design"
+      ],
+      "vector": {
+        "solution_architect": 0.43245,
+        "architecture": 0.40746,
+        "marketing": 0.26986,
+        "technology": 0.31392,
+        "martech": 0.23231,
+        "marketing_automation": 0.26416,
+        "architect": 0.3489,
+        "integration": 0.21006,
+        "cloud": 0.21006,
+        "design": 0.20607,
+        "crm": 0.11478,
+        "sfmc": 0.13544,
+        "apis": 0.11921,
+        "leadership": 0.17075,
+        "crm_": 0.1107,
+        "software": 0.1107
+      }
+    },
+    {
+      "role_id": "marketing_ops_engineer",
+      "title": "Marketing Operations Engineer",
+      "domain": "crm_martech",
+      "secondary_domains": [
+        "data_analytics"
+      ],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "mid",
+      "required_skills": [
+        "marketing_automation",
+        "sql",
+        "integration"
+      ],
+      "nice_skills": [
+        "sfmc",
+        "apis",
+        "analytics"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "marketing operations engineer",
+        "marketing ops",
+        "marketing operations"
+      ],
+      "search_keywords": [
+        "Marketing Operations Engineer",
+        "Marketing Ops"
+      ],
+      "terms": [
+        "marketing",
+        "operations",
+        "automation",
+        "data",
+        "campaign",
+        "engineer"
+      ],
+      "vector": {
+        "marketing": 0.50542,
+        "operations": 0.4622,
+        "engineer": 0.34541,
+        "ops": 0.25043,
+        "automation": 0.20751,
+        "data": 0.15077,
+        "campaign": 0.1824,
+        "marketing_automation": 0.22778,
+        "sql": 0.11438,
+        "integration": 0.15077,
+        "sfmc": 0.16459,
+        "apis": 0.14487,
+        "analytics": 0.22532,
+        "crm_": 0.13453,
+        "martech": 0.13453,
+        "data_analytics": 0.16459
+      }
+    },
+    {
+      "role_id": "data_integration_specialist",
+      "title": "Data Integration Specialist",
+      "domain": "crm_martech",
+      "secondary_domains": [
+        "data_analytics",
+        "software"
+      ],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "mid",
+      "required_skills": [
+        "integration",
+        "sql",
+        "apis"
+      ],
+      "nice_skills": [
+        "etl",
+        "data_cloud",
+        "cloud"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "data integration specialist",
+        "data integration engineer"
+      ],
+      "search_keywords": [
+        "Data Integration Specialist"
+      ],
+      "terms": [
+        "data",
+        "integration",
+        "etl",
+        "sql",
+        "pipelines",
+        "apis"
+      ],
+      "vector": {
+        "data": 0.40672,
+        "integration": 0.44476,
+        "engineer": 0.18606,
+        "etl": 0.43127,
+        "sql": 0.21892,
+        "pipelines": 0.23458,
+        "apis": 0.27729,
+        "data_cloud": 0.28309,
+        "cloud": 0.17044,
+        "crm_": 0.15208,
+        "martech": 0.15208,
+        "marketing_automation": 0.15208,
+        "data_analytics": 0.18606,
+        "software": 0.15208
+      }
+    },
+    {
+      "role_id": "ma_specialist",
+      "title": "Marketing Automation Specialist",
+      "domain": "crm_martech",
+      "secondary_domains": [],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "mid",
+      "required_skills": [
+        "marketing_automation",
+        "crm",
+        "email_marketing"
+      ],
+      "nice_skills": [
+        "sfmc",
+        "segmentation",
+        "html_css"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "marketing automation specialist",
+        "marketing automation"
+      ],
+      "search_keywords": [
+        "Marketing Automation Specialist"
+      ],
+      "terms": [
+        "marketing_automation",
+        "email",
+        "crm",
+        "campaign",
+        "segmentation"
+      ],
+      "vector": {
+        "marketing_automation": 0.47732,
+        "specialist": 0.33848,
+        "email": 0.26373,
+        "crm": 0.30015,
+        "campaign": 0.23182,
+        "segmentation": 0.44653,
+        "email_marketing": 0.24617,
+        "sfmc": 0.20918,
+        "html_css": 0.28636,
+        "crm_": 0.17098,
+        "martech": 0.17098
+      }
+    },
+    {
+      "role_id": "campaign_ops",
+      "title": "Campaign Operations Specialist",
+      "domain": "crm_martech",
+      "secondary_domains": [],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "mid",
+      "required_skills": [
+        "campaign",
+        "email_marketing",
+        "marketing_automation"
+      ],
+      "nice_skills": [
+        "crm",
+        "google_analytics",
+        "segmentation"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "campaign operations",
+        "campaign specialist",
+        "campaign manager"
+      ],
+      "search_keywords": [
+        "Campaign Operations Specialist"
+      ],
+      "terms": [
+        "campaign",
+        "operations",
+        "email",
+        "automation",
+        "reporting"
+      ],
+      "vector": {
+        "campaign": 0.54688,
+        "operations": 0.43654,
+        "specialist": 0.28602,
+        "manager": 0.22285,
+        "email": 0.22285,
+        "automation": 0.22285,
+        "reporting": 0.15559,
+        "email_marketing": 0.20802,
+        "marketing_automation": 0.24462,
+        "crm": 0.1498,
+        "google_analytics": 0.19589,
+        "segmentation": 0.22285,
+        "crm_": 0.14448,
+        "martech": 0.14448
+      }
+    },
+    {
+      "role_id": "crm_coordinator",
+      "title": "CRM Coordinator",
+      "domain": "crm_martech",
+      "secondary_domains": [],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "entry",
+      "required_skills": [
+        "crm",
+        "customer_service",
+        "excel"
+      ],
+      "nice_skills": [
+        "salesforce",
+        "email_marketing",
+        "reporting"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "crm coordinator",
+        "crm-koordinator"
+      ],
+      "search_keywords": [
+        "CRM Coordinator"
+      ],
+      "terms": [
+        "crm",
+        "coordinator",
+        "customer",
+        "campaign",
+        "data"
+      ],
+      "vector": {
+        "crm": 0.44316,
+        "coordinator": 0.46607,
+        "koordinator": 0.27434,
+        "customer": 0.3049,
+        "campaign": 0.22208,
+        "data": 0.18357,
+        "customer_service": 0.27434,
+        "excel": 0.16983,
+        "salesforce": 0.25265,
+        "email_marketing": 0.23583,
+        "reporting": 0.17639,
+        "crm_": 0.16379,
+        "martech": 0.16379,
+        "marketing_automation": 0.16379
+      }
+    },
+    {
+      "role_id": "crm_analyst",
+      "title": "CRM Analyst",
+      "domain": "data_analytics",
+      "secondary_domains": [
+        "crm_martech"
+      ],
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "seniority": "mid",
+      "required_skills": [
+        "crm",
+        "sql",
+        "segmentation",
+        "reporting"
+      ],
+      "nice_skills": [
+        "power_bi",
+        "salesforce",
+        "excel"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "crm analyst",
+        "crm-analytiker"
+      ],
+      "search_keywords": [
+        "CRM Analyst"
+      ],
+      "terms": [
+        "crm",
+        "analyst",
+        "sql",
+        "segmentation",
+        "reporting",
+        "data"
+      ],
+      "vector": {
+        "crm": 0.40937,
+        "analyst": 0.48979,
+        "analytiker": 0.25342,
+        "sql": 0.21782,
+        "segmentation": 0.39516,
+        "reporting": 0.27588,
+        "data": 0.16958,
+        "power_bi": 0.19442,
+        "salesforce": 0.23339,
+        "excel": 0.15688,
+        "data_analytics": 0.18512,
+        "crm_": 0.15131,
+        "martech": 0.15131,
+        "marketing_automation": 0.15131
+      }
+    },
+    {
+      "role_id": "bi_reporting",
+      "title": "BI / Reporting Specialist",
+      "domain": "data_analytics",
+      "secondary_domains": [],
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "seniority": "mid",
+      "required_skills": [
+        "power_bi",
+        "sql",
+        "dashboards",
+        "reporting"
+      ],
+      "nice_skills": [
+        "excel",
+        "data_visualization"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "bi specialist",
+        "reporting specialist",
+        "bi assistant",
+        "business intelligence"
+      ],
+      "search_keywords": [
+        "BI / Reporting Specialist",
+        "BI Assistant"
+      ],
+      "terms": [
+        "bi",
+        "power_bi",
+        "dashboards",
+        "reporting",
+        "sql",
+        "data"
+      ],
+      "vector": {
+        "bi": 0.63713,
+        "reporting": 0.33706,
+        "specialist": 0.32185,
+        "assistant": 0.18885,
+        "power_bi": 0.28535,
+        "dashboards": 0.34255,
+        "sql": 0.18882,
+        "data": 0.147,
+        "excel": 0.136,
+        "data_visualization": 0.20232,
+        "data_analytics": 0.16047
+      }
+    },
+    {
+      "role_id": "data_analyst",
+      "title": "Data Analyst",
+      "domain": "data_analytics",
+      "secondary_domains": [],
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "seniority": "mid",
+      "required_skills": [
+        "sql",
+        "excel",
+        "power_bi",
+        "statistics"
+      ],
+      "nice_skills": [
+        "python",
+        "data_visualization",
+        "dashboards"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "data analyst",
+        "dataanalytiker"
+      ],
+      "search_keywords": [
+        "Data Analyst",
+        "Junior Data Analyst"
+      ],
+      "terms": [
+        "data_analyst",
+        "analytics",
+        "sql",
+        "statistics",
+        "dashboards",
+        "python"
+      ],
+      "vector": {
+        "data_analyst": 0.51601,
+        "analytics": 0.46428,
+        "dataanalytiker": 0.24588,
+        "sql": 0.19015,
+        "statistics": 0.34497,
+        "dashboards": 0.34497,
+        "python": 0.26149,
+        "excel": 0.13695,
+        "power_bi": 0.16972,
+        "data_visualization": 0.20374,
+        "data_analytics": 0.1616
+      }
+    },
+    {
+      "role_id": "operations_analyst",
+      "title": "Operations Analyst",
+      "domain": "data_analytics",
+      "secondary_domains": [
+        "admin_ops"
+      ],
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "seniority": "mid",
+      "required_skills": [
+        "excel",
+        "sql",
+        "reporting",
+        "kpi"
+      ],
+      "nice_skills": [
+        "power_bi",
+        "statistics",
+        "python"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "operations analyst",
+        "operativ analytiker"
+      ],
+      "search_keywords": [
+        "Operations Analyst"
+      ],
+      "terms": [
+        "operations",
+        "analyst",
+        "sql",
+        "kpi",
+        "reporting",
+        "process"
+      ],
+      "vector": {
+        "operations": 0.42198,
+        "analyst": 0.45208,
+        "operativ": 0.23391,
+        "analytiker": 0.23391,
+        "sql": 0.20105,
+        "kpi": 0.39605,
+        "reporting": 0.25464,
+        "process": 0.23391,
+        "excel": 0.1448,
+        "power_bi": 0.17945,
+        "statistics": 0.21542,
+        "python": 0.1633,
+        "data_analytics": 0.17087,
+        "admin_ops": 0.18936
+      }
+    },
+    {
+      "role_id": "data_engineer",
+      "title": "Data Engineer",
+      "domain": "data_analytics",
+      "secondary_domains": [
+        "software"
+      ],
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "seniority": "mid",
+      "required_skills": [
+        "sql",
+        "python",
+        "etl",
+        "cloud"
+      ],
+      "nice_skills": [
+        "docker",
+        "dashboards",
+        "integration"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "data engineer",
+        "dataingenjör"
+      ],
+      "search_keywords": [
+        "Data Engineer"
+      ],
+      "terms": [
+        "data_engineer",
+        "etl",
+        "sql",
+        "python",
+        "pipelines",
+        "cloud"
+      ],
+      "vector": {
+        "data": 0.28924,
+        "engineer": 0.31575,
+        "dataingenj": 0.28374,
+        "data_engineer": 0.28374,
+        "etl": 0.43225,
+        "sql": 0.21943,
+        "python": 0.30176,
+        "pipelines": 0.23511,
+        "cloud": 0.28924,
+        "docker": 0.21946,
+        "dashboards": 0.23511,
+        "integration": 0.17083,
+        "data_analytics": 0.18649,
+        "software": 0.15243
+      }
+    },
+    {
+      "role_id": "reporting_assistant",
+      "title": "Reporting Assistant",
+      "domain": "admin_ops",
+      "secondary_domains": [],
+      "field_id": "X82t_awd_Qyc",
+      "field_label": "Admin / economy / legal",
+      "seniority": "entry",
+      "required_skills": [
+        "excel",
+        "reporting",
+        "office_tools"
+      ],
+      "nice_skills": [
+        "sql",
+        "power_bi",
+        "kpi"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "reporting assistant",
+        "rapporteringsassistent"
+      ],
+      "search_keywords": [
+        "Reporting Assistant"
+      ],
+      "terms": [
+        "reporting",
+        "excel",
+        "admin",
+        "data"
+      ],
+      "vector": {
+        "reporting": 0.44749,
+        "assistant": 0.4245,
+        "rapporteringsassistent": 0.32416,
+        "excel": 0.3057,
+        "admin": 0.29166,
+        "data": 0.19516,
+        "office_tools": 0.29166,
+        "sql": 0.14806,
+        "power_bi": 0.22375,
+        "kpi": 0.29166,
+        "admin_ops": 0.23611
+      }
+    },
+    {
+      "role_id": "operations_coordinator",
+      "title": "Operations Coordinator",
+      "domain": "admin_ops",
+      "secondary_domains": [],
+      "field_id": "X82t_awd_Qyc",
+      "field_label": "Admin / economy / legal",
+      "seniority": "mid",
+      "required_skills": [
+        "coordination",
+        "excel",
+        "planning",
+        "stakeholder"
+      ],
+      "nice_skills": [
+        "reporting",
+        "project_management"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "operations coordinator",
+        "operativ koordinator"
+      ],
+      "search_keywords": [
+        "Operations Coordinator"
+      ],
+      "terms": [
+        "operations",
+        "coordination",
+        "planning",
+        "stakeholder",
+        "process"
+      ],
+      "vector": {
+        "operations": 0.41484,
+        "coordinator": 0.31518,
+        "operativ": 0.22995,
+        "koordinator": 0.22995,
+        "coordination": 0.33469,
+        "planning": 0.35857,
+        "stakeholder": 0.43272,
+        "process": 0.22995,
+        "excel": 0.14235,
+        "reporting": 0.14785,
+        "project_management": 0.25557,
+        "admin_ops": 0.18615
+      }
+    },
+    {
+      "role_id": "admin_coordinator",
+      "title": "Admin Coordinator",
+      "domain": "admin_ops",
+      "secondary_domains": [],
+      "field_id": "X82t_awd_Qyc",
+      "field_label": "Admin / economy / legal",
+      "seniority": "entry",
+      "required_skills": [
+        "administration",
+        "excel",
+        "planning",
+        "office_tools"
+      ],
+      "nice_skills": [
+        "coordination",
+        "reporting"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "admin coordinator",
+        "administrative coordinator",
+        "administrator"
+      ],
+      "search_keywords": [
+        "Admin Coordinator",
+        "Administrator"
+      ],
+      "terms": [
+        "admin",
+        "coordination",
+        "office",
+        "scheduling",
+        "support"
+      ],
+      "vector": {
+        "admin": 0.47062,
+        "coordinator": 0.38098,
+        "administrative": 0.24924,
+        "administrator": 0.24924,
+        "coordination": 0.32639,
+        "office": 0.24924,
+        "scheduling": 0.24924,
+        "support": 0.22425,
+        "administration": 0.24924,
+        "excel": 0.13882,
+        "planning": 0.20652,
+        "office_tools": 0.22425,
+        "reporting": 0.14418,
+        "admin_ops": 0.18154
+      }
+    },
+    {
+      "role_id": "junior_controller",
+      "title": "Junior Controller",
+      "domain": "admin_ops",
+      "secondary_domains": [],
+      "field_id": "X82t_awd_Qyc",
+      "field_label": "Admin / economy / legal",
+      "seniority": "mid",
+      "required_skills": [
+        "excel",
+        "accounting",
+        "financial_analysis",
+        "reporting"
+      ],
+      "nice_skills": [
+        "sql",
+        "power_bi"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "junior controller",
+        "business controller",
+        "controller"
+      ],
+      "search_keywords": [
+        "Junior Controller",
+        "Business Controller"
+      ],
+      "terms": [
+        "controller",
+        "finance",
+        "budget",
+        "reporting",
+        "excel"
+      ],
+      "vector": {
+        "junior": 0.36739,
+        "controller": 0.6293,
+        "business": 0.24116,
+        "finance": 0.24116,
+        "budget": 0.24116,
+        "reporting": 0.23622,
+        "excel": 0.22743,
+        "accounting": 0.24116,
+        "financial_analysis": 0.24116,
+        "sql": 0.11015,
+        "power_bi": 0.16646,
+        "admin_ops": 0.17565
+      }
+    },
+    {
+      "role_id": "sales_coordinator",
+      "title": "Sales Coordinator",
+      "domain": "sales",
+      "secondary_domains": [],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "entry",
+      "required_skills": [
+        "sales",
+        "crm",
+        "excel",
+        "coordination"
+      ],
+      "nice_skills": [
+        "account_management"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "sales coordinator",
+        "innesäljare"
+      ],
+      "search_keywords": [
+        "Sales Coordinator"
+      ],
+      "terms": [
+        "sales",
+        "crm",
+        "coordination",
+        "pipeline"
+      ],
+      "vector": {
+        "sales": 0.633,
+        "coordinator": 0.33249,
+        "innes": 0.26961,
+        "ljare": 0.26961,
+        "crm": 0.25426,
+        "coordination": 0.35307,
+        "pipeline": 0.26961,
+        "excel": 0.15017,
+        "account_management": 0.24258
+      }
+    },
+    {
+      "role_id": "account_manager",
+      "title": "Account Manager",
+      "domain": "sales",
+      "secondary_domains": [],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "mid",
+      "required_skills": [
+        "account_management",
+        "sales",
+        "crm"
+      ],
+      "nice_skills": [
+        "negotiation",
+        "communication"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "account manager",
+        "kundansvarig"
+      ],
+      "search_keywords": [
+        "Account Manager"
+      ],
+      "terms": [
+        "account_management",
+        "sales",
+        "crm",
+        "clients",
+        "relationship"
+      ],
+      "vector": {
+        "account": 0.42143,
+        "manager": 0.34921,
+        "kundansvarig": 0.2489,
+        "account_management": 0.37918,
+        "sales": 0.46999,
+        "crm": 0.23473,
+        "clients": 0.2489,
+        "relationship": 0.2489,
+        "negotiation": 0.2489,
+        "communication": 0.18129
+      }
+    },
+    {
+      "role_id": "seo_specialist",
+      "title": "SEO Specialist",
+      "domain": "digital_marketing",
+      "secondary_domains": [],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "mid",
+      "required_skills": [
+        "seo",
+        "content",
+        "google_analytics"
+      ],
+      "nice_skills": [
+        "social_media"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "seo specialist",
+        "seo"
+      ],
+      "search_keywords": [
+        "SEO Specialist"
+      ],
+      "terms": [
+        "seo",
+        "search",
+        "content",
+        "keywords",
+        "ranking"
+      ],
+      "vector": {
+        "seo": 0.5914,
+        "specialist": 0.31163,
+        "search": 0.29303,
+        "content": 0.38373,
+        "keywords": 0.29303,
+        "ranking": 0.29303,
+        "google_analytics": 0.21343,
+        "social_media": 0.22664,
+        "digital_marketing": 0.22664
+      }
+    },
+    {
+      "role_id": "social_media_specialist",
+      "title": "Social Media Specialist",
+      "domain": "digital_marketing",
+      "secondary_domains": [],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "entry",
+      "required_skills": [
+        "social_media",
+        "content"
+      ],
+      "nice_skills": [
+        "seo",
+        "google_analytics"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "social media specialist",
+        "social media manager"
+      ],
+      "search_keywords": [
+        "Social Media Specialist"
+      ],
+      "terms": [
+        "social_media",
+        "content",
+        "instagram",
+        "community",
+        "posts"
+      ],
+      "vector": {
+        "social_media": 0.5747,
+        "specialist": 0.30283,
+        "manager": 0.23595,
+        "content": 0.3729,
+        "instagram": 0.28475,
+        "community": 0.28475,
+        "posts": 0.28475,
+        "seo": 0.22024,
+        "google_analytics": 0.2074,
+        "digital_marketing": 0.22024
+      }
+    },
+    {
+      "role_id": "content_specialist",
+      "title": "Content Marketing Specialist",
+      "domain": "digital_marketing",
+      "secondary_domains": [],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "mid",
+      "required_skills": [
+        "content",
+        "seo"
+      ],
+      "nice_skills": [
+        "social_media",
+        "google_analytics"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "content marketing",
+        "content specialist",
+        "copywriter"
+      ],
+      "search_keywords": [
+        "Content Marketing Specialist"
+      ],
+      "terms": [
+        "content",
+        "copywriting",
+        "editorial",
+        "seo"
+      ],
+      "vector": {
+        "content": 0.5914,
+        "specialist": 0.31163,
+        "copywriter": 0.29303,
+        "copywriting": 0.29303,
+        "editorial": 0.29303,
+        "seo": 0.38373,
+        "social_media": 0.22664,
+        "google_analytics": 0.21343,
+        "digital_marketing": 0.22664
+      }
+    },
+    {
+      "role_id": "digital_marketing_specialist",
+      "title": "Digital Marketing Specialist",
+      "domain": "digital_marketing",
+      "secondary_domains": [],
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "seniority": "mid",
+      "required_skills": [
+        "seo",
+        "google_analytics",
+        "content",
+        "social_media"
+      ],
+      "nice_skills": [
+        "email_marketing",
+        "campaign"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "digital marketing specialist",
+        "digital marknadsförare"
+      ],
+      "search_keywords": [
+        "Digital Marketing Specialist"
+      ],
+      "terms": [
+        "digital",
+        "marketing",
+        "seo",
+        "ads",
+        "social_media",
+        "campaign"
+      ],
+      "vector": {
+        "digital": 0.53976,
+        "marketing": 0.36715,
+        "specialist": 0.24055,
+        "marknadsf": 0.22619,
+        "rare": 0.20352,
+        "seo": 0.29621,
+        "ads": 0.22619,
+        "social_media": 0.29621,
+        "campaign": 0.27895,
+        "google_analytics": 0.16475,
+        "content": 0.17495,
+        "email_marketing": 0.17495,
+        "digital_marketing": 0.17495
+      }
+    },
+    {
+      "role_id": "it_support",
+      "title": "IT Support Technician",
+      "domain": "software",
+      "secondary_domains": [],
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "seniority": "entry",
+      "required_skills": [
+        "troubleshooting",
+        "networking",
+        "ticketing"
+      ],
+      "nice_skills": [
+        "linux",
+        "communication"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "it support",
+        "supporttekniker",
+        "helpdesk",
+        "service desk"
+      ],
+      "search_keywords": [
+        "IT Support Technician",
+        "Supporttekniker"
+      ],
+      "terms": [
+        "support",
+        "troubleshooting",
+        "helpdesk",
+        "networking"
+      ],
+      "vector": {
+        "it": 0.37123,
+        "support": 0.414,
+        "technician": 0.21926,
+        "supporttekniker": 0.21926,
+        "helpdesk": 0.37123,
+        "service": 0.19728,
+        "desk": 0.21926,
+        "troubleshooting": 0.37123,
+        "networking": 0.33402,
+        "ticketing": 0.21926,
+        "linux": 0.18168,
+        "communication": 0.1597,
+        "software": 0.11778
+      }
+    },
+    {
+      "role_id": "qa_engineer",
+      "title": "QA / Test Engineer",
+      "domain": "software",
+      "secondary_domains": [],
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "seniority": "mid",
+      "required_skills": [
+        "testing",
+        "test_automation"
+      ],
+      "nice_skills": [
+        "python",
+        "cicd",
+        "apis"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "qa engineer",
+        "test engineer",
+        "testare"
+      ],
+      "search_keywords": [
+        "QA Engineer",
+        "Testare"
+      ],
+      "terms": [
+        "testing",
+        "qa",
+        "automation",
+        "selenium"
+      ],
+      "vector": {
+        "qa": 0.50089,
+        "test": 0.40412,
+        "engineer": 0.32921,
+        "testare": 0.23868,
+        "testing": 0.40412,
+        "automation": 0.19777,
+        "selenium": 0.23868,
+        "test_automation": 0.23868,
+        "python": 0.14992,
+        "cicd": 0.21475,
+        "apis": 0.13808,
+        "software": 0.12822
+      }
+    },
+    {
+      "role_id": "junior_developer",
+      "title": "Junior Developer",
+      "domain": "software",
+      "secondary_domains": [],
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "seniority": "entry",
+      "required_skills": [
+        "javascript",
+        "html_css",
+        "git"
+      ],
+      "nice_skills": [
+        "python",
+        "apis",
+        "sql"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "junior developer",
+        "junior utvecklare",
+        "trainee developer"
+      ],
+      "search_keywords": [
+        "Junior Developer"
+      ],
+      "terms": [
+        "developer",
+        "javascript",
+        "react",
+        "git",
+        "code"
+      ],
+      "vector": {
+        "junior": 0.47217,
+        "developer": 0.43463,
+        "utvecklare": 0.25006,
+        "trainee": 0.25006,
+        "javascript": 0.35083,
+        "react": 0.25006,
+        "git": 0.32747,
+        "code": 0.20721,
+        "html_css": 0.22499,
+        "python": 0.15707,
+        "apis": 0.14466,
+        "sql": 0.11421,
+        "software": 0.13433
+      }
+    },
+    {
+      "role_id": "software_developer",
+      "title": "Software Developer",
+      "domain": "software",
+      "secondary_domains": [],
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "seniority": "mid",
+      "required_skills": [
+        "javascript",
+        "git",
+        "apis",
+        "sql"
+      ],
+      "nice_skills": [
+        "python",
+        "java",
+        "cloud",
+        "docker"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "software developer",
+        "systemutvecklare",
+        "developer",
+        "programmer"
+      ],
+      "search_keywords": [
+        "Software Developer",
+        "Systemutvecklare"
+      ],
+      "terms": [
+        "developer",
+        "software",
+        "code",
+        "javascript",
+        "apis",
+        "git"
+      ],
+      "vector": {
+        "software": 0.33598,
+        "developer": 0.45555,
+        "systemutvecklare": 0.26209,
+        "programmer": 0.26209,
+        "code": 0.21718,
+        "javascript": 0.36771,
+        "apis": 0.25672,
+        "git": 0.34323,
+        "sql": 0.11971,
+        "python": 0.16463,
+        "java": 0.26209,
+        "cloud": 0.1578,
+        "docker": 0.20272
+      }
+    },
+    {
+      "role_id": "devops_engineer",
+      "title": "DevOps Engineer",
+      "domain": "software",
+      "secondary_domains": [],
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "seniority": "mid",
+      "required_skills": [
+        "docker",
+        "cicd",
+        "cloud",
+        "linux"
+      ],
+      "nice_skills": [
+        "kubernetes",
+        "git"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "devops",
+        "devops engineer",
+        "platform engineer"
+      ],
+      "search_keywords": [
+        "DevOps Engineer"
+      ],
+      "terms": [
+        "devops",
+        "docker",
+        "cloud",
+        "pipelines",
+        "infrastructure"
+      ],
+      "vector": {
+        "devops": 0.59233,
+        "engineer": 0.34237,
+        "platform": 0.22334,
+        "docker": 0.32506,
+        "cloud": 0.25303,
+        "pipelines": 0.20568,
+        "infrastructure": 0.24822,
+        "cicd": 0.22334,
+        "linux": 0.20568,
+        "kubernetes": 0.24822,
+        "git": 0.19199,
+        "software": 0.13334
+      }
+    },
+    {
+      "role_id": "data_scientist",
+      "title": "Data Scientist",
+      "domain": "software",
+      "secondary_domains": [],
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "seniority": "senior",
+      "required_skills": [
+        "python",
+        "machine_learning",
+        "statistics",
+        "sql"
+      ],
+      "nice_skills": [
+        "data_visualization",
+        "cloud"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "data scientist",
+        "ml engineer",
+        "machine learning engineer"
+      ],
+      "search_keywords": [
+        "Data Scientist"
+      ],
+      "terms": [
+        "data_scientist",
+        "machine_learning",
+        "models",
+        "python",
+        "statistics"
+      ],
+      "vector": {
+        "data": 0.24584,
+        "scientist": 0.40832,
+        "ml": 0.24116,
+        "engineer": 0.26837,
+        "machine_learning": 0.50611,
+        "data_scientist": 0.24116,
+        "models": 0.24116,
+        "python": 0.25648,
+        "statistics": 0.33835,
+        "sql": 0.11015,
+        "data_visualization": 0.19983,
+        "cloud": 0.1452,
+        "software": 0.12955
+      }
+    },
+    {
+      "role_id": "senior_developer",
+      "title": "Senior Developer",
+      "domain": "software",
+      "secondary_domains": [],
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "seniority": "senior",
+      "required_skills": [
+        "javascript",
+        "git",
+        "apis",
+        "leadership"
+      ],
+      "nice_skills": [
+        "cloud",
+        "docker",
+        "architecture"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "senior developer",
+        "lead developer",
+        "tech lead"
+      ],
+      "search_keywords": [
+        "Senior Developer"
+      ],
+      "terms": [
+        "senior",
+        "developer",
+        "architecture",
+        "lead",
+        "code"
+      ],
+      "vector": {
+        "senior": 0.4945,
+        "developer": 0.40956,
+        "lead": 0.44493,
+        "tech": 0.21201,
+        "architecture": 0.33059,
+        "code": 0.19525,
+        "javascript": 0.19525,
+        "git": 0.18225,
+        "apis": 0.13631,
+        "leadership": 0.19525,
+        "cloud": 0.14187,
+        "docker": 0.18225,
+        "software": 0.12658
+      }
+    },
+    {
+      "role_id": "cybersecurity_specialist",
+      "title": "Cybersecurity Specialist",
+      "domain": "software",
+      "secondary_domains": [],
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "seniority": "senior",
+      "required_skills": [
+        "security",
+        "networking",
+        "incident_response"
+      ],
+      "nice_skills": [
+        "linux",
+        "cloud"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "cybersecurity",
+        "security specialist",
+        "soc analyst"
+      ],
+      "search_keywords": [
+        "Cybersecurity Specialist"
+      ],
+      "terms": [
+        "security",
+        "cyber",
+        "incident",
+        "network",
+        "threats"
+      ],
+      "vector": {
+        "cybersecurity": 0.40783,
+        "specialist": 0.25617,
+        "security": 0.50549,
+        "soc": 0.24087,
+        "analyst": 0.19959,
+        "cyber": 0.24087,
+        "incident": 0.24087,
+        "network": 0.24087,
+        "threats": 0.24087,
+        "networking": 0.21672,
+        "incident_response": 0.24087,
+        "linux": 0.19959,
+        "cloud": 0.14502,
+        "software": 0.1294
+      }
+    },
+    {
+      "role_id": "assistant_nurse",
+      "title": "Assistant Nurse",
+      "domain": "healthcare",
+      "secondary_domains": [],
+      "field_id": "NYW6_mP6_vwf",
+      "field_label": "Healthcare",
+      "seniority": "entry",
+      "required_skills": [
+        "patient_care",
+        "elderly_care",
+        "documentation"
+      ],
+      "nice_skills": [
+        "communication"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "assistant nurse",
+        "undersköterska",
+        "vårdbiträde",
+        "care assistant"
+      ],
+      "search_keywords": [
+        "Undersköterska",
+        "Assistant Nurse"
+      ],
+      "terms": [
+        "care",
+        "patient",
+        "elderly",
+        "documentation",
+        "hemtjänst"
+      ],
+      "vector": {
+        "assistant": 0.36705,
+        "nurse": 0.34449,
+        "undersk": 0.22613,
+        "terska": 0.20346,
+        "rdbitr": 0.22613,
+        "care": 0.34449,
+        "patient": 0.22613,
+        "elderly": 0.22613,
+        "documentation": 0.34449,
+        "hemtj": 0.22613,
+        "nst": 0.22613,
+        "patient_care": 0.20346,
+        "elderly_care": 0.22613,
+        "communication": 0.16471,
+        "healthcare": 0.20346
+      }
+    },
+    {
+      "role_id": "registered_nurse",
+      "title": "Registered Nurse",
+      "domain": "healthcare",
+      "secondary_domains": [],
+      "field_id": "NYW6_mP6_vwf",
+      "field_label": "Healthcare",
+      "seniority": "mid",
+      "required_skills": [
+        "nursing",
+        "patient_care",
+        "documentation"
+      ],
+      "nice_skills": [
+        "medication"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "registered nurse",
+        "sjuksköterska",
+        "legitimerad sjuksköterska"
+      ],
+      "search_keywords": [
+        "Sjuksköterska",
+        "Registered Nurse"
+      ],
+      "terms": [
+        "nurse",
+        "nursing",
+        "patient",
+        "care",
+        "medication"
+      ],
+      "vector": {
+        "registered": 0.35226,
+        "nurse": 0.39285,
+        "sjuksk": 0.35226,
+        "terska": 0.31695,
+        "legitimerad": 0.20805,
+        "nursing": 0.35226,
+        "patient_care": 0.31695,
+        "care": 0.18719,
+        "medication": 0.35226,
+        "documentation": 0.18719,
+        "healthcare": 0.18719
+      }
+    },
+    {
+      "role_id": "warehouse_worker",
+      "title": "Warehouse Worker",
+      "domain": "logistics",
+      "secondary_domains": [],
+      "field_id": "ASGV_zcE_bWf",
+      "field_label": "Transport / logistics",
+      "seniority": "entry",
+      "required_skills": [
+        "warehouse",
+        "inventory"
+      ],
+      "nice_skills": [
+        "forklift"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "warehouse worker",
+        "lagerarbetare",
+        "lager"
+      ],
+      "search_keywords": [
+        "Lagerarbetare",
+        "Warehouse Worker"
+      ],
+      "terms": [
+        "warehouse",
+        "lager",
+        "picking",
+        "inventory"
+      ],
+      "vector": {
+        "warehouse": 0.5341,
+        "worker": 0.42118,
+        "lagerarbetare": 0.24876,
+        "lager": 0.42118,
+        "picking": 0.24876,
+        "inventory": 0.37896,
+        "forklift": 0.22382,
+        "logistics": 0.20613
+      }
+    },
+    {
+      "role_id": "logistics_coordinator",
+      "title": "Logistics Coordinator",
+      "domain": "logistics",
+      "secondary_domains": [],
+      "field_id": "ASGV_zcE_bWf",
+      "field_label": "Transport / logistics",
+      "seniority": "mid",
+      "required_skills": [
+        "supply_chain",
+        "excel",
+        "planning",
+        "inventory"
+      ],
+      "nice_skills": [
+        "coordination",
+        "reporting"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "logistics coordinator",
+        "logistikkoordinator"
+      ],
+      "search_keywords": [
+        "Logistics Coordinator"
+      ],
+      "terms": [
+        "logistics",
+        "supply_chain",
+        "planning",
+        "warehouse"
+      ],
+      "vector": {
+        "logistics": 0.53653,
+        "coordinator": 0.33463,
+        "logistikkoordinator": 0.27134,
+        "supply_chain": 0.41336,
+        "planning": 0.38069,
+        "warehouse": 0.24414,
+        "excel": 0.15113,
+        "inventory": 0.24414,
+        "coordination": 0.20987,
+        "reporting": 0.15697
+      }
+    },
+    {
+      "role_id": "truck_driver",
+      "title": "Truck Driver",
+      "domain": "logistics",
+      "secondary_domains": [],
+      "field_id": "ASGV_zcE_bWf",
+      "field_label": "Transport / logistics",
+      "seniority": "entry",
+      "required_skills": [
+        "driving_license",
+        "supply_chain"
+      ],
+      "nice_skills": [
+        "forklift"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "truck driver",
+        "lastbilsförare",
+        "chaufför"
+      ],
+      "search_keywords": [
+        "Lastbilsförare",
+        "Truck Driver"
+      ],
+      "terms": [
+        "driver",
+        "truck",
+        "transport",
+        "delivery"
+      ],
+      "vector": {
+        "truck": 0.51014,
+        "driver": 0.51014,
+        "lastbilsf": 0.24308,
+        "rare": 0.21871,
+        "chauff": 0.24308,
+        "transport": 0.24308,
+        "delivery": 0.24308,
+        "driving_license": 0.24308,
+        "supply_chain": 0.21871,
+        "forklift": 0.21871,
+        "logistics": 0.20142
+      }
+    },
+    {
+      "role_id": "teaching_assistant",
+      "title": "Teaching Assistant",
+      "domain": "education",
+      "secondary_domains": [],
+      "field_id": "MVqp_eS8_kDZ",
+      "field_label": "Education",
+      "seniority": "entry",
+      "required_skills": [
+        "pedagogy",
+        "childcare",
+        "communication"
+      ],
+      "nice_skills": [],
+      "language_sensitive": true,
+      "aliases": [
+        "teaching assistant",
+        "elevassistent",
+        "barnskötare",
+        "lärarassistent"
+      ],
+      "search_keywords": [
+        "Elevassistent",
+        "Teaching Assistant"
+      ],
+      "terms": [
+        "school",
+        "pedagogy",
+        "children",
+        "classroom"
+      ],
+      "vector": {
+        "teaching": 0.4109,
+        "assistant": 0.31781,
+        "elevassistent": 0.24269,
+        "barnsk": 0.24269,
+        "tare": 0.24269,
+        "rarassistent": 0.24269,
+        "school": 0.24269,
+        "pedagogy": 0.4109,
+        "children": 0.24269,
+        "classroom": 0.24269,
+        "childcare": 0.24269,
+        "communication": 0.17677,
+        "education": 0.24269
+      }
+    },
+    {
+      "role_id": "barista",
+      "title": "Barista / Café",
+      "domain": "hospitality",
+      "secondary_domains": [],
+      "field_id": "ScKy_FHB_7wT",
+      "field_label": "Hospitality / food",
+      "seniority": "entry",
+      "required_skills": [
+        "customer_service",
+        "communication"
+      ],
+      "nice_skills": [],
+      "language_sensitive": true,
+      "aliases": [
+        "barista",
+        "café",
+        "servitör",
+        "waiter"
+      ],
+      "search_keywords": [
+        "Barista",
+        "Servitör"
+      ],
+      "terms": [
+        "café",
+        "coffee",
+        "service",
+        "customers"
+      ],
+      "vector": {
+        "barista": 0.44587,
+        "caf": 0.55264,
+        "servit": 0.26334,
+        "waiter": 0.26334,
+        "coffee": 0.26334,
+        "service": 0.23694,
+        "customers": 0.26334,
+        "customer_service": 0.23694,
+        "communication": 0.19181,
+        "hospitality": 0.26334
+      }
+    }
+  ]
+}

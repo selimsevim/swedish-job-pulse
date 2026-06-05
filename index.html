@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Swedish Job Pulse | Career Reality Check</title>
+  <title>Swedish Job Pulse | CV Job Fit Scanner</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23004ac6'/%3E%3Cpath d='M18 24h28a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V28a4 4 0 0 1 4-4zm8-6h12a4 4 0 0 1 4 4v2H22v-2a4 4 0 0 1 4-4z' fill='white'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,132 +14,159 @@
   <header class="page-shell site-header">
     <div>
       <h1 class="site-title">Swedish Job Pulse</h1>
-      <p class="site-subtitle">A public-data career reality check for Sweden - not a job board, not a generic career coach</p>
+      <p class="site-subtitle">CV-to-market fit for Sweden &mdash; based on public Arbetsf&ouml;rmedlingen / JobTech data, not the hidden job market</p>
     </div>
   </header>
 
   <main class="page-shell dashboard-main">
-    <section class="dashboard-section nav-target" id="career-reality">
+    <section class="dashboard-section" id="cv-scanner">
       <div class="crc">
         <div class="crc-head">
-          <span class="crc-eyebrow">Career Reality Check</span>
-          <h2 class="crc-headline">Before you spend weeks applying, check if the role is realistic.</h2>
-          <p class="crc-lede">A public-data career reality check for the Swedish labour market. Tell us where you are and where you want to go. We use public job-ad signals and a 4-week demand trend forecast to show what is realistic now, what is reachable, and what to avoid for now. Not a guarantee &mdash; practical evidence before you spend application effort.</p>
+          <span class="crc-eyebrow">CV &rarr; Job Fit Report</span>
+          <h2 class="crc-headline">Upload your CV. Get a one-page job-fit report.</h2>
+          <p class="crc-lede">See which Swedish roles your CV is strongest for now, which are within reach, which to skip for now, and exactly what to add. Matched against public job-ad signals. <strong>Your CV is read in your browser &mdash; nothing is uploaded or stored.</strong></p>
         </div>
 
-        <form class="crc-form" id="crc-form" novalidate>
-          <div class="crc-grid">
-            <label class="crc-field">
-              <span class="crc-label">Region</span>
-              <select class="crc-select" id="crc-region" name="region"></select>
-            </label>
+        <div class="cv-drop" id="cv-drop">
+          <input type="file" id="cv-file" accept="application/pdf,.pdf" hidden>
+          <p class="cv-drop-title">Drop a PDF CV here, or <button type="button" class="cv-link" id="cv-browse">choose a file</button></p>
+          <p class="cv-drop-note">PDF only. Read locally in your browser &mdash; never uploaded, never stored.</p>
+        </div>
 
-            <label class="crc-field">
-              <span class="crc-label">Swedish level</span>
-              <select class="crc-select" id="crc-swedish" name="swedish">
-                <option value="native">Native / fluent</option>
-                <option value="good">Good working Swedish</option>
-                <option value="basic">Basic Swedish</option>
-                <option value="english">English only</option>
-              </select>
-            </label>
+        <div class="cv-samples">
+          <span class="crc-label">No CV handy? Try a synthetic sample:</span>
+          <div class="cv-sample-row" id="cv-sample-row"></div>
+        </div>
 
-            <label class="crc-field">
-              <span class="crc-label">Current experience area</span>
-              <select class="crc-select" id="crc-experience" name="experience">
-                <option value="customer_service">Customer service</option>
-                <option value="sales">Sales</option>
-                <option value="admin">Admin</option>
-                <option value="it">IT / tech</option>
-                <option value="healthcare">Healthcare</option>
-                <option value="education">Education</option>
-                <option value="restaurant">Restaurant / service</option>
-                <option value="logistics">Logistics / warehouse</option>
-                <option value="none">No clear experience</option>
-              </select>
-            </label>
+        <p class="cv-status" id="cv-status" hidden></p>
 
-            <label class="crc-field">
-              <span class="crc-label">Target job</span>
-              <input class="crc-input" id="crc-target" name="target" type="text"
-                     placeholder="e.g. data analyst, undersköterska, developer" autocomplete="off">
-            </label>
-
-            <label class="crc-field crc-field--wide">
-              <span class="crc-label">Skills <span class="crc-label-hint">comma-separated</span></span>
-              <input class="crc-input" id="crc-skills" name="skills" type="text"
-                     placeholder="e.g. excel, customer service, python, swedish" autocomplete="off">
-            </label>
-          </div>
-
-          <div class="crc-choices">
-            <fieldset class="crc-fieldset">
-              <legend class="crc-label">Level</legend>
-              <div class="crc-pills" id="crc-level">
-                <label class="crc-pill is-active"><input type="radio" name="level" value="entry" checked>Entry-level</label>
-                <label class="crc-pill"><input type="radio" name="level" value="some">Some experience</label>
-                <label class="crc-pill"><input type="radio" name="level" value="experienced">Experienced</label>
-              </div>
-            </fieldset>
-
-            <fieldset class="crc-fieldset">
-              <legend class="crc-label">Remote preference</legend>
-              <div class="crc-pills" id="crc-remote">
-                <label class="crc-pill"><input type="radio" name="remote" value="important">Important</label>
-                <label class="crc-pill is-active"><input type="radio" name="remote" value="nice" checked>Nice to have</label>
-                <label class="crc-pill"><input type="radio" name="remote" value="no">Not important</label>
-              </div>
-            </fieldset>
-
-            <fieldset class="crc-fieldset">
-              <legend class="crc-label">Study willingness</legend>
-              <div class="crc-pills" id="crc-study">
-                <label class="crc-pill is-active"><input type="radio" name="study" value="none" checked>No extra study</label>
-                <label class="crc-pill"><input type="radio" name="study" value="short">1&ndash;3 months</label>
-                <label class="crc-pill"><input type="radio" name="study" value="mid">3&ndash;6 months</label>
-                <label class="crc-pill"><input type="radio" name="study" value="long">6+ months</label>
-              </div>
-            </fieldset>
-          </div>
-
-          <div class="crc-actions">
-            <button class="crc-btn" type="submit" id="crc-submit">Check my career reality</button>
-            <span class="crc-model-tag" id="crc-model-tag" hidden></span>
-          </div>
-        </form>
-
-        <div class="crc-results" id="crc-results" hidden></div>
+        <div class="crc-results" id="cv-results" hidden></div>
 
         <details class="crc-method">
           <summary class="crc-method-summary">How this works &amp; its limits</summary>
           <div class="crc-method-body">
-            <p>Career Reality Check reads public job-ad signals from Arbetsf&ouml;rmedlingen / JobTech and combines them into one practical view:</p>
+            <p>The CV Job Fit Scanner runs in three layers:</p>
             <ul>
-              <li><strong>Demand</strong> &mdash; how many active ads each occupation has now.</li>
-              <li><strong>Trend</strong> &mdash; a 4-week demand-direction forecast (a scikit-learn gradient-boosting model trained on weekly history, with a persistence baseline). The model is used for direction, not exact vacancy-count prediction.</li>
-              <li><strong>Crowding</strong> &mdash; search attention versus actual demand.</li>
-              <li><strong>Entry-level &amp; remote signal</strong> &mdash; how open a field is to beginners and to remote work.</li>
-              <li><strong>Regional &amp; skill signal</strong> &mdash; where a field is over-weighted, and which skills are growing.</li>
+              <li><strong>Extraction</strong> &mdash; your PDF is parsed <em>in your browser</em> into skills, roles, languages and seniority. The file never leaves your device and is not stored.</li>
+              <li><strong>Matching</strong> &mdash; your profile is scored against a role-skill index (skill overlap, role title, seniority and Swedish-language fit), enriched with public demand, crowding, regional and 4-week trend signals.</li>
+              <li><strong>Gap analysis</strong> &mdash; what blocks stronger matches: missing skills, weak proof, language.</li>
             </ul>
-            <p>It is <strong>not</strong> a guarantee of employment and does not replace professional career counselling. Use it as a labour-market reality check before deciding where to spend your application effort. Model evaluation lives in <code>data/model_metrics.json</code>.</p>
+            <p>It reflects <strong>public Swedish job-ad data, not the entire hidden job market</strong>, and is not a guarantee of employment. The challenge build is evaluated on <strong>synthetic, fictional CVs only</strong> &mdash; no real or personal data is used or stored (<code>data/cv_match_metrics.json</code>).</p>
           </div>
         </details>
       </div>
     </section>
+
+    <details class="crc-altform">
+      <summary class="crc-altform-summary">Prefer not to upload a CV? Answer a few questions instead</summary>
+      <section class="dashboard-section" id="career-reality">
+        <div class="crc">
+          <div class="crc-head">
+            <span class="crc-eyebrow">Career Reality Check</span>
+            <h2 class="crc-headline">Before you spend weeks applying, check if the role is realistic.</h2>
+            <p class="crc-lede">Tell us where you are and where you want to go. We use public job-ad signals and a 4-week demand trend forecast to show what is realistic now, what is reachable, and what to avoid for now.</p>
+          </div>
+
+          <form class="crc-form" id="crc-form" novalidate>
+            <div class="crc-grid">
+              <label class="crc-field">
+                <span class="crc-label">Region</span>
+                <select class="crc-select" id="crc-region" name="region"></select>
+              </label>
+
+              <label class="crc-field">
+                <span class="crc-label">Swedish level</span>
+                <select class="crc-select" id="crc-swedish" name="swedish">
+                  <option value="native">Native / fluent</option>
+                  <option value="good">Good working Swedish</option>
+                  <option value="basic">Basic Swedish</option>
+                  <option value="english">English only</option>
+                </select>
+              </label>
+
+              <label class="crc-field">
+                <span class="crc-label">Current experience area</span>
+                <select class="crc-select" id="crc-experience" name="experience">
+                  <option value="customer_service">Customer service</option>
+                  <option value="sales">Sales</option>
+                  <option value="admin">Admin</option>
+                  <option value="it">IT / tech</option>
+                  <option value="healthcare">Healthcare</option>
+                  <option value="education">Education</option>
+                  <option value="restaurant">Restaurant / service</option>
+                  <option value="logistics">Logistics / warehouse</option>
+                  <option value="none">No clear experience</option>
+                </select>
+              </label>
+
+              <label class="crc-field">
+                <span class="crc-label">Target job</span>
+                <input class="crc-input" id="crc-target" name="target" type="text"
+                       placeholder="e.g. data analyst, undersköterska, developer" autocomplete="off">
+              </label>
+
+              <label class="crc-field crc-field--wide">
+                <span class="crc-label">Skills <span class="crc-label-hint">comma-separated</span></span>
+                <input class="crc-input" id="crc-skills" name="skills" type="text"
+                       placeholder="e.g. excel, customer service, python, swedish" autocomplete="off">
+              </label>
+            </div>
+
+            <div class="crc-choices">
+              <fieldset class="crc-fieldset">
+                <legend class="crc-label">Level</legend>
+                <div class="crc-pills" id="crc-level">
+                  <label class="crc-pill is-active"><input type="radio" name="level" value="entry" checked>Entry-level</label>
+                  <label class="crc-pill"><input type="radio" name="level" value="some">Some experience</label>
+                  <label class="crc-pill"><input type="radio" name="level" value="experienced">Experienced</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="crc-fieldset">
+                <legend class="crc-label">Remote preference</legend>
+                <div class="crc-pills" id="crc-remote">
+                  <label class="crc-pill"><input type="radio" name="remote" value="important">Important</label>
+                  <label class="crc-pill is-active"><input type="radio" name="remote" value="nice" checked>Nice to have</label>
+                  <label class="crc-pill"><input type="radio" name="remote" value="no">Not important</label>
+                </div>
+              </fieldset>
+
+              <fieldset class="crc-fieldset">
+                <legend class="crc-label">Study willingness</legend>
+                <div class="crc-pills" id="crc-study">
+                  <label class="crc-pill is-active"><input type="radio" name="study" value="none" checked>No extra study</label>
+                  <label class="crc-pill"><input type="radio" name="study" value="short">1&ndash;3 months</label>
+                  <label class="crc-pill"><input type="radio" name="study" value="mid">3&ndash;6 months</label>
+                  <label class="crc-pill"><input type="radio" name="study" value="long">6+ months</label>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="crc-actions">
+              <button class="crc-btn" type="submit" id="crc-submit">Check my career reality</button>
+              <span class="crc-model-tag" id="crc-model-tag" hidden></span>
+            </div>
+          </form>
+
+          <div class="crc-results" id="crc-results" hidden></div>
+        </div>
+      </section>
+    </details>
   </main>
 
   <footer class="page-shell site-footer">
-    <p class="footer-copy">Data sourced from Arbetsförmedlingen JobTech Development. Not a guarantee of employment.</p>
+    <p class="footer-copy">Data sourced from Arbetsförmedlingen JobTech Development. Public job-ad signals only — not a guarantee of employment.</p>
     <a class="footer-link" href="https://jobtechdev.se" target="_blank" rel="noreferrer">jobtechdev.se</a>
   </footer>
 
   <div class="overlay" id="loading-overlay">
     <div class="overlay-card">
       <div class="overlay-spinner"></div>
-      <p class="helper-copy" style="margin:0;">Loading career signals...</p>
+      <p class="helper-copy" style="margin:0;">Loading job-market signals...</p>
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
   <script src="app.js" defer></script>
 </body>
 </html>

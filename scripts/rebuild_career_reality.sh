@@ -11,12 +11,16 @@
 # It runs:
 #   1. scripts/train_career_signal_model.py   (ML demand forecast + evaluation)
 #   2. scripts/process_career_reality.py      (scoring + advice artifacts)
+#   3. scripts/build_cv_match_index.py        (CV role-skill index + synthetic-CV eval)
 #
 # then validates these exist and are valid JSON:
 #   data/occupation_forecast.json
 #   data/model_metrics.json
 #   data/career_reality.json
 #   data/opportunity_scores.json
+#   data/cv_match_index.json
+#   data/sample_cvs.json
+#   data/cv_match_metrics.json
 #
 # Python selection (override with PYTHON=/path/to/python):
 #   $PYTHON  ->  .venv created by the setup instructions  ->  python3
@@ -43,12 +47,16 @@ echo "==> Python: $PY ($("$PY" --version 2>&1))"
 export LOKY_MAX_CPU_COUNT="${LOKY_MAX_CPU_COUNT:-4}"
 
 echo
-echo "==> [1/2] Training demand-forecast model..."
+echo "==> [1/3] Training demand-forecast model..."
 "$PY" scripts/train_career_signal_model.py
 
 echo
-echo "==> [2/2] Building Career Reality Check artifacts..."
+echo "==> [2/3] Building Career Reality Check artifacts..."
 "$PY" scripts/process_career_reality.py
+
+echo
+echo "==> [3/3] Building CV role-skill index + evaluating on synthetic CVs..."
+"$PY" scripts/build_cv_match_index.py
 
 echo
 echo "==> Validating output JSON..."
@@ -57,6 +65,9 @@ FILES=(
   data/model_metrics.json
   data/career_reality.json
   data/opportunity_scores.json
+  data/cv_match_index.json
+  data/sample_cvs.json
+  data/cv_match_metrics.json
 )
 fail=0
 for f in "${FILES[@]}"; do
@@ -103,6 +114,18 @@ else:
     print("  Forecasts came from the deterministic baseline — the site still works.")
     print("  To reproduce the headline ML metrics, install the optional deps:")
     print("      python3 -m pip install -r requirements-ml.txt")
+PYEOF
+echo "============================================================================"
+
+echo
+echo "============ CV MATCH EVALUATION (data/cv_match_metrics.json) ==============="
+"$PY" - <<'PYEOF'
+import json
+m = json.load(open("data/cv_match_metrics.json")).get("metrics", {})
+print(f"  synthetic CVs (no personal data): {m.get('n_synthetic_cvs')}")
+print(f"  primary-domain accuracy:          {m.get('primary_domain_accuracy')}")
+print(f"  no-collapse rate:                 {m.get('no_collapse_rate')}")
+print(f"  retrieval:                        {m.get('retrieval')}")
 PYEOF
 echo "============================================================================"
 

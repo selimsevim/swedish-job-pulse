@@ -14,7 +14,9 @@ Public JobTech data
   -> Job 1: feature generation
   -> Job 2: ML training and evaluation
   -> Job 3: batch scoring and JSON artifacts
-  -> Static website
+  -> Job 4: CV role-skill index + synthetic-CV evaluation
+  -> Static website  (CV PDF parsed in-browser; nothing uploaded)
+  -> Optional Endpoint: /career-signal, /cv-fit
 ```
 
 No credentials are hardcoded here. Nebius authentication, registry credentials, or object-storage credentials must be provided at runtime through the Nebius platform, CLI profile, or secret store.
@@ -178,9 +180,65 @@ Proof to capture:
 - Artifact listing with the two output files
 - Website screenshot using the generated artifacts
 
+## Job 4 - CV Role-Skill Index + Synthetic-CV Evaluation
+
+Purpose:
+
+Build the role-skill index that powers the CV Job Fit Scanner, and evaluate the
+matcher on synthetic, fictional CVs. No real or personal data is used.
+
+Command:
+
+```bash
+python3 scripts/build_cv_match_index.py
+```
+
+Inputs:
+
+- curated role catalog + skill vocabulary (in the script)
+- synthetic CV profiles (in the script)
+
+Outputs:
+
+- `data/cv_match_index.json` - roles, skills, seniority, language fit
+- `data/sample_cvs.json` - synthetic CVs for the in-browser demo
+- `data/cv_match_metrics.json` - top-1 / top-3 role-field accuracy
+
+Notes:
+
+- The browser does the CV PDF extraction and matching locally; this job only
+  builds the shared index and proves matcher quality on synthetic CVs.
+- A future embedding model (semantic role/skill matching) plugs in at
+  `score_role()` without changing the artifact contract; no fine-tuning needed.
+
+Runtime:
+
+- CPU-only, standard library only, seconds.
+
+### On synonyms / abbreviations (SFMC == Salesforce Marketing Cloud)
+
+The static build uses a small hand-written synonym list to collapse surface
+forms before TF-IDF. That list is a **bootstrap and does not scale** — it cannot
+enumerate every abbreviation. Two scalable replacements, neither of which uses
+runtime online search (which would break reproducibility and static-first):
+
+1. **Neural embeddings (the real fix).** A multilingual embedding model
+   (BGE-M3 / Qwen3-Embedding) at the `/cv-fit` endpoint places "SFMC" and
+   "Salesforce Marketing Cloud" close together with **no synonym list at all** —
+   abbreviation handling is learned, not enumerated. Same cosine contract as the
+   TF-IDF path, so the static and endpoint versions stay interchangeable.
+2. **Offline LLM alias expansion (optional Job).** An LLM (Qwen / Mistral-class
+   instruct) run as a batch job can auto-generate alias clusters from the role /
+   skill vocabulary and write them back as data. The static fallback then
+   consumes a *generated* synonym map instead of a hand-typed one — scalable and
+   still fully reproducible (the generation is the job; its output is committed).
+
+The LLM is used only to extract / normalise structure and to write the final
+wording. It never invents the role matching — retrieval + ranking own that.
+
 ## One Combined Serverless Job
 
-For a simple challenge proof, Jobs 2 and 3 can run as one finite Serverless AI Job:
+For a simple challenge proof, Jobs 2, 3 and 4 can run as one finite Serverless AI Job:
 
 ```bash
 ./scripts/rebuild_career_reality.sh
@@ -254,6 +312,28 @@ Example response shape:
 ```
 
 This is intentionally marked optional because the challenge story works with Jobs alone: public data processing, ML training, batch scoring, and static delivery.
+
+### Optional Endpoint - `/cv-fit`
+
+For live CV scoring on a server (instead of the in-browser parse), an Endpoint
+could accept extracted CV signals and return the same job-fit report the browser
+builds. The CV text would still be extracted client-side or in a stateless
+request and **not stored**.
+
+```json
+POST /cv-fit
+{ "skills": ["crm", "salesforce marketing cloud", "email marketing"],
+  "roles": ["Marketing Automation Specialist"], "seniority": "mid",
+  "languages": ["English", "Swedish (basic)"] }
+->
+{ "best_fit": ["Marketing Automation Specialist", "CRM Coordinator"],
+  "stretch": ["Operations Analyst", "BI Assistant"],
+  "avoid": ["Data Scientist", "Senior Developer"],
+  "missing_skills": ["SQL"], "cv_fixes": ["Add measurable results"] }
+```
+
+An embedding model for semantic role/skill similarity would live behind this
+endpoint (and in Job 4's `score_role()`); it needs no fine-tuning.
 
 ## Hardware And Cost Notes
 
