@@ -1,0 +1,47 @@
+# Neural /cv-fit endpoint image (BGE-M3 semantic matching) — the AI/ML path.
+# Separate from the stable TF-IDF image (nebius/cv_fit_endpoint/Dockerfile).
+#
+# Built on the official PyTorch CUDA runtime so a Nebius GPU host (L40S / H100)
+# uses the GPU out of the box. torch==2.4.1 is already in this base, so the pip
+# step only adds transformers / sentence-transformers / fastapi (small layers)
+# — this also keeps the cross-arch (amd64-on-arm64) build fast: no emulated
+# multi-GB torch install.
+#
+# Build from the REPO ROOT (needs scripts/ + data/), targeting amd64:
+#   docker buildx build --platform linux/amd64 \
+#     -f nebius/cv_fit_endpoint/Dockerfile.neural -t cv-fit-neural --load .
+#
+# CPU-only alternative (no GPU): use FROM python:3.11-slim and install torch
+# from https://download.pytorch.org/whl/cpu via requirements-neural.txt.
+#
+# Optional: preload BGE-M3 into the image (bigger image, faster cold start):
+#   docker buildx build --build-arg PRELOAD_MODEL=1 ... .
+#
+# No secrets, no credentials, no CV storage. CV text is processed per request.
+FROM pytorch/pytorch:2.4.1-cuda12.1-cudnn9-runtime
+
+WORKDIR /app
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    HF_HOME=/app/.hf_home \
+    CV_FIT_EMBEDDING_MODEL=BAAI/bge-m3
+
+COPY nebius/cv_fit_endpoint/requirements-neural.txt ./requirements-neural.txt
+RUN python -m pip install --no-cache-dir --upgrade pip \
+    && python -m pip install --no-cache-dir -r requirements-neural.txt
+
+COPY . /app
+
+# Ensure the role ontology exists (stdlib only) and a precomputed neural role
+# index ships with the image when present.
+RUN python3 scripts/build_cv_match_index.py
+
+# Optional: bake the BGE-M3 weights + precompute role embeddings into the image.
+ARG PRELOAD_MODEL=0
+RUN if [ "$PRELOAD_MODEL" = "1" ]; then \
+      python3 scripts/build_neural_role_index.py --model "$CV_FIT_EMBEDDING_MODEL" ; \
+    fi
+
+EXPOSE 8080
+WORKDIR /app/nebius/cv_fit_endpoint
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]

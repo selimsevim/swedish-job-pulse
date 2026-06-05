@@ -1,0 +1,178 @@
+{
+  "generated": "2026-06-05T15:39:59Z",
+  "model": "BAAI/bge-m3",
+  "embedding_dim": 1024,
+  "note": "Both backends share the same rerank; only the semantic score differs. 'better' should only be claimed where these numbers support it.",
+  "tfidf": {
+    "backend": "tfidf",
+    "n_cvs": 6,
+    "primary_domain_accuracy": 1.0,
+    "no_collapse_rate": 1.0,
+    "top3_expected_domain_hit": 1.0,
+    "wrong_domain_rate": 0.0,
+    "avg_latency_ms": 0.1,
+    "per_cv": [
+      {
+        "cv": "SFMC / Martech Integration (senior)",
+        "primary_domain": "crm_martech",
+        "expected_domain": "crm_martech",
+        "domain_hit": true,
+        "no_collapse": true,
+        "top3_domain_hit": true,
+        "best": [
+          "Salesforce Marketing Cloud Consultant",
+          "Solution Architect, Marketing Technology",
+          "Martech Consultant"
+        ]
+      },
+      {
+        "cv": "Marketing / CRM (mid)",
+        "primary_domain": "crm_martech",
+        "expected_domain": "crm_martech",
+        "domain_hit": true,
+        "no_collapse": true,
+        "top3_domain_hit": true,
+        "best": [
+          "Marketing Automation Specialist",
+          "Campaign Operations Specialist",
+          "Salesforce Marketing Cloud Consultant"
+        ]
+      },
+      {
+        "cv": "Junior developer (entry)",
+        "primary_domain": "software",
+        "expected_domain": "software",
+        "domain_hit": true,
+        "no_collapse": true,
+        "top3_domain_hit": true,
+        "best": [
+          "Junior Developer",
+          "Software Developer"
+        ]
+      },
+      {
+        "cv": "Admin / reporting (mid)",
+        "primary_domain": "admin_ops",
+        "expected_domain": "admin_ops",
+        "domain_hit": true,
+        "no_collapse": true,
+        "top3_domain_hit": true,
+        "best": [
+          "Admin Coordinator",
+          "Reporting Assistant",
+          "Operations Coordinator"
+        ]
+      },
+      {
+        "cv": "Assistant nurse (entry)",
+        "primary_domain": "healthcare",
+        "expected_domain": "healthcare",
+        "domain_hit": true,
+        "no_collapse": true,
+        "top3_domain_hit": true,
+        "best": [
+          "Assistant Nurse",
+          "Registered Nurse"
+        ]
+      },
+      {
+        "cv": "Warehouse / logistics (entry)",
+        "primary_domain": "logistics",
+        "expected_domain": "logistics",
+        "domain_hit": true,
+        "no_collapse": true,
+        "top3_domain_hit": true,
+        "best": [
+          "Warehouse Worker"
+        ]
+      }
+    ]
+  },
+  "neural": {
+    "backend": "neural:BAAI/bge-m3",
+    "n_cvs": 6,
+    "primary_domain_accuracy": 1.0,
+    "no_collapse_rate": 1.0,
+    "top3_expected_domain_hit": 1.0,
+    "wrong_domain_rate": 0.0,
+    "avg_latency_ms": 411.8,
+    "per_cv": [
+      {
+        "cv": "SFMC / Martech Integration (senior)",
+        "primary_domain": "crm_martech",
+        "expected_domain": "crm_martech",
+        "domain_hit": true,
+        "no_collapse": true,
+        "top3_domain_hit": true,
+        "best": [
+          "Solution Architect, Marketing Technology",
+          "Salesforce Marketing Cloud Consultant",
+          "Martech Consultant"
+        ]
+      },
+      {
+        "cv": "Marketing / CRM (mid)",
+        "primary_domain": "crm_martech",
+        "expected_domain": "crm_martech",
+        "domain_hit": true,
+        "no_collapse": true,
+        "top3_domain_hit": true,
+        "best": [
+          "Marketing Automation Specialist",
+          "Campaign Operations Specialist",
+          "Salesforce Marketing Cloud Consultant"
+        ]
+      },
+      {
+        "cv": "Junior developer (entry)",
+        "primary_domain": "software",
+        "expected_domain": "software",
+        "domain_hit": true,
+        "no_collapse": true,
+        "top3_domain_hit": true,
+        "best": [
+          "Junior Developer",
+          "Software Developer"
+        ]
+      },
+      {
+        "cv": "Admin / reporting (mid)",
+        "primary_domain": "admin_ops",
+        "expected_domain": "admin_ops",
+        "domain_hit": true,
+        "no_collapse": true,
+        "top3_domain_hit": true,
+        "best": [
+          "Admin Coordinator",
+          "Reporting Assistant",
+          "Operations Coordinator"
+        ]
+      },
+      {
+        "cv": "Assistant nurse (entry)",
+        "primary_domain": "healthcare",
+        "expected_domain": "healthcare",
+        "domain_hit": true,
+        "no_collapse": true,
+        "top3_domain_hit": true,
+        "best": [
+          "Assistant Nurse",
+          "Registered Nurse"
+        ]
+      },
+      {
+        "cv": "Warehouse / logistics (entry)",
+        "primary_domain": "logistics",
+        "expected_domain": "logistics",
+        "domain_hit": true,
+        "no_collapse": true,
+        "top3_domain_hit": true,
+        "best": [
+          "Warehouse Worker",
+          "Truck Driver",
+          "Logistics Coordinator"
+        ]
+      }
+    ]
+  }
+}

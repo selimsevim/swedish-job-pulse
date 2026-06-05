@@ -43,7 +43,17 @@ class CvFitRequest(BaseModel):
 @app.get("/health")
 def health():
     eng = cv_fit_core.get_engine()
-    return {"status": "ok", "backend": eng.backend, "roles": len(eng.catalog)}
+    out = {
+        "status": "ok" if eng.backend_kind != "error" else "error",
+        "backend": eng.backend_kind,          # tfidf | neural | error
+        "model": eng.model_name,              # e.g. BAAI/bge-m3 (None for tfidf)
+        "roles": len(eng.catalog),
+    }
+    if eng.embedding_dim:
+        out["embedding_dim"] = eng.embedding_dim
+    if eng.neural_error:
+        out["error"] = eng.neural_error
+    return out
 
 
 @app.post("/cv-fit")

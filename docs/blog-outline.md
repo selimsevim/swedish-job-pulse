@@ -109,7 +109,8 @@ Explain why this fits Serverless AI Jobs:
 - The workload is finite and batch-oriented.
 - It produces static JSON artifacts.
 - It does not need an always-on server.
-- CPU is enough for the current dataset; GPU is unnecessary.
+- CPU is enough for the artifact-generation jobs and the TF-IDF endpoint.
+- The **neural `/cv-fit` endpoint** is where a **GPU (L40S)** earns its place — it runs the BGE-M3 embedding model.
 - The same container can run scheduled data refreshes and training.
 
 Artifacts produced:
@@ -128,19 +129,29 @@ Verified deployment (run on Nebius Serverless AI, platform `cpu-d3`, preset `4vc
   to COMPLETED: 7/7 JSON artifacts validated; ML MAE 90.73 vs baseline 80.90;
   ML trend accuracy 0.61 vs 0.23; ML macro-F1 0.48 vs 0.12; CV primary-domain
   accuracy 1.0; CV no-collapse 1.0.
-- **Serverless AI Endpoint** `swedish-job-pulse-cv-fit` is RUNNING and
-  token-protected: `/health` -> `{"status":"ok","backend":"tfidf-fallback","roles":41}`;
-  `/cv-fit` -> 200 with the full report for a synthetic SFMC CV; an
-  unauthenticated POST returns 401.
+- **Endpoint 1 — TF-IDF baseline** `swedish-job-pulse-cv-fit` (CPU `cpu-d3`) is
+  RUNNING and token-protected: `/health` ->
+  `{"status":"ok","backend":"tfidf-fallback","roles":41}`; `/cv-fit` -> 200 with
+  the full report for a synthetic SFMC CV; an unauthenticated POST returns 401.
+- **Endpoint 2 — neural BGE-M3** `swedish-job-pulse-cv-fit-neural` (GPU
+  `gpu-l40s-d`, 1× L40S) reached RUNNING and token-protected: `/health` ->
+  `{"status":"ok","backend":"neural","model":"BAAI/bge-m3","roles":41,"embedding_dim":1024}`;
+  `/cv-fit` -> 200 (SFMC CV -> CRM/Martech; data-analyst CV stays in data
+  analytics); unauthenticated -> 401; warm latency ~0.10 s. Deleted after the
+  proof to stop GPU billing.
 
 Be precise in the post:
 
-- The deployed proof used the **TF-IDF fallback**; the neural BGE-M3 / Qwen3
-  path is scaffolded and env-gated but was **not** run.
+- There are **two** `/cv-fit` backends: the static site + Endpoint 1 use the
+  **TF-IDF baseline**; Endpoint 2 runs the **neural BGE-M3** model on a GPU.
+- On the synthetic benchmark (`data/neural_cv_match_metrics.json`) the two are
+  **tied** (domain 1.0, no-collapse 1.0, top-3 1.0) — **do not claim BGE-M3 beats
+  TF-IDF**; it is heavier (GPU, ~0.1 s vs sub-ms). Its real edge is learned
+  multilingual paraphrase/abbreviation matching without a synonym list.
 - The trend model is used for **direction**, not exact vacancy-count prediction
   (baseline has lower count MAE).
 - Built on **public job-ad signals, not all Swedish jobs**.
-- The endpoint is token-protected and CV text is processed per request, not stored.
+- Both endpoints are token-protected and CV text is processed per request, not stored.
 - Do not publish resource IDs, the public IP, tokens, or project/registry IDs.
 
 ## 8. Limitations

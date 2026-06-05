@@ -34,6 +34,7 @@ import build_cv_match_index as bm  # noqa: E402
 INDEX_PATH = os.environ.get("CV_FIT_INDEX_PATH", os.path.join(REPO_ROOT, "data", "cv_match_index.json"))
 CAREER_PATH = os.environ.get("CV_FIT_CAREER_PATH", os.path.join(REPO_ROOT, "data", "career_reality.json"))
 EMBEDDING_MODEL = os.environ.get("CV_FIT_EMBEDDING_MODEL", "").strip()
+NEURAL_INDEX_PATH = os.environ.get("CV_FIT_NEURAL_INDEX", os.path.join(HERE, "neural_role_index.json"))
 
 # Display + gap-priority maps (mirror app.js).
 CV_PRETTY = {
@@ -86,30 +87,16 @@ class _Engine:
         except Exception:
             self.career = {}
 
-        self.backend = "tfidf-fallback"
+        # Backend selection. backend_kind: tfidf | neural | error.
+        self.backend_kind = "tfidf"
+        self.backend = "tfidf-fallback"   # human label (report "backend" field)
+        self.model_name = None
+        self.embedding_dim = None
+        self.neural_error = None
         self._model = None
         self._role_emb = None
         if EMBEDDING_MODEL:
-            self._try_load_model()
-
-    def _try_load_model(self):
-        try:
-            from sentence_transformers import SentenceTransformer
-        except Exception:
-            print(f"[cv-fit] sentence-transformers not available; "
-                  f"falling back to TF-IDF (model '{EMBEDDING_MODEL}' not loaded).")
-            return
-        try:
-            self._model = SentenceTransformer(EMBEDDING_MODEL)
-            docs = [self._role_text(r) for r in self.catalog]
-            embs = self._model.encode(docs, normalize_embeddings=True)
-            self._role_emb = {r["role_id"]: embs[i] for i, r in enumerate(self.catalog)}
-            self.backend = "neural:" + EMBEDDING_MODEL
-            print(f"[cv-fit] neural embedding backend active: {EMBEDDING_MODEL}")
-        except Exception as exc:  # pragma: no cover - model/runtime dependent
-            print(f"[cv-fit] could not load '{EMBEDDING_MODEL}' ({exc.__class__.__name__}); "
-                  f"falling back to TF-IDF.")
-            self._model = None
+            self._load_neural(EMBEDDING_MODEL)
 
     @staticmethod
     def _role_text(role):
@@ -117,10 +104,61 @@ class _Engine:
             + role.get("required_skills", []) + role.get("nice_skills", [])
         return " ".join(parts)
 
+    def _load_precomputed_role_emb(self, model_name):
+        """Load role vectors precomputed by scripts/build_neural_role_index.py
+        (same model) so we skip re-embedding 41 role docs at boot."""
+        try:
+            with open(NEURAL_INDEX_PATH, "r", encoding="utf-8") as fh:
+                data = json.load(fh)
+        except Exception:
+            return False
+        if data.get("model") != model_name:
+            return False
+        emb = {r["role_id"]: r["vector"] for r in data.get("roles", [])}
+        if emb and all(r["role_id"] in emb for r in self.catalog):
+            self._role_emb = emb
+            print(f"[cv-fit] loaded {len(emb)} precomputed role embeddings from {NEURAL_INDEX_PATH}")
+            return True
+        return False
+
+    def _load_neural(self, model_name):
+        """Load a neural embedding model (e.g. BGE-M3). Fails CLEARLY: if a model
+        was requested but cannot load, backend_kind becomes 'error' and the
+        endpoint reports it rather than silently pretending neural is active."""
+        try:
+            from sentence_transformers import SentenceTransformer
+        except Exception as exc:
+            self.backend_kind = "error"
+            self.neural_error = f"sentence-transformers not importable: {exc.__class__.__name__}"
+            print("[cv-fit] NEURAL REQUESTED but " + self.neural_error)
+            return
+        try:
+            self._model = SentenceTransformer(model_name)
+            if not self._load_precomputed_role_emb(model_name):
+                docs = [self._role_text(r) for r in self.catalog]
+                embs = self._model.encode(docs, normalize_embeddings=True)
+                self._role_emb = {r["role_id"]: [float(x) for x in embs[i]]
+                                  for i, r in enumerate(self.catalog)}
+            self.backend_kind = "neural"
+            self.model_name = model_name
+            self.backend = "neural:" + model_name
+            self.embedding_dim = len(next(iter(self._role_emb.values())))
+            print(f"[cv-fit] neural backend active: {model_name} "
+                  f"(dim={self.embedding_dim}, roles={len(self._role_emb)})")
+        except Exception as exc:  # pragma: no cover - model/runtime dependent
+            self.backend_kind = "error"
+            self.neural_error = f"failed to load '{model_name}': {exc.__class__.__name__}: {exc}"
+            self._model = None
+            self._role_emb = None
+            print("[cv-fit] NEURAL LOAD FAILED: " + self.neural_error)
+
     # ---- semantic similarity per backend -------------------------------
     def _semantic_scores(self, query_text):
+        if self.backend_kind == "error":
+            # Do not silently fall back: a requested neural model failed.
+            raise RuntimeError("neural backend unavailable: " + (self.neural_error or "unknown"))
         if self._model is not None and self._role_emb is not None:
-            qv = self._model.encode([query_text], normalize_embeddings=True)[0]
+            qv = [float(x) for x in self._model.encode([query_text], normalize_embeddings=True)[0]]
             return {rid: float(sum(a * b for a, b in zip(qv, ev)))
                     for rid, ev in self._role_emb.items()}
         # TF-IDF fallback: identical to the static site.

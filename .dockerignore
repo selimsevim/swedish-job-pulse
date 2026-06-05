@@ -20,3 +20,10 @@ UI_Screenshots
 
 *.log
 *.tmp
+
+# Never bake local challenge evidence (account/project IDs, logs) or test CVs
+# into a published image.
+challenge_evidence
+**/challenge_evidence
+*-test-cvs
+sjp-test-cvs

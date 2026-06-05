@@ -1,0 +1,16 @@
+# Neural BGE-M3 backend for the /cv-fit endpoint (second, AI/ML path).
+# The static site and the stable TF-IDF endpoint do NOT need any of this.
+# Installing these + setting CV_FIT_EMBEDDING_MODEL=BAAI/bge-m3 switches the
+# endpoint to neural multilingual-embedding retrieval.
+#
+# torch from the default PyPI index is the CUDA build on linux (uses an L40S /
+# other Nebius GPU). For a CPU-only build, install torch from
+#   https://download.pytorch.org/whl/cpu
+torch==2.4.1
+transformers==4.44.2
+sentence-transformers==3.1.1
+numpy>=1.26,<2.2
+huggingface-hub>=0.24
+fastapi>=0.110
+uvicorn>=0.29
+pydantic>=2.6

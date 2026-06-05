@@ -23,28 +23,50 @@ No credentials are hardcoded here. Nebius authentication, registry credentials, 
 
 ## Verified deployment
 
-Both the Job and the Endpoint were run on Nebius Serverless AI (platform
-`cpu-d3`, preset `4vcpu-16gb`) from the public GHCR images
-`ghcr.io/selimsevim/swedish-job-pulse:latest` and
-`ghcr.io/selimsevim/cv-fit-endpoint:latest` (linux/amd64).
+Three workloads were run on Nebius Serverless AI from public GHCR images
+(linux/amd64). There are **two** `/cv-fit` backends, deployed as **two separate
+endpoints** — the stable TF-IDF baseline and the neural BGE-M3 path.
 
-- **Serverless AI Job** `swedish-job-pulse-rebuild` — `./scripts/rebuild_career_reality.sh`
+- **Serverless AI Job** `swedish-job-pulse-rebuild` (`cpu-d3` / `4vcpu-16gb`,
+  image `ghcr.io/selimsevim/swedish-job-pulse:latest`) — `./scripts/rebuild_career_reality.sh`
   ran end-to-end and reached **COMPLETED**. Logs: **7/7 JSON artifacts validated**;
   ML MAE 90.73 vs baseline 80.90; ML trend accuracy 0.61 vs 0.23; ML macro-F1
   0.48 vs 0.12; CV primary-domain accuracy 1.0; CV no-collapse 1.0.
-- **Serverless AI Endpoint** `swedish-job-pulse-cv-fit` — **RUNNING**, token-protected.
-  `GET /health` -> `{"status":"ok","backend":"tfidf-fallback","roles":41}`;
+- **Endpoint 1 — TF-IDF baseline** `swedish-job-pulse-cv-fit` (`cpu-d3` /
+  `4vcpu-16gb`, image `ghcr.io/selimsevim/cv-fit-endpoint:latest`) — **RUNNING**,
+  token-protected. `GET /health` -> `{"status":"ok","backend":"tfidf-fallback","roles":41}`;
   `POST /cv-fit` -> 200 with the full report for a synthetic SFMC CV;
-  unauthenticated `POST /cv-fit` -> 401.
+  unauthenticated `POST /cv-fit` -> 401. This is the always-on, reproducible path.
+- **Endpoint 2 — neural BGE-M3** `swedish-job-pulse-cv-fit-neural`
+  (**GPU `gpu-l40s-d` / `1gpu-16vcpu-96gb`, 1× NVIDIA L40S**, image
+  `ghcr.io/selimsevim/cv-fit-endpoint:neural`) — reached **RUNNING**,
+  token-protected. `GET /health` ->
+  `{"status":"ok","backend":"neural","model":"BAAI/bge-m3","roles":41,"embedding_dim":1024}`;
+  startup log: `neural backend active: BAAI/bge-m3 (dim=1024, roles=41)`.
+  `POST /cv-fit` -> 200; the synthetic SFMC CV maps to **CRM / Martech**
+  (Solution Architect, Marketing Technology → Martech Consultant → SFMC Consultant)
+  and a data-analyst CV stays in **data analytics** (no collapse to education or
+  marketing); unauthenticated -> 401. Warm latency **~0.10 s / request** on the
+  L40S. **The neural endpoint was deleted after the proof to stop GPU billing**
+  (recreate with the command in `challenge_evidence/`, kept out of git).
 
-The deployed proof used the **TF-IDF fallback** backend. The neural BGE-M3 /
-Qwen3 embedding path is **scaffolded and env-gated** (`CV_FIT_EMBEDDING_MODEL`)
-but was **not** run in this deployment. The trend model is used for direction,
-not exact vacancy-count prediction (baseline persistence has lower count MAE).
-The endpoint is token-protected and CV text is processed per request, not stored.
+**Honest comparison (`data/neural_cv_match_metrics.json`).** Both backends share
+the exact same rerank (semantic + skill overlap + seniority + domain guardrails);
+only the *semantic similarity* differs (TF-IDF cosine vs BGE-M3 cosine). On the
+synthetic CV set they are **tied** — primary-domain accuracy 1.0, no-collapse 1.0,
+top-3 1.0 for both — so **BGE-M3 is not claimed to beat TF-IDF on these metrics.**
+TF-IDF is far cheaper (~sub-millisecond, CPU); BGE-M3 is heavier (GPU, ~0.1 s
+warm). The neural path's real advantage is **learned multilingual paraphrase /
+abbreviation equivalence with no hand-written synonym list** — exactly the
+limitation of the static bootstrap (see "On synonyms" below); the small synthetic
+set does not stress that, so it shows as parity rather than a win.
 
-Resource IDs, the public URL, full logs and responses are kept out of git (they
-contain account/project IDs).
+The trend model is used for direction, not exact vacancy-count prediction
+(baseline persistence has lower count MAE). Both endpoints are token-protected
+and CV text is processed per request, never stored or logged.
+
+Resource IDs, public URLs/IPs, tokens, full logs and responses are kept out of
+git (they contain account/project data).
 
 ## Local Rebuild
 
@@ -311,6 +333,26 @@ This endpoint is **implemented** (FastAPI) in
 - **Same contract:** `vectorize → cosine similarity → rerank → report`. The
   endpoint reuses the exact ontology + matcher from
   `scripts/build_cv_match_index.py`, so it can never drift from the static site.
+
+### Neural backend (BGE-M3) — build & deploy
+
+The neural path is a **second, separate image**, so the stable TF-IDF endpoint is
+never touched:
+
+- `nebius/cv_fit_endpoint/requirements-neural.txt` — torch / transformers /
+  sentence-transformers.
+- `nebius/cv_fit_endpoint/Dockerfile.neural` — built on the official PyTorch CUDA
+  runtime so a Nebius GPU (L40S / H100) is used out of the box.
+- `scripts/build_neural_role_index.py` — precomputes BGE-M3 embeddings for the 41
+  roles into `nebius/cv_fit_endpoint/neural_role_index.json` (1024-dim), baked
+  into the image so the endpoint does **not** re-embed roles on cold start.
+- `scripts/evaluate_neural_cv_fit.py` — benchmarks TF-IDF vs BGE-M3 on the
+  synthetic CVs and writes `data/neural_cv_match_metrics.json`.
+
+`cv_fit_core.py` is env-gated by `CV_FIT_EMBEDDING_MODEL`: set to `BAAI/bge-m3` it
+loads the model + precomputed index and serves `backend: neural`; if the model
+fails to load it reports `backend: error` (it does **not** silently pretend to be
+neural). Unset, it stays on the reproducible TF-IDF fallback.
 
 Why the endpoint is the high-quality path: a multilingual embedding model places
 "SFMC" and "Salesforce Marketing Cloud" close together with **no synonym list at

@@ -235,18 +235,20 @@ Nebius Serverless AI runs containerized AI workloads as Jobs or Endpoints withou
 - Job 1: public data processing / feature generation
 - Job 2: ML training and evaluation
 - Job 3: batch scoring and JSON artifact generation
-- Optional Endpoint: `/cv-fit` for server-side CV analysis (neural embeddings are scaffolded and env-gated; see below)
+- Endpoint (TF-IDF baseline): `/cv-fit` on CPU — always-on, reproducible
+- Endpoint (neural): `/cv-fit` with **BGE-M3** multilingual embeddings on **GPU (L40S)** — the AI/ML path
 
-The current workload is CPU-friendly. A GPU is unnecessary for the dataset size; runtime is dominated by JSON parsing and a small scikit-learn model.
+The artifact-generation jobs are CPU-friendly (a GPU is unnecessary for that dataset size). The **neural `/cv-fit` endpoint** is the part that benefits from a GPU: it runs the BGE-M3 embedding model.
 
 ### Verified deployment
 
-Both the Job and the Endpoint were run on **Nebius Serverless AI** (platform `cpu-d3`, preset `4vcpu-16gb`), pulling the public GHCR images:
+Run on **Nebius Serverless AI** from public GHCR images (linux/amd64). The `/cv-fit` service has **two backends deployed as two separate endpoints** — the stable TF-IDF baseline (CPU) and the neural BGE-M3 path (GPU):
 
-- **Serverless AI Job** `swedish-job-pulse-rebuild` — ran `./scripts/rebuild_career_reality.sh` and reached **COMPLETED**. Logs show **7/7 JSON artifacts validated** and the metrics: ML MAE 90.73 vs baseline 80.90; ML trend accuracy 0.61 vs 0.23; ML macro-F1 0.48 vs 0.12; CV primary-domain accuracy 1.0; CV no-collapse 1.0.
-- **Serverless AI Endpoint** `swedish-job-pulse-cv-fit` — **RUNNING**, token-protected. `GET /health` → `{"status":"ok","backend":"tfidf-fallback","roles":41}`; `POST /cv-fit` → 200 with the full report for a synthetic SFMC CV; an unauthenticated `POST /cv-fit` returns **401**.
+- **Serverless AI Job** `swedish-job-pulse-rebuild` (`cpu-d3` / `4vcpu-16gb`) — ran `./scripts/rebuild_career_reality.sh` and reached **COMPLETED**. Logs show **7/7 JSON artifacts validated** and the metrics: ML MAE 90.73 vs baseline 80.90; ML trend accuracy 0.61 vs 0.23; ML macro-F1 0.48 vs 0.12; CV primary-domain accuracy 1.0; CV no-collapse 1.0.
+- **Endpoint 1 — TF-IDF baseline** `swedish-job-pulse-cv-fit` (`cpu-d3` / `4vcpu-16gb`) — **RUNNING**, token-protected. `GET /health` → `{"status":"ok","backend":"tfidf-fallback","roles":41}`; `POST /cv-fit` → 200 with the full report for a synthetic SFMC CV; unauthenticated → **401**.
+- **Endpoint 2 — neural BGE-M3** `swedish-job-pulse-cv-fit-neural` (GPU **`gpu-l40s-d` / `1gpu-16vcpu-96gb`, 1× NVIDIA L40S**) — reached **RUNNING**, token-protected. `GET /health` → `{"status":"ok","backend":"neural","model":"BAAI/bge-m3","roles":41,"embedding_dim":1024}` (startup log: `neural backend active: BAAI/bge-m3 (dim=1024, roles=41)`). `POST /cv-fit` → 200: the SFMC CV maps to **CRM / Martech** and a data-analyst CV stays in **data analytics** (no collapse); unauthenticated → **401**. Warm latency **~0.10 s / request**. **Deleted after the proof to stop GPU billing.**
 
-The deployed proof used the **TF-IDF fallback** backend. The neural BGE-M3 / Qwen3 embedding path is **scaffolded and env-gated** (`CV_FIT_EMBEDDING_MODEL`) but was **not** run in this deployment. The trend model is used for **direction** (grow/stable/decline), **not** exact vacancy-count prediction — baseline persistence has lower count MAE. The platform is built on **public Arbetsförmedlingen / JobTech job-ad signals, not all jobs in Sweden**. The endpoint is **token-protected**, and **CV text is processed per request and not stored**.
+**Honest comparison** ([`data/neural_cv_match_metrics.json`](data/neural_cv_match_metrics.json)): both backends use the same rerank and only differ in semantic similarity (TF-IDF cosine vs BGE-M3 cosine). On the synthetic CV set they are **tied** (primary-domain 1.0, no-collapse 1.0, top-3 1.0) — **BGE-M3 is not claimed to beat TF-IDF here.** TF-IDF is ~sub-millisecond on CPU; BGE-M3 is ~0.1 s warm on the L40S. The neural path's real advantage is **learned multilingual paraphrase / abbreviation matching with no hand-written synonym list**, which the small synthetic set does not stress. The trend model is used for **direction** (grow/stable/decline), **not** exact vacancy-count prediction — baseline persistence has lower count MAE. The platform is built on **public Arbetsförmedlingen / JobTech job-ad signals, not all jobs in Sweden**. Both endpoints are **token-protected**, and **CV text is processed per request and not stored**.
 
 Detailed Nebius notes, expected inputs/outputs, proof-of-execution screenshots, runtime expectations, and placeholder job commands are in [`nebius/README.md`](nebius/README.md).
 
