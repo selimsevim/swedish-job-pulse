@@ -5,19 +5,17 @@ Project: Swedish Job Pulse - CV-to-Swedish-job-market fit engine
 ## Submission Fields To Fill In
 
 - Repository URL: `https://github.com/selimsevim/swedish-job-pulse`
-- Live website URL: `TODO`
-- Nebius Job logs screenshot: `TODO`
-- Nebius Job successful status screenshot: `TODO`
-- Nebius Endpoint `/health` screenshot: `TODO`
-- Nebius Endpoint `/cv-fit` response screenshot: `TODO`
+- Live website URL: `TODO` (static site runs locally and in Docker; not yet hosted)
+- Nebius Job: ✅ ran on Nebius Serverless AI (platform `cpu-d3`) — state COMPLETED; logs + status in local `challenge_evidence/` (gitignored)
+- Nebius Endpoint `/cv-fit`: ✅ live on Nebius Serverless AI (`cpu-d3`, token auth); `/health` + `/cv-fit` verified; responses in local `challenge_evidence/`
 - Blog post URL: `TODO`
 - Video URL: `TODO`
-- Docker build confirmation: `TODO`
-- Rebuild command confirmation: `TODO`
-- Metrics summary: `TODO`
-- Known limitations: `TODO`
-- License confirmed: `TODO`
-- No secrets confirmed: `TODO`
+- Docker build confirmation: ✅ root + endpoint images build (linux/amd64), run, and are published to public GHCR (`ghcr.io/selimsevim/swedish-job-pulse`, `ghcr.io/selimsevim/cv-fit-endpoint`)
+- Rebuild command confirmation: ✅ `./scripts/rebuild_career_reality.sh` passes locally and inside the Nebius Job
+- Metrics summary: ML MAE 90.73 / baseline 80.90; trend acc 0.61 / 0.23; macro-F1 0.48 / 0.12; CV primary-domain 1.0, no-collapse 1.0
+- Known limitations: see "Known Limitations" below
+- License confirmed: MIT (`LICENSE`)
+- No secrets confirmed: ✅ scan clean; CVs processed per request, not stored
 
 ## Reproduce From A Clean Clone
 
@@ -65,19 +63,29 @@ The ML model is not used as an exact vacancy-count predictor. Its value is in tr
 
 Do not claim that the ML model forecasts vacancy counts better than the baseline; baseline persistence has lower MAE on the current holdout.
 
-## Nebius Proof Needed
+## Nebius Proof — verified 2026-06-05
 
-Capture these screenshots or logs before final submission:
+Both ran on Nebius Serverless AI (region eu-north1, platform `cpu-d3`, preset
+`4vcpu-16gb`), pulling public GHCR images:
 
-- Nebius Serverless AI Job 1: public data processing / feature generation
-- Nebius Serverless AI Job 2: model training and evaluation
-- Nebius Serverless AI Job 3: batch scoring and JSON artifact generation
-- Job logs showing the rebuild command and metric summary
-- Job output or artifact store listing the generated JSON files
-- Endpoint `/health` response screenshot if demonstrating `/cv-fit`
-- Endpoint `/cv-fit` response screenshot if demonstrating `/cv-fit`
+- **Serverless AI Job** (`swedish-job-pulse-rebuild`): ran
+  `./scripts/rebuild_career_reality.sh` end-to-end and reached **COMPLETED**.
+  Logs show all three stages (forecast training → scoring → CV index build),
+  7/7 JSON artifacts validated, and the metrics: ML MAE 90.73 vs baseline 80.90;
+  ML trend accuracy 0.61 vs 0.23; ML macro-F1 0.48 vs 0.12; CV primary-domain
+  accuracy 1.0, no-collapse rate 1.0. (The "Job 1/2/3" split is the conceptual
+  mapping; a single Serverless Job runs all three stages.)
+- **Serverless AI Endpoint** (`swedish-job-pulse-cv-fit`): **RUNNING** with a
+  public address and token auth. `GET /health` → `{"status":"ok",
+  "backend":"tfidf-fallback","roles":41}`; `POST /cv-fit` → 200 with the full
+  report; unauthenticated `POST /cv-fit` → HTTP 401.
 
-No screenshots should include secrets, tokens, private project IDs, or personal data.
+Raw resource IDs, the public URL, full logs and responses are kept in local
+`challenge_evidence/` (gitignored — it contains account/project IDs and is not
+committed). No tokens, project IDs, or personal data are committed to the repo.
+
+> The endpoint is a paid running resource. Tear it down when no longer needed:
+> `nebius ai endpoint delete <ENDPOINT_ID>` (ID in `challenge_evidence/`).
 
 ## Docker
 
