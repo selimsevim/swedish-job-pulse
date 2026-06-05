@@ -937,10 +937,17 @@
       const scored = crcCvRank(profile);
       const { pdomain, best, adj, avoid } = crcCvBucket(profile, scored);
 
+      // Senior CRM / SFMC / Martech / Integration profile: architecture-led
+      // framing + concrete improvement areas (not vague skill tokens).
+      const seniorMartech = profile.seniority === "senior" && pdomain === "crm_martech";
+      const langStated = (profile.languages || []).some((l) => /english/i.test(l)) && profile.swedish !== "none";
+
       let tone, mainAnswer;
       if (best.length) {
         tone = "now";
-        mainAnswer = `Your CV is strongest for ${crcCvDomainLabel(pdomain)} roles.`;
+        mainAnswer = seniorMartech
+          ? "Your CV is strongest for SFMC / Martech Integration and Marketing Technology Architecture roles."
+          : `Your CV is strongest for ${crcCvDomainLabel(pdomain)} roles.`;
       } else if (adj.length) {
         tone = "soon";
         mainAnswer = `Your CV is close to ${crcCvDomainLabel(adj[0].domain)} roles — strengthen the proof first.`;
@@ -949,15 +956,31 @@
         mainAnswer = "Your CV doesn't match a clear role family yet — here's what to strengthen.";
       }
 
-      // Missing skills: gaps from best + adjacent roles, hard/technical first.
-      const freq = new Map();
-      [...best, ...adj].forEach((r) => r.missing.forEach((s) => freq.set(s, (freq.get(s) || 0) + 1)));
-      let missing = [...freq.entries()]
-        .sort((a, b) => ((CV_HARD_GAPS.has(b[0]) ? 1 : 0) - (CV_HARD_GAPS.has(a[0]) ? 1 : 0)) || (b[1] - a[1]))
-        .map((e) => e[0]).slice(0, 6);
-      if (profile.weakSwedish && [...best, ...adj].some((r) => r.languageSensitive)) {
+      // "Your CV is missing" — display-ready strings.
+      let missing;
+      if (seniorMartech) {
+        // Concrete CV improvement areas for a senior niche profile, never a bare
+        // "Leadership" token.
+        missing = [];
+        if (!langStated) missing.push("state your Swedish and English level");
+        missing.push("add measurable business impact");
+        missing.push("make architecture ownership explicit");
+        if (!profile.skills.includes("data_cloud")) missing.push("broader Salesforce architecture / Data Cloud");
+        missing.push("technical leadership examples");
         missing = missing.slice(0, 5);
-        missing.push("swedish working proficiency");
+      } else {
+        // Aggregate role-gap tokens; drop the too-vague "leadership"; prettify.
+        const freq = new Map();
+        [...best, ...adj].forEach((r) => r.missing.forEach((s) => {
+          if (s !== "leadership") freq.set(s, (freq.get(s) || 0) + 1);
+        }));
+        let toks = [...freq.entries()]
+          .sort((a, b) => ((CV_HARD_GAPS.has(b[0]) ? 1 : 0) - (CV_HARD_GAPS.has(a[0]) ? 1 : 0)) || (b[1] - a[1]))
+          .map((e) => e[0]).slice(0, 6);
+        if (profile.weakSwedish && [...best, ...adj].some((r) => r.languageSensitive)) {
+          toks = toks.slice(0, 5); toks.push("swedish working proficiency");
+        }
+        missing = toks.map(crcCvPretty);
       }
 
       // CV weaknesses (heuristics on the raw text + profile).
@@ -983,12 +1006,15 @@
       // 7-day action plan (max 4).
       const plan = [];
       const bestTitles = best.slice(0, 2).map((r) => r.title);
-      plan.push(`Apply to ${Math.max(6, best.length * 2)} best-fit roles this week${bestTitles.length ? ` — e.g. ${bestTitles.join(", ")}` : ""}.`);
-      if (missing.length) {
-        const gaps = missing.slice(0, 2).map(crcCvPretty);
-        plan.push(`Build proof for ${gaps.join(" and ")} — a focused project or short course.`);
+      if (seniorMartech) {
+        plan.push(`Apply to 5–7 high-fit roles this week${bestTitles.length ? ` — e.g. ${bestTitles.join(", ")}` : ""}.`);
+        plan.push("Make platform / integration architecture ownership and measurable business impact explicit on your CV.");
+        plan.push("Add broader Salesforce architecture / Data Cloud if relevant, and state your Swedish and English level.");
+      } else {
+        plan.push(`Apply to ${Math.max(6, best.length * 2)} best-fit roles this week${bestTitles.length ? ` — e.g. ${bestTitles.join(", ")}` : ""}.`);
+        if (missing.length) plan.push(`Build proof for ${missing.slice(0, 2).join(" and ")} — a focused project or short course.`);
+        plan.push("Rewrite your CV: add measurable impact and a clear skills section.");
       }
-      plan.push("Rewrite your CV: add measurable impact and a clear skills section.");
       if (keywords.length) plan.push(`Search Platsbanken for ${keywords.slice(0, 4).map((k) => `"${k}"`).join(", ")}.`);
 
       const sigOcc = best[0] ? crcTopOccupationInField(best[0].field_id)
@@ -1019,7 +1045,7 @@
         <div class="crc-panel">
           <p class="crc-panel-label">${escapeHtml(label)}</p>
           <div class="cv-tags">
-            ${items.map((s) => `<span class="cv-tag${gap ? " cv-tag--gap" : ""}">${escapeHtml(gap ? crcCvPretty(s) : s)}</span>`).join("")}
+            ${items.map((s) => `<span class="cv-tag${gap ? " cv-tag--gap" : ""}">${escapeHtml(s)}</span>`).join("")}
           </div>
         </div>` : "";
 

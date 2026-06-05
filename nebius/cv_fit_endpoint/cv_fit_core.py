@@ -217,22 +217,43 @@ class _Engine:
         scored = self._rank(profile, sem_by_role)
         pdomain, best, adj, avoid = bm.bucket(profile, scored)
 
+        # Senior CRM / SFMC / Martech / Integration profile: architecture-led
+        # framing + concrete improvement areas (not vague skill tokens).
+        senior_martech = profile["seniority"] == "senior" and pdomain == "crm_martech"
+        lang_stated = (any("english" in l.lower() for l in profile.get("languages", []))
+                       and profile["swedish"] != "none")
+
         if best:
-            main = f"Your CV is strongest for {self.domain_label.get(pdomain, pdomain)} roles."
+            main = ("Your CV is strongest for SFMC / Martech Integration and Marketing Technology Architecture roles."
+                    if senior_martech else
+                    f"Your CV is strongest for {self.domain_label.get(pdomain, pdomain)} roles.")
         elif adj:
             main = f"Your CV is close to {self.domain_label.get(adj[0]['domain'], adj[0]['domain'])} roles — strengthen the proof first."
         else:
             main = "Your CV doesn't match a clear role family yet — here's what to strengthen."
 
-        # Missing skills: hard/technical first; add Swedish if a language-
-        # sensitive best/adjacent role and weak Swedish.
-        freq = {}
-        for r in best + adj:
-            for s in r["missing"]:
-                freq[s] = freq.get(s, 0) + 1
-        missing = sorted(freq, key=lambda s: (1 if s in CV_HARD_GAPS else 0, freq[s]), reverse=True)[:6]
-        if profile["weak_swedish"] and any(r["language_sensitive"] for r in best + adj):
-            missing = missing[:5] + ["swedish working proficiency"]
+        # "Your CV is missing" — display-ready strings.
+        if senior_martech:
+            missing = []
+            if not lang_stated:
+                missing.append("state your Swedish and English level")
+            missing.append("add measurable business impact")
+            missing.append("make architecture ownership explicit")
+            if "data_cloud" not in profile["skills"]:
+                missing.append("broader Salesforce architecture / Data Cloud")
+            missing.append("technical leadership examples")
+            missing = missing[:5]
+        else:
+            freq = {}
+            for r in best + adj:
+                for s in r["missing"]:
+                    if s == "leadership":          # too vague to show as a gap
+                        continue
+                    freq[s] = freq.get(s, 0) + 1
+            toks = sorted(freq, key=lambda s: (1 if s in CV_HARD_GAPS else 0, freq[s]), reverse=True)[:6]
+            if profile["weak_swedish"] and any(r["language_sensitive"] for r in best + adj):
+                toks = toks[:5] + ["swedish working proficiency"]
+            missing = [pretty(s) for s in toks]
 
         # CV improvements.
         t = (cv_text or "").lower()
@@ -261,11 +282,17 @@ class _Engine:
         # 7-day action plan.
         plan = []
         best_titles = [r["title"] for r in best[:2]]
-        plan.append(f"Apply to {max(6, len(best) * 2)} best-fit roles this week"
-                    + (f" — e.g. {', '.join(best_titles)}." if best_titles else "."))
-        if missing:
-            plan.append(f"Build proof for {' and '.join(pretty(g) for g in missing[:2])} — a focused project or short course.")
-        plan.append("Rewrite your CV: add measurable impact and a clear skills section.")
+        if senior_martech:
+            plan.append("Apply to 5–7 high-fit roles this week"
+                        + (f" — e.g. {', '.join(best_titles)}." if best_titles else "."))
+            plan.append("Make platform / integration architecture ownership and measurable business impact explicit on your CV.")
+            plan.append("Add broader Salesforce architecture / Data Cloud if relevant, and state your Swedish and English level.")
+        else:
+            plan.append(f"Apply to {max(6, len(best) * 2)} best-fit roles this week"
+                        + (f" — e.g. {', '.join(best_titles)}." if best_titles else "."))
+            if missing:
+                plan.append(f"Build proof for {' and '.join(missing[:2])} — a focused project or short course.")
+            plan.append("Rewrite your CV: add measurable impact and a clear skills section.")
         if keywords:
             plan.append("Search Platsbanken for " + ", ".join(f'"{k}"' for k in keywords[:4]) + ".")
 
@@ -279,7 +306,7 @@ class _Engine:
             "best_fit_roles": [r["title"] for r in best],
             "adjacent_roles": [r["title"] for r in adj],
             "not_your_main_lane_roles": [r["title"] for r in avoid],
-            "missing_skills": [pretty(s) for s in missing],
+            "missing_skills": missing,
             "cv_improvements": improvements,
             "search_keywords": keywords[:7],
             "action_plan_7_day": plan,
