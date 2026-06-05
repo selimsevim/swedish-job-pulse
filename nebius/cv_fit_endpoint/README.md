@@ -21,20 +21,26 @@ stored or logged**. No secrets, no credentials in this folder.
 ## Run locally (TF-IDF fallback — no model download)
 
 ```bash
-python3 -m pip install -r nebius/cv-fit-endpoint/requirements-endpoint.txt
-cd nebius/cv-fit-endpoint
-uvicorn app:app --host 0.0.0.0 --port 8080
+python3 -m pip install -r nebius/cv_fit_endpoint/requirements-endpoint.txt
+# from the repo root (folder uses an underscore so the module path is valid):
+uvicorn nebius.cv_fit_endpoint.app:app --host 127.0.0.1 --port 8080
+# or, equivalently, from inside the folder:
+#   cd nebius/cv_fit_endpoint && uvicorn app:app --port 8080
 ```
 
 Then:
 
 ```bash
-curl -s http://127.0.0.1:8080/cv-fit \
+curl -s -X POST http://127.0.0.1:8080/cv-fit \
   -H 'content-type: application/json' \
-  -d @nebius/cv-fit-endpoint/test_payload.json | python3 -m json.tool
+  --data @nebius/cv_fit_endpoint/test_payload.json | python3 -m json.tool
 ```
 
 `GET /health` returns the active backend and role count.
+
+> The folder is named `cv_fit_endpoint` (underscore) on purpose: a hyphenated
+> name (`cv-fit-endpoint`) is not a valid Python module path, so
+> `uvicorn nebius.cv-fit-endpoint.app:app` would fail to import.
 
 ## Enable neural embeddings (BGE-M3 / Qwen3)
 
@@ -73,7 +79,7 @@ is in [`expected_response.json`](./expected_response.json).
 ## Test (no server, no model, standard library only)
 
 ```bash
-python3 nebius/cv-fit-endpoint/test_cv_fit.py
+python3 nebius/cv_fit_endpoint/test_cv_fit.py
 ```
 
 Runs the core on the synthetic CV and asserts the report is valid and that a
@@ -82,9 +88,9 @@ senior SFMC/Martech CV is **not** collapsed into generic roles.
 ## Docker
 
 ```bash
-docker build -f nebius/cv-fit-endpoint/Dockerfile -t cv-fit-endpoint .
-docker run --rm -p 8080:8080 cv-fit-endpoint
-# neural: docker run --rm -e CV_FIT_EMBEDDING_MODEL=BAAI/bge-m3 -p 8080:8080 cv-fit-endpoint
+docker build -f nebius/cv_fit_endpoint/Dockerfile -t cv_fit_endpoint .
+docker run --rm -p 8080:8080 cv_fit_endpoint
+# neural: docker run --rm -e CV_FIT_EMBEDDING_MODEL=BAAI/bge-m3 -p 8080:8080 cv_fit_endpoint
 ```
 
 ## Environment variables

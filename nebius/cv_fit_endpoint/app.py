@@ -17,12 +17,18 @@ Privacy: CV text is processed per request in-memory and is never stored or
 logged. No secrets or credentials are read from this code.
 """
 
+import os
+import sys
 from typing import Optional
 
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-import cv_fit_core
+# Work whether launched as `uvicorn app:app` (from this folder) or
+# `uvicorn nebius.cv_fit_endpoint.app:app` (from the repo root): ensure this
+# folder is importable so `cv_fit_core` resolves either way.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import cv_fit_core  # noqa: E402
 
 app = FastAPI(title="Swedish Job Pulse — CV Fit", version="1.0.0")
 

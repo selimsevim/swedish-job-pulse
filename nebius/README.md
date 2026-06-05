@@ -316,7 +316,7 @@ This is intentionally marked optional because the challenge story works with Job
 ### Optional Endpoint - `/cv-fit`
 
 This endpoint is **implemented** (FastAPI) in
-[`nebius/cv-fit-endpoint/`](cv-fit-endpoint/) — see its README to run it.
+[`nebius/cv_fit_endpoint/`](cv_fit_endpoint/) — see its README to run it.
 
 - **Static baseline:** reproducible **TF-IDF vector retrieval** (synonym-expanded)
   in the browser. No server required.

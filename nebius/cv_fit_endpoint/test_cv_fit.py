@@ -3,7 +3,7 @@
 Runs the TF-IDF fallback (standard library only) and checks the report shape +
 that a senior SFMC/Martech CV is NOT collapsed into generic roles.
 
-    python3 nebius/cv-fit-endpoint/test_cv_fit.py
+    python3 nebius/cv_fit_endpoint/test_cv_fit.py
 """
 
 import json
