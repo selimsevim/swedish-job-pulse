@@ -235,9 +235,18 @@ Nebius Serverless AI runs containerized AI workloads as Jobs or Endpoints withou
 - Job 1: public data processing / feature generation
 - Job 2: ML training and evaluation
 - Job 3: batch scoring and JSON artifact generation
-- Optional Endpoint: `/cv-fit` for server-side CV analysis with neural embeddings when available
+- Optional Endpoint: `/cv-fit` for server-side CV analysis (neural embeddings are scaffolded and env-gated; see below)
 
 The current workload is CPU-friendly. A GPU is unnecessary for the dataset size; runtime is dominated by JSON parsing and a small scikit-learn model.
+
+### Verified deployment
+
+Both the Job and the Endpoint were run on **Nebius Serverless AI** (platform `cpu-d3`, preset `4vcpu-16gb`), pulling the public GHCR images:
+
+- **Serverless AI Job** `swedish-job-pulse-rebuild` — ran `./scripts/rebuild_career_reality.sh` and reached **COMPLETED**. Logs show **7/7 JSON artifacts validated** and the metrics: ML MAE 90.73 vs baseline 80.90; ML trend accuracy 0.61 vs 0.23; ML macro-F1 0.48 vs 0.12; CV primary-domain accuracy 1.0; CV no-collapse 1.0.
+- **Serverless AI Endpoint** `swedish-job-pulse-cv-fit` — **RUNNING**, token-protected. `GET /health` → `{"status":"ok","backend":"tfidf-fallback","roles":41}`; `POST /cv-fit` → 200 with the full report for a synthetic SFMC CV; an unauthenticated `POST /cv-fit` returns **401**.
+
+The deployed proof used the **TF-IDF fallback** backend. The neural BGE-M3 / Qwen3 embedding path is **scaffolded and env-gated** (`CV_FIT_EMBEDDING_MODEL`) but was **not** run in this deployment. The trend model is used for **direction** (grow/stable/decline), **not** exact vacancy-count prediction — baseline persistence has lower count MAE. The platform is built on **public Arbetsförmedlingen / JobTech job-ad signals, not all jobs in Sweden**. The endpoint is **token-protected**, and **CV text is processed per request and not stored**.
 
 Detailed Nebius notes, expected inputs/outputs, proof-of-execution screenshots, runtime expectations, and placeholder job commands are in [`nebius/README.md`](nebius/README.md).
 

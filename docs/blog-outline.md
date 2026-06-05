@@ -122,12 +122,26 @@ Artifacts produced:
 - `data/sample_cvs.json`
 - `data/cv_match_metrics.json`
 
-Proof to include:
+Verified deployment (run on Nebius Serverless AI, platform `cpu-d3`, preset `4vcpu-16gb`, public GHCR images):
 
-- Job logs showing `./scripts/rebuild_career_reality.sh`
-- Metric summary from `data/model_metrics.json`
-- Artifact listing or commit diff
-- `/cv-fit` health and response screenshot if demonstrating the endpoint
+- **Serverless AI Job** `swedish-job-pulse-rebuild` ran `./scripts/rebuild_career_reality.sh`
+  to COMPLETED: 7/7 JSON artifacts validated; ML MAE 90.73 vs baseline 80.90;
+  ML trend accuracy 0.61 vs 0.23; ML macro-F1 0.48 vs 0.12; CV primary-domain
+  accuracy 1.0; CV no-collapse 1.0.
+- **Serverless AI Endpoint** `swedish-job-pulse-cv-fit` is RUNNING and
+  token-protected: `/health` -> `{"status":"ok","backend":"tfidf-fallback","roles":41}`;
+  `/cv-fit` -> 200 with the full report for a synthetic SFMC CV; an
+  unauthenticated POST returns 401.
+
+Be precise in the post:
+
+- The deployed proof used the **TF-IDF fallback**; the neural BGE-M3 / Qwen3
+  path is scaffolded and env-gated but was **not** run.
+- The trend model is used for **direction**, not exact vacancy-count prediction
+  (baseline has lower count MAE).
+- Built on **public job-ad signals, not all Swedish jobs**.
+- The endpoint is token-protected and CV text is processed per request, not stored.
+- Do not publish resource IDs, the public IP, tokens, or project/registry IDs.
 
 ## 8. Limitations
 

@@ -21,6 +21,31 @@ Public JobTech data
 
 No credentials are hardcoded here. Nebius authentication, registry credentials, or object-storage credentials must be provided at runtime through the Nebius platform, CLI profile, or secret store.
 
+## Verified deployment
+
+Both the Job and the Endpoint were run on Nebius Serverless AI (platform
+`cpu-d3`, preset `4vcpu-16gb`) from the public GHCR images
+`ghcr.io/selimsevim/swedish-job-pulse:latest` and
+`ghcr.io/selimsevim/cv-fit-endpoint:latest` (linux/amd64).
+
+- **Serverless AI Job** `swedish-job-pulse-rebuild` — `./scripts/rebuild_career_reality.sh`
+  ran end-to-end and reached **COMPLETED**. Logs: **7/7 JSON artifacts validated**;
+  ML MAE 90.73 vs baseline 80.90; ML trend accuracy 0.61 vs 0.23; ML macro-F1
+  0.48 vs 0.12; CV primary-domain accuracy 1.0; CV no-collapse 1.0.
+- **Serverless AI Endpoint** `swedish-job-pulse-cv-fit` — **RUNNING**, token-protected.
+  `GET /health` -> `{"status":"ok","backend":"tfidf-fallback","roles":41}`;
+  `POST /cv-fit` -> 200 with the full report for a synthetic SFMC CV;
+  unauthenticated `POST /cv-fit` -> 401.
+
+The deployed proof used the **TF-IDF fallback** backend. The neural BGE-M3 /
+Qwen3 embedding path is **scaffolded and env-gated** (`CV_FIT_EMBEDDING_MODEL`)
+but was **not** run in this deployment. The trend model is used for direction,
+not exact vacancy-count prediction (baseline persistence has lower count MAE).
+The endpoint is token-protected and CV text is processed per request, not stored.
+
+Resource IDs, the public URL, full logs and responses are kept out of git (they
+contain account/project IDs).
+
 ## Local Rebuild
 
 The local command for Jobs 2 and 3 is:
