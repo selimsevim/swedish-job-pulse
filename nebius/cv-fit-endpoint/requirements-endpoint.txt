@@ -1,0 +1,13 @@
+# Runtime for the optional /cv-fit endpoint.
+# These three are enough to run the endpoint in its reproducible TF-IDF
+# fallback (same retrieval as the static site) — no model download, no torch.
+fastapi>=0.110
+uvicorn>=0.29
+pydantic>=2.6
+
+# --- Optional neural embedding backend (the high-quality path) -------------
+# Install these and set CV_FIT_EMBEDDING_MODEL=BAAI/bge-m3 (or a Qwen3 embedding
+# model) to switch retrieval to multilingual neural embeddings. Heavy (pulls in
+# torch); only needed on the Nebius endpoint, not for local TF-IDF runs.
+#   sentence-transformers>=2.7
+#   torch>=2.2

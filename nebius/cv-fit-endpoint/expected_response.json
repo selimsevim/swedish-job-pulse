@@ -1,0 +1,71 @@
+{
+  "main_answer": "Your CV is strongest for CRM / marketing automation roles.",
+  "primary_domain": "crm_martech",
+  "domain_label": "CRM / marketing automation",
+  "best_fit_roles": [
+    "Solution Architect, Marketing Technology",
+    "Salesforce Marketing Cloud Consultant",
+    "Martech Consultant",
+    "Integration Specialist",
+    "CRM Technical Consultant",
+    "Marketing Operations Engineer"
+  ],
+  "adjacent_roles": [
+    "Data Engineer",
+    "CRM Analyst",
+    "Senior Developer"
+  ],
+  "not_your_main_lane_roles": [
+    "Digital Marketing Specialist",
+    "SEO Specialist",
+    "Social Media Specialist",
+    "Content Marketing Specialist"
+  ],
+  "missing_skills": [
+    "ETL",
+    "Segmentation",
+    "Javascript",
+    "Reporting",
+    "Git",
+    "Leadership"
+  ],
+  "cv_improvements": [
+    "Add measurable impact — numbers, %, and what changed because of your work.",
+    "Frame senior scope explicitly — architecture ownership and 'solution architect' positioning."
+  ],
+  "search_keywords": [
+    "Solution Architect Marketing Technology",
+    "Martech Architect",
+    "SFMC Consultant",
+    "Salesforce Marketing Cloud",
+    "Martech Consultant",
+    "Marketing Technology Consultant",
+    "Integration Specialist"
+  ],
+  "action_plan_7_day": [
+    "Apply to 12 best-fit roles this week — e.g. Solution Architect, Marketing Technology, Salesforce Marketing Cloud Consultant.",
+    "Build proof for ETL and Segmentation — a focused project or short course.",
+    "Rewrite your CV: add measurable impact and a clear skills section.",
+    "Search Platsbanken for \"Solution Architect Marketing Technology\", \"Martech Architect\", \"SFMC Consultant\", \"Salesforce Marketing Cloud\"."
+  ],
+  "market_signal": "Rising demand · high crowding · medium remote signal",
+  "backend": "tfidf-fallback",
+  "extracted": {
+    "seniority": "senior",
+    "domain": "crm_martech",
+    "tools": [
+      "SFMC",
+      "AMPscript",
+      "SSJS",
+      "Marketing automation",
+      "CRM",
+      "Integration",
+      "APIs",
+      "Rest"
+    ],
+    "languages": [
+      "English",
+      "Swedish (basic)"
+    ]
+  }
+}

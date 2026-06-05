@@ -315,25 +315,37 @@ This is intentionally marked optional because the challenge story works with Job
 
 ### Optional Endpoint - `/cv-fit`
 
-For live CV scoring on a server (instead of the in-browser parse), an Endpoint
-could accept extracted CV signals and return the same job-fit report the browser
-builds. The CV text would still be extracted client-side or in a stateless
-request and **not stored**.
+This endpoint is **implemented** (FastAPI) in
+[`nebius/cv-fit-endpoint/`](cv-fit-endpoint/) — see its README to run it.
 
-```json
+- **Static baseline:** reproducible **TF-IDF vector retrieval** (synonym-expanded)
+  in the browser. No server required.
+- **Nebius endpoint:** **neural embedding retrieval with BGE-M3** (or a Qwen3
+  embedding model) when `CV_FIT_EMBEDDING_MODEL` is set; otherwise the endpoint
+  falls back to the same TF-IDF retrieval so it always runs.
+- **Same contract:** `vectorize → cosine similarity → rerank → report`. The
+  endpoint reuses the exact ontology + matcher from
+  `scripts/build_cv_match_index.py`, so it can never drift from the static site.
+
+Why the endpoint is the high-quality path: a multilingual embedding model places
+"SFMC" and "Salesforce Marketing Cloud" close together with **no synonym list at
+all** — abbreviation/paraphrase equivalence is learned, not enumerated — which is
+exactly the limitation of the static bootstrap synonym list.
+
+```text
 POST /cv-fit
-{ "skills": ["crm", "salesforce marketing cloud", "email marketing"],
-  "roles": ["Marketing Automation Specialist"], "seniority": "mid",
-  "languages": ["English", "Swedish (basic)"] }
+{ "cv_text": "… raw CV text …", "region": "Stockholms län",
+  "swedish_level": "basic", "target_role": "Solution Architect" }
 ->
-{ "best_fit": ["Marketing Automation Specialist", "CRM Coordinator"],
-  "stretch": ["Operations Analyst", "BI Assistant"],
-  "avoid": ["Data Scientist", "Senior Developer"],
-  "missing_skills": ["SQL"], "cv_fixes": ["Add measurable results"] }
+{ "main_answer": "Your CV is strongest for CRM / marketing automation roles.",
+  "best_fit_roles": ["Salesforce Marketing Cloud Consultant", "Martech Consultant", …],
+  "adjacent_roles": [...], "not_your_main_lane_roles": ["SEO Specialist", …],
+  "missing_skills": [...], "cv_improvements": [...], "search_keywords": [...],
+  "action_plan_7_day": [...], "market_signal": "Rising demand · high crowding · …" }
 ```
 
-An embedding model for semantic role/skill similarity would live behind this
-endpoint (and in Job 4's `score_role()`); it needs no fine-tuning.
+**Uploaded CVs are processed at request time and not stored or logged.** No
+secrets or credentials. The model needs no fine-tuning.
 
 ## Hardware And Cost Notes
 
