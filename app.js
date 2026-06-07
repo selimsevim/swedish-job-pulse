@@ -1005,10 +1005,12 @@
         if (!seen.has(key)) { seen.add(key); keywords.push(k); }
       }));
 
-      // 7-day action plan (max 4) — domain-agnostic.
+      // 7-day action plan (max 4) — domain-agnostic. Apply count = the number
+      // of roles that actually fit (precision over volume), not an inflated target.
       const plan = [];
       const bestTitles = best.slice(0, 2).map((r) => r.title);
-      plan.push(`Apply to ${Math.max(6, best.length * 2)} best-fit roles this week${bestTitles.length ? ` — e.g. ${bestTitles.join(", ")}` : ""}.`);
+      const applyN = best.length || adj.length;
+      if (applyN) plan.push(`Apply to the ${applyN} best-fit role${applyN !== 1 ? "s" : ""} this week${bestTitles.length ? ` — e.g. ${bestTitles.join(", ")}` : ""}.`);
       if (missing.length) plan.push(`Build proof for ${missing.slice(0, 2).join(" and ")} — a focused project or short course.`);
       plan.push("Rewrite your CV: add measurable impact and a clear skills section.");
       if (keywords.length) plan.push(`Search Platsbanken for ${keywords.slice(0, 4).map((k) => `"${k}"`).join(", ")}.`);
@@ -1017,12 +1019,46 @@
         : (adj[0] ? crcTopOccupationInField(adj[0].field_id) : null);
       const signalLine = sigOcc ? crcBuildSignalLine(sigOcc, { region: "" }) : null;
 
+      // "Why this recommendation?" — fully derived from CV skills, the market
+      // signal, the matched titles and (optional) region. No hardcoded text.
+      const why = crcCvWhy(profile, crcCvDomainLabel(pdomain), best, adj, signalLine, null);
+
       return {
-        tone, mainAnswer, primaryDomain: pdomain, domainLabel: crcCvDomainLabel(pdomain),
+        tone, mainAnswer, why, primaryDomain: pdomain, domainLabel: crcCvDomainLabel(pdomain),
         best: best.map((r) => r.title), adjacent: adj.map((r) => r.title), avoid: avoid.map((r) => r.title),
         missing, weaknesses, keywords: keywords.slice(0, 7), plan, signalLine,
         tools: profile.skills.slice(0, 7).map(crcCvPretty)
       };
+    }
+
+    function crcCvJoinList(items) {
+      const a = (items || []).filter(Boolean);
+      if (a.length <= 1) return a[0] || "";
+      return a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
+    }
+
+    // Compact, derived "Why this recommendation?" lines (max 4). Mirror of
+    // cv_fit_core.why_recommendation — uses only data we already have.
+    function crcCvWhy(profile, domainName, best, adj, marketSignal, region) {
+      const why = [];
+      const signals = (profile.skills || []).slice(0, 5).map(crcCvPretty);
+      const titles = (best.length ? best : adj).map((r) => r.title);
+      if (signals.length && domainName) {
+        why.push(`Your CV matches ${domainName} because it shows ${crcCvJoinList(signals)}.`);
+      }
+      if (marketSignal) {
+        why.push("Public job-ad signals show " + String(marketSignal).replace(/ · /g, ", ").toLowerCase() + ".");
+      }
+      if (titles.length) {
+        const primary = titles[0];
+        const alts = crcCvJoinList(titles.slice(1, 4)) || primary;
+        if (region) {
+          why.push(`In ${region}, prioritise ${crcCvJoinList(titles.slice(0, 3))}; if local demand is thin, broaden to nearby regions and remote roles.`);
+        } else {
+          why.push(`For smaller local markets, broaden your title search beyond “${primary}” to ${alts}, and include remote roles.`);
+        }
+      }
+      return why.slice(0, 4);
     }
 
     function crcCvRenderReport(report, profile) {
@@ -1064,6 +1100,12 @@
       const signalHtml = report.signalLine
         ? `<p class="crc-signal-line"><b>Market signal</b> ${escapeHtml(report.signalLine)}</p>` : "";
 
+      const whyHtml = (report.why && report.why.length) ? `
+        <div class="crc-panel crc-why">
+          <p class="crc-panel-label">Why this recommendation?</p>
+          <p class="crc-why-text">${report.why.map(escapeHtml).join(" ")}</p>
+        </div>` : "";
+
       const tools = (report.tools && report.tools.length) ? report.tools.join(", ") : "no clear tools detected";
       const summary = `<p class="cv-summary"><b>Read from your CV</b> ${escapeHtml(profile.seniority)} level · ${escapeHtml(report.domainLabel)} · ${escapeHtml(tools)} · ${escapeHtml(profile.languages.join(", ") || "no language level stated")}</p>`;
 
@@ -1075,6 +1117,7 @@
             <h3 class="crc-verdict-title">${escapeHtml(report.mainAnswer)}</h3>
           </div>
         </div>
+        ${whyHtml}
         ${rolePanel("Best-fit roles now", report.best, "")}
         ${rolePanel("Adjacent roles", report.adjacent, "stretch")}
         ${rolePanel("Not your main lane", report.avoid, "avoid")}
@@ -1149,6 +1192,7 @@
       const report = {
         tone,
         mainAnswer: r.main_answer || "",
+        why: r.why_recommendation || [],
         primaryDomain: r.primary_domain || "",
         domainLabel: r.domain_label || "these",
         best, adjacent: adj,

@@ -643,6 +643,18 @@
       margin-right: 4px;
     }
 
+    /* "Why this recommendation?" — compact, set apart with a left accent */
+    .crc-why {
+      border-left: 3px solid var(--crc-go, var(--crc-ink));
+      padding-left: 14px;
+    }
+    .crc-why-text {
+      margin: 6px 0 0;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--crc-ink);
+    }
+
     /* Skill / keyword chips */
     .cv-tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .cv-tag {

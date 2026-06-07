@@ -1,5 +1,10 @@
 {
   "main_answer": "Your CV is strongest for CRM / marketing automation roles.",
+  "why_recommendation": [
+    "Your CV matches CRM / marketing automation because it shows SFMC, AMPscript, SSJS, Marketing automation and CRM.",
+    "Public job-ad signals show rising demand, high crowding, medium remote signal.",
+    "In Stockholms län, prioritise Solution Architect, Marketing Technology, Salesforce Marketing Cloud Consultant and Martech Consultant; if local demand is thin, broaden to nearby regions and remote roles."
+  ],
   "primary_domain": "crm_martech",
   "domain_label": "CRM / marketing automation",
   "best_fit_roles": [
@@ -43,7 +48,7 @@
     "Integration Specialist"
   ],
   "action_plan_7_day": [
-    "Apply to 12 best-fit roles this week — e.g. Solution Architect, Marketing Technology, Salesforce Marketing Cloud Consultant.",
+    "Apply to the 6 best-fit roles this week — e.g. Solution Architect, Marketing Technology, Salesforce Marketing Cloud Consultant.",
     "Build proof for Segmentation and ETL — a focused project or short course.",
     "Rewrite your CV: add measurable impact and a clear skills section.",
     "Search Platsbanken for \"Solution Architect Marketing Technology\", \"Martech Architect\", \"SFMC Consultant\", \"Salesforce Marketing Cloud\"."

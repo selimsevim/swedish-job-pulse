@@ -16,8 +16,8 @@ sys.path.insert(0, HERE)
 import cv_fit_core  # noqa: E402
 
 EXPECTED_KEYS = {
-    "main_answer", "primary_domain", "domain_label", "best_fit_roles",
-    "adjacent_roles", "not_your_main_lane_roles", "missing_skills",
+    "main_answer", "why_recommendation", "primary_domain", "domain_label",
+    "best_fit_roles", "adjacent_roles", "not_your_main_lane_roles", "missing_skills",
     "cv_improvements", "search_keywords", "action_plan_7_day",
     "market_signal", "backend", "extracted",
 }

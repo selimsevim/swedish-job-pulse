@@ -68,6 +68,43 @@ def pretty(skill):
     return " ".join(CV_WORD_ACRONYM.get(w, w[:1].upper() + w[1:]) for w in s.replace("_", " ").split())
 
 
+def join_list(items):
+    items = [i for i in items if i]
+    if len(items) <= 1:
+        return items[0] if items else ""
+    return ", ".join(items[:-1]) + " and " + items[-1]
+
+
+def why_recommendation(profile, domain_name, best, adj, market_signal, region):
+    """Compact, fully-derived "Why this recommendation?" lines.
+
+    No hardcoded domain/role text: everything comes from data we already have —
+    the CV's extracted skills, the market signal computed from
+    career_reality.json (demand / crowding / remote / regional fit), the matched
+    role titles, and the optional region. Max 4 short sentences.
+    """
+    why = []
+    signals = [pretty(s) for s in profile.get("skills", [])[:5]]
+    titles = [r["title"] for r in best] or [r["title"] for r in adj]
+    # 1) CV evidence — concrete signals the CV actually contains.
+    if signals and domain_name:
+        why.append(f"Your CV matches {domain_name} because it shows {join_list(signals)}.")
+    # 2) Market evidence — the existing public job-ad signal, framed honestly.
+    if market_signal:
+        why.append("Public job-ad signals show " + market_signal.replace(" · ", ", ").lower() + ".")
+    # 3) Regional / search strategy + the titles to prioritise.
+    if titles:
+        primary = titles[0]
+        alts = join_list(titles[1:4]) or primary
+        if region:
+            why.append(f"In {region}, prioritise {join_list(titles[:3])}; if local demand is thin, "
+                       "broaden to nearby regions and remote roles.")
+        else:
+            why.append(f"For smaller local markets, broaden your title search beyond “{primary}” "
+                       f"to {alts}, and include remote roles.")
+    return why[:4]
+
+
 class _Engine:
     """Loads the index + career signals once and answers /cv-fit requests."""
 
@@ -308,11 +345,14 @@ class _Engine:
                     seen.add(k.lower())
                     keywords.append(k)
 
-        # 7-day action plan (domain-agnostic).
+        # 7-day action plan (domain-agnostic). Apply count = the number of roles
+        # that actually fit (precision over volume), not an inflated target.
         plan = []
         best_titles = [r["title"] for r in best[:2]]
-        plan.append(f"Apply to {max(6, len(best) * 2)} best-fit roles this week"
-                    + (f" — e.g. {', '.join(best_titles)}." if best_titles else "."))
+        apply_n = len(best) or len(adj)
+        if apply_n:
+            plan.append(f"Apply to the {apply_n} best-fit role" + ("s" if apply_n != 1 else "")
+                        + " this week" + (f" — e.g. {', '.join(best_titles)}." if best_titles else "."))
         if missing:
             plan.append(f"Build proof for {' and '.join(missing[:2])} — a focused project or short course.")
         plan.append("Rewrite your CV: add measurable impact and a clear skills section.")
@@ -321,9 +361,11 @@ class _Engine:
 
         sig_field = best[0]["field_id"] if best else (adj[0]["field_id"] if adj else None)
         market_signal = self._market_signal(sig_field, region) if sig_field else None
+        why = why_recommendation(profile, domain_name, best, adj, market_signal, region)
 
         return {
             "main_answer": main,
+            "why_recommendation": why,
             "primary_domain": pdomain,
             "domain_label": self.domain_label.get(pdomain, pdomain),
             "best_fit_roles": [r["title"] for r in best],
