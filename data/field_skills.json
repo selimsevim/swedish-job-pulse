@@ -1,0 +1,3727 @@
+{
+  "last_updated": "2026-06-08",
+  "year": 2025,
+  "source": "JobTech enriched historical ads (must_have + nice_to_have skills)",
+  "fields": {
+    "ASGV_zcE_bWf": {
+      "field_term": "Transport, distribution, lager",
+      "ads_with_skills": 1761,
+      "skills": [
+        {
+          "concept_id": "Tpvt_9yv_KAw",
+          "term": "Taxiförarlegitimation",
+          "count": 554,
+          "share": 0.3146
+        },
+        {
+          "concept_id": "M2WG_2z8_tyy",
+          "term": "Yrkeskompetensbevis YKB, tung lastbil",
+          "count": 495,
+          "share": 0.2811
+        },
+        {
+          "concept_id": "Kzvi_T2N_vx6",
+          "term": "Förarkort för digital färdskrivare",
+          "count": 213,
+          "share": 0.121
+        },
+        {
+          "concept_id": "HeXq_amc_ABd",
+          "term": "B-truckar",
+          "count": 195,
+          "share": 0.1107
+        },
+        {
+          "concept_id": "Zk4h_jP4_e85",
+          "term": "A-truckar",
+          "count": 178,
+          "share": 0.1011
+        },
+        {
+          "concept_id": "HnQ2_FhC_xgt",
+          "term": "ADR, styckegods (grundkurs)",
+          "count": 172,
+          "share": 0.0977
+        },
+        {
+          "concept_id": "pGts_PKK_c8W",
+          "term": "Truckvana",
+          "count": 164,
+          "share": 0.0931
+        },
+        {
+          "concept_id": "L31X_f88_viY",
+          "term": "Yrkeskompetensbevis YKB, buss",
+          "count": 117,
+          "share": 0.0664
+        },
+        {
+          "concept_id": "ijHY_aHk_ADE",
+          "term": "Terminal- och lagerarbete",
+          "count": 83,
+          "share": 0.0471
+        },
+        {
+          "concept_id": "CiMi_7ax_tXs",
+          "term": "Utbildningsbevis enligt TLP 10 för truckförare",
+          "count": 83,
+          "share": 0.0471
+        },
+        {
+          "concept_id": "zf1U_Xnn_g1Z",
+          "term": "ADR 1.3",
+          "count": 77,
+          "share": 0.0437
+        },
+        {
+          "concept_id": "BHCG_hQC_kNa",
+          "term": "Budtransporter",
+          "count": 60,
+          "share": 0.0341
+        },
+        {
+          "concept_id": "F8iA_MB6_iY3",
+          "term": "Bakgavellyft",
+          "count": 41,
+          "share": 0.0233
+        },
+        {
+          "concept_id": "X6Pi_hDT_KDA",
+          "term": "Distributionskörning",
+          "count": 34,
+          "share": 0.0193
+        },
+        {
+          "concept_id": "drj3_CKp_Mpp",
+          "term": "Arbete på väg steg 2, anpassad säkerhetskompetens",
+          "count": 30,
+          "share": 0.017
+        },
+        {
+          "concept_id": "yXmf_iKi_7ci",
+          "term": "Logistik",
+          "count": 29,
+          "share": 0.0165
+        },
+        {
+          "concept_id": "j1Yr_UhC_X16",
+          "term": "Arbetsledarerfarenhet",
+          "count": 28,
+          "share": 0.0159
+        },
+        {
+          "concept_id": "XGCK_5qV_wPd",
+          "term": "Släp, körvana",
+          "count": 25,
+          "share": 0.0142
+        },
+        {
+          "concept_id": "1oA3_GfA_82Y",
+          "term": "Lagerhanteringsprogram",
+          "count": 23,
+          "share": 0.0131
+        },
+        {
+          "concept_id": "CUMe_R2M_JXi",
+          "term": "Lastbilsmonterad kran > 18 ton/m",
+          "count": 22,
+          "share": 0.0125
+        },
+        {
+          "concept_id": "dJhh_agZ_YWE",
+          "term": "Flyttpackningsvana",
+          "count": 20,
+          "share": 0.0114
+        },
+        {
+          "concept_id": "8pHc_Lqc_QxD",
+          "term": "Gaffeltruck",
+          "count": 20,
+          "share": 0.0114
+        },
+        {
+          "concept_id": "Ahfa_KuY_4HZ",
+          "term": "Utbildningsintyg, hjullastare, godshantering",
+          "count": 19,
+          "share": 0.0108
+        },
+        {
+          "concept_id": "5wab_aFK_gdL",
+          "term": "MS Excel",
+          "count": 19,
+          "share": 0.0108
+        },
+        {
+          "concept_id": "oKRb_tGE_xJF",
+          "term": "C-truckar",
+          "count": 18,
+          "share": 0.0102
+        },
+        {
+          "concept_id": "rfUG_tUK_4cc",
+          "term": "Privathemsflyttning",
+          "count": 18,
+          "share": 0.0102
+        },
+        {
+          "concept_id": "rwir_xvu_443",
+          "term": "God fysik (tunga lyft)",
+          "count": 17,
+          "share": 0.0097
+        },
+        {
+          "concept_id": "BcdB_x4v_jpy",
+          "term": "Kontorsflyttning",
+          "count": 17,
+          "share": 0.0097
+        },
+        {
+          "concept_id": "3JX4_aDd_5w6",
+          "term": "Lastbilsmonterad kran < 18 ton/m",
+          "count": 15,
+          "share": 0.0085
+        },
+        {
+          "concept_id": "Y3zr_NbN_Syh",
+          "term": "Transportledning, vägtrafik",
+          "count": 15,
+          "share": 0.0085
+        }
+      ]
+    },
+    "6Hq3_tKo_V57": {
+      "field_term": "Yrken med teknisk inriktning",
+      "ads_with_skills": 945,
+      "skills": [
+        {
+          "concept_id": "oaiv_GsB_AFK",
+          "term": "CAD-konstruktion/CAD-ritning",
+          "count": 126,
+          "share": 0.1333
+        },
+        {
+          "concept_id": "PuQP_aBK_nqJ",
+          "term": "Produktionsteknik",
+          "count": 122,
+          "share": 0.1291
+        },
+        {
+          "concept_id": "Lgt8_xjP_7Fq",
+          "term": "Tillverkningsindustri-Solid Works",
+          "count": 90,
+          "share": 0.0952
+        },
+        {
+          "concept_id": "EVxG_42f_4Yc",
+          "term": "Mekanikkonstruktion",
+          "count": 86,
+          "share": 0.091
+        },
+        {
+          "concept_id": "7AFv_z2m_swt",
+          "term": "Maskinteknik",
+          "count": 79,
+          "share": 0.0836
+        },
+        {
+          "concept_id": "uwev_L2n_fpz",
+          "term": "Produktutveckling",
+          "count": 72,
+          "share": 0.0762
+        },
+        {
+          "concept_id": "AbDo_gbm_f46",
+          "term": "CAD-ritning",
+          "count": 69,
+          "share": 0.073
+        },
+        {
+          "concept_id": "3TSx_fJE_Z26",
+          "term": "Projektledning, erfarenhet",
+          "count": 67,
+          "share": 0.0709
+        },
+        {
+          "concept_id": "9pKg_zXP_9ig",
+          "term": "Pyramid, affärssystem",
+          "count": 60,
+          "share": 0.0635
+        },
+        {
+          "concept_id": "ygEQ_Pwp_ozn",
+          "term": "Mekanik",
+          "count": 59,
+          "share": 0.0624
+        },
+        {
+          "concept_id": "G5QB_6Lx_Fnf",
+          "term": "Maskinkonstruktion",
+          "count": 57,
+          "share": 0.0603
+        },
+        {
+          "concept_id": "5jxc_THr_u7h",
+          "term": "CAM-tillverkning",
+          "count": 55,
+          "share": 0.0582
+        },
+        {
+          "concept_id": "j1Yr_UhC_X16",
+          "term": "Arbetsledarerfarenhet",
+          "count": 54,
+          "share": 0.0571
+        },
+        {
+          "concept_id": "ND2K_ivB_6RA",
+          "term": "Civilingenjörsexamen",
+          "count": 51,
+          "share": 0.054
+        },
+        {
+          "concept_id": "Uytu_hWi_5nh",
+          "term": "Programmerbart styrsystem/PLC",
+          "count": 50,
+          "share": 0.0529
+        },
+        {
+          "concept_id": "mg8h_fe2_kDM",
+          "term": "Kemiteknik",
+          "count": 47,
+          "share": 0.0497
+        },
+        {
+          "concept_id": "kvLG_4uo_M5p",
+          "term": "Produktionsplanering, tillverkning",
+          "count": 44,
+          "share": 0.0466
+        },
+        {
+          "concept_id": "MT1a_Nyq_DGQ",
+          "term": "Automationsteknik",
+          "count": 44,
+          "share": 0.0466
+        },
+        {
+          "concept_id": "sA2V_erA_3WN",
+          "term": "Teknisk försäljning",
+          "count": 44,
+          "share": 0.0466
+        },
+        {
+          "concept_id": "73Pw_nip_4EW",
+          "term": "Hydraulik",
+          "count": 43,
+          "share": 0.0455
+        },
+        {
+          "concept_id": "5wab_aFK_gdL",
+          "term": "MS Excel",
+          "count": 41,
+          "share": 0.0434
+        },
+        {
+          "concept_id": "74Mw_JUN_VKx",
+          "term": "Ständiga förbättringar/Lean",
+          "count": 39,
+          "share": 0.0413
+        },
+        {
+          "concept_id": "yXmf_iKi_7ci",
+          "term": "Logistik",
+          "count": 39,
+          "share": 0.0413
+        },
+        {
+          "concept_id": "jT7b_EUq_z3A",
+          "term": "Teknisk rådgivning",
+          "count": 39,
+          "share": 0.0413
+        },
+        {
+          "concept_id": "VTPj_uC5_NPS",
+          "term": "Dos, operativsystem",
+          "count": 39,
+          "share": 0.0413
+        },
+        {
+          "concept_id": "G4sF_xod_zoq",
+          "term": "Windows, operativsystem",
+          "count": 39,
+          "share": 0.0413
+        },
+        {
+          "concept_id": "3KPS_4Fo_cX9",
+          "term": "Industriella styrsystem",
+          "count": 35,
+          "share": 0.037
+        },
+        {
+          "concept_id": "Rf1n_6Sj_exu",
+          "term": "Högskoleingenjörsexamen",
+          "count": 33,
+          "share": 0.0349
+        },
+        {
+          "concept_id": "BQsM_qds_7ff",
+          "term": "Elprodukter/Teleprodukter/Elektronikprodukter",
+          "count": 30,
+          "share": 0.0317
+        },
+        {
+          "concept_id": "wbAz_fL9_jgx",
+          "term": "Larmprodukter/Säkerhetsprodukter",
+          "count": 26,
+          "share": 0.0275
+        }
+      ]
+    },
+    "X82t_awd_Qyc": {
+      "field_term": "Administration, ekonomi, juridik",
+      "ads_with_skills": 1070,
+      "skills": [
+        {
+          "concept_id": "aMyW_hB7_TpU",
+          "term": "Kundtjänst",
+          "count": 161,
+          "share": 0.1505
+        },
+        {
+          "concept_id": "dRWb_Mgx_yJf",
+          "term": "Försäljningsvana, uppsökande försäljning företag",
+          "count": 133,
+          "share": 0.1243
+        },
+        {
+          "concept_id": "Lz84_K5d_CcL",
+          "term": "Digital marknadsföring/Onlinemarknadsföring",
+          "count": 128,
+          "share": 0.1196
+        },
+        {
+          "concept_id": "AwhJ_eLD_xpG",
+          "term": "Försäljningsvana, telefonförsäljning",
+          "count": 121,
+          "share": 0.1131
+        },
+        {
+          "concept_id": "91Ef_58Y_jX4",
+          "term": "Coaching/Coachning",
+          "count": 117,
+          "share": 0.1093
+        },
+        {
+          "concept_id": "ZzN5_m7B_5CY",
+          "term": "Personalansvar",
+          "count": 115,
+          "share": 0.1075
+        },
+        {
+          "concept_id": "hcdL_zcK_zgq",
+          "term": "Ledarskapsutveckling",
+          "count": 113,
+          "share": 0.1056
+        },
+        {
+          "concept_id": "U4tf_ZBt_Xu1",
+          "term": "Friskvårdsfrågor, personalarbete",
+          "count": 113,
+          "share": 0.1056
+        },
+        {
+          "concept_id": "oTKR_GSK_e9B",
+          "term": "Kompetensutveckling, personalarbete",
+          "count": 113,
+          "share": 0.1056
+        },
+        {
+          "concept_id": "D7RV_iq7_KE4",
+          "term": "Fortnox, affärssystem",
+          "count": 109,
+          "share": 0.1019
+        },
+        {
+          "concept_id": "r9Rk_ogX_uan",
+          "term": "Telefonförsäljning",
+          "count": 98,
+          "share": 0.0916
+        },
+        {
+          "concept_id": "Fiq4_siu_LXn",
+          "term": "Bokföringsvana",
+          "count": 96,
+          "share": 0.0897
+        },
+        {
+          "concept_id": "zBNU_qqu_TbC",
+          "term": "Besöksbokning",
+          "count": 96,
+          "share": 0.0897
+        },
+        {
+          "concept_id": "WCWw_wZz_8iv",
+          "term": "Löneadministration",
+          "count": 91,
+          "share": 0.085
+        },
+        {
+          "concept_id": "8gwE_2o3_XRF",
+          "term": "Ekonomiadministration",
+          "count": 82,
+          "share": 0.0766
+        },
+        {
+          "concept_id": "5wab_aFK_gdL",
+          "term": "MS Excel",
+          "count": 67,
+          "share": 0.0626
+        },
+        {
+          "concept_id": "Lq2i_vZo_BEx",
+          "term": "Bokslut",
+          "count": 63,
+          "share": 0.0589
+        },
+        {
+          "concept_id": "w8bU_wHe_omF",
+          "term": "MS Office",
+          "count": 63,
+          "share": 0.0589
+        },
+        {
+          "concept_id": "FqLw_515_Md9",
+          "term": "Visma SPCS, redovisningssystem",
+          "count": 50,
+          "share": 0.0467
+        },
+        {
+          "concept_id": "FYk9_RXp_7c5",
+          "term": "Redovisning",
+          "count": 44,
+          "share": 0.0411
+        },
+        {
+          "concept_id": "TFQD_onf_Tid",
+          "term": "Användarsupport, mjukvara",
+          "count": 32,
+          "share": 0.0299
+        },
+        {
+          "concept_id": "LmLg_VXy_VSS",
+          "term": "Reskontrabokföring",
+          "count": 27,
+          "share": 0.0252
+        },
+        {
+          "concept_id": "9qgQ_QyK_VVh",
+          "term": "Användarsupport, hårdvara",
+          "count": 27,
+          "share": 0.0252
+        },
+        {
+          "concept_id": "VfP9_2xd_g2h",
+          "term": "Företagsekonomi",
+          "count": 27,
+          "share": 0.0252
+        },
+        {
+          "concept_id": "UeT7_Q7v_W8S",
+          "term": "Telekommunikation",
+          "count": 27,
+          "share": 0.0252
+        },
+        {
+          "concept_id": "tPU1_wJL_suB",
+          "term": "Försäljningsvana, direktförsäljning konsument",
+          "count": 27,
+          "share": 0.0252
+        },
+        {
+          "concept_id": "UBgX_VLG_mTK",
+          "term": "Momsredovisning",
+          "count": 26,
+          "share": 0.0243
+        },
+        {
+          "concept_id": "WNnT_qrt_M77",
+          "term": "Ekonomisk rapportering",
+          "count": 26,
+          "share": 0.0243
+        },
+        {
+          "concept_id": "pLfm_Uff_BsM",
+          "term": "Juristexamen",
+          "count": 24,
+          "share": 0.0224
+        },
+        {
+          "concept_id": "29MP_yhF_mjx",
+          "term": "Personaladministration",
+          "count": 24,
+          "share": 0.0224
+        }
+      ]
+    },
+    "apaJ_2ja_LuF": {
+      "field_term": "Data/IT",
+      "ads_with_skills": 449,
+      "skills": [
+        {
+          "concept_id": "qfkh_ZRK_w4W",
+          "term": "Python, programmeringsspråk",
+          "count": 61,
+          "share": 0.1359
+        },
+        {
+          "concept_id": "yNm8_krX_usR",
+          "term": "C++, programmeringsspråk",
+          "count": 58,
+          "share": 0.1292
+        },
+        {
+          "concept_id": "jCsR_WQX_CKD",
+          "term": "Java, programmeringsspråk",
+          "count": 56,
+          "share": 0.1247
+        },
+        {
+          "concept_id": "z52H_f4y_4ZA",
+          "term": "Linux, operativsystem",
+          "count": 47,
+          "share": 0.1047
+        },
+        {
+          "concept_id": "A5HJ_aMw_BQt",
+          "term": "Mjukvaruutveckling",
+          "count": 35,
+          "share": 0.078
+        },
+        {
+          "concept_id": "DHhX_uVf_y6X",
+          "term": "JavaScript, programmeringsspråk",
+          "count": 33,
+          "share": 0.0735
+        },
+        {
+          "concept_id": "hTcc_jPm_dwc",
+          "term": "Microsoft Dynamics AX, affärssystem",
+          "count": 32,
+          "share": 0.0713
+        },
+        {
+          "concept_id": "jBKc_5Yx_Y6T",
+          "term": "C#, programmeringsspråk",
+          "count": 29,
+          "share": 0.0646
+        },
+        {
+          "concept_id": "D7Ns_RG6_hD2",
+          "term": "Systemutveckling",
+          "count": 28,
+          "share": 0.0624
+        },
+        {
+          "concept_id": "ND2K_ivB_6RA",
+          "term": "Civilingenjörsexamen",
+          "count": 23,
+          "share": 0.0512
+        },
+        {
+          "concept_id": "o8wR_57f_jv9",
+          "term": "C, programmeringsspråk",
+          "count": 21,
+          "share": 0.0468
+        },
+        {
+          "concept_id": "Xnmr_kYS_YKY",
+          "term": "SQL, frågespråk",
+          "count": 21,
+          "share": 0.0468
+        },
+        {
+          "concept_id": "WQdS_Jtu_qPC",
+          "term": "Android, operativsystem",
+          "count": 19,
+          "share": 0.0423
+        },
+        {
+          "concept_id": "Egmd_U5i_sRA",
+          "term": "MySQL, databashanterare",
+          "count": 19,
+          "share": 0.0423
+        },
+        {
+          "concept_id": "XThy_HCH_FFc",
+          "term": "Inbyggda system/Embedded system",
+          "count": 18,
+          "share": 0.0401
+        },
+        {
+          "concept_id": "2kEw_jWL_6Zz",
+          "term": "Testning, mjukvara/Verifiering, mjukvara",
+          "count": 18,
+          "share": 0.0401
+        },
+        {
+          "concept_id": "wynY_a5Q_F6t",
+          "term": "IT-konsultuppdrag, erfarenhet",
+          "count": 17,
+          "share": 0.0379
+        },
+        {
+          "concept_id": "TFQD_onf_Tid",
+          "term": "Användarsupport, mjukvara",
+          "count": 17,
+          "share": 0.0379
+        },
+        {
+          "concept_id": "Pk2j_jXV_Y3j",
+          "term": "Projektledning, IT",
+          "count": 17,
+          "share": 0.0379
+        },
+        {
+          "concept_id": "3TSx_fJE_Z26",
+          "term": "Projektledning, erfarenhet",
+          "count": 17,
+          "share": 0.0379
+        },
+        {
+          "concept_id": "e4tA_b22_rfY",
+          "term": "PHP, programmeringsspråk",
+          "count": 14,
+          "share": 0.0312
+        },
+        {
+          "concept_id": "K8eq_sEz_eXV",
+          "term": "HTML, programmeringsspråk",
+          "count": 14,
+          "share": 0.0312
+        },
+        {
+          "concept_id": "wbj8_LR2_aZ8",
+          "term": "C++ Builder, programmeringsverktyg",
+          "count": 14,
+          "share": 0.0312
+        },
+        {
+          "concept_id": "4DbG_26F_Vwy",
+          "term": "Data- och nätverkslösningar, produktkunskap",
+          "count": 14,
+          "share": 0.0312
+        },
+        {
+          "concept_id": "pnX9_gFn_CLt",
+          "term": "Windows Server, operativsystem",
+          "count": 14,
+          "share": 0.0312
+        },
+        {
+          "concept_id": "9qgQ_QyK_VVh",
+          "term": "Användarsupport, hårdvara",
+          "count": 13,
+          "share": 0.029
+        },
+        {
+          "concept_id": "euH8_yAp_hiG",
+          "term": "CSS, stilmall",
+          "count": 12,
+          "share": 0.0267
+        },
+        {
+          "concept_id": "G4sF_xod_zoq",
+          "term": "Windows, operativsystem",
+          "count": 12,
+          "share": 0.0267
+        },
+        {
+          "concept_id": "AfJ4_Pvv_YBa",
+          "term": "Webbutveckling",
+          "count": 11,
+          "share": 0.0245
+        },
+        {
+          "concept_id": "2REh_Drn_nsh",
+          "term": "Git, versionshanteringssystem",
+          "count": 11,
+          "share": 0.0245
+        }
+      ]
+    },
+    "Uuf1_GMh_Uvw": {
+      "field_term": "Kropps- och skönhetsvård",
+      "ads_with_skills": 226,
+      "skills": [
+        {
+          "concept_id": "GL3x_bFE_86J",
+          "term": "Auktoriserad hudterapeut",
+          "count": 66,
+          "share": 0.292
+        },
+        {
+          "concept_id": "GeeT_jCR_c55",
+          "term": "Medicinsk fotvård",
+          "count": 31,
+          "share": 0.1372
+        },
+        {
+          "concept_id": "YAZS_em1_CWM",
+          "term": "Diplomerad massageterapeut",
+          "count": 29,
+          "share": 0.1283
+        },
+        {
+          "concept_id": "Gstq_4UH_9na",
+          "term": "Klassisk massage",
+          "count": 27,
+          "share": 0.1195
+        },
+        {
+          "concept_id": "wmmQ_vfi_cpK",
+          "term": "Diplomerad massör",
+          "count": 25,
+          "share": 0.1106
+        },
+        {
+          "concept_id": "YcrR_5QB_3XL",
+          "term": "Gesällbrev, frisör",
+          "count": 24,
+          "share": 0.1062
+        },
+        {
+          "concept_id": "GQ9E_49a_gD8",
+          "term": "Idrottsmassage",
+          "count": 20,
+          "share": 0.0885
+        },
+        {
+          "concept_id": "tPU1_wJL_suB",
+          "term": "Försäljningsvana, direktförsäljning konsument",
+          "count": 19,
+          "share": 0.0841
+        },
+        {
+          "concept_id": "dyoy_LDv_Sx5",
+          "term": "Frisörsalong",
+          "count": 17,
+          "share": 0.0752
+        },
+        {
+          "concept_id": "RWnc_ghf_C2s",
+          "term": "Medicinsk massage",
+          "count": 14,
+          "share": 0.0619
+        },
+        {
+          "concept_id": "NrJn_nRJ_TeL",
+          "term": "Herrfrisering",
+          "count": 14,
+          "share": 0.0619
+        },
+        {
+          "concept_id": "w8sL_4Wm_sEu",
+          "term": "Certifierad massör",
+          "count": 12,
+          "share": 0.0531
+        },
+        {
+          "concept_id": "854B_a1L_phG",
+          "term": "Bindvävsmassage",
+          "count": 9,
+          "share": 0.0398
+        },
+        {
+          "concept_id": "WNdB_GYA_x1T",
+          "term": "Thaimassage",
+          "count": 7,
+          "share": 0.031
+        },
+        {
+          "concept_id": "5APZ_gLs_AB4",
+          "term": "Fotvård/Pedikyr",
+          "count": 7,
+          "share": 0.031
+        },
+        {
+          "concept_id": "hYpk_RYx_y3V",
+          "term": "Kassavana",
+          "count": 6,
+          "share": 0.0265
+        },
+        {
+          "concept_id": "koMr_VoX_RA3",
+          "term": "Damfrisering",
+          "count": 6,
+          "share": 0.0265
+        },
+        {
+          "concept_id": "Ckww_8Ti_pWh",
+          "term": "Mästarbrev, frisör",
+          "count": 5,
+          "share": 0.0221
+        },
+        {
+          "concept_id": "VczR_HmG_PmN",
+          "term": "Rakning och trimning av skägg",
+          "count": 5,
+          "share": 0.0221
+        },
+        {
+          "concept_id": "KVoz_adN_1xk",
+          "term": "Certifierad nagelterapeut",
+          "count": 5,
+          "share": 0.0221
+        },
+        {
+          "concept_id": "5yDE_FiQ_bMn",
+          "term": "Marknadsföring/PR",
+          "count": 5,
+          "share": 0.0221
+        },
+        {
+          "concept_id": "RVLi_2no_Eyg",
+          "term": "Handvård/Manikyr",
+          "count": 5,
+          "share": 0.0221
+        },
+        {
+          "concept_id": "6R9z_5K1_J4A",
+          "term": "Handledarerfarenhet",
+          "count": 4,
+          "share": 0.0177
+        },
+        {
+          "concept_id": "TCV5_MqZ_A1K",
+          "term": "Barbershop",
+          "count": 3,
+          "share": 0.0133
+        },
+        {
+          "concept_id": "vHaL_11u_eEi",
+          "term": "Spabehandling",
+          "count": 3,
+          "share": 0.0133
+        },
+        {
+          "concept_id": "KYNo_NyK_BGz",
+          "term": "Certifierad spa-terapeut",
+          "count": 3,
+          "share": 0.0133
+        },
+        {
+          "concept_id": "fL9K_JBY_9oQ",
+          "term": "Hotell- och turisminriktning, undervisning",
+          "count": 2,
+          "share": 0.0088
+        },
+        {
+          "concept_id": "UjRh_U4o_ZQd",
+          "term": "Konstvetenskap",
+          "count": 2,
+          "share": 0.0088
+        },
+        {
+          "concept_id": "ayge_aHH_pkG",
+          "term": "Nagelskulptur",
+          "count": 2,
+          "share": 0.0088
+        },
+        {
+          "concept_id": "yYrg_8jy_LLa",
+          "term": "Styling",
+          "count": 2,
+          "share": 0.0088
+        }
+      ]
+    },
+    "PaxQ_o1G_wWH": {
+      "field_term": "Hantverk",
+      "ads_with_skills": 140,
+      "skills": [
+        {
+          "concept_id": "btqh_hCy_bRi",
+          "term": "Bageriarbete",
+          "count": 26,
+          "share": 0.1857
+        },
+        {
+          "concept_id": "Qi3j_qCf_LAL",
+          "term": "Gesällbrev, bagare och konditor",
+          "count": 19,
+          "share": 0.1357
+        },
+        {
+          "concept_id": "TPX3_gmd_fau",
+          "term": "Bröd, produktkunskap/Konditorivaror, produktkunskap",
+          "count": 15,
+          "share": 0.1071
+        },
+        {
+          "concept_id": "K84U_fRp_jCj",
+          "term": "Möbelsnickeri",
+          "count": 13,
+          "share": 0.0929
+        },
+        {
+          "concept_id": "5uQE_Ru6_oqJ",
+          "term": "Mästarbrev, bagare och konditor",
+          "count": 11,
+          "share": 0.0786
+        },
+        {
+          "concept_id": "Fvdi_Xn6_TB6",
+          "term": "Maskinskötsel, industribageri",
+          "count": 9,
+          "share": 0.0643
+        },
+        {
+          "concept_id": "zjQb_VwQ_eaC",
+          "term": "Konditorivaror",
+          "count": 9,
+          "share": 0.0643
+        },
+        {
+          "concept_id": "Sj6U_HsZ_5Wy",
+          "term": "Montering av finmekanik",
+          "count": 7,
+          "share": 0.05
+        },
+        {
+          "concept_id": "TGZ1_Xb5_77h",
+          "term": "Elteknik",
+          "count": 7,
+          "share": 0.05
+        },
+        {
+          "concept_id": "GpSA_U5b_LJx",
+          "term": "Skrädderiarbeten",
+          "count": 6,
+          "share": 0.0429
+        },
+        {
+          "concept_id": "M8Wg_d9Y_zku",
+          "term": "Detaljsömnad",
+          "count": 5,
+          "share": 0.0357
+        },
+        {
+          "concept_id": "AP6y_xf5_4WK",
+          "term": "Livsmedelsindustri",
+          "count": 5,
+          "share": 0.0357
+        },
+        {
+          "concept_id": "Q1D1_Pdc_rnT",
+          "term": "MIG-svetsning",
+          "count": 5,
+          "share": 0.0357
+        },
+        {
+          "concept_id": "ASht_i6X_E6T",
+          "term": "Tapetsering, möbler",
+          "count": 4,
+          "share": 0.0286
+        },
+        {
+          "concept_id": "kj4Q_nLh_u8Q",
+          "term": "Livsmedelshygien",
+          "count": 4,
+          "share": 0.0286
+        },
+        {
+          "concept_id": "1abT_LRk_fg2",
+          "term": "Pizzabakning",
+          "count": 4,
+          "share": 0.0286
+        },
+        {
+          "concept_id": "hYpk_RYx_y3V",
+          "term": "Kassavana",
+          "count": 4,
+          "share": 0.0286
+        },
+        {
+          "concept_id": "WBnc_JXj_MvY",
+          "term": "TIG-svetsning",
+          "count": 4,
+          "share": 0.0286
+        },
+        {
+          "concept_id": "aHCV_VsV_LiD",
+          "term": "Ritningsläsning",
+          "count": 4,
+          "share": 0.0286
+        },
+        {
+          "concept_id": "Q7eC_B7g_QiU",
+          "term": "Certifikat, heta arbeten",
+          "count": 4,
+          "share": 0.0286
+        },
+        {
+          "concept_id": "w8bU_wHe_omF",
+          "term": "MS Office",
+          "count": 4,
+          "share": 0.0286
+        },
+        {
+          "concept_id": "Xtys_AjN_9an",
+          "term": "Elschemaläsning",
+          "count": 4,
+          "share": 0.0286
+        },
+        {
+          "concept_id": "cCMP_ufr_9Ke",
+          "term": "Fordonsteknik",
+          "count": 4,
+          "share": 0.0286
+        },
+        {
+          "concept_id": "bnMZ_Nt5_o48",
+          "term": "Förarbevis för skylift",
+          "count": 3,
+          "share": 0.0214
+        },
+        {
+          "concept_id": "wn7T_k1d_TBe",
+          "term": "Snickerimålning och ytbehandling",
+          "count": 3,
+          "share": 0.0214
+        },
+        {
+          "concept_id": "2PSK_NAG_sDa",
+          "term": "Foliering/Wrapping",
+          "count": 3,
+          "share": 0.0214
+        },
+        {
+          "concept_id": "8pHc_Lqc_QxD",
+          "term": "Gaffeltruck",
+          "count": 3,
+          "share": 0.0214
+        },
+        {
+          "concept_id": "rdtv_EuD_NfB",
+          "term": "Allmänna svetskunskaper",
+          "count": 3,
+          "share": 0.0214
+        },
+        {
+          "concept_id": "Dxqv_2WA_TYt",
+          "term": "Restaurangkök",
+          "count": 3,
+          "share": 0.0214
+        },
+        {
+          "concept_id": "TB5z_d2p_VKh",
+          "term": "Tillverkningsvana, inredningssnickerier",
+          "count": 3,
+          "share": 0.0214
+        }
+      ]
+    },
+    "bh3H_Y3h_5eD": {
+      "field_term": "Chefer och verksamhetsledare",
+      "ads_with_skills": 508,
+      "skills": [
+        {
+          "concept_id": "j1Yr_UhC_X16",
+          "term": "Arbetsledarerfarenhet",
+          "count": 135,
+          "share": 0.2657
+        },
+        {
+          "concept_id": "ZzN5_m7B_5CY",
+          "term": "Personalansvar",
+          "count": 97,
+          "share": 0.1909
+        },
+        {
+          "concept_id": "yXmf_iKi_7ci",
+          "term": "Logistik",
+          "count": 85,
+          "share": 0.1673
+        },
+        {
+          "concept_id": "Gt5f_wdi_FSJ",
+          "term": "Budgetansvar",
+          "count": 65,
+          "share": 0.128
+        },
+        {
+          "concept_id": "5wab_aFK_gdL",
+          "term": "MS Excel",
+          "count": 56,
+          "share": 0.1102
+        },
+        {
+          "concept_id": "aMyW_hB7_TpU",
+          "term": "Kundtjänst",
+          "count": 52,
+          "share": 0.1024
+        },
+        {
+          "concept_id": "kvLG_4uo_M5p",
+          "term": "Produktionsplanering, tillverkning",
+          "count": 36,
+          "share": 0.0709
+        },
+        {
+          "concept_id": "Xuhg_PcG_kq2",
+          "term": "Lagerstyrning",
+          "count": 33,
+          "share": 0.065
+        },
+        {
+          "concept_id": "74Mw_JUN_VKx",
+          "term": "Ständiga förbättringar/Lean",
+          "count": 33,
+          "share": 0.065
+        },
+        {
+          "concept_id": "MjPH_341_Zmc",
+          "term": "Socionomexamen",
+          "count": 28,
+          "share": 0.0551
+        },
+        {
+          "concept_id": "UH9g_R5v_MCx",
+          "term": "Budgetuppföljning",
+          "count": 21,
+          "share": 0.0413
+        },
+        {
+          "concept_id": "DXNc_cU4_j4N",
+          "term": "Marknadsföring/Marknadskommunikation",
+          "count": 21,
+          "share": 0.0413
+        },
+        {
+          "concept_id": "eThQ_HCv_mY6",
+          "term": "Personalplanering",
+          "count": 21,
+          "share": 0.0413
+        },
+        {
+          "concept_id": "AP6y_xf5_4WK",
+          "term": "Livsmedelsindustri",
+          "count": 20,
+          "share": 0.0394
+        },
+        {
+          "concept_id": "TzHP_38y_mhm",
+          "term": "Affärsutveckling",
+          "count": 20,
+          "share": 0.0394
+        },
+        {
+          "concept_id": "3TSx_fJE_Z26",
+          "term": "Projektledning, erfarenhet",
+          "count": 20,
+          "share": 0.0394
+        },
+        {
+          "concept_id": "Q6DB_h8V_mc7",
+          "term": "GXP (t.ex. GMP, GCP, GLP)",
+          "count": 20,
+          "share": 0.0394
+        },
+        {
+          "concept_id": "iSWP_AHA_BSj",
+          "term": "Läkemedelsindustri",
+          "count": 19,
+          "share": 0.0374
+        },
+        {
+          "concept_id": "A3Fj_o8U_Twq",
+          "term": "Områdesansvar, hälso- och sjukvård",
+          "count": 18,
+          "share": 0.0354
+        },
+        {
+          "concept_id": "sA2V_erA_3WN",
+          "term": "Teknisk försäljning",
+          "count": 18,
+          "share": 0.0354
+        },
+        {
+          "concept_id": "Z8gz_6SV_bKW",
+          "term": "Marknadsanalys",
+          "count": 17,
+          "share": 0.0335
+        },
+        {
+          "concept_id": "vVXb_pYT_E1z",
+          "term": "Läkemedel/Sjukvårdsprodukter",
+          "count": 17,
+          "share": 0.0335
+        },
+        {
+          "concept_id": "AiwS_Mhv_ttk",
+          "term": "Dokumentation, industriell tillverkning",
+          "count": 17,
+          "share": 0.0335
+        },
+        {
+          "concept_id": "q7Mx_gjU_F9q",
+          "term": "Förhandlingsvana",
+          "count": 16,
+          "share": 0.0315
+        },
+        {
+          "concept_id": "TLkF_mvM_acW",
+          "term": "Butiksledning, dagligvaror",
+          "count": 15,
+          "share": 0.0295
+        },
+        {
+          "concept_id": "dRWb_Mgx_yJf",
+          "term": "Försäljningsvana, uppsökande försäljning företag",
+          "count": 15,
+          "share": 0.0295
+        },
+        {
+          "concept_id": "xkXC_w3J_Qxe",
+          "term": "Klinisk patologi",
+          "count": 15,
+          "share": 0.0295
+        },
+        {
+          "concept_id": "Betk_ZCh_mY9",
+          "term": "Personalutveckling",
+          "count": 14,
+          "share": 0.0276
+        },
+        {
+          "concept_id": "AepF_hH2_pT7",
+          "term": "Produktionsledning, tillverkning",
+          "count": 14,
+          "share": 0.0276
+        },
+        {
+          "concept_id": "jjfg_y9o_zwQ",
+          "term": "Resultatuppföljning",
+          "count": 14,
+          "share": 0.0276
+        }
+      ]
+    },
+    "E7hm_BLq_fqZ": {
+      "field_term": "Säkerhet och bevakning",
+      "ads_with_skills": 339,
+      "skills": [
+        {
+          "concept_id": "mTvV_1eF_xKL",
+          "term": "Skyddsvaktutbildning",
+          "count": 127,
+          "share": 0.3746
+        },
+        {
+          "concept_id": "qsCj_EhM_fyT",
+          "term": "Väktarutbildning (grundutbildning)",
+          "count": 122,
+          "share": 0.3599
+        },
+        {
+          "concept_id": "sjyJ_XPV_rXU",
+          "term": "Ordningsvaktsförordnande",
+          "count": 58,
+          "share": 0.1711
+        },
+        {
+          "concept_id": "chKz_HpD_XL5",
+          "term": "Svenskt medborgarskap",
+          "count": 28,
+          "share": 0.0826
+        },
+        {
+          "concept_id": "sSwR_AxY_K4n",
+          "term": "Hundförarkompetens",
+          "count": 13,
+          "share": 0.0383
+        },
+        {
+          "concept_id": "YVih_Kmh_iqm",
+          "term": "Vapenutbildning",
+          "count": 10,
+          "share": 0.0295
+        },
+        {
+          "concept_id": "R8HU_9i4_LF3",
+          "term": "Parkeringsbevakning",
+          "count": 9,
+          "share": 0.0265
+        },
+        {
+          "concept_id": "DYvh_2Z1_WNr",
+          "term": "Hunddagis",
+          "count": 7,
+          "share": 0.0206
+        },
+        {
+          "concept_id": "nFvV_6GB_Nne",
+          "term": "Hundpsykologi",
+          "count": 7,
+          "share": 0.0206
+        },
+        {
+          "concept_id": "7ZyN_G4R_rCd",
+          "term": "Djurslagsspecialisering, hund/Djurslagsspecialisering, katt",
+          "count": 7,
+          "share": 0.0206
+        },
+        {
+          "concept_id": "L7X3_qqn_RBr",
+          "term": "Risk- och säkerhetsanalyser, arbetsmiljö",
+          "count": 7,
+          "share": 0.0206
+        },
+        {
+          "concept_id": "zMmn_1mh_6D5",
+          "term": "Basic training",
+          "count": 7,
+          "share": 0.0206
+        },
+        {
+          "concept_id": "aMyW_hB7_TpU",
+          "term": "Kundtjänst",
+          "count": 6,
+          "share": 0.0177
+        },
+        {
+          "concept_id": "nu52_VXq_5MD",
+          "term": "Säkerhetsfrågor",
+          "count": 6,
+          "share": 0.0177
+        },
+        {
+          "concept_id": "a1Sf_mey_gVk",
+          "term": "Kvalitetssäkring",
+          "count": 6,
+          "share": 0.0177
+        },
+        {
+          "concept_id": "vbSZ_HZN_PPX",
+          "term": "Arbetsmiljöinspektörsutbildning",
+          "count": 6,
+          "share": 0.0177
+        },
+        {
+          "concept_id": "aVzm_vLZ_7Yn",
+          "term": "Brandingenjörsexamen",
+          "count": 6,
+          "share": 0.0177
+        },
+        {
+          "concept_id": "Q7eC_B7g_QiU",
+          "term": "Certifikat, heta arbeten",
+          "count": 5,
+          "share": 0.0147
+        },
+        {
+          "concept_id": "yy8i_jH4_vJz",
+          "term": "Personskyddsutbildning",
+          "count": 4,
+          "share": 0.0118
+        },
+        {
+          "concept_id": "ur5t_WrD_DXL",
+          "term": "Förebyggande brandskydd",
+          "count": 4,
+          "share": 0.0118
+        },
+        {
+          "concept_id": "wbAz_fL9_jgx",
+          "term": "Larmprodukter/Säkerhetsprodukter",
+          "count": 4,
+          "share": 0.0118
+        },
+        {
+          "concept_id": "7H4j_dRM_Vbo",
+          "term": "Receptionsvana",
+          "count": 4,
+          "share": 0.0118
+        },
+        {
+          "concept_id": "3Sj1_uuL_y1A",
+          "term": "Miljöledning (ISO 14000-serien)",
+          "count": 4,
+          "share": 0.0118
+        },
+        {
+          "concept_id": "RqGR_GDY_2me",
+          "term": "Butiksbevakning/Butikskontroll",
+          "count": 3,
+          "share": 0.0088
+        },
+        {
+          "concept_id": "GJho_f1V_YbF",
+          "term": "Godkänd livräddare, SLS",
+          "count": 3,
+          "share": 0.0088
+        },
+        {
+          "concept_id": "FABn_RTJ_1xT",
+          "term": "Godkänd badvakt, SLS",
+          "count": 3,
+          "share": 0.0088
+        },
+        {
+          "concept_id": "x5rt_5HF_xVn",
+          "term": "Vattengymnastik, instruktör",
+          "count": 3,
+          "share": 0.0088
+        },
+        {
+          "concept_id": "SNjy_Mqa_UYh",
+          "term": "Vattenvård",
+          "count": 3,
+          "share": 0.0088
+        },
+        {
+          "concept_id": "F5F4_XLd_VFz",
+          "term": "Examen i skydd mot olyckor",
+          "count": 3,
+          "share": 0.0088
+        },
+        {
+          "concept_id": "w8bU_wHe_omF",
+          "term": "MS Office",
+          "count": 3,
+          "share": 0.0088
+        }
+      ]
+    },
+    "RPTn_bxG_ExZ": {
+      "field_term": "Försäljning, inköp, marknadsföring",
+      "ads_with_skills": 2828,
+      "skills": [
+        {
+          "concept_id": "tPU1_wJL_suB",
+          "term": "Försäljningsvana, direktförsäljning konsument",
+          "count": 813,
+          "share": 0.2875
+        },
+        {
+          "concept_id": "AwhJ_eLD_xpG",
+          "term": "Försäljningsvana, telefonförsäljning",
+          "count": 757,
+          "share": 0.2677
+        },
+        {
+          "concept_id": "Q5Gj_qVb_1AY",
+          "term": "Butiksvana, dagligvaror",
+          "count": 511,
+          "share": 0.1807
+        },
+        {
+          "concept_id": "Td4F_YtH_u6S",
+          "term": "Butiksvana, fackhandel",
+          "count": 426,
+          "share": 0.1506
+        },
+        {
+          "concept_id": "DXNc_cU4_j4N",
+          "term": "Marknadsföring/Marknadskommunikation",
+          "count": 409,
+          "share": 0.1446
+        },
+        {
+          "concept_id": "RFer_rtf_x6t",
+          "term": "Försäljningsvana, torg- och marknadsförsäljning",
+          "count": 379,
+          "share": 0.134
+        },
+        {
+          "concept_id": "dRWb_Mgx_yJf",
+          "term": "Försäljningsvana, uppsökande försäljning företag",
+          "count": 343,
+          "share": 0.1213
+        },
+        {
+          "concept_id": "FJBT_yzk_BWe",
+          "term": "Uppsökande försäljning",
+          "count": 332,
+          "share": 0.1174
+        },
+        {
+          "concept_id": "r9Rk_ogX_uan",
+          "term": "Telefonförsäljning",
+          "count": 278,
+          "share": 0.0983
+        },
+        {
+          "concept_id": "aMyW_hB7_TpU",
+          "term": "Kundtjänst",
+          "count": 195,
+          "share": 0.069
+        },
+        {
+          "concept_id": "sA2V_erA_3WN",
+          "term": "Teknisk försäljning",
+          "count": 135,
+          "share": 0.0477
+        },
+        {
+          "concept_id": "hYpk_RYx_y3V",
+          "term": "Kassavana",
+          "count": 134,
+          "share": 0.0474
+        },
+        {
+          "concept_id": "zBNU_qqu_TbC",
+          "term": "Besöksbokning",
+          "count": 114,
+          "share": 0.0403
+        },
+        {
+          "concept_id": "Lz84_K5d_CcL",
+          "term": "Digital marknadsföring/Onlinemarknadsföring",
+          "count": 87,
+          "share": 0.0308
+        },
+        {
+          "concept_id": "9T9i_UN7_zim",
+          "term": "Intervjuvana, på stan-intervjuer",
+          "count": 61,
+          "share": 0.0216
+        },
+        {
+          "concept_id": "dQre_aBF_3dE",
+          "term": "Customer Relationship Management/CRM",
+          "count": 60,
+          "share": 0.0212
+        },
+        {
+          "concept_id": "DSED_2Bk_Ajw",
+          "term": "Försäljningsvana, exportförsäljning",
+          "count": 58,
+          "share": 0.0205
+        },
+        {
+          "concept_id": "8PbH_ED5_C9s",
+          "term": "Demonstrationsvana, livsmedel",
+          "count": 58,
+          "share": 0.0205
+        },
+        {
+          "concept_id": "TLkF_mvM_acW",
+          "term": "Butiksledning, dagligvaror",
+          "count": 57,
+          "share": 0.0202
+        },
+        {
+          "concept_id": "5wab_aFK_gdL",
+          "term": "MS Excel",
+          "count": 51,
+          "share": 0.018
+        },
+        {
+          "concept_id": "AaqP_1Sj_RUP",
+          "term": "Intervjuvana, telefonintervjuer",
+          "count": 51,
+          "share": 0.018
+        },
+        {
+          "concept_id": "QHxK_TyX_5zS",
+          "term": "Intervjuvana, besöksintervjuer",
+          "count": 49,
+          "share": 0.0173
+        },
+        {
+          "concept_id": "3TSx_fJE_Z26",
+          "term": "Projektledning, erfarenhet",
+          "count": 44,
+          "share": 0.0156
+        },
+        {
+          "concept_id": "4oKa_e7b_oHW",
+          "term": "Försäljning, erfarenhet",
+          "count": 42,
+          "share": 0.0149
+        },
+        {
+          "concept_id": "eKuz_edm_kmi",
+          "term": "Inköpsvana",
+          "count": 40,
+          "share": 0.0141
+        },
+        {
+          "concept_id": "jT7b_EUq_z3A",
+          "term": "Teknisk rådgivning",
+          "count": 37,
+          "share": 0.0131
+        },
+        {
+          "concept_id": "dNA9_T9K_JXF",
+          "term": "Enklare matlagningskunskaper",
+          "count": 36,
+          "share": 0.0127
+        },
+        {
+          "concept_id": "w8bU_wHe_omF",
+          "term": "MS Office",
+          "count": 32,
+          "share": 0.0113
+        },
+        {
+          "concept_id": "MZXu_MYV_9U3",
+          "term": "Försäljningsvana, hemförsäljning (homeparties)",
+          "count": 32,
+          "share": 0.0113
+        },
+        {
+          "concept_id": "GCUK_vig_qRE",
+          "term": "Säljcoachning",
+          "count": 31,
+          "share": 0.011
+        }
+      ]
+    },
+    "MVqp_eS8_kDZ": {
+      "field_term": "Pedagogik",
+      "ads_with_skills": 1081,
+      "skills": [
+        {
+          "concept_id": "yKnk_W7X_Zvk",
+          "term": "Lärarlegitimation",
+          "count": 315,
+          "share": 0.2914
+        },
+        {
+          "concept_id": "zJZd_pDs_SDf",
+          "term": "Lärarexamen",
+          "count": 242,
+          "share": 0.2239
+        },
+        {
+          "concept_id": "yyJQ_gFx_TKr",
+          "term": "Förskollärarexamen",
+          "count": 79,
+          "share": 0.0731
+        },
+        {
+          "concept_id": "Tp1G_2jt_rN4",
+          "term": "Lärarexamen inr senare år",
+          "count": 73,
+          "share": 0.0675
+        },
+        {
+          "concept_id": "6Suw_3c1_47a",
+          "term": "Förskollärarlegitimation",
+          "count": 58,
+          "share": 0.0537
+        },
+        {
+          "concept_id": "vsdz_cNF_c2C",
+          "term": "Godkänd trafiklärare/Godkännandebevis",
+          "count": 53,
+          "share": 0.049
+        },
+        {
+          "concept_id": "QuZ4_Sg4_aK5",
+          "term": "Montessoripedagogik",
+          "count": 51,
+          "share": 0.0472
+        },
+        {
+          "concept_id": "9bdT_Hrb_LjG",
+          "term": "Specialpedagogexamen",
+          "count": 27,
+          "share": 0.025
+        },
+        {
+          "concept_id": "5PjX_999_uLZ",
+          "term": "Pedagogiskt ledarskap",
+          "count": 26,
+          "share": 0.0241
+        },
+        {
+          "concept_id": "DCTh_VVW_CaS",
+          "term": "Fritidspedagogexamen",
+          "count": 24,
+          "share": 0.0222
+        },
+        {
+          "concept_id": "bhjq_z6a_zpP",
+          "term": "Lärarexamen, grundskolans senare år och gymnasieskolan",
+          "count": 21,
+          "share": 0.0194
+        },
+        {
+          "concept_id": "5xsd_oFo_RXw",
+          "term": "Waldorfpedagogik",
+          "count": 21,
+          "share": 0.0194
+        },
+        {
+          "concept_id": "F1TT_MpK_WF5",
+          "term": "Gymnasielärarexamen",
+          "count": 21,
+          "share": 0.0194
+        },
+        {
+          "concept_id": "GNM4_1YF_Egj",
+          "term": "Grundskollärarexamen inr 4-9",
+          "count": 19,
+          "share": 0.0176
+        },
+        {
+          "concept_id": "sKux_n1g_FWp",
+          "term": "Barn på sjukhus, barnskötarerfarenhet",
+          "count": 19,
+          "share": 0.0176
+        },
+        {
+          "concept_id": "VNRs_wiA_RqV",
+          "term": "Speciallärarexamen",
+          "count": 18,
+          "share": 0.0167
+        },
+        {
+          "concept_id": "qMfa_U8e_Lto",
+          "term": "Pedagogiskt förhållningssätt",
+          "count": 16,
+          "share": 0.0148
+        },
+        {
+          "concept_id": "sxer_JSL_7Bv",
+          "term": "Godkänd simlärare, SLS",
+          "count": 15,
+          "share": 0.0139
+        },
+        {
+          "concept_id": "zzHa_WZz_Gre",
+          "term": "Lärarexamen inr tidigare år",
+          "count": 14,
+          "share": 0.013
+        },
+        {
+          "concept_id": "wSJn_d6E_5Aj",
+          "term": "Babysim, instruktör",
+          "count": 14,
+          "share": 0.013
+        },
+        {
+          "concept_id": "ys1g_r9v_QRz",
+          "term": "Lärarexamen-förskola, förskoleklass, fritidshem",
+          "count": 13,
+          "share": 0.012
+        },
+        {
+          "concept_id": "BAhT_M8S_T5r",
+          "term": "Styrketräning, instruktör",
+          "count": 12,
+          "share": 0.0111
+        },
+        {
+          "concept_id": "qkyH_MC1_YKU",
+          "term": "Barn och ungdom",
+          "count": 12,
+          "share": 0.0111
+        },
+        {
+          "concept_id": "C3Fc_BSX_rpH",
+          "term": "Specialpedagogik",
+          "count": 12,
+          "share": 0.0111
+        },
+        {
+          "concept_id": "g2dL_AqN_JFC",
+          "term": "Simlärarutbildning",
+          "count": 12,
+          "share": 0.0111
+        },
+        {
+          "concept_id": "XvRo_Nu3_yfj",
+          "term": "Datorkommunikation, undervisning",
+          "count": 12,
+          "share": 0.0111
+        },
+        {
+          "concept_id": "ZjBN_Pwc_L61",
+          "term": "Socialpedagogik",
+          "count": 12,
+          "share": 0.0111
+        },
+        {
+          "concept_id": "Fiyw_2Zs_fJk",
+          "term": "Fritidspedagogik",
+          "count": 11,
+          "share": 0.0102
+        },
+        {
+          "concept_id": "cS5D_iQN_PWA",
+          "term": "Ämneslärarexamen",
+          "count": 10,
+          "share": 0.0093
+        },
+        {
+          "concept_id": "Krvy_8xK_JXN",
+          "term": "Lärarexamen-förskola, förskoleklass tidigare år",
+          "count": 10,
+          "share": 0.0093
+        }
+      ]
+    },
+    "9puE_nYg_crq": {
+      "field_term": "Kultur, media, design",
+      "ads_with_skills": 169,
+      "skills": [
+        {
+          "concept_id": "UdXV_fqG_jWu",
+          "term": "Fotografering, digitalkamera",
+          "count": 47,
+          "share": 0.2781
+        },
+        {
+          "concept_id": "2gv8_SfE_iXr",
+          "term": "Ateljéfotografering/Studiofotografering",
+          "count": 44,
+          "share": 0.2604
+        },
+        {
+          "concept_id": "HUBG_Mz2_X1G",
+          "term": "Estetiska programmet, undervisning",
+          "count": 16,
+          "share": 0.0947
+        },
+        {
+          "concept_id": "AuHz_M2K_yZW",
+          "term": "Barnjournalistik/Ungdomsjournalistik",
+          "count": 14,
+          "share": 0.0828
+        },
+        {
+          "concept_id": "PDiG_Kwa_zyy",
+          "term": "TV-sändning",
+          "count": 11,
+          "share": 0.0651
+        },
+        {
+          "concept_id": "dTK5_R7G_p56",
+          "term": "Grafisk design",
+          "count": 11,
+          "share": 0.0651
+        },
+        {
+          "concept_id": "zpaf_mDu_foK",
+          "term": "Fotografering",
+          "count": 11,
+          "share": 0.0651
+        },
+        {
+          "concept_id": "kvLG_4uo_M5p",
+          "term": "Produktionsplanering, tillverkning",
+          "count": 8,
+          "share": 0.0473
+        },
+        {
+          "concept_id": "xNyv_PTi_fSa",
+          "term": "2D-grafik-Adobe Photoshop",
+          "count": 7,
+          "share": 0.0414
+        },
+        {
+          "concept_id": "eKuz_edm_kmi",
+          "term": "Inköpsvana",
+          "count": 7,
+          "share": 0.0414
+        },
+        {
+          "concept_id": "rxLV_bt9_XSh",
+          "term": "Språkgranskning",
+          "count": 6,
+          "share": 0.0355
+        },
+        {
+          "concept_id": "a1Sf_mey_gVk",
+          "term": "Kvalitetssäkring",
+          "count": 6,
+          "share": 0.0355
+        },
+        {
+          "concept_id": "U1JW_vPG_Dqk",
+          "term": "Kvalitetsansvar",
+          "count": 6,
+          "share": 0.0355
+        },
+        {
+          "concept_id": "48zu_t6j_A28",
+          "term": "Avloppsteknik/Vattenreningsteknik",
+          "count": 6,
+          "share": 0.0355
+        },
+        {
+          "concept_id": "aNcD_UfW_vYN",
+          "term": "IW (International Welder), certifikat",
+          "count": 6,
+          "share": 0.0355
+        },
+        {
+          "concept_id": "Lz84_K5d_CcL",
+          "term": "Digital marknadsföring/Onlinemarknadsföring",
+          "count": 6,
+          "share": 0.0355
+        },
+        {
+          "concept_id": "PuQP_aBK_nqJ",
+          "term": "Produktionsteknik",
+          "count": 6,
+          "share": 0.0355
+        },
+        {
+          "concept_id": "aHCV_VsV_LiD",
+          "term": "Ritningsläsning",
+          "count": 6,
+          "share": 0.0355
+        },
+        {
+          "concept_id": "mfxk_qAC_E8y",
+          "term": "Filmklippning",
+          "count": 5,
+          "share": 0.0296
+        },
+        {
+          "concept_id": "FKub_QFH_Btk",
+          "term": "2D-grafik-Adobe Illustrator",
+          "count": 5,
+          "share": 0.0296
+        },
+        {
+          "concept_id": "Y2t4_aS8_tGo",
+          "term": "Layout-Adobe InDesign",
+          "count": 5,
+          "share": 0.0296
+        },
+        {
+          "concept_id": "w8bU_wHe_omF",
+          "term": "MS Office",
+          "count": 5,
+          "share": 0.0296
+        },
+        {
+          "concept_id": "Gmgc_YGn_E8Q",
+          "term": "Filminspelning",
+          "count": 4,
+          "share": 0.0237
+        },
+        {
+          "concept_id": "YNXq_yH4_fhK",
+          "term": "Webbdesign",
+          "count": 4,
+          "share": 0.0237
+        },
+        {
+          "concept_id": "CrTX_qgG_frX",
+          "term": "Eventarrangemang",
+          "count": 4,
+          "share": 0.0237
+        },
+        {
+          "concept_id": "kcAa_3oz_td1",
+          "term": "Gruppaktiviteter, ledarerfarenhet",
+          "count": 4,
+          "share": 0.0237
+        },
+        {
+          "concept_id": "poUy_FfV_mr3",
+          "term": "Nyhetsjournalistik",
+          "count": 4,
+          "share": 0.0237
+        },
+        {
+          "concept_id": "AEgv_4gP_ndv",
+          "term": "Teknisk dokumentation",
+          "count": 4,
+          "share": 0.0237
+        },
+        {
+          "concept_id": "LB2k_2pd_Vgk",
+          "term": "Spelprogrammering",
+          "count": 3,
+          "share": 0.0178
+        },
+        {
+          "concept_id": "dQre_aBF_3dE",
+          "term": "Customer Relationship Management/CRM",
+          "count": 3,
+          "share": 0.0178
+        }
+      ]
+    },
+    "yhCP_AqT_tns": {
+      "field_term": "Installation, drift, underhåll",
+      "ads_with_skills": 803,
+      "skills": [
+        {
+          "concept_id": "cCMP_ufr_9Ke",
+          "term": "Fordonsteknik",
+          "count": 73,
+          "share": 0.0909
+        },
+        {
+          "concept_id": "EjB9_prP_VQZ",
+          "term": "Certifikat, elektriker - elteknik",
+          "count": 70,
+          "share": 0.0872
+        },
+        {
+          "concept_id": "vQTv_Fio_W9o",
+          "term": "Larminstallation",
+          "count": 65,
+          "share": 0.0809
+        },
+        {
+          "concept_id": "wJuu_o2B_q7L",
+          "term": "Elektriker - industri",
+          "count": 65,
+          "share": 0.0809
+        },
+        {
+          "concept_id": "qQms_DVy_WhS",
+          "term": "Felsökning, fordonsmekanik",
+          "count": 65,
+          "share": 0.0809
+        },
+        {
+          "concept_id": "TGZ1_Xb5_77h",
+          "term": "Elteknik",
+          "count": 64,
+          "share": 0.0797
+        },
+        {
+          "concept_id": "moJc_yZC_sjN",
+          "term": "Fordonselektronik, felsökningsvana/Fordonselektronik, reparationsvana",
+          "count": 62,
+          "share": 0.0772
+        },
+        {
+          "concept_id": "TqmK_A4H_EAS",
+          "term": "Inbrottslarm, installationsvana",
+          "count": 57,
+          "share": 0.071
+        },
+        {
+          "concept_id": "VQxj_dHG_UCE",
+          "term": "Kabelinstallationer",
+          "count": 54,
+          "share": 0.0672
+        },
+        {
+          "concept_id": "73Pw_nip_4EW",
+          "term": "Hydraulik",
+          "count": 49,
+          "share": 0.061
+        },
+        {
+          "concept_id": "ygEQ_Pwp_ozn",
+          "term": "Mekanik",
+          "count": 49,
+          "share": 0.061
+        },
+        {
+          "concept_id": "qndS_X6D_iB8",
+          "term": "Brandlarm, installationsvana",
+          "count": 46,
+          "share": 0.0573
+        },
+        {
+          "concept_id": "wbAz_fL9_jgx",
+          "term": "Larmprodukter/Säkerhetsprodukter",
+          "count": 37,
+          "share": 0.0461
+        },
+        {
+          "concept_id": "MT1a_Nyq_DGQ",
+          "term": "Automationsteknik",
+          "count": 36,
+          "share": 0.0448
+        },
+        {
+          "concept_id": "wJUD_v8j_Aep",
+          "term": "Mekaniska reparationsarbeten",
+          "count": 35,
+          "share": 0.0436
+        },
+        {
+          "concept_id": "BQsM_qds_7ff",
+          "term": "Elprodukter/Teleprodukter/Elektronikprodukter",
+          "count": 31,
+          "share": 0.0386
+        },
+        {
+          "concept_id": "J5Xc_doF_TUR",
+          "term": "Fastighetsskötsel",
+          "count": 31,
+          "share": 0.0386
+        },
+        {
+          "concept_id": "pSTA_VfB_7eA",
+          "term": "Maskinelektronik, felsökningsvana/Maskinelektronik, reparationsvana",
+          "count": 30,
+          "share": 0.0374
+        },
+        {
+          "concept_id": "hjRh_WgY_oJo",
+          "term": "Batteriladdning",
+          "count": 27,
+          "share": 0.0336
+        },
+        {
+          "concept_id": "btbx_pYC_XDK",
+          "term": "Passersystem, installationsvana",
+          "count": 26,
+          "share": 0.0324
+        },
+        {
+          "concept_id": "c14d_Mgx_MFA",
+          "term": "A - Fullständig auktorisation",
+          "count": 26,
+          "share": 0.0324
+        },
+        {
+          "concept_id": "sA2V_erA_3WN",
+          "term": "Teknisk försäljning",
+          "count": 26,
+          "share": 0.0324
+        },
+        {
+          "concept_id": "Uytu_hWi_5nh",
+          "term": "Programmerbart styrsystem/PLC",
+          "count": 24,
+          "share": 0.0299
+        },
+        {
+          "concept_id": "pXy8_4zz_azx",
+          "term": "Pneumatik",
+          "count": 24,
+          "share": 0.0299
+        },
+        {
+          "concept_id": "jT7b_EUq_z3A",
+          "term": "Teknisk rådgivning",
+          "count": 24,
+          "share": 0.0299
+        },
+        {
+          "concept_id": "VTPj_uC5_NPS",
+          "term": "Dos, operativsystem",
+          "count": 24,
+          "share": 0.0299
+        },
+        {
+          "concept_id": "G4sF_xod_zoq",
+          "term": "Windows, operativsystem",
+          "count": 24,
+          "share": 0.0299
+        },
+        {
+          "concept_id": "3aCX_jRM_Kcs",
+          "term": "Enklare fordonsservice",
+          "count": 23,
+          "share": 0.0286
+        },
+        {
+          "concept_id": "ncgu_Kpq_TR3",
+          "term": "Fiberteknik",
+          "count": 22,
+          "share": 0.0274
+        },
+        {
+          "concept_id": "Sj6U_HsZ_5Wy",
+          "term": "Montering av finmekanik",
+          "count": 22,
+          "share": 0.0274
+        }
+      ]
+    },
+    "whao_Q6A_ScE": {
+      "field_term": "Sanering och renhållning",
+      "ads_with_skills": 1094,
+      "skills": [
+        {
+          "concept_id": "fZdk_vbt_LhP",
+          "term": "Städtjänster",
+          "count": 307,
+          "share": 0.2806
+        },
+        {
+          "concept_id": "SHkX_Qc7_Xx3",
+          "term": "Storstädning",
+          "count": 228,
+          "share": 0.2084
+        },
+        {
+          "concept_id": "x3Z7_Bhq_oFv",
+          "term": "Privathemsstädning",
+          "count": 208,
+          "share": 0.1901
+        },
+        {
+          "concept_id": "Ljxo_4Zn_ygo",
+          "term": "Hotellstädning",
+          "count": 202,
+          "share": 0.1846
+        },
+        {
+          "concept_id": "beHF_mum_ANM",
+          "term": "Kontorsstädning",
+          "count": 191,
+          "share": 0.1746
+        },
+        {
+          "concept_id": "6XRu_MQm_4NK",
+          "term": "Städvana, hotell",
+          "count": 180,
+          "share": 0.1645
+        },
+        {
+          "concept_id": "uwX1_vsc_ERP",
+          "term": "Barntillsyn, erfarenhet",
+          "count": 148,
+          "share": 0.1353
+        },
+        {
+          "concept_id": "iLB3_qb9_a1D",
+          "term": "Trappstädning",
+          "count": 135,
+          "share": 0.1234
+        },
+        {
+          "concept_id": "T7dX_M3r_SDj",
+          "term": "Byggstädning",
+          "count": 129,
+          "share": 0.1179
+        },
+        {
+          "concept_id": "GN1z_Mve_mR4",
+          "term": "Yrkesbevis, SRY",
+          "count": 125,
+          "share": 0.1143
+        },
+        {
+          "concept_id": "7NM4_ArB_Zy2",
+          "term": "Butiksstädning",
+          "count": 104,
+          "share": 0.0951
+        },
+        {
+          "concept_id": "BQPp_SQs_dtc",
+          "term": "Fönsterputsning",
+          "count": 84,
+          "share": 0.0768
+        },
+        {
+          "concept_id": "rwir_xvu_443",
+          "term": "God fysik (tunga lyft)",
+          "count": 82,
+          "share": 0.075
+        },
+        {
+          "concept_id": "iu18_YyQ_hmh",
+          "term": "Städmaterial",
+          "count": 59,
+          "share": 0.0539
+        },
+        {
+          "concept_id": "RhVf_Mte_xC9",
+          "term": "Klottersanering",
+          "count": 52,
+          "share": 0.0475
+        },
+        {
+          "concept_id": "k9pW_awM_Kmy",
+          "term": "Rekonditionering",
+          "count": 45,
+          "share": 0.0411
+        },
+        {
+          "concept_id": "T4gk_cvU_TWk",
+          "term": "Golvvårdsmaskiner",
+          "count": 42,
+          "share": 0.0384
+        },
+        {
+          "concept_id": "Swnd_ScQ_iPP",
+          "term": "Kombimaskin",
+          "count": 40,
+          "share": 0.0366
+        },
+        {
+          "concept_id": "j1Yr_UhC_X16",
+          "term": "Arbetsledarerfarenhet",
+          "count": 36,
+          "share": 0.0329
+        },
+        {
+          "concept_id": "y4sg_zUA_mPz",
+          "term": "Städning av förskola/Städning av skola",
+          "count": 33,
+          "share": 0.0302
+        },
+        {
+          "concept_id": "5nv3_Ei4_1Xh",
+          "term": "Yrkesbevis, PRYL",
+          "count": 28,
+          "share": 0.0256
+        },
+        {
+          "concept_id": "tXiX_tYU_gkE",
+          "term": "Tvätt- och städningsansvar",
+          "count": 25,
+          "share": 0.0229
+        },
+        {
+          "concept_id": "a7hz_cu6_rW2",
+          "term": "Industristädning",
+          "count": 22,
+          "share": 0.0201
+        },
+        {
+          "concept_id": "VZ1e_t7d_Thg",
+          "term": "Städbesiktning",
+          "count": 20,
+          "share": 0.0183
+        },
+        {
+          "concept_id": "N9ho_NPL_JBg",
+          "term": "Hygienstädning",
+          "count": 13,
+          "share": 0.0119
+        },
+        {
+          "concept_id": "M2WG_2z8_tyy",
+          "term": "Yrkeskompetensbevis YKB, tung lastbil",
+          "count": 13,
+          "share": 0.0119
+        },
+        {
+          "concept_id": "7ypy_36c_JNm",
+          "term": "Asbestsanering",
+          "count": 12,
+          "share": 0.011
+        },
+        {
+          "concept_id": "rfUG_tUK_4cc",
+          "term": "Privathemsflyttning",
+          "count": 10,
+          "share": 0.0091
+        },
+        {
+          "concept_id": "YNMg_BHR_zZM",
+          "term": "Patrullstädning",
+          "count": 9,
+          "share": 0.0082
+        },
+        {
+          "concept_id": "RZT1_Bme_Tq7",
+          "term": "Asbestsanering, särskild utbildning",
+          "count": 9,
+          "share": 0.0082
+        }
+      ]
+    },
+    "NYW6_mP6_vwf": {
+      "field_term": "Hälso- och sjukvård",
+      "ads_with_skills": 1289,
+      "skills": [
+        {
+          "concept_id": "Azca_cCi_Y21",
+          "term": "Legitimation som psykolog",
+          "count": 329,
+          "share": 0.2552
+        },
+        {
+          "concept_id": "Hh2K_Seb_wZQ",
+          "term": "Kognitiv beteendeterapi",
+          "count": 311,
+          "share": 0.2413
+        },
+        {
+          "concept_id": "dJa5_Nao_mDS",
+          "term": "Legitimation som sjuksköterska",
+          "count": 189,
+          "share": 0.1466
+        },
+        {
+          "concept_id": "yL7p_NgY_yKc",
+          "term": "Vård av äldre",
+          "count": 77,
+          "share": 0.0597
+        },
+        {
+          "concept_id": "T9Ub_siv_CWv",
+          "term": "Legitimation som distriktssköterska",
+          "count": 76,
+          "share": 0.059
+        },
+        {
+          "concept_id": "GYz6_5Jt_Wmy",
+          "term": "Sjuksköterskeexamen",
+          "count": 72,
+          "share": 0.0559
+        },
+        {
+          "concept_id": "sXoR_gGY_ycN",
+          "term": "Psykiatri",
+          "count": 64,
+          "share": 0.0497
+        },
+        {
+          "concept_id": "Xk3A_N4V_aAK",
+          "term": "Anestesisjukvård",
+          "count": 63,
+          "share": 0.0489
+        },
+        {
+          "concept_id": "hAZR_5Ho_Jdw",
+          "term": "Legitimation som barnmorska",
+          "count": 61,
+          "share": 0.0473
+        },
+        {
+          "concept_id": "viQT_1Vf_hvu",
+          "term": "Legitimation som tandläkare",
+          "count": 60,
+          "share": 0.0465
+        },
+        {
+          "concept_id": "xowU_8Wu_K7C",
+          "term": "Hemtjänst",
+          "count": 56,
+          "share": 0.0434
+        },
+        {
+          "concept_id": "WUoy_Yua_8Mr",
+          "term": "Intensivsjukvård",
+          "count": 56,
+          "share": 0.0434
+        },
+        {
+          "concept_id": "Ektq_nPz_4YF",
+          "term": "Specialistsjuksköterskeexamen",
+          "count": 54,
+          "share": 0.0419
+        },
+        {
+          "concept_id": "QnaD_AmN_3da",
+          "term": "Legitimation som röntgensjuksköterska",
+          "count": 52,
+          "share": 0.0403
+        },
+        {
+          "concept_id": "B4E8_NBS_irE",
+          "term": "Legitimation som optiker",
+          "count": 52,
+          "share": 0.0403
+        },
+        {
+          "concept_id": "h5Cq_yST_wsZ",
+          "term": "Behörighet som kontaktlinsoptiker",
+          "count": 50,
+          "share": 0.0388
+        },
+        {
+          "concept_id": "hqYJ_jyZ_Ks8",
+          "term": "Demensvård",
+          "count": 46,
+          "share": 0.0357
+        },
+        {
+          "concept_id": "9ntP_jdL_3iG",
+          "term": "Legitimation som läkare",
+          "count": 44,
+          "share": 0.0341
+        },
+        {
+          "concept_id": "MR4H_FFT_mTj",
+          "term": "Omvårdnad",
+          "count": 43,
+          "share": 0.0334
+        },
+        {
+          "concept_id": "nDE1_gZr_UJX",
+          "term": "Legitimation som arbetsterapeut",
+          "count": 42,
+          "share": 0.0326
+        },
+        {
+          "concept_id": "NbjJ_WBY_FoA",
+          "term": "Hemsjukvård",
+          "count": 37,
+          "share": 0.0287
+        },
+        {
+          "concept_id": "9RTm_B69_6ec",
+          "term": "Legitimation som tandhygienist",
+          "count": 35,
+          "share": 0.0272
+        },
+        {
+          "concept_id": "tykJ_BZQ_Wer",
+          "term": "Äldreboende",
+          "count": 34,
+          "share": 0.0264
+        },
+        {
+          "concept_id": "5JNC_VaM_zve",
+          "term": "Psykiatrisk vård",
+          "count": 33,
+          "share": 0.0256
+        },
+        {
+          "concept_id": "5agw_dEi_Ag4",
+          "term": "Legitimation som fysioterapeut",
+          "count": 32,
+          "share": 0.0248
+        },
+        {
+          "concept_id": "5GDg_kKH_HSr",
+          "term": "Legitimation som apotekare",
+          "count": 30,
+          "share": 0.0233
+        },
+        {
+          "concept_id": "WjHF_M2k_SwE",
+          "term": "Apotekarexamen",
+          "count": 28,
+          "share": 0.0217
+        },
+        {
+          "concept_id": "9kw3_UiG_7VA",
+          "term": "Öppenvårdsapotek",
+          "count": 27,
+          "share": 0.0209
+        },
+        {
+          "concept_id": "x289_bKF_ihE",
+          "term": "Allmän omvårdnadserfarenhet",
+          "count": 25,
+          "share": 0.0194
+        },
+        {
+          "concept_id": "Qgfp_vqW_51G",
+          "term": "Tandläkarexamen",
+          "count": 24,
+          "share": 0.0186
+        }
+      ]
+    },
+    "j7Cq_ZJe_GkT": {
+      "field_term": "Bygg och anläggning",
+      "ads_with_skills": 953,
+      "skills": [
+        {
+          "concept_id": "bNRS_e6U_i9r",
+          "term": "Yrkesbevis, träarbetare",
+          "count": 76,
+          "share": 0.0797
+        },
+        {
+          "concept_id": "Q7eC_B7g_QiU",
+          "term": "Certifikat, heta arbeten",
+          "count": 64,
+          "share": 0.0672
+        },
+        {
+          "concept_id": "DaGA_bsf_rVQ",
+          "term": "Utbildningsbevis, VVS-montör",
+          "count": 64,
+          "share": 0.0672
+        },
+        {
+          "concept_id": "3TSx_fJE_Z26",
+          "term": "Projektledning, erfarenhet",
+          "count": 50,
+          "share": 0.0525
+        },
+        {
+          "concept_id": "8Yqr_o72_jqv",
+          "term": "Yrkesbevis, grävlastare/Yrkesbevis, grävmaskin",
+          "count": 49,
+          "share": 0.0514
+        },
+        {
+          "concept_id": "th2t_DxP_C8m",
+          "term": "Godkänd VVS-utbildning",
+          "count": 47,
+          "share": 0.0493
+        },
+        {
+          "concept_id": "ZzuK_jNE_XCG",
+          "term": "Plattsättning",
+          "count": 43,
+          "share": 0.0451
+        },
+        {
+          "concept_id": "yc3o_fvU_E6V",
+          "term": "Rivning av byggobjekt/Demontering av byggobjekt",
+          "count": 42,
+          "share": 0.0441
+        },
+        {
+          "concept_id": "Tv4S_faX_pzi",
+          "term": "Service och underhåll, träarbete bygg",
+          "count": 42,
+          "share": 0.0441
+        },
+        {
+          "concept_id": "GnKk_qZt_CJv",
+          "term": "Betongarbete",
+          "count": 38,
+          "share": 0.0399
+        },
+        {
+          "concept_id": "mwmt_9hq_DEH",
+          "term": "Yrkesbevis, ställningsbyggare",
+          "count": 37,
+          "share": 0.0388
+        },
+        {
+          "concept_id": "YVcu_9ND_78u",
+          "term": "Måleriarbete, bygg",
+          "count": 36,
+          "share": 0.0378
+        },
+        {
+          "concept_id": "us91_jB5_a3A",
+          "term": "Markanläggning",
+          "count": 34,
+          "share": 0.0357
+        },
+        {
+          "concept_id": "aHCV_VsV_LiD",
+          "term": "Ritningsläsning",
+          "count": 34,
+          "share": 0.0357
+        },
+        {
+          "concept_id": "j1Yr_UhC_X16",
+          "term": "Arbetsledarerfarenhet",
+          "count": 33,
+          "share": 0.0346
+        },
+        {
+          "concept_id": "vnHz_5DA_bzd",
+          "term": "Yrkesbevis, plattsättare",
+          "count": 32,
+          "share": 0.0336
+        },
+        {
+          "concept_id": "WLAi_BDr_5fW",
+          "term": "Utbildningsbevis, fallskydd",
+          "count": 32,
+          "share": 0.0336
+        },
+        {
+          "concept_id": "pYkm_Er1_z4a",
+          "term": "Byggnadskonstruktion",
+          "count": 30,
+          "share": 0.0315
+        },
+        {
+          "concept_id": "hjRw_Rfu_n8g",
+          "term": "Ventilationsteknik",
+          "count": 29,
+          "share": 0.0304
+        },
+        {
+          "concept_id": "EwT4_Jtg_AQf",
+          "term": "Träarbete, husbyggnad",
+          "count": 28,
+          "share": 0.0294
+        },
+        {
+          "concept_id": "n5sy_8pT_crR",
+          "term": "Underhållsarbete, snickeri",
+          "count": 27,
+          "share": 0.0283
+        },
+        {
+          "concept_id": "drj3_CKp_Mpp",
+          "term": "Arbete på väg steg 2, anpassad säkerhetskompetens",
+          "count": 27,
+          "share": 0.0283
+        },
+        {
+          "concept_id": "Q8TY_zw2_UqM",
+          "term": "Yrkesbevis, murare",
+          "count": 27,
+          "share": 0.0283
+        },
+        {
+          "concept_id": "5Gtx_bp4_cDg",
+          "term": "Våtrumsbehörighet/BKR, GBR",
+          "count": 27,
+          "share": 0.0283
+        },
+        {
+          "concept_id": "QDvy_mYm_kSS",
+          "term": "Diversearbete, bygg",
+          "count": 25,
+          "share": 0.0262
+        },
+        {
+          "concept_id": "3Zeh_4RX_kA4",
+          "term": "Takläggning",
+          "count": 24,
+          "share": 0.0252
+        },
+        {
+          "concept_id": "swHZ_UXk_UaE",
+          "term": "Grävmaskin",
+          "count": 24,
+          "share": 0.0252
+        },
+        {
+          "concept_id": "ynWd_oCo_o61",
+          "term": "Utbildningsbevis, säkra lyft",
+          "count": 24,
+          "share": 0.0252
+        },
+        {
+          "concept_id": "A6t1_k6h_bKY",
+          "term": "Gesällbrev, målare",
+          "count": 23,
+          "share": 0.0241
+        },
+        {
+          "concept_id": "tqNp_SBC_LSx",
+          "term": "Ventilationssystem, underhåll",
+          "count": 22,
+          "share": 0.0231
+        }
+      ]
+    },
+    "VuuL_7CH_adj": {
+      "field_term": "Naturbruk",
+      "ads_with_skills": 273,
+      "skills": [
+        {
+          "concept_id": "AAaS_o41_sEg",
+          "term": "Trädgårdsskötsel",
+          "count": 75,
+          "share": 0.2747
+        },
+        {
+          "concept_id": "ba8g_LRR_Sj2",
+          "term": "Utbildning på motorsåg",
+          "count": 35,
+          "share": 0.1282
+        },
+        {
+          "concept_id": "6Rxx_zRM_Dqc",
+          "term": "Utbildning på röjsåg",
+          "count": 30,
+          "share": 0.1099
+        },
+        {
+          "concept_id": "DYvh_2Z1_WNr",
+          "term": "Hunddagis",
+          "count": 22,
+          "share": 0.0806
+        },
+        {
+          "concept_id": "yAip_asH_hQX",
+          "term": "Skogsröjning",
+          "count": 21,
+          "share": 0.0769
+        },
+        {
+          "concept_id": "X51E_Edf_cfG",
+          "term": "Yrkesbevis, beskärning, trädvård",
+          "count": 18,
+          "share": 0.0659
+        },
+        {
+          "concept_id": "yuRa_gmr_9J6",
+          "term": "Hundtrimning",
+          "count": 16,
+          "share": 0.0586
+        },
+        {
+          "concept_id": "L1XQ_J64_pUe",
+          "term": "Grönytemaskiner, körvana",
+          "count": 15,
+          "share": 0.0549
+        },
+        {
+          "concept_id": "6Nga_Uap_9dB",
+          "term": "Yrkesbevis, lastmaskiner",
+          "count": 13,
+          "share": 0.0476
+        },
+        {
+          "concept_id": "zve2_ooW_xhy",
+          "term": "Skogsvård",
+          "count": 12,
+          "share": 0.044
+        },
+        {
+          "concept_id": "CQCp_gX8_zQJ",
+          "term": "Växtodling, trädgård",
+          "count": 12,
+          "share": 0.044
+        },
+        {
+          "concept_id": "n2Xz_UYL_JYV",
+          "term": "Parker, skötselvana",
+          "count": 11,
+          "share": 0.0403
+        },
+        {
+          "concept_id": "QuVS_jUY_uMq",
+          "term": "ISA-certifierad arborist",
+          "count": 10,
+          "share": 0.0366
+        },
+        {
+          "concept_id": "9Pxd_4ub_Kkt",
+          "term": "Trädgårdsteknik",
+          "count": 9,
+          "share": 0.033
+        },
+        {
+          "concept_id": "j1Yr_UhC_X16",
+          "term": "Arbetsledarerfarenhet",
+          "count": 9,
+          "share": 0.033
+        },
+        {
+          "concept_id": "Bjhz_qeH_rQR",
+          "term": "Växthusodling",
+          "count": 8,
+          "share": 0.0293
+        },
+        {
+          "concept_id": "jnhn_HSM_2eC",
+          "term": "Skogsplantering",
+          "count": 8,
+          "share": 0.0293
+        },
+        {
+          "concept_id": "hndr_LeJ_so6",
+          "term": "Hästskötsel",
+          "count": 8,
+          "share": 0.0293
+        },
+        {
+          "concept_id": "6md5_wPp_d4S",
+          "term": "Djuruppfödning, lantbruk",
+          "count": 8,
+          "share": 0.0293
+        },
+        {
+          "concept_id": "swHZ_UXk_UaE",
+          "term": "Grävmaskin",
+          "count": 8,
+          "share": 0.0293
+        },
+        {
+          "concept_id": "zauG_HQ3_4So",
+          "term": "Trädgårdsrådgivning",
+          "count": 7,
+          "share": 0.0256
+        },
+        {
+          "concept_id": "us91_jB5_a3A",
+          "term": "Markanläggning",
+          "count": 7,
+          "share": 0.0256
+        },
+        {
+          "concept_id": "xW23_QFV_g9F",
+          "term": "Diplomerad hästskötare",
+          "count": 7,
+          "share": 0.0256
+        },
+        {
+          "concept_id": "J5Xc_doF_TUR",
+          "term": "Fastighetsskötsel",
+          "count": 6,
+          "share": 0.022
+        },
+        {
+          "concept_id": "eXDv_ENc_Vhc",
+          "term": "Trädgårdsingenjörsexamen",
+          "count": 6,
+          "share": 0.022
+        },
+        {
+          "concept_id": "2ZCT_iLL_F2v",
+          "term": "Växthusarbete",
+          "count": 6,
+          "share": 0.022
+        },
+        {
+          "concept_id": "8Yqr_o72_jqv",
+          "term": "Yrkesbevis, grävlastare/Yrkesbevis, grävmaskin",
+          "count": 6,
+          "share": 0.022
+        },
+        {
+          "concept_id": "c7Fv_prd_bBL",
+          "term": "Mästarbrev, trädgårdsanläggare",
+          "count": 6,
+          "share": 0.022
+        },
+        {
+          "concept_id": "oYDh_d6r_cSu",
+          "term": "Traktorkort",
+          "count": 6,
+          "share": 0.022
+        },
+        {
+          "concept_id": "4bwR_JVU_usd",
+          "term": "ESA (Elsäkerhetsanvisningarna)",
+          "count": 6,
+          "share": 0.022
+        }
+      ]
+    },
+    "GazW_2TU_kJw": {
+      "field_term": "Yrken med social inriktning",
+      "ads_with_skills": 1207,
+      "skills": [
+        {
+          "concept_id": "MjPH_341_Zmc",
+          "term": "Socionomexamen",
+          "count": 383,
+          "share": 0.3173
+        },
+        {
+          "concept_id": "dQre_aBF_3dE",
+          "term": "Customer Relationship Management/CRM",
+          "count": 173,
+          "share": 0.1433
+        },
+        {
+          "concept_id": "7H4j_dRM_Vbo",
+          "term": "Receptionsvana",
+          "count": 173,
+          "share": 0.1433
+        },
+        {
+          "concept_id": "atyH_hAn_5xr",
+          "term": "Begravningstjänster",
+          "count": 173,
+          "share": 0.1433
+        },
+        {
+          "concept_id": "Ne8j_XqQ_NPK",
+          "term": "Avtalsjuridik",
+          "count": 173,
+          "share": 0.1433
+        },
+        {
+          "concept_id": "aMyW_hB7_TpU",
+          "term": "Kundtjänst",
+          "count": 114,
+          "share": 0.0944
+        },
+        {
+          "concept_id": "RHeM_P9i_PJb",
+          "term": "Kontakttolkning",
+          "count": 114,
+          "share": 0.0944
+        },
+        {
+          "concept_id": "CaXq_Bbe_T3X",
+          "term": "Rekryteringsadministration",
+          "count": 114,
+          "share": 0.0944
+        },
+        {
+          "concept_id": "FJBT_yzk_BWe",
+          "term": "Uppsökande försäljning",
+          "count": 114,
+          "share": 0.0944
+        },
+        {
+          "concept_id": "MR4H_FFT_mTj",
+          "term": "Omvårdnad",
+          "count": 99,
+          "share": 0.082
+        },
+        {
+          "concept_id": "x289_bKF_ihE",
+          "term": "Allmän omvårdnadserfarenhet",
+          "count": 88,
+          "share": 0.0729
+        },
+        {
+          "concept_id": "QhqV_wji_Efy",
+          "term": "Autismspektrumtillstånd, omsorgserfarenhet/AST, omsorgserfarenhet",
+          "count": 87,
+          "share": 0.0721
+        },
+        {
+          "concept_id": "X3ec_jqv_xRp",
+          "term": "Funktionsnedsättning, omsorgserfarenhet",
+          "count": 71,
+          "share": 0.0588
+        },
+        {
+          "concept_id": "LwJS_Hz5_yDP",
+          "term": "HVB-verksamhet, behandlingserfarenhet",
+          "count": 68,
+          "share": 0.0563
+        },
+        {
+          "concept_id": "E7QH_Hnd_BAC",
+          "term": "Motiverande samtal",
+          "count": 60,
+          "share": 0.0497
+        },
+        {
+          "concept_id": "tKej_gjg_Gyu",
+          "term": "Datoriserad beställningshantering",
+          "count": 59,
+          "share": 0.0489
+        },
+        {
+          "concept_id": "huu9_Uir_rPn",
+          "term": "Fysisk funktionsnedsättning, omsorgserfarenhet",
+          "count": 57,
+          "share": 0.0472
+        },
+        {
+          "concept_id": "axxm_t1P_6WR",
+          "term": "Social dokumentation",
+          "count": 49,
+          "share": 0.0406
+        },
+        {
+          "concept_id": "Xqn7_nQQ_ovW",
+          "term": "Korttidshem/Korttidsboende, LSS",
+          "count": 42,
+          "share": 0.0348
+        },
+        {
+          "concept_id": "enLQ_GrZ_w3S",
+          "term": "Fysisk funktionsnedsättning, vårderfarenhet",
+          "count": 41,
+          "share": 0.034
+        },
+        {
+          "concept_id": "SfoE_zq7_ADN",
+          "term": "Social service och omsorg, områdeskunskap",
+          "count": 38,
+          "share": 0.0315
+        },
+        {
+          "concept_id": "9ShZ_oc6_1Jc",
+          "term": "Intellektuell funktionsnedsättning, omsorgserfarenhet",
+          "count": 38,
+          "share": 0.0315
+        },
+        {
+          "concept_id": "CU49_i2B_7Cv",
+          "term": "Autismspektrumtillstånd, specialpedagogik/AST, specialpedagogik",
+          "count": 34,
+          "share": 0.0282
+        },
+        {
+          "concept_id": "oQm8_Ucv_eSp",
+          "term": "Behandlingshem",
+          "count": 30,
+          "share": 0.0249
+        },
+        {
+          "concept_id": "tg1e_QpF_xdX",
+          "term": "Neuropsykologisk funktionsnedsättning, omsorgserfarenhet",
+          "count": 28,
+          "share": 0.0232
+        },
+        {
+          "concept_id": "Hh2K_Seb_wZQ",
+          "term": "Kognitiv beteendeterapi",
+          "count": 28,
+          "share": 0.0232
+        },
+        {
+          "concept_id": "7wbG_fbz_pon",
+          "term": "Utmanande beteende, omsorgserfarenhet",
+          "count": 25,
+          "share": 0.0207
+        },
+        {
+          "concept_id": "bCVZ_ziY_KHC",
+          "term": "Alternativ och kompletterande kommunikation/AKK",
+          "count": 24,
+          "share": 0.0199
+        },
+        {
+          "concept_id": "Yt2Z_1pY_MNz",
+          "term": "Äldreomsorg",
+          "count": 23,
+          "share": 0.0191
+        },
+        {
+          "concept_id": "qkyH_MC1_YKU",
+          "term": "Barn och ungdom",
+          "count": 23,
+          "share": 0.0191
+        }
+      ]
+    },
+    "ScKy_FHB_7wT": {
+      "field_term": "Hotell, restaurang, storhushåll",
+      "ads_with_skills": 903,
+      "skills": [
+        {
+          "concept_id": "Dxqv_2WA_TYt",
+          "term": "Restaurangkök",
+          "count": 198,
+          "share": 0.2193
+        },
+        {
+          "concept_id": "5fAq_Squ_o7p",
+          "term": "Bordsservering",
+          "count": 133,
+          "share": 0.1473
+        },
+        {
+          "concept_id": "hYpk_RYx_y3V",
+          "term": "Kassavana",
+          "count": 118,
+          "share": 0.1307
+        },
+        {
+          "concept_id": "Bb4Q_Vou_pbq",
+          "term": "A la carte",
+          "count": 70,
+          "share": 0.0775
+        },
+        {
+          "concept_id": "7kNn_jPk_Cm3",
+          "term": "Varmkök",
+          "count": 60,
+          "share": 0.0664
+        },
+        {
+          "concept_id": "hCht_Dye_LMZ",
+          "term": "Gesällbrev, kock",
+          "count": 58,
+          "share": 0.0642
+        },
+        {
+          "concept_id": "1abT_LRk_fg2",
+          "term": "Pizzabakning",
+          "count": 53,
+          "share": 0.0587
+        },
+        {
+          "concept_id": "7H4j_dRM_Vbo",
+          "term": "Receptionsvana",
+          "count": 48,
+          "share": 0.0532
+        },
+        {
+          "concept_id": "kj4Q_nLh_u8Q",
+          "term": "Livsmedelshygien",
+          "count": 47,
+          "share": 0.052
+        },
+        {
+          "concept_id": "GQ9R_2Za_Awt",
+          "term": "Storkök",
+          "count": 43,
+          "share": 0.0476
+        },
+        {
+          "concept_id": "f2Nt_4bK_HNX",
+          "term": "Café",
+          "count": 43,
+          "share": 0.0476
+        },
+        {
+          "concept_id": "mttr_4tL_4hD",
+          "term": "Sushi",
+          "count": 42,
+          "share": 0.0465
+        },
+        {
+          "concept_id": "HtgZ_Ukp_YEX",
+          "term": "Kallkök",
+          "count": 40,
+          "share": 0.0443
+        },
+        {
+          "concept_id": "2dWo_Gof_Pyc",
+          "term": "Black Jack, croupierutbildad",
+          "count": 37,
+          "share": 0.041
+        },
+        {
+          "concept_id": "STwz_WtJ_W4p",
+          "term": "Mästarbrev, kock",
+          "count": 33,
+          "share": 0.0365
+        },
+        {
+          "concept_id": "zeB7_Xk7_wZ5",
+          "term": "Bararbete",
+          "count": 31,
+          "share": 0.0343
+        },
+        {
+          "concept_id": "SogP_82Z_66E",
+          "term": "Vinkunskap",
+          "count": 30,
+          "share": 0.0332
+        },
+        {
+          "concept_id": "dNA9_T9K_JXF",
+          "term": "Enklare matlagningskunskaper",
+          "count": 28,
+          "share": 0.031
+        },
+        {
+          "concept_id": "sqd6_4Kk_b4w",
+          "term": "Frukostbuffé",
+          "count": 28,
+          "share": 0.031
+        },
+        {
+          "concept_id": "ZvbR_g69_jGv",
+          "term": "Cocktails/Drinkar",
+          "count": 26,
+          "share": 0.0288
+        },
+        {
+          "concept_id": "T38R_QfY_piB",
+          "term": "Italienskt kök",
+          "count": 24,
+          "share": 0.0266
+        },
+        {
+          "concept_id": "j1Yr_UhC_X16",
+          "term": "Arbetsledarerfarenhet",
+          "count": 24,
+          "share": 0.0266
+        },
+        {
+          "concept_id": "DmFL_vHQ_j7e",
+          "term": "Pizzeria",
+          "count": 23,
+          "share": 0.0255
+        },
+        {
+          "concept_id": "zJFj_sZ8_z4E",
+          "term": "Thailändskt kök",
+          "count": 19,
+          "share": 0.021
+        },
+        {
+          "concept_id": "HfAs_ZWA_Jvv",
+          "term": "Husmanskost",
+          "count": 18,
+          "share": 0.0199
+        },
+        {
+          "concept_id": "XHQa_Eyb_RFX",
+          "term": "Indiskt kök",
+          "count": 16,
+          "share": 0.0177
+        },
+        {
+          "concept_id": "eKuz_edm_kmi",
+          "term": "Inköpsvana",
+          "count": 15,
+          "share": 0.0166
+        },
+        {
+          "concept_id": "1Zwa_X6Q_Dyk",
+          "term": "Fast food",
+          "count": 15,
+          "share": 0.0166
+        },
+        {
+          "concept_id": "tPU1_wJL_suB",
+          "term": "Försäljningsvana, direktförsäljning konsument",
+          "count": 15,
+          "share": 0.0166
+        },
+        {
+          "concept_id": "zjQb_VwQ_eaC",
+          "term": "Konditorivaror",
+          "count": 15,
+          "share": 0.0166
+        }
+      ]
+    },
+    "wTEr_CBC_bqh": {
+      "field_term": "Industriell tillverkning",
+      "ads_with_skills": 618,
+      "skills": [
+        {
+          "concept_id": "aHCV_VsV_LiD",
+          "term": "Ritningsläsning",
+          "count": 77,
+          "share": 0.1246
+        },
+        {
+          "concept_id": "pgts_2XY_xKi",
+          "term": "Däckbyten",
+          "count": 74,
+          "share": 0.1197
+        },
+        {
+          "concept_id": "JFDz_Uyg_Nmy",
+          "term": "CNC-programmering",
+          "count": 52,
+          "share": 0.0841
+        },
+        {
+          "concept_id": "wpVJ_UXf_uSb",
+          "term": "Fräsning, CNC",
+          "count": 52,
+          "share": 0.0841
+        },
+        {
+          "concept_id": "pGts_PKK_c8W",
+          "term": "Truckvana",
+          "count": 45,
+          "share": 0.0728
+        },
+        {
+          "concept_id": "NH9n_Snj_CNM",
+          "term": "MAG-svetsning",
+          "count": 40,
+          "share": 0.0647
+        },
+        {
+          "concept_id": "SMLj_ds3_Qe7",
+          "term": "Montering, mekanik",
+          "count": 38,
+          "share": 0.0615
+        },
+        {
+          "concept_id": "wZpC_X9a_xzG",
+          "term": "Mätteknik",
+          "count": 37,
+          "share": 0.0599
+        },
+        {
+          "concept_id": "d2yX_cZM_fSy",
+          "term": "Svarvning, CNC",
+          "count": 36,
+          "share": 0.0583
+        },
+        {
+          "concept_id": "WBnc_JXj_MvY",
+          "term": "TIG-svetsning",
+          "count": 33,
+          "share": 0.0534
+        },
+        {
+          "concept_id": "Q1D1_Pdc_rnT",
+          "term": "MIG-svetsning",
+          "count": 30,
+          "share": 0.0485
+        },
+        {
+          "concept_id": "JUpW_QCd_vCM",
+          "term": "MMA, Metallbågsvetsning (pinne)",
+          "count": 27,
+          "share": 0.0437
+        },
+        {
+          "concept_id": "rdtv_EuD_NfB",
+          "term": "Allmänna svetskunskaper",
+          "count": 25,
+          "share": 0.0405
+        },
+        {
+          "concept_id": "SECo_RtS_YpB",
+          "term": "Verkstadsmetallarbete",
+          "count": 22,
+          "share": 0.0356
+        },
+        {
+          "concept_id": "UmrF_gc3_XBh",
+          "term": "Personbilslackering",
+          "count": 19,
+          "share": 0.0307
+        },
+        {
+          "concept_id": "7kqy_wX6_gEP",
+          "term": "EN 287-1, 135 MAG-svetsning/ISO 9606-1",
+          "count": 18,
+          "share": 0.0291
+        },
+        {
+          "concept_id": "CiMi_7ax_tXs",
+          "term": "Utbildningsbevis enligt TLP 10 för truckförare",
+          "count": 18,
+          "share": 0.0291
+        },
+        {
+          "concept_id": "R6ZK_FGC_ovb",
+          "term": "Travers/Lyftanordningar",
+          "count": 16,
+          "share": 0.0259
+        },
+        {
+          "concept_id": "P7h9_sUt_cBp",
+          "term": "CNC-styrsystem",
+          "count": 14,
+          "share": 0.0227
+        },
+        {
+          "concept_id": "fgNG_pGF_8Tf",
+          "term": "CNC-programmering, Heidenhain",
+          "count": 14,
+          "share": 0.0227
+        },
+        {
+          "concept_id": "5x8K_uya_8pn",
+          "term": "EN 287-1, 141 TIG-svetsning/ISO 9606-1",
+          "count": 14,
+          "share": 0.0227
+        },
+        {
+          "concept_id": "1FbS_vYp_DC3",
+          "term": "Monitor, affärssystem",
+          "count": 13,
+          "share": 0.021
+        },
+        {
+          "concept_id": "Q7eC_B7g_QiU",
+          "term": "Certifikat, heta arbeten",
+          "count": 13,
+          "share": 0.021
+        },
+        {
+          "concept_id": "Sj6U_HsZ_5Wy",
+          "term": "Montering av finmekanik",
+          "count": 13,
+          "share": 0.021
+        },
+        {
+          "concept_id": "YXUJ_Mzg_Az9",
+          "term": "Kantpressning",
+          "count": 12,
+          "share": 0.0194
+        },
+        {
+          "concept_id": "x7ih_HZS_VDB",
+          "term": "Lödcertifikat",
+          "count": 12,
+          "share": 0.0194
+        },
+        {
+          "concept_id": "MxmZ_gDv_gMS",
+          "term": "Verkstadsmaskiner",
+          "count": 12,
+          "share": 0.0194
+        },
+        {
+          "concept_id": "59Ws_Uf1_o94",
+          "term": "Laserskärning",
+          "count": 11,
+          "share": 0.0178
+        },
+        {
+          "concept_id": "5jxc_THr_u7h",
+          "term": "CAM-tillverkning",
+          "count": 11,
+          "share": 0.0178
+        },
+        {
+          "concept_id": "HeXq_amc_ABd",
+          "term": "B-truckar",
+          "count": 11,
+          "share": 0.0178
+        }
+      ]
+    },
+    "kJeN_wmw_9wX": {
+      "field_term": "Naturvetenskap",
+      "ads_with_skills": 102,
+      "skills": [
+        {
+          "concept_id": "QSTL_dTq_Jsd",
+          "term": "Radiofysik/Strålningsfysik",
+          "count": 11,
+          "share": 0.1078
+        },
+        {
+          "concept_id": "VQHQ_ScF_Fr5",
+          "term": "Analytisk kemi",
+          "count": 10,
+          "share": 0.098
+        },
+        {
+          "concept_id": "8J5k_b1M_39R",
+          "term": "Biomedicin",
+          "count": 9,
+          "share": 0.0882
+        },
+        {
+          "concept_id": "8Nr2_zE3_FLJ",
+          "term": "Biologiskt laboratoriearbete",
+          "count": 9,
+          "share": 0.0882
+        },
+        {
+          "concept_id": "kTdr_kZC_6uX",
+          "term": "Biomedicinsk analytikerexamen",
+          "count": 9,
+          "share": 0.0882
+        },
+        {
+          "concept_id": "Tnb9_91i_XC8",
+          "term": "Legitimation som biomedicinsk analytiker",
+          "count": 9,
+          "share": 0.0882
+        },
+        {
+          "concept_id": "vusR_W4m_dRq",
+          "term": "Molekylärbiologi",
+          "count": 9,
+          "share": 0.0882
+        },
+        {
+          "concept_id": "6de1_7CM_XL6",
+          "term": "Mikrobiologi",
+          "count": 9,
+          "share": 0.0882
+        },
+        {
+          "concept_id": "AyNP_DoC_owX",
+          "term": "Arbetsmiljörätt",
+          "count": 8,
+          "share": 0.0784
+        },
+        {
+          "concept_id": "tarU_cdW_NQg",
+          "term": "Kemiskt laboratoriearbete",
+          "count": 8,
+          "share": 0.0784
+        },
+        {
+          "concept_id": "Q6DB_h8V_mc7",
+          "term": "GXP (t.ex. GMP, GCP, GLP)",
+          "count": 8,
+          "share": 0.0784
+        },
+        {
+          "concept_id": "DnL5_sXM_WRb",
+          "term": "Bioteknik",
+          "count": 8,
+          "share": 0.0784
+        },
+        {
+          "concept_id": "KZb6_UBs_gP9",
+          "term": "Miljörätt",
+          "count": 7,
+          "share": 0.0686
+        },
+        {
+          "concept_id": "JsAw_WWK_wbb",
+          "term": "Biokemi",
+          "count": 7,
+          "share": 0.0686
+        },
+        {
+          "concept_id": "nA5p_Ske_4zb",
+          "term": "Laboratorieanalyser",
+          "count": 6,
+          "share": 0.0588
+        },
+        {
+          "concept_id": "iSWP_AHA_BSj",
+          "term": "Läkemedelsindustri",
+          "count": 6,
+          "share": 0.0588
+        },
+        {
+          "concept_id": "AiJB_BVf_yfQ",
+          "term": "Läkemedelskemi",
+          "count": 6,
+          "share": 0.0588
+        },
+        {
+          "concept_id": "3Sj1_uuL_y1A",
+          "term": "Miljöledning (ISO 14000-serien)",
+          "count": 5,
+          "share": 0.049
+        },
+        {
+          "concept_id": "3FMJ_axw_bJV",
+          "term": "Miljöfarligt avfall",
+          "count": 5,
+          "share": 0.049
+        },
+        {
+          "concept_id": "7ypy_36c_JNm",
+          "term": "Asbestsanering",
+          "count": 5,
+          "share": 0.049
+        },
+        {
+          "concept_id": "j1Yr_UhC_X16",
+          "term": "Arbetsledarerfarenhet",
+          "count": 5,
+          "share": 0.049
+        },
+        {
+          "concept_id": "W6Au_KRK_f6e",
+          "term": "Transfusionsmedicin",
+          "count": 5,
+          "share": 0.049
+        },
+        {
+          "concept_id": "CFGL_C5S_eLA",
+          "term": "Interventionell röntgen/Radiologi",
+          "count": 5,
+          "share": 0.049
+        },
+        {
+          "concept_id": "qfkh_ZRK_w4W",
+          "term": "Python, programmeringsspråk",
+          "count": 5,
+          "share": 0.049
+        },
+        {
+          "concept_id": "mg8h_fe2_kDM",
+          "term": "Kemiteknik",
+          "count": 5,
+          "share": 0.049
+        },
+        {
+          "concept_id": "T5KD_ZPr_ysR",
+          "term": "Forskning, erfarenhet",
+          "count": 4,
+          "share": 0.0392
+        },
+        {
+          "concept_id": "S4Ku_uT7_yuV",
+          "term": "Miljöteknik",
+          "count": 4,
+          "share": 0.0392
+        },
+        {
+          "concept_id": "chKz_HpD_XL5",
+          "term": "Svenskt medborgarskap",
+          "count": 4,
+          "share": 0.0392
+        },
+        {
+          "concept_id": "dB1q_YY2_zNu",
+          "term": "Processanalys",
+          "count": 4,
+          "share": 0.0392
+        },
+        {
+          "concept_id": "3TSx_fJE_Z26",
+          "term": "Projektledning, erfarenhet",
+          "count": 4,
+          "share": 0.0392
+        }
+      ]
+    }
+  }
+}

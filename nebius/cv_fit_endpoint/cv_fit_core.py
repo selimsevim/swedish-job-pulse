@@ -41,6 +41,7 @@ import cv_fit_llm  # noqa: E402
 INDEX_PATH = os.environ.get("CV_FIT_INDEX_PATH", os.path.join(REPO_ROOT, "data", "cv_match_index.json"))
 CAREER_PATH = os.environ.get("CV_FIT_CAREER_PATH", os.path.join(REPO_ROOT, "data", "career_reality.json"))
 REGIONAL_SPLIT_PATH = os.environ.get("CV_FIT_REGIONAL_SPLIT", os.path.join(REPO_ROOT, "data", "regional_split.json"))
+FIELD_SKILLS_PATH = os.environ.get("CV_FIT_FIELD_SKILLS", os.path.join(REPO_ROOT, "data", "field_skills.json"))
 EMBEDDING_MODEL = os.environ.get("CV_FIT_EMBEDDING_MODEL", "").strip()
 NEURAL_INDEX_PATH = os.environ.get("CV_FIT_NEURAL_INDEX", os.path.join(HERE, "neural_role_index.json"))
 
@@ -148,6 +149,15 @@ class _Engine:
                 self.regional_split = json.load(fh)
         except Exception:
             self.regional_split = {}
+
+        # Skills that real ads request per occupation field (for data-grounded
+        # gap analysis instead of a hand-written role-skill list).
+        self.field_skills = {}
+        try:
+            with open(FIELD_SKILLS_PATH, "r", encoding="utf-8") as fh:
+                self.field_skills = json.load(fh)
+        except Exception:
+            self.field_skills = {}
 
         # Backend selection. backend_kind: tfidf | neural | error.
         self.backend_kind = "tfidf"
@@ -320,6 +330,54 @@ class _Engine:
         if best:
             return f"Prioritise {role} and lead with measurable {proof_text} results."
         return f"Treat {role} as a stretch role and strengthen {proof_text} first."
+
+    @staticmethod
+    def _term_tokens(text):
+        """Canonical skill tokens contained in a piece of text (same matching as
+        extract_cv, but without rebuilding the catalog)."""
+        low = " " + bm.canon(text) + " "
+        return {c for c, variants in bm.SKILLS.items()
+                if any((" " + v + " ") in low or v in low for v in variants)}
+
+    def _field_skill_gaps(self, field_id, profile, role_tokens=None):
+        """Data-grounded gaps: skills that real ads in this occupation field
+        request (data/field_skills.json) but the CV does not evidence. Each gap
+        carries the ad count, so the advice is provable, not invented.
+
+        role_tokens (skills the candidate's matched roles value) is used as a
+        relevance guard: a demanded skill that maps to a canonical skill OUTSIDE
+        those roles is dropped (e.g. broad 'Sales/marketing' ads ask for phone
+        sales, irrelevant to a martech architect). Field-specific items we can't
+        map (licences, certifications) are kept — those are the real niche gaps.
+        """
+        fdata = (self.field_skills.get("fields") or {}).get(field_id)
+        if not fdata or not fdata.get("skills"):
+            return None
+        role_tokens = role_tokens or set()
+        cv_skills = set(profile.get("skills", []))
+        cv_text = " " + bm.canon(profile.get("text", "")) + " "
+        gaps, have, seen = [], [], set()
+        for s in fdata["skills"]:
+            term = s.get("term", "")
+            label = (term.split(",")[0].strip() or term)
+            key = label.lower()
+            if key in seen:                                # dedupe (e.g. 'YKB, lastbil' vs 'YKB, buss')
+                continue
+            seen.add(key)
+            mapped = self._term_tokens(term)               # our tokens this skill maps to
+            if mapped:
+                if mapped & cv_skills:
+                    have.append({"label": label, "count": s.get("count", 0)})
+                    continue
+                if role_tokens and not (mapped & role_tokens):
+                    continue                               # demanded, but off the candidate's lane
+            else:                                          # no canonical mapping -> text match
+                kw = label.lower().split()
+                if any(len(w) >= 4 and (" " + w in cv_text or w + " " in cv_text) for w in kw):
+                    have.append({"label": label, "count": s.get("count", 0)})
+                    continue
+            gaps.append({"label": label, "count": s.get("count", 0)})
+        return {"field_term": fdata.get("field_term"), "gaps": gaps, "have": have}
 
     def _remote_ok(self, field_id):
         """True only when the field's public ad data shows real remote demand —
@@ -498,6 +556,25 @@ class _Engine:
             toks = toks[:5] + ["swedish working proficiency"]
         missing = [pretty(s) for s in toks]
 
+        # Prefer DATA-GROUNDED gaps: compare the CV against the skills REAL ads in
+        # this field request (data/field_skills.json), not a curated list. Each
+        # gap carries the ad count, so the advice is provable. Falls back to the
+        # role-ontology gaps above when the field has no ad-skill data.
+        gap_field = best[0]["field_id"] if best else (adj[0]["field_id"] if adj else None)
+        gap_role_ids = {r["role_id"] for r in best + adj}
+        role_tokens = set()
+        for row in self.catalog:
+            if row["role_id"] in gap_role_ids:
+                role_tokens |= set(row.get("required_skills", [])) | set(row.get("nice_skills", []))
+        # crm_martech / digital_marketing are niches inside the broad, sales-rep-
+        # dominated "Sales/marketing" field (the same domains we proxy regionally),
+        # so the field's ad skills don't represent them — keep the role-model gaps
+        # there. Every other domain uses the real per-field ad demand.
+        use_field_gaps = pdomain not in REGIONAL_PROXY
+        gap_info = self._field_skill_gaps(gap_field, profile, role_tokens) if (gap_field and use_field_gaps) else None
+        if gap_info and gap_info["gaps"]:
+            missing = [g["label"] for g in gap_info["gaps"][:5]]
+
         # CV improvements (domain-agnostic).
         t = (cv_text or "").lower()
         result_words = any(w in t for w in ("increase", "reduc", "grew", "growth", "%", "kpi",
@@ -530,7 +607,11 @@ class _Engine:
         if apply_n:
             plan.append(f"Apply to the {apply_n} best-fit role" + ("s" if apply_n != 1 else "")
                         + " this week" + (f" — e.g. {', '.join(best_titles)}." if best_titles else "."))
-        if missing:
+        if gap_info and gap_info["gaps"]:
+            top = gap_info["gaps"][:2]
+            ev = f" — each requested in {top[-1]['count']}+ {gap_info.get('field_term') or 'field'} ads" if top else ""
+            plan.append(f"Build proof for {' and '.join(g['label'] for g in top)}{ev}.")
+        elif missing:
             plan.append(f"Build proof for {' and '.join(missing[:2])} — a focused project or short course.")
         plan.append("Rewrite your CV: add measurable impact and a clear skills section.")
         if keywords:
