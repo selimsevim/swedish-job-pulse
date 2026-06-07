@@ -11,9 +11,11 @@
     "Marketing Operations Engineer"
   ],
   "adjacent_roles": [
-    "Data Engineer",
+    "Marketing Automation Tech Lead",
+    "Data Integration Specialist",
+    "Marketing Automation Specialist",
     "CRM Analyst",
-    "Senior Developer"
+    "Data Engineer"
   ],
   "not_your_main_lane_roles": [
     "Digital Marketing Specialist",
@@ -22,16 +24,14 @@
     "Content Marketing Specialist"
   ],
   "missing_skills": [
-    "ETL",
     "Segmentation",
-    "Javascript",
-    "Reporting",
-    "Git",
-    "Leadership"
+    "ETL",
+    "Email marketing",
+    "Reporting"
   ],
   "cv_improvements": [
     "Add measurable impact — numbers, %, and what changed because of your work.",
-    "Frame senior scope explicitly — architecture ownership and 'solution architect' positioning."
+    "Frame senior scope explicitly — ownership, scale, and the impact you led."
   ],
   "search_keywords": [
     "Solution Architect Marketing Technology",
@@ -44,7 +44,7 @@
   ],
   "action_plan_7_day": [
     "Apply to 12 best-fit roles this week — e.g. Solution Architect, Marketing Technology, Salesforce Marketing Cloud Consultant.",
-    "Build proof for ETL and Segmentation — a focused project or short course.",
+    "Build proof for Segmentation and ETL — a focused project or short course.",
     "Rewrite your CV: add measurable impact and a clear skills section.",
     "Search Platsbanken for \"Solution Architect Marketing Technology\", \"Martech Architect\", \"SFMC Consultant\", \"Salesforce Marketing Cloud\"."
   ],

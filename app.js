@@ -883,12 +883,33 @@
         const langPen = (r.language_sensitive && profile.weakSwedish) ? 0.12 : 0;
         const fit = Math.max(0, 0.55 * sem + 0.30 * cov - senPen - langPen);
         return {
-          title: r.title, domain: r.domain, field_id: r.field_id, field_label: r.field_label,
+          title: r.title, domain: r.domain, secondaryDomains: r.secondary_domains || [],
+          field_id: r.field_id, field_label: r.field_label,
           seniority: r.seniority, semantic: sem, coverage: cov, gap, fit,
           missing: req.filter((s) => !cv.has(s)),
           languageSensitive: !!r.language_sensitive, keywords: r.search_keywords || []
         };
       }).sort((a, b) => b.fit - a.fit);
+    }
+
+    // Bucketing thresholds — mirror of scripts/build_cv_match_index.py. Driven
+    // by skill COVERAGE and DOMAIN RELATION (both backend-independent), not by
+    // absolute semantic-similarity cutoffs, so it ranks the same regardless of
+    // which backend produced the scores.
+    const CV_ON_BEST_COV = 0.5;     // cover >= half of required skills -> best, in-lane
+    const CV_ON_ADJ_COV = 0.25;     // some in-lane coverage -> adjacent
+    const CV_ADJ_DOMAIN_COV = 0.34; // adjacent-domain role must share >= ~1/3 of its skills
+    const CV_STRETCH_COV = 0.34;    // in-lane role above your seniority -> reachable stretch
+
+    // Relation of a role to the CV's primary domain (mirror of _domain_relation).
+    function crcCvDomainRelation(role, pdomain, adjMap) {
+      if (!pdomain) return "far";
+      const sec = new Set(role.secondaryDomains || []);
+      if (role.domain === pdomain || sec.has(pdomain)) return "on";
+      const adjOfP = adjMap[pdomain] || [];
+      if (adjOfP.includes(role.domain) || adjOfP.some((d) => sec.has(d))) return "adjacent";
+      if ((adjMap[role.domain] || []).includes(pdomain)) return "confusable";
+      return "far";
     }
 
     function crcCvBucket(profile, scored) {
@@ -897,37 +918,33 @@
       let pdomain = null, bw = 0;
       for (const d in weights) if (weights[d] > bw) { bw = weights[d]; pdomain = d; }
       const adjMap = cvIndex?.domain_adjacency || {};
-      const adjacent = new Set(adjMap[pdomain] || []);
-      if (pdomain) adjacent.add(pdomain);
-      // "Confusable" domains: ones that treat your domain as adjacent, but you
-      // don't treat as yours (e.g. digital marketing vs a technical martech CV).
-      // These belong in "not your main lane" even at low fit, to make the point.
-      const confusable = new Set();
-      if (pdomain) {
-        for (const d in adjMap) {
-          if (d !== pdomain && (adjMap[d] || []).includes(pdomain) && !adjacent.has(d)) confusable.add(d);
-        }
-      }
-      const best = [], adj = [], avoid = [];
+      const bestPool = [], adjPool = [], avoidPool = [];
       scored.forEach((s) => {
+        const rel = crcCvDomainRelation(s, pdomain, adjMap);
+        if (rel === "far") return;                       // never shown anywhere
         const overreach = s.gap >= 2 || (s.seniority === "senior" && s.gap > 0);
-        const onLane = s.domain === pdomain;
-        const nearLane = adjacent.has(s.domain);
-        const strong = s.fit >= 0.30 && (s.semantic >= 0.12 || s.coverage >= 0.5);
-        if (overreach) {
-          if (s.fit >= 0.12) avoid.push(s);            // aspirational over-reach with real signal
-        } else if (onLane && strong) {
-          best.push(s);
-        } else if ((onLane || nearLane) && (s.fit >= 0.20 || s.semantic >= 0.15)) {
-          adj.push(s);
-        } else if (confusable.has(s.domain)) {
-          avoid.push(s);                                // looks adjacent but isn't your lane
-        } else if (s.fit >= 0.22) {
-          avoid.push(s);                                // off-lane but a notable, mismatched pull
+        const cov = s.coverage;
+        if (rel === "on") {
+          if (overreach) {
+            if (cov >= CV_STRETCH_COV) adjPool.push(s);  // in-lane but above your level
+          } else if (cov >= CV_ON_BEST_COV) {
+            bestPool.push(s);
+          } else if (cov >= CV_ON_ADJ_COV) {
+            adjPool.push(s);
+          }
+        } else if (rel === "adjacent") {
+          if (!overreach && cov >= CV_ADJ_DOMAIN_COV) adjPool.push(s);
+        } else if (rel === "confusable") {
+          avoidPool.push(s);                              // related-looking but off your lane
         }
-        // else: irrelevant / near-zero fit -> not shown at all
       });
-      return { pdomain, best: best.slice(0, 6), adj: adj.slice(0, 5), avoid: avoid.slice(0, 5) };
+      bestPool.sort((a, b) => b.fit - a.fit);
+      adjPool.sort((a, b) => b.fit - a.fit);
+      avoidPool.sort((a, b) => b.fit - a.fit);
+      const best = bestPool.slice(0, 6);
+      const adj = bestPool.slice(6).concat(adjPool).slice(0, 5); // best overflow stays visible
+      const avoid = avoidPool.slice(0, 5);
+      return { pdomain, best, adj, avoid };
     }
 
     function crcCvDomainLabel(domain) {
@@ -937,18 +954,12 @@
     function crcCvBuildReport(profile) {
       const scored = crcCvRank(profile);
       const { pdomain, best, adj, avoid } = crcCvBucket(profile, scored);
-
-      // Senior CRM / SFMC / Martech / Integration profile: architecture-led
-      // framing + concrete improvement areas (not vague skill tokens).
-      const seniorMartech = profile.seniority === "senior" && pdomain === "crm_martech";
-      const langStated = (profile.languages || []).some((l) => /english/i.test(l)) && profile.swedish !== "none";
+      const isSenior = profile.seniority === "senior";
 
       let tone, mainAnswer;
       if (best.length) {
         tone = "now";
-        mainAnswer = seniorMartech
-          ? "Your CV is strongest for SFMC / Martech Integration and Marketing Technology Architecture roles."
-          : `Your CV is strongest for ${crcCvDomainLabel(pdomain)} roles.`;
+        mainAnswer = `Your CV is strongest for ${crcCvDomainLabel(pdomain)} roles.`;
       } else if (adj.length) {
         tone = "soon";
         mainAnswer = `Your CV is close to ${crcCvDomainLabel(adj[0].domain)} roles — strengthen the proof first.`;
@@ -957,42 +968,32 @@
         mainAnswer = "Your CV doesn't match a clear role family yet — here's what to strengthen.";
       }
 
-      // "Your CV is missing" — display-ready strings.
-      let missing;
-      if (seniorMartech) {
-        // Concrete CV improvement areas for a senior niche profile, never a bare
-        // "Leadership" token.
-        missing = [];
-        if (!langStated) missing.push("state your Swedish and English level");
-        missing.push("add measurable business impact");
-        missing.push("make architecture ownership explicit");
-        if (!profile.skills.includes("data_cloud")) missing.push("broader Salesforce architecture / Data Cloud");
-        missing.push("technical leadership examples");
-        missing = missing.slice(0, 5);
-      } else {
-        // Aggregate role-gap tokens; drop the too-vague "leadership"; prettify.
-        const freq = new Map();
-        [...best, ...adj].forEach((r) => r.missing.forEach((s) => {
-          if (s !== "leadership") freq.set(s, (freq.get(s) || 0) + 1);
-        }));
-        let toks = [...freq.entries()]
-          .sort((a, b) => ((CV_HARD_GAPS.has(b[0]) ? 1 : 0) - (CV_HARD_GAPS.has(a[0]) ? 1 : 0)) || (b[1] - a[1]))
-          .map((e) => e[0]).slice(0, 6);
-        if (profile.weakSwedish && [...best, ...adj].some((r) => r.languageSensitive)) {
-          toks = toks.slice(0, 5); toks.push("swedish working proficiency");
-        }
-        missing = toks.map(crcCvPretty);
+      // "Your CV is missing" — display-ready skill gaps aggregated from the
+      // roles the CV is closest to. Domain-agnostic; never lists a skill the CV
+      // already has (per-role `missing` already excludes the CV's skills).
+      const cvSkillSet = new Set(profile.skills);
+      const freq = new Map();
+      [...best, ...adj].forEach((r) => r.missing.forEach((s) => {
+        if (s === "leadership" || cvSkillSet.has(s)) return;  // vague / already present
+        freq.set(s, (freq.get(s) || 0) + 1);
+      }));
+      let toks = [...freq.entries()]
+        .sort((a, b) => ((CV_HARD_GAPS.has(b[0]) ? 1 : 0) - (CV_HARD_GAPS.has(a[0]) ? 1 : 0)) || (b[1] - a[1]))
+        .map((e) => e[0]).slice(0, 6);
+      if (profile.weakSwedish && [...best, ...adj].some((r) => r.languageSensitive)) {
+        toks = toks.slice(0, 5); toks.push("swedish working proficiency");
       }
+      const missing = toks.map(crcCvPretty);
 
-      // CV weaknesses (heuristics on the raw text + profile).
+      // CV weaknesses (heuristics on the raw text + profile) — domain-agnostic.
       const t = profile.text || "";
       const resultWords = /(increase|increased|reduc|grew|growth|%|procent|\bkpi\b|results?|resultat|saved|boosted|improv|ökade|minskade)/i.test(t);
       const weaknesses = [];
       if (!resultWords) weaknesses.push("Add measurable impact — numbers, %, and what changed because of your work.");
-      if (profile.skills.length < 5) weaknesses.push("Add a clear technical skills section that lists your tools.");
+      if (profile.skills.length < 5) weaknesses.push("Add a clear skills section that lists your tools.");
       if (!profile.languages.length) weaknesses.push("State your Swedish and English level explicitly.");
-      if (profile.seniority === "senior" && pdomain === "crm_martech") {
-        weaknesses.push("Frame senior scope explicitly — architecture ownership and 'solution architect' positioning.");
+      if (isSenior && best.length) {
+        weaknesses.push("Frame senior scope explicitly — ownership, scale, and the impact you led.");
       }
       if (!weaknesses.length) weaknesses.push("Strong structure — focus on closing the missing skills above.");
 
@@ -1004,18 +1005,12 @@
         if (!seen.has(key)) { seen.add(key); keywords.push(k); }
       }));
 
-      // 7-day action plan (max 4).
+      // 7-day action plan (max 4) — domain-agnostic.
       const plan = [];
       const bestTitles = best.slice(0, 2).map((r) => r.title);
-      if (seniorMartech) {
-        plan.push(`Apply to 5–7 high-fit roles this week${bestTitles.length ? ` — e.g. ${bestTitles.join(", ")}` : ""}.`);
-        plan.push("Make platform / integration architecture ownership and measurable business impact explicit on your CV.");
-        plan.push("Add broader Salesforce architecture / Data Cloud if relevant, and state your Swedish and English level.");
-      } else {
-        plan.push(`Apply to ${Math.max(6, best.length * 2)} best-fit roles this week${bestTitles.length ? ` — e.g. ${bestTitles.join(", ")}` : ""}.`);
-        if (missing.length) plan.push(`Build proof for ${missing.slice(0, 2).join(" and ")} — a focused project or short course.`);
-        plan.push("Rewrite your CV: add measurable impact and a clear skills section.");
-      }
+      plan.push(`Apply to ${Math.max(6, best.length * 2)} best-fit roles this week${bestTitles.length ? ` — e.g. ${bestTitles.join(", ")}` : ""}.`);
+      if (missing.length) plan.push(`Build proof for ${missing.slice(0, 2).join(" and ")} — a focused project or short course.`);
+      plan.push("Rewrite your CV: add measurable impact and a clear skills section.");
       if (keywords.length) plan.push(`Search Platsbanken for ${keywords.slice(0, 4).map((k) => `"${k}"`).join(", ")}.`);
 
       const sigOcc = best[0] ? crcTopOccupationInField(best[0].field_id)

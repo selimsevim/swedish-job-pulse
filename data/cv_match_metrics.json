@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-06-05T13:34:13Z",
+  "last_updated": "2026-06-07T15:54:40Z",
   "version": "cv-fit-engine-v2",
   "metrics": {
-    "n_synthetic_cvs": 6,
+    "n_synthetic_cvs": 8,
     "primary_domain_accuracy": 1.0,
     "no_collapse_rate": 1.0,
     "retrieval": "tf-idf cosine over role ontology (multilingual, synonym-expanded)",
@@ -23,9 +23,9 @@
           "Integration Specialist"
         ],
         "adjacent": [
-          "Data Engineer",
-          "CRM Analyst",
-          "Senior Developer"
+          "Marketing Automation Tech Lead",
+          "Data Integration Specialist",
+          "Marketing Automation Specialist"
         ],
         "avoid": [
           "Digital Marketing Specialist",
@@ -44,19 +44,40 @@
         "best": [
           "Marketing Automation Specialist",
           "Campaign Operations Specialist",
-          "Salesforce Marketing Cloud Consultant",
-          "Martech Consultant"
+          "CRM Analyst",
+          "Salesforce Marketing Cloud Consultant"
         ],
         "adjacent": [
-          "CRM Analyst",
           "Marketing Operations Engineer",
-          "Operations Analyst"
+          "Operations Analyst",
+          "Marketing Automation Tech Lead"
         ],
         "avoid": [
-          "Marketing Automation Tech Lead",
-          "Solution Architect, Marketing Technology",
-          "Digital Marketing Specialist"
+          "Digital Marketing Specialist",
+          "SEO Specialist",
+          "Social Media Specialist"
         ]
+      },
+      {
+        "cv": "Data analyst (mid)",
+        "extracted_skills": 9,
+        "seniority": "mid",
+        "primary_domain": "data_analytics",
+        "expected_domain": "data_analytics",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Data Analyst",
+          "BI / Reporting Specialist",
+          "Operations Analyst",
+          "Data Engineer"
+        ],
+        "adjacent": [
+          "Reporting Assistant",
+          "Junior Controller",
+          "Operations Coordinator"
+        ],
+        "avoid": []
       },
       {
         "cv": "Junior developer (entry)",
@@ -68,14 +89,29 @@
         "no_collapse": true,
         "best": [
           "Junior Developer",
-          "Software Developer"
+          "Software Developer",
+          "Integration Specialist",
+          "Data Integration Specialist"
         ],
         "adjacent": [
-          "Integration Specialist"
+          "Senior Developer",
+          "Data Scientist"
         ],
-        "avoid": [
-          "Senior Developer"
-        ]
+        "avoid": []
+      },
+      {
+        "cv": "Teaching assistant (entry)",
+        "extracted_skills": 3,
+        "seniority": "mid",
+        "primary_domain": "education",
+        "expected_domain": "education",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Teaching Assistant"
+        ],
+        "adjacent": [],
+        "avoid": []
       },
       {
         "cv": "Admin / reporting (mid)",
@@ -88,12 +124,13 @@
         "best": [
           "Admin Coordinator",
           "Reporting Assistant",
+          "Operations Analyst",
           "Operations Coordinator"
         ],
         "adjacent": [
           "BI / Reporting Specialist",
-          "Operations Analyst",
-          "Data Analyst"
+          "Data Analyst",
+          "CRM Analyst"
         ],
         "avoid": [
           "Logistics Coordinator",
@@ -125,10 +162,10 @@
         "domain_hit": true,
         "no_collapse": true,
         "best": [
-          "Warehouse Worker"
+          "Warehouse Worker",
+          "Truck Driver"
         ],
         "adjacent": [
-          "Truck Driver",
           "Logistics Coordinator"
         ],
         "avoid": []

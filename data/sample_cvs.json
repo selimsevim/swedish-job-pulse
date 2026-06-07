@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-05T13:34:13Z",
+  "last_updated": "2026-06-07T15:54:40Z",
   "note": "Synthetic, fictional CVs for demoing the CV Job Fit Scanner. No real or personal data.",
   "cvs": [
     {
@@ -11,8 +11,16 @@
       "text": "Alex Persson — Marketing Automation Coordinator, 4 years.\nSalesforce Marketing Cloud, HubSpot, CRM, email marketing. Built segmentation and campaign flows.\nReported KPIs in Excel. English fluent, Swedish basic."
     },
     {
+      "name": "Data analyst (mid)",
+      "text": "Mira Holm — Data Analyst, 4 years.\nSQL, Python, Power BI and Excel. Built dashboards and statistics/regression models.\nReported KPIs to stakeholders. English fluent, Swedish good."
+    },
+    {
       "name": "Junior developer (entry)",
       "text": "Robin Lind — Junior Developer. Recent graduate.\nJavaScript, React, HTML, CSS, Git, some Python and SQL. Built web apps and REST APIs.\nEnglish fluent, Swedish basic."
+    },
+    {
+      "name": "Teaching assistant (entry)",
+      "text": "Sam Nyberg — Elevassistent / Teaching Assistant, 3 years in school.\nPedagogy and childcare (förskola), classroom support and communication.\nSwedish modersmål, English good."
     },
     {
       "name": "Admin / reporting (mid)",

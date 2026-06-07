@@ -614,6 +614,7 @@ def rank_roles(profile, catalog, idf, vectors):
         fit = 0.55 * sem + 0.30 * coverage - sen_pen - lang_pen
         scored.append({
             "role_id": r["role_id"], "title": r["title"], "domain": r["domain"],
+            "secondary_domains": r.get("secondary_domains", []),
             "field_id": r["field_id"], "field_label": r["field_label"],
             "seniority": r["seniority"], "semantic": round(sem, 4),
             "coverage": round(coverage, 3), "gap": gap,
@@ -638,35 +639,86 @@ def primary_domain(profile, scored):
     return best_domain
 
 
+# Bucketing thresholds. Deliberately driven by SKILL COVERAGE and DOMAIN
+# RELATION (both backend-independent) rather than absolute semantic-similarity
+# cutoffs. Neural cosines (BGE-M3) sit higher and flatter than TF-IDF cosines,
+# so absolute semantic thresholds that work for one backend misfire on the
+# other; coverage + domain relation rank the same way regardless of backend.
+ON_BEST_COV = 0.5      # cover >= half of a role's required skills -> best, in-lane
+ON_ADJ_COV = 0.25      # some in-lane coverage -> adjacent (reachable in your lane)
+ADJ_DOMAIN_COV = 0.34  # adjacent-domain role must share >= ~1/3 of its skills to show
+STRETCH_COV = 0.34     # in-lane role above your seniority shown as a reachable stretch
+
+
+def _domain_relation(role_row, pdomain):
+    """Relation of a role to the CV's primary domain, using primary + secondary
+    domains and the (asymmetric) adjacency graph.
+
+      on         -> your lane (same domain, or pdomain is a secondary domain)
+      adjacent   -> a neighbouring domain you can credibly cross into
+      confusable -> a domain that treats yours as adjacent but you don't treat
+                    as yours (e.g. digital marketing vs a technical martech CV)
+      far        -> unrelated domain (never shown)
+    """
+    if not pdomain:
+        return "far"
+    dom = role_row["domain"]
+    sec = set(role_row.get("secondary_domains", []))
+    if dom == pdomain or pdomain in sec:
+        return "on"
+    adj_of_p = DOMAIN_ADJACENCY.get(pdomain, set())
+    if dom in adj_of_p or (sec & adj_of_p):
+        return "adjacent"
+    if pdomain in DOMAIN_ADJACENCY.get(dom, set()):
+        return "confusable"
+    return "far"
+
+
 def bucket(profile, scored):
+    """Assign roles to best / adjacent / not-your-main-lane, domain-agnostically.
+
+    Rules (apply to EVERY domain — no role names, no domain special-casing):
+      * far-domain roles are excluded from all visible buckets (not demoted);
+      * in-lane roles enter "best" by skill coverage, weaker ones drop to adjacent;
+      * a role above your seniority is, at most, a reachable in-lane "stretch";
+      * adjacent-domain roles show only when the CV actually covers their skills;
+      * confusable (related-looking but off-lane) roles are the "not your main
+        lane" list — capped, and only when they carry real retrieval signal.
+    """
     pdomain = primary_domain(profile, scored)
-    adjacent_domains = (DOMAIN_ADJACENCY.get(pdomain, set()) | {pdomain}) if pdomain else set()
-    # "Confusable" domains: treat your domain as adjacent, but you don't treat
-    # as yours (e.g. digital marketing vs a technical martech CV).
-    confusable = set()
-    if pdomain:
-        for d, adj_of_d in DOMAIN_ADJACENCY.items():
-            if d != pdomain and pdomain in adj_of_d and d not in adjacent_domains:
-                confusable.add(d)
-    best, adj, avoid = [], [], []
+    best_pool, adj_pool, avoid_pool = [], [], []
     for s in scored:
+        rel = _domain_relation(s, pdomain)
+        if rel == "far":
+            continue                                  # never shown anywhere
         overreach = s["gap"] >= 2 or (s["seniority"] == "senior" and s["gap"] > 0)
-        on_lane = s["domain"] == pdomain
-        near_lane = s["domain"] in adjacent_domains
-        strong = s["fit"] >= 0.30 and (s["semantic"] >= 0.12 or s["coverage"] >= 0.5)
-        if overreach:
-            if s["fit"] >= 0.12:                     # aspirational over-reach with real signal
-                avoid.append(s)
-        elif on_lane and strong:
-            best.append(s)
-        elif (on_lane or near_lane) and (s["fit"] >= 0.20 or s["semantic"] >= 0.15):
-            adj.append(s)
-        elif s["domain"] in confusable:              # looks adjacent but isn't your lane
-            avoid.append(s)
-        elif s["fit"] >= 0.22:                       # off-lane but a notable, mismatched pull
-            avoid.append(s)
-        # else: irrelevant / near-zero fit -> not shown
-    return pdomain, best[:6], adj[:5], avoid[:5]
+        cov = s["coverage"]
+        if rel == "on":
+            if overreach:
+                if cov >= STRETCH_COV:                # in-lane but above your level
+                    adj_pool.append(s)
+            elif cov >= ON_BEST_COV:
+                best_pool.append(s)
+            elif cov >= ON_ADJ_COV:
+                adj_pool.append(s)
+            # else: weak in-lane signal -> drop
+        elif rel == "adjacent":
+            if not overreach and cov >= ADJ_DOMAIN_COV:
+                adj_pool.append(s)                    # credible cross-domain move
+            # adjacent-domain roles you have no skills for (e.g. a developer
+            # role for a martech CV) -> drop, not shown
+        elif rel == "confusable":
+            # related-looking but off your lane: the domain relation itself is
+            # the signal, so show these in "not your main lane" regardless of
+            # backend (keeps TF-IDF and neural consistent). Capped + fit-sorted.
+            avoid_pool.append(s)
+    best_pool.sort(key=lambda s: s["fit"], reverse=True)
+    adj_pool.sort(key=lambda s: s["fit"], reverse=True)
+    avoid_pool.sort(key=lambda s: s["fit"], reverse=True)
+    best = best_pool[:6]
+    adj = (best_pool[6:] + adj_pool)[:5]              # best overflow stays visible
+    avoid = avoid_pool[:5]
+    return pdomain, best, adj, avoid
 
 
 # ---------------------------------------------------------------------------
@@ -676,7 +728,7 @@ SYNTHETIC_CVS = [
     {
         "name": "SFMC / Martech Integration (senior)",
         "expect_domain": "crm_martech",
-        "must_not_top": {"seo_specialist", "social_media_specialist", "software_developer", "cybersecurity_specialist"},
+        "must_not_top": {"truck_driver", "it_support", "junior_developer", "cybersecurity_specialist"},
         "text": """Sasha Lindqvist — Senior Salesforce Marketing Cloud / Martech Integration Specialist
 8 years in marketing technology and CRM automation.
 Built SFMC journeys with AMPscript and SSJS, integrated systems via REST and SOAP APIs.
@@ -692,11 +744,28 @@ Salesforce Marketing Cloud, HubSpot, CRM, email marketing. Built segmentation an
 Reported KPIs in Excel. English fluent, Swedish basic.""",
     },
     {
+        "name": "Data analyst (mid)",
+        "expect_domain": "data_analytics",
+        "must_not_top": {"truck_driver", "assistant_nurse", "sfmc_consultant", "barista"},
+        "text": """Mira Holm — Data Analyst, 4 years.
+SQL, Python, Power BI and Excel. Built dashboards and statistics/regression models.
+Reported KPIs to stakeholders. English fluent, Swedish good.""",
+    },
+    {
         "name": "Junior developer (entry)",
         "expect_domain": "software",
+        "must_not_top": {"truck_driver", "assistant_nurse", "logistics_coordinator"},
         "text": """Robin Lind — Junior Developer. Recent graduate.
 JavaScript, React, HTML, CSS, Git, some Python and SQL. Built web apps and REST APIs.
 English fluent, Swedish basic.""",
+    },
+    {
+        "name": "Teaching assistant (entry)",
+        "expect_domain": "education",
+        "must_not_top": {"data_analyst", "sfmc_consultant", "truck_driver", "software_developer"},
+        "text": """Sam Nyberg — Elevassistent / Teaching Assistant, 3 years in school.
+Pedagogy and childcare (förskola), classroom support and communication.
+Swedish modersmål, English good.""",
     },
     {
         "name": "Admin / reporting (mid)",
@@ -729,8 +798,10 @@ def evaluate(catalog, idf, vectors):
         pdomain, best, adj, avoid = bucket(profile, scored)
         dom_ok = pdomain == cv["expect_domain"]
         dom_hits += int(dom_ok)
-        top_ids = {s["role_id"] for s in (best + adj)[:5]}
-        no_collapse = not (cv.get("must_not_top", set()) & top_ids)
+        # "must not show" roles must appear in NO visible bucket (best/adjacent/
+        # not-your-lane) — far-domain roles are excluded outright, not demoted.
+        shown_ids = {s["role_id"] for s in best + adj + avoid}
+        no_collapse = not (cv.get("must_not_top", set()) & shown_ids)
         collapse_ok += int(no_collapse)
         rows.append({
             "cv": cv["name"], "extracted_skills": len(profile["skills"]),
