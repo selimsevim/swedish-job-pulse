@@ -486,6 +486,15 @@
     }
     .crc-compact-list li + li { margin-top: 6px; }
 
+    /* "Why this recommendation?" — visible, high up; region line emphasised */
+    .crc-why { border-left: 3px solid var(--crc-go, var(--crc-ink)); padding-left: 14px; }
+    .crc-why-list {
+      margin: 8px 0 0; padding-left: 18px;
+      color: var(--crc-ink); font-size: 0.9rem; line-height: 1.5;
+    }
+    .crc-why-list li + li { margin-top: 6px; }
+    .crc-why-region { font-weight: 600; color: var(--crc-ink); }
+
     /* Data signal — one compact muted line */
     .crc-signal-line {
       margin: 2px 2px 0;

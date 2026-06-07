@@ -1087,11 +1087,14 @@
       const signalHtml = report.signalLine
         ? `<p class="crc-signal-line"><b>Market signal</b> ${escapeHtml(report.signalLine)}</p>` : "";
 
-      const whyHtml = (report.why && report.why.length) ? `
-        <details class="crc-disclosure">
-          <summary>Why this recommendation</summary>
-          <ul class="crc-compact-list">${report.why.slice(0, 3).map((line) => `<li>${escapeHtml(line)}</li>`).join("")}</ul>
-        </details>` : "";
+      // "Why this recommendation?" — visible (not collapsed) and shown high up.
+      // Item 3 is the region strategy, which users treat as key.
+      const why = (report.why || []).slice(0, 3);
+      const whyHtml = why.length ? `
+        <div class="crc-panel crc-why">
+          <p class="crc-panel-label">Why this recommendation?</p>
+          <ul class="crc-why-list">${why.map((line, i) => `<li class="${i === why.length - 1 ? "crc-why-region" : ""}">${escapeHtml(line)}</li>`).join("")}</ul>
+        </div>` : "";
 
       const summary = `<p class="cv-summary"><b>Profile</b> ${escapeHtml(profile.seniority)} · ${escapeHtml(report.domainLabel)} · ${escapeHtml(profile.languages.join(", ") || "language level not stated")}</p>`;
 
@@ -1103,6 +1106,7 @@
             <h3 class="crc-verdict-title">${escapeHtml(report.mainAnswer)}</h3>
           </div>
         </div>
+        ${whyHtml}
         ${signalHtml}
         <div class="crc-panel crc-role-grid">
           ${roleGroup("Best fit", report.best, "")}
@@ -1110,8 +1114,7 @@
           ${roleGroup("Skip for now", report.avoid, "avoid")}
         </div>
         ${focusHtml}
-        ${planHtml}
-        ${whyHtml}`;
+        ${planHtml}`;
       container.hidden = false;
     }
 
