@@ -321,16 +321,28 @@ class _Engine:
             return f"Prioritise {role} and lead with measurable {proof_text} results."
         return f"Treat {role} as a stretch role and strengthen {proof_text} first."
 
-    def _regional_advice(self, outlook, domain_label, region):
+    def _remote_ok(self, field_id):
+        """True only when the field's public ad data shows real remote demand —
+        so we never tell an on-site occupation (warehouse, care) to "go remote"."""
+        occs = [o for o in self.career.get("occupations", []) if o.get("field_id") == field_id]
+        if not occs:
+            return False
+        occ = max(occs, key=lambda o: o.get("opportunity_score", 0))
+        return str(occ.get("remote_signal") or "").lower() in ("strong", "high", "medium")
+
+    def _regional_advice(self, outlook, domain_label, region, remote_ok=False):
         """Deterministic, data-cited regional line built from real ad volumes —
-        so it never overstates a rank-2 region as "the strong market". Returns a
-        single sentence (or None if there's no usable regional data)."""
+        never overstates a rank-2 region, and only suggests remote when the field
+        actually has remote demand. Returns a sentence (or None)."""
         if not outlook:
             return None
         tops = outlook.get("top_regions") or []
+        # remote phrasing is data-gated
+        tail = " or go remote" if remote_ok else ""
+        scope = ", and keep remote roles in scope" if remote_ok else ""
         if outlook.get("data_basis") == "national_only" or not tops:
-            return ("Public ad data isn't broken down by region for this field — "
-                    "search nationally and include remote roles.")
+            base = "Public ad data isn't broken down by region for this field — search nationally"
+            return base + (" and include remote roles." if remote_ok else ".")
         field = domain_label or "these"
         what = "the wider tech market" if outlook.get("data_basis") == "proxy" else f"{field} roles"
         proxy_note = (" (marketing-tech isn't tracked per region, so this uses the wider tech market)"
@@ -341,15 +353,15 @@ class _Engine:
         if region and sel and sel.get("rank"):
             rank, ads, n = sel["rank"], sel.get("ads", 0), sel.get("of")
             if rank == 1:
-                return f"{region} has the most {what} ({ads} ads) — focus here, and keep remote roles in scope{proxy_note}."
+                return f"{region} has the most {what} ({ads} ads) — focus here{scope}{proxy_note}."
             if rank <= 3:
                 return (f"{region} is a solid market for {what} (rank {rank}, {ads} ads), but "
-                        f"{fmt(top1)} has the most — search both, or go remote{proxy_note}.")
+                        f"{fmt(top1)} has the most — search both{tail}{proxy_note}.")
             names = ", ".join(fmt(t) for t in tops[:2])
             return (f"{region} is thin for {what} (rank {rank}/{n}, {ads} ads) — most are in "
-                    f"{names}; search there or go remote{proxy_note}.")
+                    f"{names}; search there{tail}{proxy_note}.")
         names = ", ".join(fmt(t) for t in tops[:2])
-        return f"Most {what} are in {names} — focus there or go remote{proxy_note}."
+        return f"Most {what} are in {names} — focus there{tail}{proxy_note}."
 
     # ---- cross-region demand outlook (facts for the consultant LLM) ----
     def _regional_outlook(self, pdomain, field_id, region):
@@ -554,7 +566,8 @@ class _Engine:
                         + market_signal.replace(" · ", ", ").lower()
                         + "."
                     )
-                advice = self._regional_advice(regional_outlook, domain_name, region)
+                advice = self._regional_advice(
+                    regional_outlook, domain_name, region, remote_ok=self._remote_ok(sig_field))
                 if advice and len(why) >= 3:
                     why[2] = advice
                 main = self._decision_headline(profile, best, adj, market_signal)
