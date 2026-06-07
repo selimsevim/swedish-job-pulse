@@ -1,0 +1,38 @@
+# Grounded-LLM /cv-fit endpoint image (the AI/ML path for the challenge).
+#
+# Deterministic TF-IDF retrieval produces the FACTS (matched roles, skill gaps,
+# market signal, cross-region demand); a self-hosted instruct LLM writes the
+# verdict + "why" + region strategy, constrained to those facts. That makes the
+# Nebius GPU do real work (a grounded LLM / RAG serving endpoint).
+#
+# Built on the official PyTorch CUDA runtime so a Nebius GPU host (L40S) uses the
+# GPU out of the box. torch is already in the base, so the pip step only adds
+# transformers / accelerate (small) — keeps the amd64-on-arm64 build fast.
+#
+# Build from the REPO ROOT (needs scripts/ + data/), targeting amd64:
+#   docker buildx build --platform linux/amd64 \
+#     -f nebius/cv_fit_endpoint/Dockerfile.llm \
+#     -t ghcr.io/<user>/cv-fit-endpoint:llm --push .
+#
+# The model (CV_FIT_LLM_MODEL) is pulled from Hugging Face on first start
+# (like the BGE-M3 image). No secrets, no credentials, no CV storage.
+FROM pytorch/pytorch:2.4.1-cuda12.1-cudnn9-runtime
+
+WORKDIR /app
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    HF_HOME=/app/.hf_home \
+    CV_FIT_LLM_MODEL=Qwen/Qwen2.5-7B-Instruct
+
+COPY nebius/cv_fit_endpoint/requirements-llm.txt ./requirements-llm.txt
+RUN python -m pip install --no-cache-dir --upgrade pip \
+    && python -m pip install --no-cache-dir -r requirements-llm.txt
+
+COPY . /app
+
+# Build the role ontology + index (stdlib only; deterministic retrieval).
+RUN python3 scripts/build_cv_match_index.py
+
+EXPOSE 8080
+WORKDIR /app/nebius/cv_fit_endpoint
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]
