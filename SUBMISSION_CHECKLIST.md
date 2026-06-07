@@ -7,10 +7,10 @@ Project: Swedish Job Pulse - CV-to-Swedish-job-market fit engine
 - Repository URL: `https://github.com/selimsevim/swedish-job-pulse`
 - Live website URL: `TODO` (public host: **Railway** — `app/server.py` serves the frontend and proxies `POST /api/cv-fit` to the Nebius endpoint; set `NEBIUS_CV_FIT_URL` + `NEBIUS_CV_FIT_TOKEN` as Railway variables. Not GitHub Pages.)
 - Nebius Job: ✅ ran on Nebius Serverless AI (platform `cpu-d3`) — state COMPLETED; logs + status in local `challenge_evidence/` (gitignored)
-- Nebius Endpoint `/cv-fit`: ✅ live on Nebius Serverless AI (`cpu-d3`, token auth); `/health` + `/cv-fit` verified; responses in local `challenge_evidence/`
+- Nebius Endpoint `/cv-fit`: ✅ **grounded-LLM endpoint** `swedish-job-pulse-cv-fit-llm` on **GPU `gpu-l40s-d` (1× L40S)**, image `ghcr.io/selimsevim/cv-fit-endpoint:llm`, token auth — deterministic TF-IDF retrieval grounds **Qwen2.5-7B-Instruct**; `/health`, 401, and region-varying `/cv-fit` verified (proof in local `challenge_evidence/`). CPU TF-IDF endpoint `swedish-job-pulse-cv-fit` is the reproducible fallback.
 - Blog post URL: `TODO`
 - Video URL: `TODO`
-- Docker build confirmation: ✅ root + endpoint images build (linux/amd64), run, and are published to public GHCR (`ghcr.io/selimsevim/swedish-job-pulse`, `ghcr.io/selimsevim/cv-fit-endpoint`)
+- Docker build confirmation: ✅ root + endpoint images build (linux/amd64), run, and are published to public GHCR (`ghcr.io/selimsevim/swedish-job-pulse`, `ghcr.io/selimsevim/cv-fit-endpoint` incl. the `:llm` grounded-LLM tag)
 - Rebuild command confirmation: ✅ `./scripts/rebuild_career_reality.sh` passes locally and inside the Nebius Job
 - Metrics summary: ML MAE 90.73 / baseline 80.90; trend acc 0.61 / 0.23; macro-F1 0.48 / 0.12; CV primary-domain 1.0, no-collapse 1.0
 - Known limitations: see "Known Limitations" below

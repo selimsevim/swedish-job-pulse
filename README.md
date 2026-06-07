@@ -22,10 +22,11 @@ Upload a PDF CV, or paste CV text, &rarr; get a one-page job-fit report.
 Three layers:
 
 - **Extraction** &mdash; PDF or pasted CV text is parsed in-browser into `{skills, roles, languages, seniority}`.
-- **Retrieval + ranking** &mdash; the profile is vectorized and matched against a role ontology ([`data/cv_match_index.json`](data/cv_match_index.json)), then reranked by skill overlap, seniority, domain fit and Swedish-language fit, enriched with public demand / crowding / regional / trend signals. The shipped static site uses a reproducible **multilingual TF-IDF vector space** with synonym/domain expansion (so `SFMC == Salesforce Marketing Cloud == Martech` and a technical martech CV is not flattened into "digital marketing"). The hand-written synonym list is a **bootstrap**; the scalable replacement is a **neural embedding model (BGE-M3 / Qwen3) at the Nebius `/cv-fit` endpoint** (no synonym list needed) — see [`nebius/README.md`](nebius/README.md).
+- **Retrieval + ranking** &mdash; the profile is vectorized and matched against a role ontology ([`data/cv_match_index.json`](data/cv_match_index.json)), then reranked by skill overlap, seniority, domain fit and Swedish-language fit, enriched with public demand / crowding / regional / trend signals. Retrieval uses a reproducible **multilingual TF-IDF vector space** with synonym/domain expansion (so `SFMC == Salesforce Marketing Cloud == Martech` and a technical martech CV is not flattened into "digital marketing"). The reranker is **domain-agnostic** — no role names or domain special-casing in code.
+- **Explanation** &mdash; a self-hosted **Qwen2.5-7B-Instruct** at the Nebius `/cv-fit` endpoint turns that evidence into the verdict, the "Why this recommendation?" lines, and a region-aware search strategy — **grounded** in the retrieved facts (it may only use the role titles it is given) — see [`nebius/README.md`](nebius/README.md).
 - **Gap analysis** &mdash; what blocks stronger matches: missing skills, weak proof, language.
 
-**Two modes.** A toggle above the upload box switches between the **Fast local baseline** (in-browser TF-IDF, the default and offline fallback) and **Nebius neural analysis** (server-side BGE-M3 embeddings, called through the Railway proxy at `POST /api/cv-fit`). The neural mode is enabled only when the host has Nebius credentials; otherwise the UI stays on the local baseline and says so. The Nebius token is **never** present in `app.js`, `index.html`, or any other file the browser receives — see [Deploy: Railway + Nebius](#deploy-railway-public-app-host--nebius-ai-backend).
+**One analysis path.** The scanner calls the Railway proxy (`POST /api/cv-fit`), which forwards to the Nebius grounded-LLM endpoint; if the host has no Nebius credentials or the endpoint is down, it **transparently falls back to the in-browser TF-IDF baseline**, and a one-line note says which engine is active. An optional **Region** selector tailors the market signal and search strategy. The Nebius token is **never** present in `app.js`, `index.html`, or any other file the browser receives — see [Deploy: Railway + Nebius](#deploy-railway-public-app-host--nebius-ai-backend).
 
 The report:
 
@@ -252,15 +253,15 @@ the server attaches `Authorization: Bearer $NEBIUS_CV_FIT_TOKEN` before forwardi
 `$NEBIUS_CV_FIT_URL/cv-fit`. The Nebius JSON response is returned to the browser
 unchanged.
 
-**Two analysis modes in the UI** (toggle above the CV upload box):
-
-- **Fast local baseline** — the in-browser TF-IDF matcher. Instant, fully offline,
-  nothing leaves the page. This is the default and the fallback.
-- **Nebius neural analysis** — calls `/api/cv-fit`, which runs the multilingual
-  **BGE-M3** embedding model on Nebius. If the server has no Nebius credentials, or
-  Nebius is unreachable/slow, the UI **transparently falls back to the local
-  baseline** and says so. When unconfigured, the neural toggle is disabled and the UI
-  states that it is using the local baseline.
+**One analysis path, with a graceful fallback.** The UI calls `/api/cv-fit`, which
+the server forwards to the Nebius **grounded-LLM endpoint**: deterministic TF-IDF
+retrieval produces the facts (matched roles, skill gaps, market signal, cross-region
+demand) and a self-hosted **Qwen2.5-7B-Instruct** writes the verdict, the
+"Why this recommendation?" lines, and the region strategy — constrained to those
+facts. An optional **Region** selector tailors it (e.g. a thin local market →
+"search Stockholm / Västra Götaland, or go remote"). If the server has no Nebius
+credentials, or Nebius is unreachable, the app **transparently falls back to the
+in-browser TF-IDF baseline** and a one-line note says which engine is active.
 
 **Railway environment variables** (Project → Variables — server-side only, never
 shipped to the browser):
@@ -353,7 +354,13 @@ Relevant official docs:
 │   ├── process_career_reality.py
 │   └── rebuild_career_reality.sh
 ├── nebius/
-│   └── README.md
+│   ├── README.md
+│   └── cv_fit_endpoint/         # Serverless AI /cv-fit endpoint
+│       ├── app.py               # FastAPI: /cv-fit + /health
+│       ├── cv_fit_core.py       # deterministic TF-IDF retrieval + ranking (the facts)
+│       ├── cv_fit_llm.py        # grounded LLM narrative (Qwen2.5-7B), with fallback
+│       ├── Dockerfile.llm        # grounded-LLM GPU image (cv-fit-endpoint:llm)
+│       └── requirements-llm.txt
 ├── docs/
 │   └── blog-outline.md
 ├── railway.json             # Railway build/deploy config (start command, healthcheck)

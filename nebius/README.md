@@ -23,43 +23,41 @@ No credentials are hardcoded here. Nebius authentication, registry credentials, 
 
 ## Verified deployment
 
-Three workloads were run on Nebius Serverless AI from public GHCR images
-(linux/amd64). There are **two** `/cv-fit` backends, deployed as **two separate
-endpoints** — the stable TF-IDF baseline and the neural BGE-M3 path.
+Run on Nebius Serverless AI from a public GHCR image (linux/amd64). The AI/ML
+path is a **grounded-LLM `/cv-fit` endpoint**: deterministic TF-IDF retrieval
+produces the facts; a self-hosted **Qwen2.5-7B-Instruct** writes the narrative,
+constrained to those facts. A CPU TF-IDF endpoint is the reproducible fallback.
 
 - **Serverless AI Job** `swedish-job-pulse-rebuild` (`cpu-d3` / `4vcpu-16gb`,
   image `ghcr.io/selimsevim/swedish-job-pulse:latest`) — `./scripts/rebuild_career_reality.sh`
   ran end-to-end and reached **COMPLETED**. Logs: **7/7 JSON artifacts validated**;
-  ML MAE 90.73 vs baseline 80.90; ML trend accuracy 0.61 vs 0.23; ML macro-F1
-  0.48 vs 0.12; CV primary-domain accuracy 1.0; CV no-collapse 1.0.
-- **Endpoint 1 — TF-IDF baseline** `swedish-job-pulse-cv-fit` (`cpu-d3` /
-  `4vcpu-16gb`, image `ghcr.io/selimsevim/cv-fit-endpoint:latest`) — **RUNNING**,
-  token-protected. `GET /health` -> `{"status":"ok","backend":"tfidf-fallback","roles":41}`;
-  `POST /cv-fit` -> 200 with the full report for a synthetic SFMC CV;
-  unauthenticated `POST /cv-fit` -> 401. This is the always-on, reproducible path.
-- **Endpoint 2 — neural BGE-M3** `swedish-job-pulse-cv-fit-neural`
+  CV primary-domain accuracy 1.0; CV no-collapse 1.0.
+- **Grounded-LLM Endpoint** `swedish-job-pulse-cv-fit-llm`
   (**GPU `gpu-l40s-d` / `1gpu-16vcpu-96gb`, 1× NVIDIA L40S**, image
-  `ghcr.io/selimsevim/cv-fit-endpoint:neural`) — reached **RUNNING**,
-  token-protected. `GET /health` ->
-  `{"status":"ok","backend":"neural","model":"BAAI/bge-m3","roles":41,"embedding_dim":1024}`;
-  startup log: `neural backend active: BAAI/bge-m3 (dim=1024, roles=41)`.
-  `POST /cv-fit` -> 200; the synthetic SFMC CV maps to **CRM / Martech**
-  (Solution Architect, Marketing Technology → Martech Consultant → SFMC Consultant)
-  and a data-analyst CV stays in **data analytics** (no collapse to education or
-  marketing); unauthenticated -> 401. Warm latency **~0.10 s / request** on the
-  L40S. **The neural endpoint was deleted after the proof to stop GPU billing**
-  (recreate with the command in `challenge_evidence/`, kept out of git).
+  `ghcr.io/selimsevim/cv-fit-endpoint:llm`) — **RUNNING**, token-protected.
+  `GET /health` ->
+  `{"status":"ok","backend":"llm:Qwen/Qwen2.5-7B-Instruct","retrieval":"tfidf-fallback","roles":41,"llm":{"model":"Qwen/Qwen2.5-7B-Instruct","ok":true,"device":"cuda"}}`;
+  unauthenticated `POST /cv-fit` -> 401; warm latency **~1.7 s / request**. The
+  **same senior SFMC CV in different regions yields genuinely different,
+  data-grounded advice** (cross-region demand ranked by real ad volume):
+  *Stockholms län* -> "the strongest local market with 1278 ads"; *Norrbottens /
+  Gotlands län* (thin) -> "few ads here — search Stockholm / Västra Götaland, or
+  go remote". The GPU endpoint bills while running and is deleted after the proof.
+- **CPU TF-IDF endpoint** `swedish-job-pulse-cv-fit` (`cpu-d3` / `4vcpu-16gb`,
+  image `ghcr.io/selimsevim/cv-fit-endpoint:latest`) — **RUNNING**,
+  token-protected. `GET /health` -> `{"status":"ok","backend":"tfidf-fallback","roles":41}`;
+  unauthenticated -> 401. The always-on, reproducible fallback.
 
-**Honest comparison (`data/neural_cv_match_metrics.json`).** Both backends share
-the exact same rerank (semantic + skill overlap + seniority + domain guardrails);
-only the *semantic similarity* differs (TF-IDF cosine vs BGE-M3 cosine). On the
-synthetic CV set they are **tied** — primary-domain accuracy 1.0, no-collapse 1.0,
-top-3 1.0 for both — so **BGE-M3 is not claimed to beat TF-IDF on these metrics.**
-TF-IDF is far cheaper (~sub-millisecond, CPU); BGE-M3 is heavier (GPU, ~0.1 s
-warm). The neural path's real advantage is **learned multilingual paraphrase /
-abbreviation equivalence with no hand-written synonym list** — exactly the
-limitation of the static bootstrap (see "On synonyms" below); the small synthetic
-set does not stress that, so it shows as parity rather than a win.
+**Why grounded generation, and how it stays honest.** Retrieval (which roles
+match) is deterministic and reproducible; the LLM only turns that evidence into
+language, using greedy decoding and constrained to the role titles it is given —
+so no hallucinated roles or numbers. Sales/marketing isn't broken out per region
+in the public ad data, so for martech CVs the regional view reads the closest
+tracked field (**Data/IT**) as a **disclosed proxy** rather than fabricating
+figures. An earlier BGE-M3 embedding endpoint was also exercised on the L40S but
+retired: swapping TF-IDF cosine for neural cosine barely changed the report (the
+rerank dominates), so it did not justify the GPU — the **LLM** is where the GPU
+adds real value.
 
 The trend model is used for direction, not exact vacancy-count prediction
 (baseline persistence has lower count MAE). Both endpoints are token-protected
