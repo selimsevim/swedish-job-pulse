@@ -30,7 +30,7 @@ import os
 import re
 
 MODEL_ID = os.environ.get("CV_FIT_LLM_MODEL", "").strip()
-MAX_NEW_TOKENS = int(os.environ.get("CV_FIT_LLM_MAX_NEW_TOKENS", "512"))
+MAX_NEW_TOKENS = int(os.environ.get("CV_FIT_LLM_MAX_NEW_TOKENS", "700"))
 DEVICE_PREF = os.environ.get("CV_FIT_LLM_DEVICE", "auto").strip().lower()
 
 _SYSTEM = (
@@ -117,21 +117,29 @@ class _LLM:
         except Exception as exc:  # pragma: no cover
             print("[cv-fit] LLM generate failed: " + f"{exc.__class__.__name__}")
             return None
-        return _parse_and_ground(text, evidence)
+        result = _parse_and_ground(text, evidence)
+        if result is None:
+            # No CV text here — only the model's own (non-PII) output head, to
+            # diagnose parse failures from endpoint logs.
+            print("[cv-fit] LLM output unparseable; head=" + repr(text[:280]))
+        return result
 
 
 def _extract_json(text):
-    """Pull the first JSON object out of the model output (tolerates fences)."""
+    """Parse the FIRST JSON object in the model output and ignore any trailing
+    prose (instruct models often add an explanation after the JSON). Tolerates
+    ``` fences. Returns None if the object is malformed/truncated (caller then
+    falls back to the truncation-tolerant regex extractor)."""
     if not text:
         return None
     t = text.strip()
     t = re.sub(r"^```(?:json)?|```$", "", t, flags=re.MULTILINE).strip()
     start = t.find("{")
-    end = t.rfind("}")
-    if start == -1 or end == -1 or end <= start:
+    if start == -1:
         return None
     try:
-        return json.loads(t[start:end + 1])
+        obj, _ = json.JSONDecoder().raw_decode(t[start:])   # stops at end of first object
+        return obj
     except Exception:
         return None
 
