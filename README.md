@@ -11,6 +11,8 @@ It answers one practical question:
 
 This is not a job board and not a generic AI career coach. It is a static website backed by public Arbetsformedlingen / JobTech labour-market data, an occupation demand trend forecast, a role-skill index, and transparent scoring rules for crowding risk, entry-level access, regional fit, remote signal, and skill momentum.
 
+**Hosting.** The public app is deployed on **Railway** (not GitHub Pages): a small FastAPI server serves the static frontend and securely proxies the optional neural CV analysis to **Nebius**. See [Deploy: Railway + Nebius](#deploy-railway-public-app-host--nebius-ai-backend).
+
 ## CV Job Fit Scanner
 
 Upload a PDF CV, or paste CV text, &rarr; get a one-page job-fit report.
@@ -22,6 +24,8 @@ Three layers:
 - **Extraction** &mdash; PDF or pasted CV text is parsed in-browser into `{skills, roles, languages, seniority}`.
 - **Retrieval + ranking** &mdash; the profile is vectorized and matched against a role ontology ([`data/cv_match_index.json`](data/cv_match_index.json)), then reranked by skill overlap, seniority, domain fit and Swedish-language fit, enriched with public demand / crowding / regional / trend signals. The shipped static site uses a reproducible **multilingual TF-IDF vector space** with synonym/domain expansion (so `SFMC == Salesforce Marketing Cloud == Martech` and a technical martech CV is not flattened into "digital marketing"). The hand-written synonym list is a **bootstrap**; the scalable replacement is a **neural embedding model (BGE-M3 / Qwen3) at the Nebius `/cv-fit` endpoint** (no synonym list needed) — see [`nebius/README.md`](nebius/README.md).
 - **Gap analysis** &mdash; what blocks stronger matches: missing skills, weak proof, language.
+
+**Two modes.** A toggle above the upload box switches between the **Fast local baseline** (in-browser TF-IDF, the default and offline fallback) and **Nebius neural analysis** (server-side BGE-M3 embeddings, called through the Railway proxy at `POST /api/cv-fit`). The neural mode is enabled only when the host has Nebius credentials; otherwise the UI stays on the local baseline and says so. The Nebius token is **never** present in `app.js`, `index.html`, or any other file the browser receives — see [Deploy: Railway + Nebius](#deploy-railway-public-app-host--nebius-ai-backend).
 
 The report:
 
@@ -228,6 +232,77 @@ Then open:
 
 The Dockerfile installs dependencies, rebuilds the ML/data artifacts, and serves the static website. It does not require secrets or private data.
 
+## Deploy: Railway (public app host) + Nebius (AI backend)
+
+The public app is hosted on **[Railway](https://railway.app)** — **not** GitHub Pages.
+Railway runs a small FastAPI server ([`app/server.py`](app/server.py)) that does two
+things: it serves the existing static frontend, and it **securely proxies** CV-fit
+requests to the **Nebius** neural `/cv-fit` endpoint. Nebius is the AI/ML backend;
+Railway is the public front door that keeps the Nebius token server-side.
+
+```text
+Browser  →  Railway app (app/server.py)  →  Nebius /cv-fit endpoint
+            ├── serves index.html / app.js / style.css / data/*.json
+            └── POST /api/cv-fit  ──(Authorization: Bearer <token>)──▶  $NEBIUS_CV_FIT_URL/cv-fit
+```
+
+**Why a proxy?** The Nebius endpoint is token-protected. The token must never reach
+the browser, so the frontend calls the **same-origin** route `POST /api/cv-fit`, and
+the server attaches `Authorization: Bearer $NEBIUS_CV_FIT_TOKEN` before forwarding to
+`$NEBIUS_CV_FIT_URL/cv-fit`. The Nebius JSON response is returned to the browser
+unchanged.
+
+**Two analysis modes in the UI** (toggle above the CV upload box):
+
+- **Fast local baseline** — the in-browser TF-IDF matcher. Instant, fully offline,
+  nothing leaves the page. This is the default and the fallback.
+- **Nebius neural analysis** — calls `/api/cv-fit`, which runs the multilingual
+  **BGE-M3** embedding model on Nebius. If the server has no Nebius credentials, or
+  Nebius is unreachable/slow, the UI **transparently falls back to the local
+  baseline** and says so. When unconfigured, the neural toggle is disabled and the UI
+  states that it is using the local baseline.
+
+**Railway environment variables** (Project → Variables — server-side only, never
+shipped to the browser):
+
+| Variable | Example | Purpose |
+|---|---|---|
+| `NEBIUS_CV_FIT_URL` | `https://<endpoint>.nebius.cloud` | Base URL of the Nebius endpoint (**no** trailing `/cv-fit` — the server appends it) |
+| `NEBIUS_CV_FIT_TOKEN` | `…` | Bearer token for the Nebius endpoint |
+| `NEBIUS_CV_FIT_TIMEOUT` | `60` | Optional upstream timeout in seconds (default `60`) |
+
+Railway build/run is configured by [`railway.json`](railway.json) +
+[`nixpacks.toml`](nixpacks.toml): it installs only the lightweight
+[`requirements-railway.txt`](requirements-railway.txt) (`fastapi`, `uvicorn`, `httpx`
+— **not** the ML/data deps) and starts with:
+
+```bash
+uvicorn app.server:app --host 0.0.0.0 --port $PORT
+```
+
+Health check: `GET /api/health` → `{"status":"ok","neural_available":true|false}`
+(reports capability without exposing the URL or token).
+
+**Run the public app locally:**
+
+```bash
+python3 -m venv .venv-railway && source .venv-railway/bin/activate
+python3 -m pip install -r requirements-railway.txt
+
+# Local baseline only (no Nebius): the UI works, neural toggle is disabled.
+uvicorn app.server:app --host 0.0.0.0 --port 8000
+
+# With neural enabled — point at your Nebius endpoint (token stays server-side):
+export NEBIUS_CV_FIT_URL="https://<endpoint>.nebius.cloud"
+export NEBIUS_CV_FIT_TOKEN="<token>"
+uvicorn app.server:app --host 0.0.0.0 --port 8000
+```
+
+Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/). See [`env.example`](env.example)
+for the variable template. **Privacy:** the proxy forwards CV text to Nebius for the
+single request only — it **never logs and never stores** CV text (the uvicorn access
+log records the request path `/api/cv-fit`, not the body).
+
 ## Nebius Serverless AI Mapping
 
 Nebius Serverless AI runs containerized AI workloads as Jobs or Endpoints without managing VMs or clusters. This project maps to that model as batch JSON artifact generation:
@@ -264,6 +339,8 @@ Relevant official docs:
 ├── index.html
 ├── style.css
 ├── app.js
+├── app/                      # Railway public app (static serving + Nebius proxy)
+│   └── server.py             # FastAPI: serves frontend, POST /api/cv-fit → Nebius
 ├── data/
 │   ├── live.json
 │   ├── history.json
@@ -279,6 +356,10 @@ Relevant official docs:
 │   └── README.md
 ├── docs/
 │   └── blog-outline.md
+├── railway.json             # Railway build/deploy config (start command, healthcheck)
+├── nixpacks.toml            # Railway: install only requirements-railway.txt
+├── requirements-railway.txt # Lightweight deps for the Railway app (fastapi/uvicorn/httpx)
+├── env.example              # NEBIUS_CV_FIT_URL / NEBIUS_CV_FIT_TOKEN template
 ├── Dockerfile
 ├── SUBMISSION_CHECKLIST.md
 ├── requirements-ml.txt
@@ -320,6 +401,8 @@ requests==2.32.3
 - No personal data
 - No private data
 - No API keys or tokens required for the local rebuild
+- The Nebius token (`NEBIUS_CV_FIT_TOKEN`) lives **only** in Railway environment variables, read server-side by `app/server.py`. It is never embedded in `app.js`, `index.html`, or any file sent to the browser; `env.example` ships placeholders only.
+- The Railway proxy **never logs and never stores CV text** — it forwards each CV-fit request to Nebius once and returns the response.
 - No `.env` files committed
 - `.gitignore` excludes virtual environments, Python caches, `.DS_Store`, logs, local env files, and old screenshot exports
 

@@ -521,6 +521,45 @@
        dropzone, synthetic-sample buttons, skill/keyword chips and an
        "avoid" role list. Scoped under .cv-* / .crc-rolelist--avoid.
        ==================================================================== */
+    .cv-mode {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .cv-mode-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cv-mode-pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1.5px solid var(--crc-ink);
+      border-radius: 2px;
+      padding: 8px 13px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--crc-ink);
+      background: var(--crc-paper);
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.12s ease, color 0.12s ease;
+    }
+    .cv-mode-pill input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .cv-mode-pill:hover { background: var(--crc-wash); }
+    .cv-mode-pill.is-active { background: var(--crc-ink); color: var(--crc-paper); }
+    .cv-mode-pill.is-disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      border-color: var(--crc-muted);
+      color: var(--crc-muted);
+    }
+    .cv-mode-pill.is-disabled:hover { background: var(--crc-paper); }
+    .cv-mode-note {
+      flex-basis: 100%;
+      margin: 0;
+      font-size: 0.8125rem;
+      color: var(--crc-muted);
+    }
+
     .cv-drop {
       border: 2px dashed var(--crc-ink);
       border-radius: 3px;

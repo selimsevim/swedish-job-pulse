@@ -737,6 +737,7 @@
     // =====================================================================
     let cvIndex = null;
     let cvSamples = [];
+    let cvNeuralAvailable = false;   // set from GET /api/health at init
 
     // Display names for canonical (lower_snake) skill / token ids.
     const CV_PRETTY = {
@@ -1106,14 +1107,31 @@
       container.innerHTML = "";
     }
 
+    function crcCvMode() {
+      const checked = document.querySelector('input[name="cv-mode"]:checked');
+      return checked ? checked.value : "local";
+    }
+
+    // Entry point for all CV inputs (paste / PDF / sample). Dispatches to the
+    // neural Nebius path or the fast local baseline based on the mode toggle.
     function crcCvAnalyseText(text, sourceLabel) {
-      if (!cvIndex) { crcCvSetStatus("CV index not loaded — run scripts/build_cv_match_index.py.", true); return; }
       crcCvClearReport();
       const cleanText = String(text || "").trim();
       if (cleanText.length < 40) {
         crcCvSetStatus("Not enough CV information yet. Add role titles, skills, tools, language level, and recent work or study history.", true);
         return;
       }
+      if (crcCvMode() === "neural" && cvNeuralAvailable) {
+        crcCvAnalyseNeural(cleanText, sourceLabel);
+        return;
+      }
+      crcCvRunLocal(cleanText, sourceLabel, false);
+    }
+
+    // Fast local baseline — in-browser TF-IDF matching. `fellBack` is true when
+    // we reached here because the neural backend was unavailable.
+    function crcCvRunLocal(cleanText, sourceLabel, fellBack) {
+      if (!cvIndex) { crcCvSetStatus("CV index not loaded — run scripts/build_cv_match_index.py.", true); return; }
       const profile = crcCvExtract(cleanText);
       if (!profile.skills.length && !profile.roles.length) {
         crcCvSetStatus("Not enough recognisable CV information yet. Add role titles, skills, tools, language level, and recent work or study history.", true);
@@ -1121,7 +1139,71 @@
       }
       const report = crcCvBuildReport(profile);
       crcCvRenderReport(report, profile);
-      crcCvSetStatus(sourceLabel ? `Analysed ${sourceLabel}. Nothing was uploaded or stored.` : null, false);
+      const prefix = fellBack ? "Neural backend unavailable — showing fast local baseline. " : "";
+      crcCvSetStatus(sourceLabel ? `${prefix}Analysed ${sourceLabel} (local baseline). Nothing was uploaded or stored.` : (prefix || null), false);
+      document.getElementById("cv-results").scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    // Map the Nebius /cv-fit JSON response onto the local report/profile shape
+    // so the same renderer (crcCvRenderReport) draws it.
+    function crcCvNeuralToReport(r) {
+      const best = r.best_fit_roles || [];
+      const adj = r.adjacent_roles || [];
+      const tone = best.length ? "now" : (adj.length ? "soon" : "risky");
+      const ex = r.extracted || {};
+      const report = {
+        tone,
+        mainAnswer: r.main_answer || "",
+        primaryDomain: r.primary_domain || "",
+        domainLabel: r.domain_label || "these",
+        best, adjacent: adj,
+        avoid: r.not_your_main_lane_roles || [],
+        missing: r.missing_skills || [],
+        weaknesses: r.cv_improvements || [],
+        keywords: r.search_keywords || [],
+        plan: r.action_plan_7_day || [],
+        signalLine: r.market_signal || null,
+        tools: ex.tools || []
+      };
+      const profile = {
+        seniority: ex.seniority || "unknown",
+        languages: ex.languages || [],
+        skills: ex.tools || []
+      };
+      return { report, profile };
+    }
+
+    // Nebius neural path: POST the CV text to the same-origin proxy at
+    // /api/cv-fit (the Nebius token lives only on the server). On any failure
+    // we transparently fall back to the local baseline.
+    async function crcCvAnalyseNeural(cleanText, sourceLabel) {
+      crcCvSetStatus("Analysing with the Nebius neural model… nothing is uploaded or stored.", false);
+      let data;
+      try {
+        const res = await fetch("/api/cv-fit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ cv_text: cleanText })
+        });
+        data = await res.json().catch(() => ({}));
+        if (!res.ok || (data && data.fallback === "local")) {
+          throw new Error("neural_unavailable");
+        }
+      } catch (err) {
+        // Do NOT log the CV text or response body. Static message only.
+        console.warn("Neural CV-fit unavailable — falling back to local baseline.");
+        crcCvRunLocal(cleanText, sourceLabel, true);
+        return;
+      }
+      const { report, profile } = crcCvNeuralToReport(data);
+      crcCvRenderReport(report, profile);
+      const backend = data.backend ? ` · ${data.backend}` : "";
+      crcCvSetStatus(
+        sourceLabel
+          ? `Analysed ${sourceLabel} with the Nebius neural model${backend}. Nothing was uploaded or stored.`
+          : null,
+        false
+      );
       document.getElementById("cv-results").scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
@@ -1157,6 +1239,39 @@
       }
     }
 
+    // Reflect server capability in the UI. When the Nebius backend is not
+    // configured, disable the neural pill, force local, and say so clearly.
+    function crcCvApplyNeuralAvailability() {
+      const neuralPill = document.getElementById("cv-mode-neural");
+      const neuralRadio = neuralPill ? neuralPill.querySelector("input") : null;
+      const localRadio = document.querySelector('input[name="cv-mode"][value="local"]');
+      if (!neuralPill || !neuralRadio) return;
+      if (cvNeuralAvailable) {
+        neuralPill.classList.remove("is-disabled");
+        neuralRadio.disabled = false;
+        neuralPill.removeAttribute("title");
+      } else {
+        neuralPill.classList.add("is-disabled");
+        neuralRadio.disabled = true;
+        neuralRadio.checked = false;
+        if (localRadio) localRadio.checked = true;
+        neuralPill.title = "Neural backend not configured on the server.";
+      }
+    }
+
+    // Ask the server (not Nebius directly) whether neural mode is available.
+    // Never receives or exposes any token.
+    async function crcCvCheckNeural() {
+      try {
+        const res = await fetch("/api/health", { cache: "no-store" });
+        if (!res.ok) return false;
+        const data = await res.json();
+        return !!(data && data.neural_available);
+      } catch (_err) {
+        return false;
+      }
+    }
+
     function crcCvInit(index, samples) {
       cvIndex = index || null;
       cvSamples = Array.isArray(samples?.cvs) ? samples.cvs : [];
@@ -1184,6 +1299,24 @@
         });
       }
 
+      // Analysis-mode toggle (Fast local baseline ↔ Nebius neural analysis).
+      const modePills = Array.from(document.querySelectorAll(".cv-mode-pill"));
+      const modeRadios = Array.from(document.querySelectorAll('input[name="cv-mode"]'));
+      const modeNote = document.getElementById("cv-mode-note");
+      const noteFor = (mode) => {
+        if (mode === "neural") return "Server-side multilingual neural embeddings (BGE-M3) via the Nebius endpoint.";
+        if (!cvNeuralAvailable) return "Neural backend unavailable — using the fast local baseline.";
+        return "Runs entirely in your browser — instant, no upload.";
+      };
+      const syncMode = () => {
+        const mode = crcCvMode();
+        modePills.forEach((p) => p.classList.toggle("is-active", !!p.querySelector('input:checked')));
+        if (modeNote) modeNote.textContent = noteFor(mode);
+      };
+      modeRadios.forEach((r) => r.addEventListener("change", syncMode));
+      crcCvApplyNeuralAvailability();
+      syncMode();
+
       const row = document.getElementById("cv-sample-row");
       if (row) {
         row.innerHTML = "";
@@ -1199,11 +1332,13 @@
     }
 
     async function init() {
-      const [data, cvIndexData, cvSampleData] = await Promise.all([
+      const [data, cvIndexData, cvSampleData, neuralOk] = await Promise.all([
         fetchLocalJson("data/career_reality.json"),
         fetchLocalJson("data/cv_match_index.json"),
-        fetchLocalJson("data/sample_cvs.json")
+        fetchLocalJson("data/sample_cvs.json"),
+        crcCvCheckNeural()
       ]);
+      cvNeuralAvailable = neuralOk;
       crcInitSection(data);
       crcCvInit(cvIndexData, cvSampleData);
       const overlay = document.getElementById("loading-overlay");

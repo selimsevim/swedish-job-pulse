@@ -5,7 +5,7 @@ Project: Swedish Job Pulse - CV-to-Swedish-job-market fit engine
 ## Submission Fields To Fill In
 
 - Repository URL: `https://github.com/selimsevim/swedish-job-pulse`
-- Live website URL: `TODO` (static site runs locally and in Docker; not yet hosted)
+- Live website URL: `TODO` (public host: **Railway** — `app/server.py` serves the frontend and proxies `POST /api/cv-fit` to the Nebius endpoint; set `NEBIUS_CV_FIT_URL` + `NEBIUS_CV_FIT_TOKEN` as Railway variables. Not GitHub Pages.)
 - Nebius Job: ✅ ran on Nebius Serverless AI (platform `cpu-d3`) — state COMPLETED; logs + status in local `challenge_evidence/` (gitignored)
 - Nebius Endpoint `/cv-fit`: ✅ live on Nebius Serverless AI (`cpu-d3`, token auth); `/health` + `/cv-fit` verified; responses in local `challenge_evidence/`
 - Blog post URL: `TODO`
