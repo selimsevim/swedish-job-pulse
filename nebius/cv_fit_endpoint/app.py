@@ -45,12 +45,18 @@ def health():
     eng = cv_fit_core.get_engine()
     out = {
         "status": "ok" if eng.backend_kind != "error" else "error",
-        "backend": eng.backend_kind,          # tfidf | neural | error
-        "model": eng.model_name,              # e.g. BAAI/bge-m3 (None for tfidf)
+        "backend": eng.backend,               # human label: llm:<model> | neural:<model> | tfidf-fallback
+        "retrieval": eng.retrieval_backend,    # tfidf-fallback | neural:<model>
         "roles": len(eng.catalog),
     }
+    if eng.model_name:
+        out["embedding_model"] = eng.model_name   # e.g. BAAI/bge-m3
     if eng.embedding_dim:
         out["embedding_dim"] = eng.embedding_dim
+    if eng.llm:                                # grounded LLM generation layer
+        out["llm"] = {"model": eng.llm.model_id, "ok": eng.llm.ok, "device": eng.llm.device}
+        if eng.llm.error:
+            out["llm"]["error"] = eng.llm.error
     if eng.neural_error:
         out["error"] = eng.neural_error
     return out

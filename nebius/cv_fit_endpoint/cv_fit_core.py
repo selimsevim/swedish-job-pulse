@@ -31,6 +31,12 @@ if SCRIPTS_DIR not in sys.path:
 # Reuse the static engine's ontology, tokenizer, scoring and bucketing.
 import build_cv_match_index as bm  # noqa: E402
 
+# Grounded LLM narrative layer (the Nebius GPU path). Importing is cheap — the
+# model only loads when CV_FIT_LLM_MODEL is set.
+if HERE not in sys.path:
+    sys.path.insert(0, HERE)
+import cv_fit_llm  # noqa: E402
+
 INDEX_PATH = os.environ.get("CV_FIT_INDEX_PATH", os.path.join(REPO_ROOT, "data", "cv_match_index.json"))
 CAREER_PATH = os.environ.get("CV_FIT_CAREER_PATH", os.path.join(REPO_ROOT, "data", "career_reality.json"))
 EMBEDDING_MODEL = os.environ.get("CV_FIT_EMBEDDING_MODEL", "").strip()
@@ -134,6 +140,14 @@ class _Engine:
         self._role_emb = None
         if EMBEDDING_MODEL:
             self._load_neural(EMBEDDING_MODEL)
+
+        # Grounded LLM generation layer (Nebius GPU path). Retrieval above stays
+        # deterministic and grounds the model. When the LLM is active it owns the
+        # verdict + "why"; the backend label reflects it.
+        self.retrieval_backend = self.backend
+        self.llm = cv_fit_llm.get_llm() if cv_fit_llm.llm_enabled() else None
+        if self.llm and self.llm.ok:
+            self.backend = "llm:" + self.llm.model_id
 
     @staticmethod
     def _role_text(role):
@@ -363,6 +377,28 @@ class _Engine:
         market_signal = self._market_signal(sig_field, region) if sig_field else None
         why = why_recommendation(profile, domain_name, best, adj, market_signal, region)
 
+        # Grounded LLM narrative: the model rewrites the verdict + "why" using ONLY
+        # the deterministic facts above. Falls back to the deterministic text if
+        # the LLM is disabled, unavailable, or returns something invalid. The
+        # per-request backend label reflects what actually wrote the narrative.
+        backend_label = self.retrieval_backend
+        if self.llm and self.llm.ok and (best or adj):
+            gen = self.llm.generate({
+                "domain": domain_name,
+                "seniority": profile["seniority"],
+                "cv_skills": [pretty(s) for s in profile["skills"][:6]],
+                "best_fit_roles": [r["title"] for r in best[:5]],
+                "adjacent_roles": [r["title"] for r in adj[:3]],
+                "off_lane_roles": [r["title"] for r in avoid[:3]],
+                "missing_skills": missing[:4],
+                "market_signal": market_signal,
+                "region": region,
+            })
+            if gen:
+                main = gen["main_answer"]
+                why = gen["why_recommendation"]
+                backend_label = "llm:" + self.llm.model_id
+
         return {
             "main_answer": main,
             "why_recommendation": why,
@@ -376,7 +412,7 @@ class _Engine:
             "search_keywords": keywords[:7],
             "action_plan_7_day": plan,
             "market_signal": market_signal,
-            "backend": self.backend,
+            "backend": backend_label,
             "extracted": {
                 "seniority": profile["seniority"],
                 "domain": pdomain,
