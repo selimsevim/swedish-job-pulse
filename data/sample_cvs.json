@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-07T22:02:58Z",
+  "last_updated": "2026-06-07T22:13:57Z",
   "note": "Synthetic, fictional CVs for demoing the CV Job Fit Scanner. No real or personal data.",
   "cvs": [
     {
@@ -37,6 +37,22 @@
     {
       "name": "Warehouse / logistics (entry)",
       "text": "Jamie Berg — Lagerarbetare. 2 years warehouse, forklift (truckkort), inventory.\nDriving license. Swedish good, English basic."
+    },
+    {
+      "name": "Security guard / väktare (entry)",
+      "text": "Erik Sand — Väktare / Security Officer, 3 years.\nOrdningsvakt, surveillance and patrol, alarm response, incident reports, access control.\nSwedish good, English basic."
+    },
+    {
+      "name": "Construction worker (entry)",
+      "text": "Sven Holm — Byggnadsarbetare, 6 years.\nConstruction site work, snickare/carpentry, concrete, anläggning. Driving license. Swedish fluent."
+    },
+    {
+      "name": "Cleaner / lokalvårdare (entry)",
+      "text": "Mona Ek — Lokalvårdare / städare, 4 years.\nOffice and facility cleaning, sanitation, hygiene routines. Swedish good."
+    },
+    {
+      "name": "Social worker / socialsekreterare (mid)",
+      "text": "Lisa Berg — Socialsekreterare, 5 years.\nSocial work and casework, client support, documentation/journal, biståndshandläggning.\nSwedish modersmål, English good."
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-06-07T22:02:58Z",
+  "last_updated": "2026-06-07T22:13:57Z",
   "version": "cv-fit-engine-v2",
   "metrics": {
-    "n_synthetic_cvs": 9,
+    "n_synthetic_cvs": 13,
     "primary_domain_accuracy": 1.0,
     "no_collapse_rate": 1.0,
     "retrieval": "tf-idf cosine over role ontology (multilingual, synonym-expanded)",
@@ -170,7 +170,9 @@
           "Assistant Nurse",
           "Registered Nurse"
         ],
-        "adjacent": [],
+        "adjacent": [
+          "Social Worker / Socialsekreterare"
+        ],
         "avoid": []
       },
       {
@@ -188,6 +190,68 @@
         "adjacent": [
           "Logistics Coordinator"
         ],
+        "avoid": [
+          "Security Officer / Väktare",
+          "Security Coordinator"
+        ]
+      },
+      {
+        "cv": "Security guard / väktare (entry)",
+        "extracted_skills": 5,
+        "seniority": "mid",
+        "primary_domain": "security",
+        "expected_domain": "security",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Security Officer / Väktare",
+          "Security Coordinator"
+        ],
+        "adjacent": [],
+        "avoid": []
+      },
+      {
+        "cv": "Construction worker (entry)",
+        "extracted_skills": 3,
+        "seniority": "senior",
+        "primary_domain": "construction",
+        "expected_domain": "construction",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Construction Worker / Byggnadsarbetare",
+          "Carpenter / Snickare"
+        ],
+        "adjacent": [],
+        "avoid": []
+      },
+      {
+        "cv": "Cleaner / lokalvårdare (entry)",
+        "extracted_skills": 1,
+        "seniority": "mid",
+        "primary_domain": "cleaning",
+        "expected_domain": "cleaning",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Cleaner / Lokalvårdare"
+        ],
+        "adjacent": [],
+        "avoid": []
+      },
+      {
+        "cv": "Social worker / socialsekreterare (mid)",
+        "extracted_skills": 3,
+        "seniority": "mid",
+        "primary_domain": "social_care",
+        "expected_domain": "social_care",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Social Worker / Socialsekreterare",
+          "Support Worker / Stödassistent"
+        ],
+        "adjacent": [],
         "avoid": []
       }
     ]

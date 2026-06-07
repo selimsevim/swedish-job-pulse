@@ -146,6 +146,14 @@ FIELDS = {
     "logistics": ("ASGV_zcE_bWf", "Transport / logistics"),
     "education": ("MVqp_eS8_kDZ", "Education"),
     "hospitality": ("ScKy_FHB_7wT", "Hospitality / food"),
+    # Broad Swedish labour market beyond office/IT (real JobTech field ids).
+    "security": ("E7hm_BLq_fqZ", "Security / guarding"),
+    "construction": ("j7Cq_ZJe_GkT", "Construction"),
+    "manufacturing": ("wTEr_CBC_bqh", "Manufacturing"),
+    "maintenance": ("yhCP_AqT_tns", "Installation / maintenance"),
+    "cleaning": ("whao_Q6A_ScE", "Cleaning / sanitation"),
+    "social_care": ("GazW_2TU_kJw", "Social work"),
+    "beauty": ("Uuf1_GMh_Uvw", "Beauty / personal care"),
 }
 
 # Domain adjacency (for bucketing into adjacent vs not-your-lane). Asymmetric on
@@ -157,10 +165,18 @@ DOMAIN_ADJACENCY = {
     "admin_ops": {"crm_martech", "data_analytics", "sales"},
     "sales": {"crm_martech", "admin_ops"},
     "digital_marketing": {"crm_martech", "sales"},
-    "healthcare": set(),
-    "logistics": {"admin_ops"},
-    "education": set(),
-    "hospitality": {"sales"},
+    "healthcare": {"social_care"},
+    "logistics": {"admin_ops", "manufacturing", "maintenance"},
+    "education": {"social_care"},
+    "hospitality": {"sales", "cleaning"},
+    # Broad market
+    "security": {"maintenance", "logistics"},
+    "construction": {"maintenance", "manufacturing"},
+    "manufacturing": {"construction", "maintenance", "logistics"},
+    "maintenance": {"construction", "manufacturing"},
+    "cleaning": {"maintenance", "hospitality"},
+    "social_care": {"healthcare", "education"},
+    "beauty": {"hospitality"},
 }
 
 DOMAIN_LABEL = {
@@ -168,6 +184,10 @@ DOMAIN_LABEL = {
     "sales": "sales", "data_analytics": "analytics / BI", "software": "software / IT",
     "admin_ops": "admin / operations", "healthcare": "healthcare",
     "logistics": "logistics", "education": "education", "hospitality": "hospitality",
+    "security": "security / guarding", "construction": "construction",
+    "manufacturing": "manufacturing", "maintenance": "installation / maintenance",
+    "cleaning": "cleaning / sanitation", "social_care": "social work / care",
+    "beauty": "beauty / personal care",
 }
 
 
@@ -464,6 +484,100 @@ def build_catalog():
              aliases=["barista", "café", "servitör", "waiter"],
              kw=["Barista", "Servitör"],
              terms=["café", "coffee", "service", "customers"]),
+
+        # --- Security / guarding (väktare, ordningsvakt, night guard) -------
+        role("security_officer", "Security Officer / Väktare", "security", "entry",
+             ["guarding", "surveillance"],
+             ["communication", "incident_response", "driving_license"],
+             lang=True,
+             aliases=["väktare", "security officer", "security guard", "ordningsvakt", "nightguard", "night guard", "skyddsvakt"],
+             kw=["Väktare", "Security Officer", "Ordningsvakt"],
+             terms=["security", "guarding", "surveillance", "patrol", "alarm", "safety", "bevakning"]),
+        role("security_coordinator", "Security Coordinator", "security", "mid",
+             ["guarding", "surveillance", "coordination"],
+             ["incident_response", "planning"],
+             lang=True,
+             aliases=["security coordinator", "säkerhetssamordnare", "skyddsledare", "security supervisor"],
+             kw=["Security Coordinator", "Säkerhetssamordnare"],
+             terms=["security", "coordination", "risk", "safety", "planning", "bevakning"]),
+
+        # --- Construction / trades ------------------------------------------
+        role("construction_worker", "Construction Worker / Byggnadsarbetare", "construction", "entry",
+             ["construction_work"],
+             ["carpentry", "driving_license"],
+             aliases=["byggnadsarbetare", "construction worker", "byggarbetare", "anläggningsarbetare"],
+             kw=["Byggnadsarbetare", "Construction Worker"],
+             terms=["construction", "building", "site", "concrete", "anläggning", "bygg"]),
+        role("carpenter", "Carpenter / Snickare", "construction", "mid",
+             ["carpentry", "construction_work"],
+             ["driving_license"],
+             aliases=["snickare", "carpenter", "träarbetare"],
+             kw=["Snickare", "Carpenter"],
+             terms=["carpentry", "wood", "construction", "snickeri", "bygg"]),
+        role("electrician", "Electrician / Elektriker", "construction", "mid",
+             ["electrical"],
+             ["maintenance", "construction_work"],
+             secondary=["maintenance"],
+             aliases=["elektriker", "electrician", "el-tekniker", "installationselektriker"],
+             kw=["Elektriker", "Electrician"],
+             terms=["electrical", "wiring", "installation", "el", "elinstallation"]),
+
+        # --- Manufacturing / industry --------------------------------------
+        role("production_operator", "Production Operator / Operatör", "manufacturing", "entry",
+             ["machine_operation"],
+             ["welding"],
+             aliases=["operatör", "production operator", "industriarbetare", "montör", "maskinoperatör", "produktionsmedarbetare"],
+             kw=["Operatör", "Production Operator", "Montör"],
+             terms=["production", "machine", "assembly", "manufacturing", "industri", "montering"]),
+        role("welder", "Welder / Svetsare", "manufacturing", "mid",
+             ["welding"],
+             ["machine_operation"],
+             aliases=["svetsare", "welder", "svets"],
+             kw=["Svetsare", "Welder"],
+             terms=["welding", "metal", "fabrication", "svets", "mig", "mag"]),
+
+        # --- Installation / maintenance ------------------------------------
+        role("maintenance_tech", "Maintenance Technician / Fastighetsskötare", "maintenance", "mid",
+             ["maintenance"],
+             ["electrical", "construction_work", "driving_license"],
+             lang=True,
+             aliases=["fastighetsskötare", "maintenance technician", "drifttekniker", "vaktmästare", "facility technician", "fastighetstekniker"],
+             kw=["Fastighetsskötare", "Maintenance Technician", "Drifttekniker"],
+             terms=["maintenance", "facilities", "repair", "drift", "fastighet", "underhåll"]),
+
+        # --- Cleaning / sanitation ------------------------------------------
+        role("cleaner", "Cleaner / Lokalvårdare", "cleaning", "entry",
+             ["cleaning"],
+             ["communication"],
+             lang=True,
+             aliases=["lokalvårdare", "städare", "cleaner", "city cleaner", "saneringstekniker", "städ"],
+             kw=["Lokalvårdare", "Städare", "Cleaner"],
+             terms=["cleaning", "sanitation", "hygiene", "lokalvård", "sanering"]),
+
+        # --- Social work / care ---------------------------------------------
+        role("support_worker", "Support Worker / Stödassistent", "social_care", "entry",
+             ["social_work"],
+             ["documentation", "communication"],
+             lang=True,
+             aliases=["stödassistent", "support worker", "boendestödjare", "behandlingsassistent", "personlig assistent"],
+             kw=["Stödassistent", "Support Worker", "Boendestödjare"],
+             terms=["support", "care", "social", "assistance", "stöd", "omsorg"]),
+        role("social_worker", "Social Worker / Socialsekreterare", "social_care", "mid",
+             ["social_work", "documentation"],
+             ["communication", "coordination"],
+             lang=True,
+             aliases=["socialsekreterare", "social worker", "kurator", "biståndshandläggare"],
+             kw=["Socialsekreterare", "Social Worker", "Kurator"],
+             terms=["social work", "casework", "client", "welfare", "documentation", "socialtjänst"]),
+
+        # --- Beauty / personal care -----------------------------------------
+        role("hairdresser", "Hairdresser / Frisör", "beauty", "entry",
+             ["hairdressing"],
+             ["customer_service"],
+             lang=True,
+             aliases=["frisör", "hairdresser", "barber", "hudterapeut", "stylist"],
+             kw=["Frisör", "Hairdresser"],
+             terms=["hair", "beauty", "styling", "skönhetsvård", "salon", "salong"]),
     ]
 
 
@@ -500,6 +614,18 @@ SKILLS = {
     "stakeholder": ["stakeholder", "intressent"], "office_tools": ["powerpoint", "word", "officepaket"],
     "administration": ["administration", "administrativ", "admin"], "pedagogy": ["pedagogy", "pedagogik", "teaching"],
     "childcare": ["childcare", "förskola"],
+    # --- broad market skills (Swedish + English surface forms) ---
+    "guarding": ["guarding", "väktare", "ordningsvakt", "security guard", "nightguard", "night guard", "skyddsvakt"],
+    "surveillance": ["surveillance", "cctv", "patrol", "patrullering", "bevakning", "larm", "alarm"],
+    "construction_work": ["construction", "byggnadsarbetare", "byggarbetare", "anläggning", "bygg"],
+    "carpentry": ["carpentry", "snickare", "snickeri", "carpenter", "träarbete"],
+    "electrical": ["electrical", "elektriker", "electrician", "el-arbete", "elinstallation"],
+    "machine_operation": ["machine operation", "operatör", "montör", "maskinoperatör", "cnc", "montering"],
+    "welding": ["welding", "svets", "svetsare", "welder", "mig/mag"],
+    "cleaning": ["cleaning", "städ", "lokalvård", "lokalvårdare", "städare", "sanitation", "sanering"],
+    "maintenance": ["maintenance", "fastighetsskötsel", "fastighetsskötare", "vaktmästare", "drifttekniker", "underhåll"],
+    "social_work": ["social work", "socialt arbete", "socialsekreterare", "behandlingsassistent", "boendestöd", "stödassistent", "casework", "biståndshandläggare"],
+    "hairdressing": ["hairdressing", "frisör", "barber", "hudterapeut", "stylist", "skönhetsvård"],
 }
 
 
@@ -793,6 +919,36 @@ Patient care and documentation (journal). Swedish modersmål, English basic.""",
         "expect_domain": "logistics",
         "text": """Jamie Berg — Lagerarbetare. 2 years warehouse, forklift (truckkort), inventory.
 Driving license. Swedish good, English basic.""",
+    },
+    {
+        "name": "Security guard / väktare (entry)",
+        "expect_domain": "security",
+        "must_not_top": {"software_developer", "warehouse_worker", "assistant_nurse"},
+        "text": """Erik Sand — Väktare / Security Officer, 3 years.
+Ordningsvakt, surveillance and patrol, alarm response, incident reports, access control.
+Swedish good, English basic.""",
+    },
+    {
+        "name": "Construction worker (entry)",
+        "expect_domain": "construction",
+        "must_not_top": {"data_analyst", "sfmc_consultant", "assistant_nurse"},
+        "text": """Sven Holm — Byggnadsarbetare, 6 years.
+Construction site work, snickare/carpentry, concrete, anläggning. Driving license. Swedish fluent.""",
+    },
+    {
+        "name": "Cleaner / lokalvårdare (entry)",
+        "expect_domain": "cleaning",
+        "must_not_top": {"data_analyst", "truck_driver", "registered_nurse"},
+        "text": """Mona Ek — Lokalvårdare / städare, 4 years.
+Office and facility cleaning, sanitation, hygiene routines. Swedish good.""",
+    },
+    {
+        "name": "Social worker / socialsekreterare (mid)",
+        "expect_domain": "social_care",
+        "must_not_top": {"data_analyst", "truck_driver", "sfmc_consultant"},
+        "text": """Lisa Berg — Socialsekreterare, 5 years.
+Social work and casework, client support, documentation/journal, biståndshandläggning.
+Swedish modersmål, English good.""",
     },
 ]
 

@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-07T22:02:58Z",
+  "last_updated": "2026-06-07T22:13:57Z",
   "version": "cv-fit-engine-v2",
   "retrieval": "tf-idf-cosine",
   "domain_label": {
@@ -12,7 +12,14 @@
     "healthcare": "healthcare",
     "logistics": "logistics",
     "education": "education",
-    "hospitality": "hospitality"
+    "hospitality": "hospitality",
+    "security": "security / guarding",
+    "construction": "construction",
+    "manufacturing": "manufacturing",
+    "maintenance": "installation / maintenance",
+    "cleaning": "cleaning / sanitation",
+    "social_care": "social work / care",
+    "beauty": "beauty / personal care"
   },
   "domain_adjacency": {
     "crm_martech": [
@@ -43,13 +50,48 @@
       "crm_martech",
       "sales"
     ],
-    "healthcare": [],
-    "logistics": [
-      "admin_ops"
+    "healthcare": [
+      "social_care"
     ],
-    "education": [],
+    "logistics": [
+      "admin_ops",
+      "maintenance",
+      "manufacturing"
+    ],
+    "education": [
+      "social_care"
+    ],
     "hospitality": [
+      "cleaning",
       "sales"
+    ],
+    "security": [
+      "logistics",
+      "maintenance"
+    ],
+    "construction": [
+      "maintenance",
+      "manufacturing"
+    ],
+    "manufacturing": [
+      "construction",
+      "logistics",
+      "maintenance"
+    ],
+    "maintenance": [
+      "construction",
+      "manufacturing"
+    ],
+    "cleaning": [
+      "hospitality",
+      "maintenance"
+    ],
+    "social_care": [
+      "education",
+      "healthcare"
+    ],
+    "beauty": [
+      "hospitality"
     ]
   },
   "synonyms": [
@@ -235,223 +277,346 @@
     "your"
   ],
   "idf": {
-    "account": 4.04452,
-    "account_management": 3.63906,
-    "accounting": 4.04452,
-    "admin": 3.63906,
-    "admin_ops": 2.94591,
-    "administration": 4.04452,
-    "administrative": 4.04452,
-    "administrator": 4.04452,
-    "ads": 4.04452,
-    "ampscript": 4.04452,
-    "analyst": 3.35138,
-    "analytics": 3.63906,
-    "analytiker": 3.63906,
-    "apis": 2.33977,
-    "architect": 4.04452,
-    "architecture": 3.35138,
-    "assistant": 3.12823,
-    "automation": 3.35138,
-    "barista": 4.04452,
-    "barnsk": 4.04452,
-    "bi": 4.04452,
-    "budget": 4.04452,
-    "business": 4.04452,
-    "caf": 4.04452,
-    "campaign": 2.94591,
-    "care": 3.63906,
-    "chauff": 4.04452,
-    "childcare": 4.04452,
-    "children": 4.04452,
-    "cicd": 3.63906,
-    "classroom": 4.04452,
-    "clients": 4.04452,
-    "cloud": 2.43508,
-    "code": 3.35138,
-    "coffee": 4.04452,
-    "communication": 2.94591,
-    "community": 4.04452,
-    "consultant": 3.35138,
-    "content": 3.12823,
-    "controller": 4.04452,
-    "coordination": 3.12823,
-    "coordinator": 2.94591,
-    "copywriter": 4.04452,
-    "copywriting": 4.04452,
-    "crm": 2.25276,
-    "crm_": 2.17272,
-    "customer": 4.04452,
-    "customer_service": 3.63906,
-    "customers": 4.04452,
-    "cyber": 4.04452,
-    "cybersecurity": 4.04452,
-    "dashboards": 3.35138,
-    "data": 2.43508,
-    "data_analyst": 4.04452,
-    "data_analytics": 2.65823,
-    "data_cloud": 4.04452,
-    "data_engineer": 4.04452,
-    "data_scientist": 4.04452,
-    "data_visualization": 3.35138,
-    "dataanalytiker": 4.04452,
-    "dataingenj": 4.04452,
-    "delivery": 4.04452,
-    "design": 4.04452,
-    "desk": 4.04452,
-    "developer": 2.94591,
-    "devops": 4.04452,
-    "digital": 4.04452,
-    "digital_marketing": 3.12823,
-    "docker": 3.12823,
-    "documentation": 3.63906,
-    "driver": 4.04452,
-    "driving_license": 4.04452,
-    "editorial": 4.04452,
-    "education": 4.04452,
-    "elderly": 4.04452,
-    "elderly_care": 4.04452,
-    "elevassistent": 4.04452,
-    "email": 3.35138,
-    "email_marketing": 3.12823,
-    "engineer": 2.65823,
-    "etl": 3.63906,
-    "excel": 2.25276,
-    "finance": 4.04452,
-    "financial_analysis": 4.04452,
-    "forklift": 3.63906,
-    "git": 3.12823,
-    "google_analytics": 2.94591,
-    "healthcare": 3.63906,
-    "helpdesk": 4.04452,
-    "hemtj": 4.04452,
-    "hospitality": 4.04452,
-    "html_css": 3.63906,
-    "incident": 4.04452,
-    "incident_response": 4.04452,
-    "infrastructure": 4.04452,
-    "innes": 4.04452,
-    "instagram": 4.04452,
-    "integration": 2.43508,
-    "inventory": 3.63906,
-    "it": 4.04452,
-    "java": 4.04452,
-    "javascript": 3.35138,
-    "journeys": 4.04452,
-    "junior": 3.63906,
-    "keywords": 4.04452,
-    "koordinator": 3.63906,
-    "kpi": 3.63906,
-    "kubernetes": 4.04452,
-    "kundansvarig": 4.04452,
-    "lager": 4.04452,
-    "lagerarbetare": 4.04452,
-    "lastbilsf": 4.04452,
-    "lead": 3.63906,
-    "leadership": 3.35138,
-    "legitimerad": 4.04452,
-    "linux": 3.35138,
-    "ljare": 4.04452,
-    "logistics": 3.35138,
-    "logistikkoordinator": 4.04452,
-    "machine_learning": 4.04452,
-    "manager": 3.35138,
-    "marketing": 3.12823,
-    "marketing_automation": 2.17272,
-    "marknadsf": 4.04452,
-    "martech": 2.17272,
-    "medication": 4.04452,
-    "ml": 4.04452,
-    "models": 4.04452,
-    "negotiation": 4.04452,
-    "network": 4.04452,
-    "networking": 3.63906,
-    "nst": 4.04452,
-    "nurse": 3.63906,
-    "nursing": 4.04452,
-    "office": 4.04452,
-    "office_tools": 3.63906,
-    "operations": 3.12823,
-    "operativ": 3.63906,
-    "ops": 4.04452,
-    "patient": 4.04452,
-    "patient_care": 3.63906,
-    "pedagogy": 4.04452,
-    "picking": 4.04452,
-    "pipeline": 4.04452,
-    "pipelines": 3.35138,
-    "planning": 3.35138,
-    "platform": 3.63906,
-    "posts": 4.04452,
-    "power_bi": 2.79176,
-    "process": 3.63906,
-    "programmer": 4.04452,
-    "project_management": 4.04452,
-    "python": 2.54045,
-    "qa": 4.04452,
-    "ranking": 4.04452,
-    "rapporteringsassistent": 4.04452,
-    "rarassistent": 4.04452,
-    "rare": 3.63906,
-    "rdbitr": 4.04452,
-    "react": 4.04452,
-    "registered": 4.04452,
-    "relationship": 4.04452,
-    "reporting": 2.33977,
-    "rest": 3.63906,
-    "sales": 3.63906,
-    "salesforce": 3.35138,
-    "scheduling": 4.04452,
-    "school": 4.04452,
-    "scientist": 4.04452,
-    "search": 4.04452,
-    "security": 4.04452,
-    "segmentation": 3.35138,
-    "selenium": 4.04452,
-    "senior": 4.04452,
-    "seo": 3.12823,
-    "service": 3.63906,
-    "servit": 4.04452,
-    "sfmc": 2.65823,
-    "sjuksk": 4.04452,
-    "soap": 3.63906,
-    "soc": 4.04452,
-    "social_media": 3.12823,
-    "software": 2.17272,
-    "solution_architect": 4.04452,
-    "specialist": 2.54045,
-    "sql": 1.8473,
-    "ssjs": 4.04452,
-    "stakeholder": 4.04452,
-    "statistics": 3.35138,
-    "supply_chain": 3.63906,
-    "support": 3.63906,
-    "supporttekniker": 4.04452,
-    "systems": 4.04452,
-    "systemutvecklare": 4.04452,
-    "tare": 4.04452,
-    "teaching": 4.04452,
-    "team": 4.04452,
-    "tech": 3.63906,
-    "technical": 4.04452,
-    "technician": 4.04452,
-    "technology": 3.63906,
-    "terska": 3.63906,
-    "test": 4.04452,
-    "test_automation": 4.04452,
-    "testare": 4.04452,
-    "testing": 4.04452,
-    "threats": 4.04452,
-    "ticketing": 4.04452,
-    "trainee": 4.04452,
-    "transport": 4.04452,
-    "troubleshooting": 4.04452,
-    "truck": 4.04452,
-    "undersk": 4.04452,
-    "utvecklare": 4.04452,
-    "waiter": 4.04452,
-    "warehouse": 3.63906,
-    "worker": 4.04452
+    "account": 4.29584,
+    "account_management": 3.89037,
+    "accounting": 4.29584,
+    "admin": 3.89037,
+    "admin_ops": 3.19722,
+    "administration": 4.29584,
+    "administrative": 4.29584,
+    "administrator": 4.29584,
+    "ads": 4.29584,
+    "alarm": 4.29584,
+    "ampscript": 4.29584,
+    "analyst": 3.60269,
+    "analytics": 3.89037,
+    "analytiker": 3.89037,
+    "anl": 4.29584,
+    "apis": 2.59109,
+    "arbetare": 4.29584,
+    "architect": 4.29584,
+    "architecture": 3.60269,
+    "assembly": 4.29584,
+    "assistance": 4.29584,
+    "assistant": 3.37955,
+    "assistent": 4.29584,
+    "automation": 3.60269,
+    "barber": 4.29584,
+    "barista": 4.29584,
+    "barnsk": 4.29584,
+    "beauty": 4.29584,
+    "behandlingsassistent": 4.29584,
+    "bevakning": 3.89037,
+    "bi": 4.29584,
+    "bist": 4.29584,
+    "boendest": 4.29584,
+    "budget": 4.29584,
+    "building": 4.29584,
+    "business": 4.29584,
+    "bygg": 3.89037,
+    "byggarbetare": 4.29584,
+    "byggnadsarbetare": 4.29584,
+    "caf": 4.29584,
+    "campaign": 3.19722,
+    "care": 3.60269,
+    "carpenter": 4.29584,
+    "carpentry": 3.89037,
+    "casework": 4.29584,
+    "chauff": 4.29584,
+    "childcare": 4.29584,
+    "children": 4.29584,
+    "cicd": 3.89037,
+    "city": 4.29584,
+    "classroom": 4.29584,
+    "cleaner": 4.29584,
+    "cleaning": 4.29584,
+    "client": 4.29584,
+    "clients": 4.29584,
+    "cloud": 2.6864,
+    "code": 3.60269,
+    "coffee": 4.29584,
+    "communication": 2.6864,
+    "community": 4.29584,
+    "concrete": 4.29584,
+    "construction": 3.60269,
+    "construction_work": 3.37955,
+    "consultant": 3.60269,
+    "content": 3.37955,
+    "controller": 4.29584,
+    "coordination": 3.04307,
+    "coordinator": 3.04307,
+    "copywriter": 4.29584,
+    "copywriting": 4.29584,
+    "crm": 2.50408,
+    "crm_": 2.42403,
+    "customer": 4.29584,
+    "customer_service": 3.60269,
+    "customers": 4.29584,
+    "cyber": 4.29584,
+    "cybersecurity": 4.29584,
+    "dare": 4.29584,
+    "dashboards": 3.60269,
+    "dassistent": 4.29584,
+    "data": 2.6864,
+    "data_analyst": 4.29584,
+    "data_analytics": 2.90954,
+    "data_cloud": 4.29584,
+    "data_engineer": 4.29584,
+    "data_scientist": 4.29584,
+    "data_visualization": 3.60269,
+    "dataanalytiker": 4.29584,
+    "dataingenj": 4.29584,
+    "delivery": 4.29584,
+    "design": 4.29584,
+    "desk": 4.29584,
+    "developer": 3.19722,
+    "devops": 4.29584,
+    "digital": 4.29584,
+    "digital_marketing": 3.37955,
+    "djare": 4.29584,
+    "docker": 3.37955,
+    "documentation": 3.37955,
+    "drift": 4.29584,
+    "drifttekniker": 4.29584,
+    "driver": 4.29584,
+    "driving_license": 3.19722,
+    "editorial": 4.29584,
+    "education": 4.29584,
+    "el": 4.29584,
+    "elderly": 4.29584,
+    "elderly_care": 4.29584,
+    "electrical": 3.89037,
+    "electrician": 4.29584,
+    "elektriker": 4.29584,
+    "elevassistent": 4.29584,
+    "elinstallation": 4.29584,
+    "email": 3.60269,
+    "email_marketing": 3.37955,
+    "engineer": 2.90954,
+    "etl": 3.89037,
+    "excel": 2.50408,
+    "fabrication": 4.29584,
+    "facilities": 4.29584,
+    "facility": 4.29584,
+    "fastighet": 4.29584,
+    "fastighetssk": 4.29584,
+    "fastighetstekniker": 4.29584,
+    "finance": 4.29584,
+    "financial_analysis": 4.29584,
+    "forklift": 3.89037,
+    "fris": 4.29584,
+    "ggare": 4.29584,
+    "ggning": 4.29584,
+    "ggningsarbetare": 4.29584,
+    "git": 3.37955,
+    "google_analytics": 3.19722,
+    "guard": 4.29584,
+    "guarding": 3.89037,
+    "hair": 4.29584,
+    "hairdresser": 4.29584,
+    "hairdressing": 4.29584,
+    "healthcare": 3.89037,
+    "helpdesk": 4.29584,
+    "hemtj": 4.29584,
+    "hospitality": 4.29584,
+    "html_css": 3.89037,
+    "hudterapeut": 4.29584,
+    "hygiene": 4.29584,
+    "incident": 4.29584,
+    "incident_response": 3.60269,
+    "industri": 4.29584,
+    "industriarbetare": 4.29584,
+    "infrastructure": 4.29584,
+    "innes": 4.29584,
+    "instagram": 4.29584,
+    "installation": 4.29584,
+    "installationselektriker": 4.29584,
+    "integration": 2.6864,
+    "inventory": 3.89037,
+    "it": 4.29584,
+    "java": 4.29584,
+    "javascript": 3.60269,
+    "journeys": 4.29584,
+    "junior": 3.89037,
+    "kerhetssamordnare": 4.29584,
+    "keywords": 4.29584,
+    "koordinator": 3.89037,
+    "kpi": 3.89037,
+    "ktare": 4.29584,
+    "kubernetes": 4.29584,
+    "kundansvarig": 4.29584,
+    "kurator": 4.29584,
+    "lager": 4.29584,
+    "lagerarbetare": 4.29584,
+    "lastbilsf": 4.29584,
+    "lead": 3.89037,
+    "leadership": 3.60269,
+    "legitimerad": 4.29584,
+    "linux": 3.60269,
+    "ljare": 4.29584,
+    "ll": 4.29584,
+    "logistics": 3.60269,
+    "logistikkoordinator": 4.29584,
+    "lokalv": 4.29584,
+    "machine": 4.29584,
+    "machine_learning": 4.29584,
+    "machine_operation": 3.89037,
+    "mag": 4.29584,
+    "maintenance": 3.89037,
+    "manager": 3.60269,
+    "manufacturing": 3.89037,
+    "marketing": 3.37955,
+    "marketing_automation": 2.42403,
+    "marknadsf": 4.29584,
+    "martech": 2.42403,
+    "maskinoperat": 4.29584,
+    "medication": 4.29584,
+    "metal": 4.29584,
+    "mig": 4.29584,
+    "ml": 4.29584,
+    "models": 4.29584,
+    "mont": 4.29584,
+    "montering": 4.29584,
+    "ndshandl": 4.29584,
+    "negotiation": 4.29584,
+    "network": 4.29584,
+    "networking": 3.89037,
+    "nhetsv": 4.29584,
+    "night": 4.29584,
+    "nightguard": 4.29584,
+    "nst": 3.89037,
+    "nurse": 3.89037,
+    "nursing": 4.29584,
+    "office": 4.29584,
+    "office_tools": 3.89037,
+    "officer": 4.29584,
+    "omsorg": 4.29584,
+    "operat": 4.29584,
+    "operations": 3.37955,
+    "operativ": 3.89037,
+    "operator": 4.29584,
+    "ops": 4.29584,
+    "ordningsvakt": 4.29584,
+    "patient": 4.29584,
+    "patient_care": 3.89037,
+    "patrol": 4.29584,
+    "pedagogy": 4.29584,
+    "personlig": 4.29584,
+    "picking": 4.29584,
+    "pipeline": 4.29584,
+    "pipelines": 3.60269,
+    "planning": 3.37955,
+    "platform": 3.89037,
+    "posts": 4.29584,
+    "power_bi": 3.04307,
+    "process": 3.89037,
+    "production": 4.29584,
+    "produktionsmedarbetare": 4.29584,
+    "programmer": 4.29584,
+    "project_management": 4.29584,
+    "python": 2.79176,
+    "qa": 4.29584,
+    "ranking": 4.29584,
+    "rapporteringsassistent": 4.29584,
+    "rarassistent": 4.29584,
+    "rare": 3.89037,
+    "rd": 3.89037,
+    "rdare": 4.29584,
+    "rdbitr": 4.29584,
+    "react": 4.29584,
+    "registered": 4.29584,
+    "relationship": 4.29584,
+    "repair": 4.29584,
+    "reporting": 2.59109,
+    "rest": 3.89037,
+    "risk": 4.29584,
+    "safety": 3.89037,
+    "sales": 3.89037,
+    "salesforce": 3.60269,
+    "salon": 4.29584,
+    "salong": 4.29584,
+    "sanering": 4.29584,
+    "saneringstekniker": 4.29584,
+    "sanitation": 4.29584,
+    "scheduling": 4.29584,
+    "school": 4.29584,
+    "scientist": 4.29584,
+    "search": 4.29584,
+    "security": 3.60269,
+    "segmentation": 3.60269,
+    "selenium": 4.29584,
+    "senior": 4.29584,
+    "seo": 3.37955,
+    "service": 3.89037,
+    "servit": 4.29584,
+    "sfmc": 2.90954,
+    "site": 4.29584,
+    "sjuksk": 4.29584,
+    "sk": 4.29584,
+    "skyddsledare": 4.29584,
+    "skyddsvakt": 4.29584,
+    "snickare": 4.29584,
+    "snickeri": 4.29584,
+    "soap": 3.89037,
+    "soc": 4.29584,
+    "social": 3.89037,
+    "social_care": 3.89037,
+    "social_media": 3.37955,
+    "social_work": 3.89037,
+    "socialsekreterare": 4.29584,
+    "socialtj": 4.29584,
+    "software": 2.42403,
+    "solution_architect": 4.29584,
+    "specialist": 2.79176,
+    "sql": 2.09861,
+    "ssjs": 4.29584,
+    "st": 3.89037,
+    "stakeholder": 4.29584,
+    "stare": 4.29584,
+    "statistics": 3.60269,
+    "styling": 4.29584,
+    "stylist": 4.29584,
+    "supervisor": 4.29584,
+    "supply_chain": 3.89037,
+    "support": 3.60269,
+    "supporttekniker": 4.29584,
+    "surveillance": 3.89037,
+    "svets": 4.29584,
+    "svetsare": 4.29584,
+    "systems": 4.29584,
+    "systemutvecklare": 4.29584,
+    "tare": 3.89037,
+    "teaching": 4.29584,
+    "team": 4.29584,
+    "tech": 3.89037,
+    "technical": 4.29584,
+    "technician": 3.89037,
+    "technology": 3.89037,
+    "tekniker": 4.29584,
+    "terska": 3.89037,
+    "test": 4.29584,
+    "test_automation": 4.29584,
+    "testare": 4.29584,
+    "testing": 4.29584,
+    "threats": 4.29584,
+    "ticketing": 4.29584,
+    "tr": 4.29584,
+    "trainee": 4.29584,
+    "transport": 4.29584,
+    "troubleshooting": 4.29584,
+    "truck": 4.29584,
+    "underh": 4.29584,
+    "undersk": 4.29584,
+    "utvecklare": 4.29584,
+    "vaktm": 4.29584,
+    "waiter": 4.29584,
+    "warehouse": 3.89037,
+    "welder": 4.29584,
+    "welding": 3.89037,
+    "welfare": 4.29584,
+    "wiring": 4.29584,
+    "wood": 4.29584,
+    "worker": 3.37955
   },
   "skill_vocab": [
     {
@@ -965,6 +1130,128 @@
         "childcare",
         "förskola"
       ]
+    },
+    {
+      "skill": "guarding",
+      "variants": [
+        "guarding",
+        "väktare",
+        "ordningsvakt",
+        "security guard",
+        "nightguard",
+        "night guard",
+        "skyddsvakt"
+      ]
+    },
+    {
+      "skill": "surveillance",
+      "variants": [
+        "surveillance",
+        "cctv",
+        "patrol",
+        "patrullering",
+        "bevakning",
+        "larm",
+        "alarm"
+      ]
+    },
+    {
+      "skill": "construction_work",
+      "variants": [
+        "construction",
+        "byggnadsarbetare",
+        "byggarbetare",
+        "anläggning",
+        "bygg"
+      ]
+    },
+    {
+      "skill": "carpentry",
+      "variants": [
+        "carpentry",
+        "snickare",
+        "snickeri",
+        "carpenter",
+        "träarbete"
+      ]
+    },
+    {
+      "skill": "electrical",
+      "variants": [
+        "electrical",
+        "elektriker",
+        "electrician",
+        "el-arbete",
+        "elinstallation"
+      ]
+    },
+    {
+      "skill": "machine_operation",
+      "variants": [
+        "machine operation",
+        "operatör",
+        "montör",
+        "maskinoperatör",
+        "cnc",
+        "montering"
+      ]
+    },
+    {
+      "skill": "welding",
+      "variants": [
+        "welding",
+        "svets",
+        "svetsare",
+        "welder",
+        "mig/mag"
+      ]
+    },
+    {
+      "skill": "cleaning",
+      "variants": [
+        "cleaning",
+        "städ",
+        "lokalvård",
+        "lokalvårdare",
+        "städare",
+        "sanitation",
+        "sanering"
+      ]
+    },
+    {
+      "skill": "maintenance",
+      "variants": [
+        "maintenance",
+        "fastighetsskötsel",
+        "fastighetsskötare",
+        "vaktmästare",
+        "drifttekniker",
+        "underhåll"
+      ]
+    },
+    {
+      "skill": "social_work",
+      "variants": [
+        "social work",
+        "socialt arbete",
+        "socialsekreterare",
+        "behandlingsassistent",
+        "boendestöd",
+        "stödassistent",
+        "casework",
+        "biståndshandläggare"
+      ]
+    },
+    {
+      "skill": "hairdressing",
+      "variants": [
+        "hairdressing",
+        "frisör",
+        "barber",
+        "hudterapeut",
+        "stylist",
+        "skönhetsvård"
+      ]
     }
   ],
   "roles": [
@@ -1011,20 +1298,20 @@
         "martech"
       ],
       "vector": {
-        "ampscript": 0.37354,
-        "consultant": 0.43624,
-        "crm": 0.20806,
-        "crm_": 0.11852,
-        "email": 0.18281,
-        "integration": 0.13283,
-        "journeys": 0.22062,
-        "marketing_automation": 0.24872,
-        "martech": 0.20067,
-        "rest": 0.1985,
-        "sfmc": 0.42716,
-        "soap": 0.1985,
-        "sql": 0.10077,
-        "ssjs": 0.37354
+        "ampscript": 0.36686,
+        "consultant": 0.43362,
+        "crm": 0.21385,
+        "crm_": 0.12226,
+        "email": 0.18171,
+        "integration": 0.1355,
+        "journeys": 0.21667,
+        "marketing_automation": 0.25658,
+        "martech": 0.20701,
+        "rest": 0.19622,
+        "sfmc": 0.43232,
+        "soap": 0.19622,
+        "sql": 0.10585,
+        "ssjs": 0.36686
       }
     },
     {
@@ -1064,18 +1351,18 @@
         "martech"
       ],
       "vector": {
-        "architecture": 0.33157,
-        "crm": 0.13164,
-        "crm_": 0.12696,
-        "integration": 0.14229,
-        "lead": 0.55487,
-        "leadership": 0.19583,
-        "marketing_automation": 0.39096,
-        "martech": 0.26644,
-        "sfmc": 0.26299,
-        "sql": 0.10794,
-        "team": 0.23633,
-        "tech": 0.36003
+        "architecture": 0.32854,
+        "crm": 0.13487,
+        "crm_": 0.13056,
+        "integration": 0.14469,
+        "lead": 0.54677,
+        "leadership": 0.19404,
+        "marketing_automation": 0.40205,
+        "martech": 0.27399,
+        "sfmc": 0.26533,
+        "sql": 0.11303,
+        "team": 0.23137,
+        "tech": 0.35477
       }
     },
     {
@@ -1114,18 +1401,18 @@
         "platform"
       ],
       "vector": {
-        "apis": 0.15916,
-        "consultant": 0.544,
-        "crm": 0.25945,
-        "crm_": 0.14779,
-        "integration": 0.28045,
-        "marketing": 0.21279,
-        "marketing_automation": 0.4126,
-        "martech": 0.35268,
-        "platform": 0.24754,
-        "sfmc": 0.18082,
-        "sql": 0.12566,
-        "technology": 0.24754
+        "apis": 0.16101,
+        "consultant": 0.53422,
+        "crm": 0.26346,
+        "crm_": 0.15063,
+        "integration": 0.28264,
+        "marketing": 0.21,
+        "marketing_automation": 0.42052,
+        "martech": 0.35944,
+        "platform": 0.24174,
+        "sfmc": 0.1808,
+        "sql": 0.13041,
+        "technology": 0.24174
       }
     },
     {
@@ -1165,18 +1452,18 @@
         "salesforce"
       ],
       "vector": {
-        "apis": 0.14573,
-        "consultant": 0.49812,
-        "crm": 0.39173,
-        "crm_": 0.13533,
-        "developer": 0.18349,
-        "integration": 0.2568,
-        "marketing_automation": 0.22913,
-        "martech": 0.13533,
-        "salesforce": 0.20874,
-        "sfmc": 0.16557,
-        "sql": 0.19481,
-        "technical": 0.52868
+        "apis": 0.14852,
+        "consultant": 0.49279,
+        "crm": 0.40072,
+        "crm_": 0.13895,
+        "developer": 0.18327,
+        "integration": 0.26072,
+        "marketing_automation": 0.23526,
+        "martech": 0.13895,
+        "salesforce": 0.20651,
+        "sfmc": 0.16678,
+        "sql": 0.20368,
+        "technical": 0.51677
       }
     },
     {
@@ -1220,21 +1507,21 @@
         "data"
       ],
       "vector": {
-        "apis": 0.26968,
-        "cloud": 0.16577,
-        "crm_": 0.14791,
-        "data": 0.16577,
-        "developer": 0.20054,
-        "engineer": 0.18096,
-        "integration": 0.48833,
-        "marketing_automation": 0.14791,
-        "martech": 0.14791,
-        "python": 0.17294,
-        "rest": 0.41944,
-        "soap": 0.41944,
-        "software": 0.14791,
-        "sql": 0.12575,
-        "systems": 0.27533
+        "apis": 0.27423,
+        "cloud": 0.16792,
+        "crm_": 0.15152,
+        "data": 0.16792,
+        "developer": 0.19985,
+        "engineer": 0.18187,
+        "integration": 0.49469,
+        "marketing_automation": 0.15152,
+        "martech": 0.15152,
+        "python": 0.17451,
+        "rest": 0.41174,
+        "soap": 0.41174,
+        "software": 0.15152,
+        "sql": 0.13118,
+        "systems": 0.26853
       }
     },
     {
@@ -1278,22 +1565,22 @@
         "design"
       ],
       "vector": {
-        "apis": 0.11921,
-        "architect": 0.3489,
-        "architecture": 0.40746,
-        "cloud": 0.21006,
-        "crm": 0.11478,
-        "crm_": 0.1107,
-        "design": 0.20607,
-        "integration": 0.21006,
-        "leadership": 0.17075,
-        "marketing": 0.26986,
-        "marketing_automation": 0.26416,
-        "martech": 0.23231,
-        "sfmc": 0.13544,
-        "software": 0.1107,
-        "solution_architect": 0.43245,
-        "technology": 0.31392
+        "apis": 0.1222,
+        "architect": 0.34304,
+        "architecture": 0.40546,
+        "cloud": 0.21452,
+        "crm": 0.1181,
+        "crm_": 0.11432,
+        "design": 0.2026,
+        "integration": 0.21452,
+        "leadership": 0.16991,
+        "marketing": 0.26987,
+        "marketing_automation": 0.27281,
+        "martech": 0.23992,
+        "sfmc": 0.13722,
+        "software": 0.11432,
+        "solution_architect": 0.42519,
+        "technology": 0.31066
       }
     },
     {
@@ -1335,22 +1622,22 @@
         "engineer"
       ],
       "vector": {
-        "analytics": 0.22532,
-        "apis": 0.14487,
-        "automation": 0.20751,
-        "campaign": 0.1824,
-        "crm_": 0.13453,
-        "data": 0.15077,
-        "data_analytics": 0.16459,
-        "engineer": 0.34541,
-        "integration": 0.15077,
-        "marketing": 0.50542,
-        "marketing_automation": 0.22778,
-        "martech": 0.13453,
-        "operations": 0.4622,
-        "ops": 0.25043,
-        "sfmc": 0.16459,
-        "sql": 0.11438
+        "analytics": 0.22169,
+        "apis": 0.14765,
+        "automation": 0.2053,
+        "campaign": 0.18219,
+        "crm_": 0.13813,
+        "data": 0.15308,
+        "data_analytics": 0.1658,
+        "engineer": 0.34794,
+        "integration": 0.15308,
+        "marketing": 0.50253,
+        "marketing_automation": 0.23388,
+        "martech": 0.13813,
+        "operations": 0.45955,
+        "ops": 0.24479,
+        "sfmc": 0.1658,
+        "sql": 0.11959
       }
     },
     {
@@ -1391,20 +1678,20 @@
         "apis"
       ],
       "vector": {
-        "apis": 0.27729,
-        "cloud": 0.17044,
-        "crm_": 0.15208,
-        "data": 0.40672,
-        "data_analytics": 0.18606,
-        "data_cloud": 0.28309,
-        "engineer": 0.18606,
-        "etl": 0.43127,
-        "integration": 0.44476,
-        "marketing_automation": 0.15208,
-        "martech": 0.15208,
-        "pipelines": 0.23458,
-        "software": 0.15208,
-        "sql": 0.21892
+        "apis": 0.28052,
+        "cloud": 0.17177,
+        "crm_": 0.155,
+        "data": 0.40991,
+        "data_analytics": 0.18604,
+        "data_cloud": 0.27469,
+        "engineer": 0.18604,
+        "etl": 0.42119,
+        "integration": 0.44824,
+        "marketing_automation": 0.155,
+        "martech": 0.155,
+        "pipelines": 0.23036,
+        "software": 0.155,
+        "sql": 0.2272
       }
     },
     {
@@ -1441,17 +1728,17 @@
         "segmentation"
       ],
       "vector": {
-        "campaign": 0.23182,
-        "crm": 0.30015,
-        "crm_": 0.17098,
-        "email": 0.26373,
-        "email_marketing": 0.24617,
-        "html_css": 0.28636,
-        "marketing_automation": 0.47732,
-        "martech": 0.17098,
-        "segmentation": 0.44653,
-        "sfmc": 0.20918,
-        "specialist": 0.33848
+        "campaign": 0.22996,
+        "crm": 0.30495,
+        "crm_": 0.17435,
+        "email": 0.25913,
+        "email_marketing": 0.24308,
+        "html_css": 0.27982,
+        "marketing_automation": 0.48674,
+        "martech": 0.17435,
+        "segmentation": 0.43874,
+        "sfmc": 0.20927,
+        "specialist": 0.33998
       }
     },
     {
@@ -1489,20 +1776,20 @@
         "reporting"
       ],
       "vector": {
-        "automation": 0.22285,
-        "campaign": 0.54688,
-        "crm": 0.1498,
-        "crm_": 0.14448,
-        "email": 0.22285,
-        "email_marketing": 0.20802,
-        "google_analytics": 0.19589,
-        "manager": 0.22285,
-        "marketing_automation": 0.24462,
-        "martech": 0.14448,
-        "operations": 0.43654,
-        "reporting": 0.15559,
-        "segmentation": 0.22285,
-        "specialist": 0.28602
+        "automation": 0.22029,
+        "campaign": 0.54579,
+        "crm": 0.15312,
+        "crm_": 0.14822,
+        "email": 0.22029,
+        "email_marketing": 0.20665,
+        "google_analytics": 0.1955,
+        "manager": 0.22029,
+        "marketing_automation": 0.25096,
+        "martech": 0.14822,
+        "operations": 0.43367,
+        "reporting": 0.15844,
+        "segmentation": 0.22029,
+        "specialist": 0.28903
       }
     },
     {
@@ -1539,20 +1826,20 @@
         "data"
       ],
       "vector": {
-        "campaign": 0.22208,
-        "coordinator": 0.46607,
-        "crm": 0.44316,
-        "crm_": 0.16379,
-        "customer": 0.3049,
-        "customer_service": 0.27434,
-        "data": 0.18357,
-        "email_marketing": 0.23583,
-        "excel": 0.16983,
-        "koordinator": 0.27434,
-        "marketing_automation": 0.16379,
-        "martech": 0.16379,
-        "reporting": 0.17639,
-        "salesforce": 0.25265
+        "campaign": 0.22468,
+        "coordinator": 0.44878,
+        "crm": 0.45918,
+        "crm_": 0.17034,
+        "customer": 0.30188,
+        "customer_service": 0.25317,
+        "data": 0.18878,
+        "email_marketing": 0.23749,
+        "excel": 0.17597,
+        "koordinator": 0.27339,
+        "marketing_automation": 0.17034,
+        "martech": 0.17034,
+        "reporting": 0.18208,
+        "salesforce": 0.25317
       }
     },
     {
@@ -1593,20 +1880,20 @@
         "data"
       ],
       "vector": {
-        "analyst": 0.48979,
-        "analytiker": 0.25342,
-        "crm": 0.40937,
-        "crm_": 0.15131,
-        "data": 0.16958,
-        "data_analytics": 0.18512,
-        "excel": 0.15688,
-        "marketing_automation": 0.15131,
-        "martech": 0.15131,
-        "power_bi": 0.19442,
-        "reporting": 0.27588,
-        "salesforce": 0.23339,
-        "segmentation": 0.39516,
-        "sql": 0.21782
+        "analyst": 0.48215,
+        "analytiker": 0.24809,
+        "crm": 0.4167,
+        "crm_": 0.15458,
+        "data": 0.17131,
+        "data_analytics": 0.18554,
+        "excel": 0.15969,
+        "marketing_automation": 0.15458,
+        "martech": 0.15458,
+        "power_bi": 0.19406,
+        "reporting": 0.27977,
+        "salesforce": 0.22975,
+        "segmentation": 0.389,
+        "sql": 0.2266
       }
     },
     {
@@ -1647,17 +1934,17 @@
         "data"
       ],
       "vector": {
-        "assistant": 0.18885,
-        "bi": 0.63713,
-        "dashboards": 0.34255,
-        "data": 0.147,
-        "data_analytics": 0.16047,
-        "data_visualization": 0.20232,
-        "excel": 0.136,
-        "power_bi": 0.28535,
-        "reporting": 0.33706,
-        "specialist": 0.32185,
-        "sql": 0.18882
+        "assistant": 0.18864,
+        "bi": 0.62572,
+        "dashboards": 0.34049,
+        "data": 0.14995,
+        "data_analytics": 0.16241,
+        "data_visualization": 0.2011,
+        "excel": 0.13978,
+        "power_bi": 0.2876,
+        "reporting": 0.34513,
+        "specialist": 0.32703,
+        "sql": 0.19834
       }
     },
     {
@@ -1697,17 +1984,17 @@
         "python"
       ],
       "vector": {
-        "analytics": 0.46428,
-        "dashboards": 0.34497,
-        "data_analyst": 0.51601,
-        "data_analytics": 0.1616,
-        "data_visualization": 0.20374,
-        "dataanalytiker": 0.24588,
-        "excel": 0.13695,
-        "power_bi": 0.16972,
-        "python": 0.26149,
-        "sql": 0.19015,
-        "statistics": 0.34497
+        "analytics": 0.46166,
+        "dashboards": 0.34492,
+        "data_analyst": 0.50978,
+        "data_analytics": 0.16452,
+        "data_visualization": 0.20372,
+        "dataanalytiker": 0.24291,
+        "excel": 0.1416,
+        "power_bi": 0.17207,
+        "python": 0.26729,
+        "sql": 0.20092,
+        "statistics": 0.34492
       }
     },
     {
@@ -1748,20 +2035,20 @@
         "process"
       ],
       "vector": {
-        "admin_ops": 0.18936,
-        "analyst": 0.45208,
-        "analytiker": 0.23391,
-        "data_analytics": 0.17087,
-        "excel": 0.1448,
-        "kpi": 0.39605,
-        "operations": 0.42198,
-        "operativ": 0.23391,
-        "power_bi": 0.17945,
-        "process": 0.23391,
-        "python": 0.1633,
-        "reporting": 0.25464,
-        "sql": 0.20105,
-        "statistics": 0.21542
+        "admin_ops": 0.19001,
+        "analyst": 0.44934,
+        "analytiker": 0.23121,
+        "data_analytics": 0.17292,
+        "excel": 0.14882,
+        "kpi": 0.39147,
+        "operations": 0.42151,
+        "operativ": 0.23121,
+        "power_bi": 0.18085,
+        "process": 0.23121,
+        "python": 0.16592,
+        "reporting": 0.26073,
+        "sql": 0.21117,
+        "statistics": 0.21411
       }
     },
     {
@@ -1802,20 +2089,20 @@
         "cloud"
       ],
       "vector": {
-        "cloud": 0.28924,
-        "dashboards": 0.23511,
-        "data": 0.28924,
-        "data_analytics": 0.18649,
-        "data_engineer": 0.28374,
-        "dataingenj": 0.28374,
-        "docker": 0.21946,
-        "engineer": 0.31575,
-        "etl": 0.43225,
-        "integration": 0.17083,
-        "pipelines": 0.23511,
-        "python": 0.30176,
-        "software": 0.15243,
-        "sql": 0.21943
+        "cloud": 0.29369,
+        "dashboards": 0.23263,
+        "data": 0.29369,
+        "data_analytics": 0.18787,
+        "data_engineer": 0.27738,
+        "dataingenj": 0.27738,
+        "docker": 0.21822,
+        "engineer": 0.31809,
+        "etl": 0.42532,
+        "integration": 0.17346,
+        "pipelines": 0.23263,
+        "python": 0.30521,
+        "software": 0.15652,
+        "sql": 0.22943
       }
     },
     {
@@ -1851,17 +2138,17 @@
         "data"
       ],
       "vector": {
-        "admin": 0.29166,
-        "admin_ops": 0.23611,
-        "assistant": 0.4245,
-        "data": 0.19516,
-        "excel": 0.3057,
-        "kpi": 0.29166,
-        "office_tools": 0.29166,
-        "power_bi": 0.22375,
-        "rapporteringsassistent": 0.32416,
-        "reporting": 0.44749,
-        "sql": 0.14806
+        "admin": 0.28687,
+        "admin_ops": 0.23576,
+        "assistant": 0.42194,
+        "data": 0.19809,
+        "excel": 0.31264,
+        "kpi": 0.28687,
+        "office_tools": 0.28687,
+        "power_bi": 0.22439,
+        "rapporteringsassistent": 0.31677,
+        "reporting": 0.45593,
+        "sql": 0.15475
       }
     },
     {
@@ -1898,18 +2185,18 @@
         "process"
       ],
       "vector": {
-        "admin_ops": 0.18615,
-        "coordination": 0.33469,
-        "coordinator": 0.31518,
-        "excel": 0.14235,
-        "koordinator": 0.22995,
-        "operations": 0.41484,
-        "operativ": 0.22995,
-        "planning": 0.35857,
-        "process": 0.22995,
-        "project_management": 0.25557,
-        "reporting": 0.14785,
-        "stakeholder": 0.43272
+        "admin_ops": 0.19241,
+        "coordination": 0.31008,
+        "coordinator": 0.31008,
+        "excel": 0.1507,
+        "koordinator": 0.23413,
+        "operations": 0.42683,
+        "operativ": 0.23413,
+        "planning": 0.34436,
+        "process": 0.23413,
+        "project_management": 0.25853,
+        "reporting": 0.15594,
+        "stakeholder": 0.43773
       }
     },
     {
@@ -1948,20 +2235,20 @@
         "support"
       ],
       "vector": {
-        "admin": 0.47062,
-        "admin_ops": 0.18154,
-        "administration": 0.24924,
-        "administrative": 0.24924,
-        "administrator": 0.24924,
-        "coordination": 0.32639,
-        "coordinator": 0.38098,
-        "excel": 0.13882,
-        "office": 0.24924,
-        "office_tools": 0.22425,
-        "planning": 0.20652,
-        "reporting": 0.14418,
-        "scheduling": 0.24924,
-        "support": 0.22425
+        "admin": 0.48026,
+        "admin_ops": 0.18807,
+        "administration": 0.2527,
+        "administrative": 0.2527,
+        "administrator": 0.2527,
+        "coordination": 0.30308,
+        "coordinator": 0.37566,
+        "excel": 0.1473,
+        "office": 0.2527,
+        "office_tools": 0.22884,
+        "planning": 0.1988,
+        "reporting": 0.15242,
+        "scheduling": 0.2527,
+        "support": 0.21192
       }
     },
     {
@@ -2000,18 +2287,18 @@
         "excel"
       ],
       "vector": {
-        "accounting": 0.24116,
-        "admin_ops": 0.17565,
-        "budget": 0.24116,
-        "business": 0.24116,
-        "controller": 0.6293,
-        "excel": 0.22743,
-        "finance": 0.24116,
-        "financial_analysis": 0.24116,
-        "junior": 0.36739,
-        "power_bi": 0.16646,
-        "reporting": 0.23622,
-        "sql": 0.11015
+        "accounting": 0.23924,
+        "admin_ops": 0.17806,
+        "budget": 0.23924,
+        "business": 0.23924,
+        "controller": 0.62428,
+        "excel": 0.23612,
+        "finance": 0.23924,
+        "financial_analysis": 0.23924,
+        "junior": 0.36683,
+        "power_bi": 0.16947,
+        "reporting": 0.24432,
+        "sql": 0.11687
       }
     },
     {
@@ -2046,15 +2333,15 @@
         "pipeline"
       ],
       "vector": {
-        "account_management": 0.24258,
-        "coordination": 0.35307,
-        "coordinator": 0.33249,
-        "crm": 0.25426,
-        "excel": 0.15017,
-        "innes": 0.26961,
-        "ljare": 0.26961,
-        "pipeline": 0.26961,
-        "sales": 0.633
+        "account_management": 0.24561,
+        "coordination": 0.32528,
+        "coordinator": 0.32528,
+        "crm": 0.26767,
+        "excel": 0.15809,
+        "innes": 0.27121,
+        "ljare": 0.27121,
+        "pipeline": 0.27121,
+        "sales": 0.6409
       }
     },
     {
@@ -2090,16 +2377,16 @@
         "relationship"
       ],
       "vector": {
-        "account": 0.42143,
-        "account_management": 0.37918,
-        "clients": 0.2489,
-        "communication": 0.18129,
-        "crm": 0.23473,
-        "kundansvarig": 0.2489,
-        "manager": 0.34921,
-        "negotiation": 0.2489,
-        "relationship": 0.2489,
-        "sales": 0.46999
+        "account": 0.42052,
+        "account_management": 0.38083,
+        "clients": 0.24837,
+        "communication": 0.15532,
+        "crm": 0.24512,
+        "kundansvarig": 0.24837,
+        "manager": 0.35267,
+        "negotiation": 0.24837,
+        "relationship": 0.24837,
+        "sales": 0.47203
       }
     },
     {
@@ -2134,15 +2421,15 @@
         "ranking"
       ],
       "vector": {
-        "content": 0.38373,
-        "digital_marketing": 0.22664,
-        "google_analytics": 0.21343,
-        "keywords": 0.29303,
-        "ranking": 0.29303,
-        "search": 0.29303,
-        "seo": 0.5914,
-        "social_media": 0.22664,
-        "specialist": 0.31163
+        "content": 0.38466,
+        "digital_marketing": 0.22719,
+        "google_analytics": 0.21493,
+        "keywords": 0.28878,
+        "ranking": 0.28878,
+        "search": 0.28878,
+        "seo": 0.59283,
+        "social_media": 0.22719,
+        "specialist": 0.31776
       }
     },
     {
@@ -2177,16 +2464,16 @@
         "posts"
       ],
       "vector": {
-        "community": 0.28475,
-        "content": 0.3729,
-        "digital_marketing": 0.22024,
-        "google_analytics": 0.2074,
-        "instagram": 0.28475,
-        "manager": 0.23595,
-        "posts": 0.28475,
-        "seo": 0.22024,
-        "social_media": 0.5747,
-        "specialist": 0.30283
+        "community": 0.28067,
+        "content": 0.37385,
+        "digital_marketing": 0.2208,
+        "google_analytics": 0.20889,
+        "instagram": 0.28067,
+        "manager": 0.23538,
+        "posts": 0.28067,
+        "seo": 0.2208,
+        "social_media": 0.57618,
+        "specialist": 0.30883
       }
     },
     {
@@ -2221,15 +2508,15 @@
         "seo"
       ],
       "vector": {
-        "content": 0.5914,
-        "copywriter": 0.29303,
-        "copywriting": 0.29303,
-        "digital_marketing": 0.22664,
-        "editorial": 0.29303,
-        "google_analytics": 0.21343,
-        "seo": 0.38373,
-        "social_media": 0.22664,
-        "specialist": 0.31163
+        "content": 0.59283,
+        "copywriter": 0.28878,
+        "copywriting": 0.28878,
+        "digital_marketing": 0.22719,
+        "editorial": 0.28878,
+        "google_analytics": 0.21493,
+        "seo": 0.38466,
+        "social_media": 0.22719,
+        "specialist": 0.31776
       }
     },
     {
@@ -2267,19 +2554,19 @@
         "campaign"
       ],
       "vector": {
-        "ads": 0.22619,
-        "campaign": 0.27895,
-        "content": 0.17495,
-        "digital": 0.53976,
-        "digital_marketing": 0.17495,
-        "email_marketing": 0.17495,
-        "google_analytics": 0.16475,
-        "marketing": 0.36715,
-        "marknadsf": 0.22619,
-        "rare": 0.20352,
-        "seo": 0.29621,
-        "social_media": 0.29621,
-        "specialist": 0.24055
+        "ads": 0.22362,
+        "campaign": 0.28179,
+        "content": 0.17592,
+        "digital": 0.53362,
+        "digital_marketing": 0.17592,
+        "email_marketing": 0.17592,
+        "google_analytics": 0.16643,
+        "marketing": 0.36919,
+        "marknadsf": 0.22362,
+        "rare": 0.20251,
+        "seo": 0.29786,
+        "social_media": 0.29786,
+        "specialist": 0.24605
       }
     },
     {
@@ -2317,19 +2604,19 @@
         "networking"
       ],
       "vector": {
-        "communication": 0.1597,
-        "desk": 0.21926,
-        "helpdesk": 0.37123,
-        "it": 0.37123,
-        "linux": 0.18168,
-        "networking": 0.33402,
-        "service": 0.19728,
-        "software": 0.11778,
-        "support": 0.414,
-        "supporttekniker": 0.21926,
-        "technician": 0.21926,
-        "ticketing": 0.21926,
-        "troubleshooting": 0.37123
+        "communication": 0.13948,
+        "desk": 0.22304,
+        "helpdesk": 0.37764,
+        "it": 0.37764,
+        "linux": 0.18705,
+        "networking": 0.34199,
+        "service": 0.20199,
+        "software": 0.12585,
+        "support": 0.39255,
+        "supporttekniker": 0.22304,
+        "technician": 0.20199,
+        "ticketing": 0.22304,
+        "troubleshooting": 0.37764
       }
     },
     {
@@ -2366,18 +2653,18 @@
         "selenium"
       ],
       "vector": {
-        "apis": 0.13808,
-        "automation": 0.19777,
-        "cicd": 0.21475,
-        "engineer": 0.32921,
-        "python": 0.14992,
-        "qa": 0.50089,
-        "selenium": 0.23868,
-        "software": 0.12822,
-        "test": 0.40412,
-        "test_automation": 0.23868,
-        "testare": 0.23868,
-        "testing": 0.40412
+        "apis": 0.14302,
+        "automation": 0.19886,
+        "cicd": 0.21474,
+        "engineer": 0.33703,
+        "python": 0.1541,
+        "qa": 0.49761,
+        "selenium": 0.23712,
+        "software": 0.1338,
+        "test": 0.40147,
+        "test_automation": 0.23712,
+        "testare": 0.23712,
+        "testing": 0.40147
       }
     },
     {
@@ -2415,19 +2702,19 @@
         "code"
       ],
       "vector": {
-        "apis": 0.14466,
-        "code": 0.20721,
-        "developer": 0.43463,
-        "git": 0.32747,
-        "html_css": 0.22499,
-        "javascript": 0.35083,
-        "junior": 0.47217,
-        "python": 0.15707,
-        "react": 0.25006,
-        "software": 0.13433,
-        "sql": 0.11421,
-        "trainee": 0.25006,
-        "utvecklare": 0.25006
+        "apis": 0.14883,
+        "code": 0.20694,
+        "developer": 0.43824,
+        "git": 0.32868,
+        "html_css": 0.22347,
+        "javascript": 0.35038,
+        "junior": 0.46897,
+        "python": 0.16036,
+        "react": 0.24676,
+        "software": 0.13924,
+        "sql": 0.12055,
+        "trainee": 0.24676,
+        "utvecklare": 0.24676
       }
     },
     {
@@ -2470,19 +2757,19 @@
         "git"
       ],
       "vector": {
-        "apis": 0.25672,
-        "cloud": 0.1578,
-        "code": 0.21718,
-        "developer": 0.45555,
-        "docker": 0.20272,
-        "git": 0.34323,
-        "java": 0.26209,
-        "javascript": 0.36771,
-        "programmer": 0.26209,
-        "python": 0.16463,
-        "software": 0.33598,
-        "sql": 0.11971,
-        "systemutvecklare": 0.26209
+        "apis": 0.26216,
+        "cloud": 0.16053,
+        "code": 0.21528,
+        "developer": 0.45591,
+        "docker": 0.20195,
+        "git": 0.34193,
+        "java": 0.2567,
+        "javascript": 0.36451,
+        "programmer": 0.2567,
+        "python": 0.16683,
+        "software": 0.34566,
+        "sql": 0.12541,
+        "systemutvecklare": 0.2567
       }
     },
     {
@@ -2520,18 +2807,18 @@
         "infrastructure"
       ],
       "vector": {
-        "cicd": 0.22334,
-        "cloud": 0.25303,
-        "devops": 0.59233,
-        "docker": 0.32506,
-        "engineer": 0.34237,
-        "git": 0.19199,
-        "infrastructure": 0.24822,
-        "kubernetes": 0.24822,
-        "linux": 0.20568,
-        "pipelines": 0.20568,
-        "platform": 0.22334,
-        "software": 0.13334
+        "cicd": 0.22231,
+        "cloud": 0.25992,
+        "devops": 0.58579,
+        "docker": 0.32698,
+        "engineer": 0.34892,
+        "git": 0.19312,
+        "infrastructure": 0.24548,
+        "kubernetes": 0.24548,
+        "linux": 0.20587,
+        "pipelines": 0.20587,
+        "platform": 0.22231,
+        "software": 0.13852
       }
     },
     {
@@ -2569,19 +2856,19 @@
         "statistics"
       ],
       "vector": {
-        "cloud": 0.1452,
-        "data": 0.24584,
-        "data_scientist": 0.24116,
-        "data_visualization": 0.19983,
-        "engineer": 0.26837,
-        "machine_learning": 0.50611,
-        "ml": 0.24116,
-        "models": 0.24116,
-        "python": 0.25648,
-        "scientist": 0.40832,
-        "software": 0.12955,
-        "sql": 0.11015,
-        "statistics": 0.33835
+        "cloud": 0.14912,
+        "data": 0.25249,
+        "data_scientist": 0.23846,
+        "data_visualization": 0.19999,
+        "engineer": 0.27346,
+        "machine_learning": 0.50044,
+        "ml": 0.23846,
+        "models": 0.23846,
+        "python": 0.26239,
+        "scientist": 0.40375,
+        "software": 0.13456,
+        "sql": 0.11649,
+        "statistics": 0.33861
       }
     },
     {
@@ -2620,19 +2907,19 @@
         "code"
       ],
       "vector": {
-        "apis": 0.13631,
-        "architecture": 0.33059,
-        "cloud": 0.14187,
-        "code": 0.19525,
-        "developer": 0.40956,
-        "docker": 0.18225,
-        "git": 0.18225,
-        "javascript": 0.19525,
-        "lead": 0.44493,
-        "leadership": 0.19525,
-        "senior": 0.4945,
-        "software": 0.12658,
-        "tech": 0.21201
+        "apis": 0.14051,
+        "architecture": 0.33078,
+        "cloud": 0.14567,
+        "code": 0.19536,
+        "developer": 0.41372,
+        "docker": 0.18326,
+        "git": 0.18326,
+        "javascript": 0.19536,
+        "lead": 0.44273,
+        "leadership": 0.19536,
+        "senior": 0.48887,
+        "software": 0.13145,
+        "tech": 0.21096
       }
     },
     {
@@ -2669,20 +2956,20 @@
         "threats"
       ],
       "vector": {
-        "analyst": 0.19959,
-        "cloud": 0.14502,
-        "cyber": 0.24087,
-        "cybersecurity": 0.40783,
-        "incident": 0.24087,
-        "incident_response": 0.24087,
-        "linux": 0.19959,
-        "network": 0.24087,
-        "networking": 0.21672,
-        "security": 0.50549,
-        "soc": 0.24087,
-        "software": 0.1294,
-        "specialist": 0.25617,
-        "threats": 0.24087
+        "analyst": 0.21089,
+        "cloud": 0.15725,
+        "cyber": 0.25146,
+        "cybersecurity": 0.42576,
+        "incident": 0.25146,
+        "incident_response": 0.21089,
+        "linux": 0.21089,
+        "network": 0.25146,
+        "networking": 0.22773,
+        "security": 0.44257,
+        "soc": 0.25146,
+        "software": 0.14189,
+        "specialist": 0.27669,
+        "threats": 0.25146
       }
     },
     {
@@ -2720,21 +3007,21 @@
         "hemtjänst"
       ],
       "vector": {
-        "assistant": 0.36705,
-        "care": 0.34449,
-        "communication": 0.16471,
-        "documentation": 0.34449,
-        "elderly": 0.22613,
-        "elderly_care": 0.22613,
-        "healthcare": 0.20346,
-        "hemtj": 0.22613,
-        "nst": 0.22613,
-        "nurse": 0.34449,
-        "patient": 0.22613,
-        "patient_care": 0.20346,
-        "rdbitr": 0.22613,
-        "terska": 0.20346,
-        "undersk": 0.22613
+        "assistant": 0.38344,
+        "care": 0.32978,
+        "communication": 0.14524,
+        "documentation": 0.30936,
+        "elderly": 0.23225,
+        "elderly_care": 0.23225,
+        "healthcare": 0.21033,
+        "hemtj": 0.23225,
+        "nst": 0.21033,
+        "nurse": 0.35612,
+        "patient": 0.23225,
+        "patient_care": 0.21033,
+        "rdbitr": 0.23225,
+        "terska": 0.21033,
+        "undersk": 0.23225
       }
     },
     {
@@ -2771,17 +3058,17 @@
         "medication"
       ],
       "vector": {
-        "care": 0.18719,
-        "documentation": 0.18719,
-        "healthcare": 0.18719,
-        "legitimerad": 0.20805,
-        "medication": 0.35226,
-        "nurse": 0.39285,
-        "nursing": 0.35226,
-        "patient_care": 0.31695,
-        "registered": 0.35226,
-        "sjuksk": 0.35226,
-        "terska": 0.31695
+        "care": 0.17516,
+        "documentation": 0.16431,
+        "healthcare": 0.18915,
+        "legitimerad": 0.20886,
+        "medication": 0.35363,
+        "nurse": 0.39695,
+        "nursing": 0.35363,
+        "patient_care": 0.32026,
+        "registered": 0.35363,
+        "sjuksk": 0.35363,
+        "terska": 0.32026
       }
     },
     {
@@ -2816,14 +3103,14 @@
         "inventory"
       ],
       "vector": {
-        "forklift": 0.22382,
-        "inventory": 0.37896,
-        "lager": 0.42118,
-        "lagerarbetare": 0.24876,
-        "logistics": 0.20613,
-        "picking": 0.24876,
-        "warehouse": 0.5341,
-        "worker": 0.42118
+        "forklift": 0.23239,
+        "inventory": 0.39348,
+        "lager": 0.43449,
+        "lagerarbetare": 0.25661,
+        "logistics": 0.21521,
+        "picking": 0.25661,
+        "warehouse": 0.55456,
+        "worker": 0.34181
       }
     },
     {
@@ -2859,16 +3146,16 @@
         "warehouse"
       ],
       "vector": {
-        "coordination": 0.20987,
-        "coordinator": 0.33463,
-        "excel": 0.15113,
-        "inventory": 0.24414,
-        "logistics": 0.53653,
-        "logistikkoordinator": 0.27134,
-        "planning": 0.38069,
-        "reporting": 0.15697,
-        "supply_chain": 0.41336,
-        "warehouse": 0.24414
+        "coordination": 0.19341,
+        "coordinator": 0.32747,
+        "excel": 0.15915,
+        "inventory": 0.24726,
+        "logistics": 0.5464,
+        "logistikkoordinator": 0.27303,
+        "planning": 0.36368,
+        "reporting": 0.16468,
+        "supply_chain": 0.41865,
+        "warehouse": 0.24726
       }
     },
     {
@@ -2903,17 +3190,17 @@
         "delivery"
       ],
       "vector": {
-        "chauff": 0.24308,
-        "delivery": 0.24308,
-        "driver": 0.51014,
-        "driving_license": 0.24308,
-        "forklift": 0.21871,
-        "lastbilsf": 0.24308,
-        "logistics": 0.20142,
-        "rare": 0.21871,
-        "supply_chain": 0.21871,
-        "transport": 0.24308,
-        "truck": 0.51014
+        "chauff": 0.24599,
+        "delivery": 0.24599,
+        "driver": 0.51624,
+        "driving_license": 0.18308,
+        "forklift": 0.22277,
+        "lastbilsf": 0.24599,
+        "logistics": 0.2063,
+        "rare": 0.22277,
+        "supply_chain": 0.22277,
+        "transport": 0.24599,
+        "truck": 0.51624
       }
     },
     {
@@ -2948,19 +3235,19 @@
         "classroom"
       ],
       "vector": {
-        "assistant": 0.31781,
-        "barnsk": 0.24269,
-        "childcare": 0.24269,
-        "children": 0.24269,
-        "classroom": 0.24269,
-        "communication": 0.17677,
-        "education": 0.24269,
-        "elevassistent": 0.24269,
-        "pedagogy": 0.4109,
-        "rarassistent": 0.24269,
-        "school": 0.24269,
-        "tare": 0.24269,
-        "teaching": 0.4109
+        "assistant": 0.32576,
+        "barnsk": 0.24457,
+        "childcare": 0.24457,
+        "children": 0.24457,
+        "classroom": 0.24457,
+        "communication": 0.15294,
+        "education": 0.24457,
+        "elevassistent": 0.24457,
+        "pedagogy": 0.41409,
+        "rarassistent": 0.24457,
+        "school": 0.24457,
+        "tare": 0.22148,
+        "teaching": 0.41409
       }
     },
     {
@@ -2994,16 +3281,648 @@
         "customers"
       ],
       "vector": {
-        "barista": 0.44587,
-        "caf": 0.55264,
-        "coffee": 0.26334,
-        "communication": 0.19181,
-        "customer_service": 0.23694,
-        "customers": 0.26334,
-        "hospitality": 0.26334,
-        "service": 0.23694,
-        "servit": 0.26334,
-        "waiter": 0.26334
+        "barista": 0.44955,
+        "caf": 0.5572,
+        "coffee": 0.26551,
+        "communication": 0.16604,
+        "customer_service": 0.22267,
+        "customers": 0.26551,
+        "hospitality": 0.26551,
+        "service": 0.24045,
+        "servit": 0.26551,
+        "waiter": 0.26551
+      }
+    },
+    {
+      "role_id": "security_officer",
+      "title": "Security Officer / Väktare",
+      "domain": "security",
+      "secondary_domains": [],
+      "field_id": "E7hm_BLq_fqZ",
+      "field_label": "Security / guarding",
+      "seniority": "entry",
+      "required_skills": [
+        "guarding",
+        "surveillance"
+      ],
+      "nice_skills": [
+        "communication",
+        "incident_response",
+        "driving_license"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "väktare",
+        "security officer",
+        "security guard",
+        "ordningsvakt",
+        "nightguard",
+        "night guard",
+        "skyddsvakt"
+      ],
+      "search_keywords": [
+        "Väktare",
+        "Security Officer",
+        "Ordningsvakt"
+      ],
+      "terms": [
+        "security",
+        "guarding",
+        "surveillance",
+        "patrol",
+        "alarm",
+        "safety",
+        "bevakning"
+      ],
+      "vector": {
+        "alarm": 0.19111,
+        "bevakning": 0.17307,
+        "communication": 0.11951,
+        "driving_license": 0.14224,
+        "guard": 0.32358,
+        "guarding": 0.29304,
+        "incident_response": 0.16027,
+        "ktare": 0.32358,
+        "night": 0.19111,
+        "nightguard": 0.19111,
+        "officer": 0.32358,
+        "ordningsvakt": 0.19111,
+        "patrol": 0.19111,
+        "safety": 0.17307,
+        "security": 0.41822,
+        "skyddsvakt": 0.19111,
+        "surveillance": 0.29304
+      }
+    },
+    {
+      "role_id": "security_coordinator",
+      "title": "Security Coordinator",
+      "domain": "security",
+      "secondary_domains": [],
+      "field_id": "E7hm_BLq_fqZ",
+      "field_label": "Security / guarding",
+      "seniority": "mid",
+      "required_skills": [
+        "guarding",
+        "surveillance",
+        "coordination"
+      ],
+      "nice_skills": [
+        "incident_response",
+        "planning"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "security coordinator",
+        "säkerhetssamordnare",
+        "skyddsledare",
+        "security supervisor"
+      ],
+      "search_keywords": [
+        "Security Coordinator",
+        "Säkerhetssamordnare"
+      ],
+      "terms": [
+        "security",
+        "coordination",
+        "risk",
+        "safety",
+        "planning",
+        "bevakning"
+      ],
+      "vector": {
+        "bevakning": 0.21695,
+        "coordination": 0.28733,
+        "coordinator": 0.28733,
+        "guarding": 0.21695,
+        "incident_response": 0.20091,
+        "kerhetssamordnare": 0.23956,
+        "planning": 0.3191,
+        "risk": 0.23956,
+        "safety": 0.21695,
+        "security": 0.52426,
+        "skyddsledare": 0.23956,
+        "supervisor": 0.23956,
+        "surveillance": 0.21695
+      }
+    },
+    {
+      "role_id": "construction_worker",
+      "title": "Construction Worker / Byggnadsarbetare",
+      "domain": "construction",
+      "secondary_domains": [],
+      "field_id": "j7Cq_ZJe_GkT",
+      "field_label": "Construction",
+      "seniority": "entry",
+      "required_skills": [
+        "construction_work"
+      ],
+      "nice_skills": [
+        "carpentry",
+        "driving_license"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "byggnadsarbetare",
+        "construction worker",
+        "byggarbetare",
+        "anläggningsarbetare"
+      ],
+      "search_keywords": [
+        "Byggnadsarbetare",
+        "Construction Worker"
+      ],
+      "terms": [
+        "construction",
+        "building",
+        "site",
+        "concrete",
+        "anläggning",
+        "bygg"
+      ],
+      "vector": {
+        "anl": 0.37555,
+        "building": 0.22181,
+        "bygg": 0.20087,
+        "byggarbetare": 0.22181,
+        "byggnadsarbetare": 0.37555,
+        "carpentry": 0.20087,
+        "concrete": 0.22181,
+        "construction": 0.44389,
+        "construction_work": 0.1745,
+        "driving_license": 0.16508,
+        "ggning": 0.22181,
+        "ggningsarbetare": 0.22181,
+        "site": 0.22181,
+        "worker": 0.29545
+      }
+    },
+    {
+      "role_id": "carpenter",
+      "title": "Carpenter / Snickare",
+      "domain": "construction",
+      "secondary_domains": [],
+      "field_id": "j7Cq_ZJe_GkT",
+      "field_label": "Construction",
+      "seniority": "mid",
+      "required_skills": [
+        "carpentry",
+        "construction_work"
+      ],
+      "nice_skills": [
+        "driving_license"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "snickare",
+        "carpenter",
+        "träarbetare"
+      ],
+      "search_keywords": [
+        "Snickare",
+        "Carpenter"
+      ],
+      "terms": [
+        "carpentry",
+        "wood",
+        "construction",
+        "snickeri",
+        "bygg"
+      ],
+      "vector": {
+        "arbetare": 0.24927,
+        "bygg": 0.22574,
+        "carpenter": 0.42205,
+        "carpentry": 0.38221,
+        "construction": 0.35395,
+        "construction_work": 0.1961,
+        "driving_license": 0.18552,
+        "snickare": 0.42205,
+        "snickeri": 0.24927,
+        "tr": 0.24927,
+        "wood": 0.24927
+      }
+    },
+    {
+      "role_id": "electrician",
+      "title": "Electrician / Elektriker",
+      "domain": "construction",
+      "secondary_domains": [
+        "maintenance"
+      ],
+      "field_id": "j7Cq_ZJe_GkT",
+      "field_label": "Construction",
+      "seniority": "mid",
+      "required_skills": [
+        "electrical"
+      ],
+      "nice_skills": [
+        "maintenance",
+        "construction_work"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "elektriker",
+        "electrician",
+        "el-tekniker",
+        "installationselektriker"
+      ],
+      "search_keywords": [
+        "Elektriker",
+        "Electrician"
+      ],
+      "terms": [
+        "electrical",
+        "wiring",
+        "installation",
+        "el",
+        "elinstallation"
+      ],
+      "vector": {
+        "construction": 0.18931,
+        "construction_work": 0.17759,
+        "el": 0.3822,
+        "electrical": 0.34613,
+        "electrician": 0.3822,
+        "elektriker": 0.3822,
+        "elinstallation": 0.22573,
+        "installation": 0.22573,
+        "installationselektriker": 0.22573,
+        "maintenance": 0.34613,
+        "tekniker": 0.22573,
+        "wiring": 0.22573
+      }
+    },
+    {
+      "role_id": "production_operator",
+      "title": "Production Operator / Operatör",
+      "domain": "manufacturing",
+      "secondary_domains": [],
+      "field_id": "wTEr_CBC_bqh",
+      "field_label": "Manufacturing",
+      "seniority": "entry",
+      "required_skills": [
+        "machine_operation"
+      ],
+      "nice_skills": [
+        "welding"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "operatör",
+        "production operator",
+        "industriarbetare",
+        "montör",
+        "maskinoperatör",
+        "produktionsmedarbetare"
+      ],
+      "search_keywords": [
+        "Operatör",
+        "Production Operator",
+        "Montör"
+      ],
+      "terms": [
+        "production",
+        "machine",
+        "assembly",
+        "manufacturing",
+        "industri",
+        "montering"
+      ],
+      "vector": {
+        "assembly": 0.21258,
+        "industri": 0.21258,
+        "industriarbetare": 0.21258,
+        "machine": 0.21258,
+        "machine_operation": 0.19251,
+        "manufacturing": 0.32595,
+        "maskinoperat": 0.21258,
+        "mont": 0.21258,
+        "montering": 0.21258,
+        "operat": 0.35993,
+        "operator": 0.35993,
+        "production": 0.44612,
+        "produktionsmedarbetare": 0.21258,
+        "welding": 0.19251
+      }
+    },
+    {
+      "role_id": "welder",
+      "title": "Welder / Svetsare",
+      "domain": "manufacturing",
+      "secondary_domains": [],
+      "field_id": "wTEr_CBC_bqh",
+      "field_label": "Manufacturing",
+      "seniority": "mid",
+      "required_skills": [
+        "welding"
+      ],
+      "nice_skills": [
+        "machine_operation"
+      ],
+      "language_sensitive": false,
+      "aliases": [
+        "svetsare",
+        "welder",
+        "svets"
+      ],
+      "search_keywords": [
+        "Svetsare",
+        "Welder"
+      ],
+      "terms": [
+        "welding",
+        "metal",
+        "fabrication",
+        "svets",
+        "mig",
+        "mag"
+      ],
+      "vector": {
+        "fabrication": 0.2455,
+        "machine_operation": 0.22233,
+        "mag": 0.2455,
+        "manufacturing": 0.22233,
+        "metal": 0.2455,
+        "mig": 0.2455,
+        "svets": 0.41567,
+        "svetsare": 0.41567,
+        "welder": 0.41567,
+        "welding": 0.37644
+      }
+    },
+    {
+      "role_id": "maintenance_tech",
+      "title": "Maintenance Technician / Fastighetsskötare",
+      "domain": "maintenance",
+      "secondary_domains": [],
+      "field_id": "yhCP_AqT_tns",
+      "field_label": "Installation / maintenance",
+      "seniority": "mid",
+      "required_skills": [
+        "maintenance"
+      ],
+      "nice_skills": [
+        "electrical",
+        "construction_work",
+        "driving_license"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "fastighetsskötare",
+        "maintenance technician",
+        "drifttekniker",
+        "vaktmästare",
+        "facility technician",
+        "fastighetstekniker"
+      ],
+      "search_keywords": [
+        "Fastighetsskötare",
+        "Maintenance Technician",
+        "Drifttekniker"
+      ],
+      "terms": [
+        "maintenance",
+        "facilities",
+        "repair",
+        "drift",
+        "fastighet",
+        "underhåll"
+      ],
+      "vector": {
+        "construction_work": 0.15027,
+        "drift": 0.19101,
+        "drifttekniker": 0.19101,
+        "driving_license": 0.14216,
+        "electrical": 0.17299,
+        "facilities": 0.19101,
+        "facility": 0.19101,
+        "fastighet": 0.19101,
+        "fastighetssk": 0.32342,
+        "fastighetstekniker": 0.19101,
+        "ll": 0.19101,
+        "maintenance": 0.4514,
+        "repair": 0.19101,
+        "stare": 0.19101,
+        "tare": 0.29289,
+        "technician": 0.36303,
+        "underh": 0.19101,
+        "vaktm": 0.19101
+      }
+    },
+    {
+      "role_id": "cleaner",
+      "title": "Cleaner / Lokalvårdare",
+      "domain": "cleaning",
+      "secondary_domains": [],
+      "field_id": "whao_Q6A_ScE",
+      "field_label": "Cleaning / sanitation",
+      "seniority": "entry",
+      "required_skills": [
+        "cleaning"
+      ],
+      "nice_skills": [
+        "communication"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "lokalvårdare",
+        "städare",
+        "cleaner",
+        "city cleaner",
+        "saneringstekniker",
+        "städ"
+      ],
+      "search_keywords": [
+        "Lokalvårdare",
+        "Städare",
+        "Cleaner"
+      ],
+      "terms": [
+        "cleaning",
+        "sanitation",
+        "hygiene",
+        "lokalvård",
+        "sanering"
+      ],
+      "vector": {
+        "city": 0.19748,
+        "cleaner": 0.41444,
+        "cleaning": 0.41444,
+        "communication": 0.1235,
+        "dare": 0.19748,
+        "hygiene": 0.19748,
+        "lokalv": 0.41444,
+        "rd": 0.17884,
+        "rdare": 0.33437,
+        "sanering": 0.19748,
+        "saneringstekniker": 0.19748,
+        "sanitation": 0.19748,
+        "st": 0.30281
+      }
+    },
+    {
+      "role_id": "support_worker",
+      "title": "Support Worker / Stödassistent",
+      "domain": "social_care",
+      "secondary_domains": [],
+      "field_id": "GazW_2TU_kJw",
+      "field_label": "Social work",
+      "seniority": "entry",
+      "required_skills": [
+        "social_work"
+      ],
+      "nice_skills": [
+        "documentation",
+        "communication"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "stödassistent",
+        "support worker",
+        "boendestödjare",
+        "behandlingsassistent",
+        "personlig assistent"
+      ],
+      "search_keywords": [
+        "Stödassistent",
+        "Support Worker",
+        "Boendestödjare"
+      ],
+      "terms": [
+        "support",
+        "care",
+        "social",
+        "assistance",
+        "stöd",
+        "omsorg"
+      ],
+      "vector": {
+        "assistance": 0.2107,
+        "assistent": 0.2107,
+        "behandlingsassistent": 0.2107,
+        "boendest": 0.2107,
+        "care": 0.17671,
+        "communication": 0.13176,
+        "dassistent": 0.35675,
+        "djare": 0.2107,
+        "documentation": 0.16576,
+        "omsorg": 0.2107,
+        "personlig": 0.2107,
+        "social": 0.19082,
+        "social_care": 0.19082,
+        "social_work": 0.19082,
+        "st": 0.40045,
+        "support": 0.37084,
+        "worker": 0.28066
+      }
+    },
+    {
+      "role_id": "social_worker",
+      "title": "Social Worker / Socialsekreterare",
+      "domain": "social_care",
+      "secondary_domains": [],
+      "field_id": "GazW_2TU_kJw",
+      "field_label": "Social work",
+      "seniority": "mid",
+      "required_skills": [
+        "social_work",
+        "documentation"
+      ],
+      "nice_skills": [
+        "communication",
+        "coordination"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "socialsekreterare",
+        "social worker",
+        "kurator",
+        "biståndshandläggare"
+      ],
+      "search_keywords": [
+        "Socialsekreterare",
+        "Social Worker",
+        "Kurator"
+      ],
+      "terms": [
+        "social work",
+        "casework",
+        "client",
+        "welfare",
+        "documentation",
+        "socialtjänst"
+      ],
+      "vector": {
+        "bist": 0.21627,
+        "casework": 0.21627,
+        "client": 0.21627,
+        "communication": 0.13524,
+        "coordination": 0.1532,
+        "documentation": 0.28807,
+        "ggare": 0.21627,
+        "kurator": 0.21627,
+        "ndshandl": 0.21627,
+        "nst": 0.19585,
+        "social": 0.41102,
+        "social_care": 0.19585,
+        "social_work": 0.19585,
+        "socialsekreterare": 0.36617,
+        "socialtj": 0.21627,
+        "welfare": 0.21627,
+        "worker": 0.28807
+      }
+    },
+    {
+      "role_id": "hairdresser",
+      "title": "Hairdresser / Frisör",
+      "domain": "beauty",
+      "secondary_domains": [],
+      "field_id": "Uuf1_GMh_Uvw",
+      "field_label": "Beauty / personal care",
+      "seniority": "entry",
+      "required_skills": [
+        "hairdressing"
+      ],
+      "nice_skills": [
+        "customer_service"
+      ],
+      "language_sensitive": true,
+      "aliases": [
+        "frisör",
+        "hairdresser",
+        "barber",
+        "hudterapeut",
+        "stylist"
+      ],
+      "search_keywords": [
+        "Frisör",
+        "Hairdresser"
+      ],
+      "terms": [
+        "hair",
+        "beauty",
+        "styling",
+        "skönhetsvård",
+        "salon",
+        "salong"
+      ],
+      "vector": {
+        "barber": 0.22292,
+        "beauty": 0.37743,
+        "customer_service": 0.18695,
+        "fris": 0.37743,
+        "hair": 0.22292,
+        "hairdresser": 0.37743,
+        "hairdressing": 0.22292,
+        "hudterapeut": 0.22292,
+        "nhetsv": 0.22292,
+        "rd": 0.20188,
+        "salon": 0.22292,
+        "salong": 0.22292,
+        "sk": 0.22292,
+        "styling": 0.22292,
+        "stylist": 0.22292
       }
     }
   ]
