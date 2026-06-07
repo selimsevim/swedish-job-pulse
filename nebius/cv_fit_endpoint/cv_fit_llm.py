@@ -50,7 +50,8 @@ _SYSTEM = (
     "    * If data_basis is 'national_only' (or regional_outlook is null), say there's no regional breakdown for "
     "this field and advise a national + remote search. Do NOT name regions then.\n"
     "- Be concrete and concise. No hype, no filler.\n"
-    "Return STRICT JSON only, no markdown. 'main_answer' is ONE sentence. "
+    "Output ONE single JSON object and NOTHING else (no prose before or after, no second "
+    "object). It MUST contain BOTH keys. 'main_answer' is ONE sentence. "
     "'why_recommendation' is an array of EXACTLY 3 short sentences (max ~28 words each): "
     "(1) the CV evidence and best-fit titles, (2) the market signal, (3) the regional strategy per the rules above. "
     "Keep the whole response under 130 words. Schema:\n"
@@ -151,37 +152,50 @@ def _unescape(s):
         return s.replace('\\"', '"').replace("\\n", " ").replace("\\\\", "\\").strip()
 
 
-def _regex_extract(text):
-    """Truncation-tolerant fallback: pull the two fields even if the JSON was cut
-    off mid-array (small models ramble past the token budget). Incomplete trailing
-    items are simply dropped."""
+def _extract_fields(text):
+    """Layout-tolerant field recovery. Instruct models sometimes split the output
+    into two fragments — {"main_answer": "..."} then a bare ["...", "..."] array,
+    or a second {"why_recommendation": [...]} object — and may truncate or add
+    trailing prose. Pull main_answer and the why list wherever they land."""
     if not text:
         return None
-    m = re.search(r'"main_answer"\s*:\s*"((?:\\.|[^"\\])*)"', text)
-    if not m:
-        return None
-    main = _unescape(m.group(1))
-    why = []
-    arr = re.search(r'"why_recommendation"\s*:\s*\[', text)
-    if arr:
-        why = [_unescape(g) for g in re.findall(r'"((?:\\.|[^"\\])*)"', text[arr.end():])]
+    mm = re.search(r'"main_answer"\s*:\s*"((?:\\.|[^"\\])*)"', text)
+    main = _unescape(mm.group(1)) if mm else None
+    # why list: prefer the keyed array; else the first bracketed list of strings
+    # (a bare array the model emitted after the main object).
+    span = None
+    km = re.search(r'"why_recommendation"\s*:\s*\[', text)
+    if km:
+        span = text[km.end() - 1:]
     else:
-        sm = re.search(r'"why_recommendation"\s*:\s*"((?:\\.|[^"\\])*)"', text)
-        if sm:
-            why = [_unescape(sm.group(1))]
-    return {"main_answer": main, "why_recommendation": why}
+        after = text[mm.end():] if mm else text
+        bm = re.search(r'\[\s*"', after)
+        if bm:
+            span = after[bm.start():]
+    why = []
+    if span:
+        close = span.find("]")
+        seg = span[: close + 1] if close != -1 else span      # tolerate truncation
+        why = [_unescape(g) for g in re.findall(r'"((?:\\.|[^"\\])*)"', seg)]
+    if main or why:
+        return {"main_answer": main, "why_recommendation": why}
+    return None
 
 
 def _parse_and_ground(text, evidence):
     obj = _extract_json(text)
-    if not isinstance(obj, dict):
-        obj = _regex_extract(text)   # recover from truncated / fenced output
-    if not isinstance(obj, dict):
-        return None
-    main = obj.get("main_answer")
-    why = obj.get("why_recommendation")
+    main = obj.get("main_answer") if isinstance(obj, dict) else None
+    why = obj.get("why_recommendation") if isinstance(obj, dict) else None
     if isinstance(why, str):
         why = [why]
+    # Backfill any missing field from a layout-tolerant scan of the whole text
+    # (handles split objects / bare arrays / truncation / trailing prose).
+    if not (isinstance(main, str) and main.strip()) or not (isinstance(why, list) and why):
+        fx = _extract_fields(text) or {}
+        if not (isinstance(main, str) and main.strip()):
+            main = fx.get("main_answer")
+        if not (isinstance(why, list) and why):
+            why = fx.get("why_recommendation")
     if not isinstance(main, str) or not main.strip():
         return None
     if not isinstance(why, list):
