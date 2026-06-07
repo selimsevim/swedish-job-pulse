@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-07T15:54:40Z",
+  "last_updated": "2026-06-07T22:02:58Z",
   "note": "Synthetic, fictional CVs for demoing the CV Job Fit Scanner. No real or personal data.",
   "cvs": [
     {
@@ -13,6 +13,10 @@
     {
       "name": "Data analyst (mid)",
       "text": "Mira Holm — Data Analyst, 4 years.\nSQL, Python, Power BI and Excel. Built dashboards and statistics/regression models.\nReported KPIs to stakeholders. English fluent, Swedish good."
+    },
+    {
+      "name": "Data engineer (mid)",
+      "text": "Robin Sand — Data Engineer, 5 years.\nSQL, Python, ETL (Airflow), cloud (AWS), Docker, data pipelines and integration.\nEnglish fluent, Swedish good."
     },
     {
       "name": "Junior developer (entry)",

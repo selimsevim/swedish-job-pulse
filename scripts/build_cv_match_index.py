@@ -234,10 +234,10 @@ def build_catalog():
              aliases=["marketing operations engineer", "marketing ops", "marketing operations"],
              kw=["Marketing Operations Engineer", "Marketing Ops"],
              terms=["marketing", "operations", "automation", "data", "campaign", "engineer"]),
-        role("data_integration_specialist", "Data Integration Specialist", "crm_martech", "mid",
+        role("data_integration_specialist", "Data Integration Specialist", "data_analytics", "mid",
              ["integration", "sql", "apis"],
              ["etl", "data_cloud", "cloud"],
-             secondary=["data_analytics", "software"],
+             secondary=["crm_martech", "software"],
              aliases=["data integration specialist", "data integration engineer"],
              kw=["Data Integration Specialist"],
              terms=["data", "integration", "etl", "sql", "pipelines", "apis"]),
@@ -488,7 +488,7 @@ SKILLS = {
     "linux": ["linux", "bash"], "networking": ["networking", "nätverk"], "troubleshooting": ["troubleshooting", "felsökning"],
     "testing": ["testing", "qa"], "test_automation": ["test_automation", "selenium", "cypress"],
     "security": ["security", "säkerhet"], "incident_response": ["incident", "soc", "siem"],
-    "customer_service": ["customer_service", "kundtjänst", "kundsupport"], "communication": ["communication", "kommunikation"],
+    "customer_service": ["customer_service", "customer service", "kundtjänst", "kundsupport", "kundservice"], "communication": ["communication", "kommunikation"],
     "ticketing": ["ticketing", "zendesk", "ärendehantering"], "account_management": ["account_management"],
     "sales": ["sales", "försäljning"], "negotiation": ["negotiation", "förhandling"], "pipeline": ["pipeline"],
     "patient_care": ["patient_care"], "elderly_care": ["elderly_care", "hemtjänst"], "nursing": ["nursing", "sjuksköterska"],
@@ -750,6 +750,14 @@ Reported KPIs in Excel. English fluent, Swedish basic.""",
         "text": """Mira Holm — Data Analyst, 4 years.
 SQL, Python, Power BI and Excel. Built dashboards and statistics/regression models.
 Reported KPIs to stakeholders. English fluent, Swedish good.""",
+    },
+    {
+        "name": "Data engineer (mid)",
+        "expect_domain": "data_analytics",
+        "must_not_top": {"sfmc_consultant", "martech_consultant", "truck_driver", "assistant_nurse"},
+        "text": """Robin Sand — Data Engineer, 5 years.
+SQL, Python, ETL (Airflow), cloud (AWS), Docker, data pipelines and integration.
+English fluent, Swedish good.""",
     },
     {
         "name": "Junior developer (entry)",

@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-07T15:54:40Z",
+  "last_updated": "2026-06-07T22:02:58Z",
   "version": "cv-fit-engine-v2",
   "retrieval": "tf-idf-cosine",
   "domain_label": {
@@ -780,8 +780,10 @@
       "skill": "customer_service",
       "variants": [
         "customer_service",
+        "customer service",
         "kundtjänst",
-        "kundsupport"
+        "kundsupport",
+        "kundservice"
       ]
     },
     {
@@ -1354,13 +1356,13 @@
     {
       "role_id": "data_integration_specialist",
       "title": "Data Integration Specialist",
-      "domain": "crm_martech",
+      "domain": "data_analytics",
       "secondary_domains": [
-        "data_analytics",
+        "crm_martech",
         "software"
       ],
-      "field_id": "RPTn_bxG_ExZ",
-      "field_label": "Sales / marketing",
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
       "seniority": "mid",
       "required_skills": [
         "integration",

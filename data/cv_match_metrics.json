@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-06-07T15:54:40Z",
+  "last_updated": "2026-06-07T22:02:58Z",
   "version": "cv-fit-engine-v2",
   "metrics": {
-    "n_synthetic_cvs": 8,
+    "n_synthetic_cvs": 9,
     "primary_domain_accuracy": 1.0,
     "no_collapse_rate": 1.0,
     "retrieval": "tf-idf cosine over role ontology (multilingual, synonym-expanded)",
@@ -76,6 +76,26 @@
           "Reporting Assistant",
           "Junior Controller",
           "Operations Coordinator"
+        ],
+        "avoid": []
+      },
+      {
+        "cv": "Data engineer (mid)",
+        "extracted_skills": 7,
+        "seniority": "mid",
+        "primary_domain": "data_analytics",
+        "expected_domain": "data_analytics",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Data Engineer",
+          "Data Integration Specialist",
+          "Marketing Operations Engineer"
+        ],
+        "adjacent": [
+          "DevOps Engineer",
+          "CRM Technical Consultant",
+          "CRM Analyst"
         ],
         "avoid": []
       },

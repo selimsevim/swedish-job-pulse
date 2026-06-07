@@ -344,9 +344,14 @@ class _Engine:
             base = "Public ad data isn't broken down by region for this field — search nationally"
             return base + (" and include remote roles." if remote_ok else ".")
         field = domain_label or "these"
-        what = "the wider tech market" if outlook.get("data_basis") == "proxy" else f"{field} roles"
-        proxy_note = (" (marketing-tech isn't tracked per region, so this uses the wider tech market)"
-                      if outlook.get("data_basis") == "proxy" else "")
+        proxy_field = outlook.get("proxy_field")
+        if proxy_field:
+            what = f"{proxy_field} roles"
+            proxy_note = (f" (this field isn't tracked per region, so this uses the closest "
+                          f"tracked field, {proxy_field})")
+        else:
+            what = f"{field} roles"
+            proxy_note = ""
         fmt = lambda t: f"{t['region']} ({t['ads']} ads)"
         top1 = tops[0]
         sel = outlook.get("selected_region")
