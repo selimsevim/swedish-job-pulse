@@ -39,6 +39,7 @@ import cv_fit_llm  # noqa: E402
 
 INDEX_PATH = os.environ.get("CV_FIT_INDEX_PATH", os.path.join(REPO_ROOT, "data", "cv_match_index.json"))
 CAREER_PATH = os.environ.get("CV_FIT_CAREER_PATH", os.path.join(REPO_ROOT, "data", "career_reality.json"))
+REGIONAL_SPLIT_PATH = os.environ.get("CV_FIT_REGIONAL_SPLIT", os.path.join(REPO_ROOT, "data", "regional_split.json"))
 EMBEDDING_MODEL = os.environ.get("CV_FIT_EMBEDDING_MODEL", "").strip()
 NEURAL_INDEX_PATH = os.environ.get("CV_FIT_NEURAL_INDEX", os.path.join(HERE, "neural_role_index.json"))
 
@@ -64,6 +65,15 @@ CV_HARD_GAPS = {
     "data_visualization", "sfmc", "marketing_automation", "segmentation", "integration",
     "apis", "google_analytics", "seo", "cloud", "docker", "cicd", "test_automation",
     "javascript", "financial_analysis", "accounting", "crm", "excel", "architecture",
+}
+
+# Regional outlook proxy (data methodology, not a hidden assumption): some
+# occupation fields are not broken out per region in the public ad data, so for
+# those domains we read the closest regionally-tracked field as a proxy and
+# DISCLOSE it. Domains whose own field has regional data are not listed here.
+REGIONAL_PROXY = {
+    "crm_martech": ("apaJ_2ja_LuF", "Data/IT"),            # technical martech ≈ the IT labour market
+    "digital_marketing": ("9puE_nYg_crq", "Kultur, media, design"),
 }
 
 
@@ -129,6 +139,14 @@ class _Engine:
                 self.career = json.load(fh)
         except Exception:
             self.career = {}
+
+        # Per-region ad counts by occupation field (for the cross-region outlook).
+        self.regional_split = {}
+        try:
+            with open(REGIONAL_SPLIT_PATH, "r", encoding="utf-8") as fh:
+                self.regional_split = json.load(fh)
+        except Exception:
+            self.regional_split = {}
 
         # Backend selection. backend_kind: tfidf | neural | error.
         self.backend_kind = "tfidf"
@@ -263,6 +281,64 @@ class _Engine:
             parts.append(f"{occ['remote_signal']} remote signal")
         return " · ".join(parts) if parts else None
 
+    # ---- cross-region demand outlook (facts for the consultant LLM) ----
+    def _regional_outlook(self, pdomain, field_id, region):
+        """Where the jobs for the CV's field actually are, ranked by ABSOLUTE ad
+        volume (not share ratio), so the LLM can say "few roles in your region —
+        most are in Stockholm / Västra Götaland, or go remote" from real counts.
+
+        Some occupation fields (e.g. sales/marketing) are not broken out per
+        region in the public ad data. For those we read the closest regionally-
+        tracked field as a TRANSPARENT proxy (disclosed via data_basis='proxy')
+        instead of inventing regional numbers.
+        """
+        regions = self.regional_split.get("regions", [])
+        if not regions:
+            return None
+
+        def field_count(region_row, fid):
+            for f in region_row.get("occupation_fields", []):
+                if f.get("concept_id") == fid:
+                    return f.get("count"), f.get("vs_national")
+            return None, None
+
+        use_field, proxy_label, basis = field_id, None, "direct"
+        present = any(field_count(r, field_id)[0] is not None for r in regions)
+        if not present:
+            proxy = REGIONAL_PROXY.get(pdomain)
+            if not proxy:
+                return {"data_basis": "national_only"}
+            use_field, proxy_label = proxy
+            basis = "proxy"
+
+        rows = []
+        for r in regions:
+            cnt, vsn = field_count(r, use_field)
+            if cnt is not None:
+                rows.append((r.get("term"), cnt, round(vsn, 2) if vsn is not None else None))
+        if not rows:
+            return {"data_basis": "national_only"}
+        rows.sort(key=lambda x: x[1], reverse=True)          # by absolute ad volume
+
+        out = {"data_basis": basis,
+               "top_regions": [{"region": t, "ads": c, "vs_national": v} for t, c, v in rows[:4]]}
+        if proxy_label:
+            out["proxy_field"] = proxy_label
+        if region:
+            ranked = [t for t, _, _ in rows]
+            match = next(((t, c, v) for t, c, v in rows if t == region), None)
+            n = len(rows)
+            if match:
+                rank = ranked.index(region) + 1
+                # Derived local-market verdict (rank-based) so even a small model
+                # gets the reasoning right; the LLM only does the wording.
+                local = "strong" if rank <= 3 else ("thin" if rank > (2 * n) // 3 else "moderate")
+                out["selected_region"] = {"region": region, "ads": match[1], "vs_national": match[2],
+                                          "rank": rank, "of": n, "local_market": local}
+            else:
+                out["selected_region"] = {"region": region, "ads": 0, "local_market": "thin"}
+        return out
+
     # ---- public entry point --------------------------------------------
     def analyze(self, cv_text, region=None, swedish_level=None, target_role=None):
         profile = bm.extract_cv(cv_text or "")
@@ -383,6 +459,7 @@ class _Engine:
         # per-request backend label reflects what actually wrote the narrative.
         backend_label = self.retrieval_backend
         if self.llm and self.llm.ok and (best or adj):
+            regional_outlook = self._regional_outlook(pdomain, sig_field, region)
             gen = self.llm.generate({
                 "domain": domain_name,
                 "seniority": profile["seniority"],
@@ -393,6 +470,7 @@ class _Engine:
                 "missing_skills": missing[:4],
                 "market_signal": market_signal,
                 "region": region,
+                "regional_outlook": regional_outlook,
             })
             if gen:
                 main = gen["main_answer"]

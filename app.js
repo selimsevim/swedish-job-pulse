@@ -1145,19 +1145,15 @@
       container.innerHTML = "";
     }
 
-    function crcCvMode() {
-      const checked = document.querySelector('input[name="cv-mode"]:checked');
-      return checked ? checked.value : "local";
-    }
-
-    // Entry point for all CV inputs (paste / PDF / sample). Dispatches to the
-    // neural Nebius path or the fast local baseline based on the mode toggle.
     function crcCvRegion() {
       const sel = document.getElementById("cv-region");
       const v = sel && sel.value ? sel.value.trim() : "";
       return v || null;
     }
 
+    // Entry point for all CV inputs (paste / PDF / sample). One analysis path:
+    // the Nebius LLM endpoint when available, otherwise the local baseline as a
+    // transparent fallback (no user-facing mode toggle).
     function crcCvAnalyseText(text, sourceLabel) {
       crcCvClearReport();
       const cleanText = String(text || "").trim();
@@ -1166,7 +1162,7 @@
         return;
       }
       const region = crcCvRegion();
-      if (crcCvMode() === "neural" && cvNeuralAvailable) {
+      if (cvNeuralAvailable) {
         crcCvAnalyseNeural(cleanText, sourceLabel, region);
         return;
       }
@@ -1287,24 +1283,13 @@
       }
     }
 
-    // Reflect server capability in the UI. When the Nebius backend is not
-    // configured, disable the neural pill, force local, and say so clearly.
-    function crcCvApplyNeuralAvailability() {
-      const neuralPill = document.getElementById("cv-mode-neural");
-      const neuralRadio = neuralPill ? neuralPill.querySelector("input") : null;
-      const localRadio = document.querySelector('input[name="cv-mode"][value="local"]');
-      if (!neuralPill || !neuralRadio) return;
-      if (cvNeuralAvailable) {
-        neuralPill.classList.remove("is-disabled");
-        neuralRadio.disabled = false;
-        neuralPill.removeAttribute("title");
-      } else {
-        neuralPill.classList.add("is-disabled");
-        neuralRadio.disabled = true;
-        neuralRadio.checked = false;
-        if (localRadio) localRadio.checked = true;
-        neuralPill.title = "Neural backend not configured on the server.";
-      }
+    // One analysis path — reflect which engine is active (informational only).
+    function crcCvSetEngineNote() {
+      const note = document.getElementById("cv-engine-note");
+      if (!note) return;
+      note.textContent = cvNeuralAvailable
+        ? "Analysis runs on the Nebius LLM endpoint (grounded in public job-ad data). Your CV is not stored."
+        : "Analysis runs locally in your browser (baseline). Nothing is uploaded or stored.";
     }
 
     // Ask the server (not Nebius directly) whether neural mode is available.
@@ -1347,23 +1332,7 @@
         });
       }
 
-      // Analysis-mode toggle (Fast local baseline ↔ Nebius neural analysis).
-      const modePills = Array.from(document.querySelectorAll(".cv-mode-pill"));
-      const modeRadios = Array.from(document.querySelectorAll('input[name="cv-mode"]'));
-      const modeNote = document.getElementById("cv-mode-note");
-      const noteFor = (mode) => {
-        if (mode === "neural") return "Server-side multilingual neural embeddings (BGE-M3) via the Nebius endpoint.";
-        if (!cvNeuralAvailable) return "Neural backend unavailable — using the fast local baseline.";
-        return "Runs entirely in your browser — instant, no upload.";
-      };
-      const syncMode = () => {
-        const mode = crcCvMode();
-        modePills.forEach((p) => p.classList.toggle("is-active", !!p.querySelector('input:checked')));
-        if (modeNote) modeNote.textContent = noteFor(mode);
-      };
-      modeRadios.forEach((r) => r.addEventListener("change", syncMode));
-      crcCvApplyNeuralAvailability();
-      syncMode();
+      crcCvSetEngineNote();
 
       // Region selector (optional) — reuses the same region list as the Career
       // Reality Check, tailoring the market signal + search tips.

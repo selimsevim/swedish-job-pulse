@@ -560,6 +560,11 @@
       color: var(--crc-muted);
     }
     .cv-region-field { margin-bottom: 18px; max-width: 380px; }
+    .cv-engine-note {
+      margin: 0 0 16px;
+      font-size: 0.8125rem;
+      color: var(--crc-muted);
+    }
 
     .cv-drop {
       border: 2px dashed var(--crc-ink);
