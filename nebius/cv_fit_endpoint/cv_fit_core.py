@@ -321,6 +321,36 @@ class _Engine:
             return f"Prioritise {role} and lead with measurable {proof_text} results."
         return f"Treat {role} as a stretch role and strengthen {proof_text} first."
 
+    def _regional_advice(self, outlook, domain_label, region):
+        """Deterministic, data-cited regional line built from real ad volumes —
+        so it never overstates a rank-2 region as "the strong market". Returns a
+        single sentence (or None if there's no usable regional data)."""
+        if not outlook:
+            return None
+        tops = outlook.get("top_regions") or []
+        if outlook.get("data_basis") == "national_only" or not tops:
+            return ("Public ad data isn't broken down by region for this field — "
+                    "search nationally and include remote roles.")
+        field = domain_label or "these"
+        what = "the wider tech market" if outlook.get("data_basis") == "proxy" else f"{field} roles"
+        proxy_note = (" (marketing-tech isn't tracked per region, so this uses the wider tech market)"
+                      if outlook.get("data_basis") == "proxy" else "")
+        fmt = lambda t: f"{t['region']} ({t['ads']} ads)"
+        top1 = tops[0]
+        sel = outlook.get("selected_region")
+        if region and sel and sel.get("rank"):
+            rank, ads, n = sel["rank"], sel.get("ads", 0), sel.get("of")
+            if rank == 1:
+                return f"{region} has the most {what} ({ads} ads) — focus here, and keep remote roles in scope{proxy_note}."
+            if rank <= 3:
+                return (f"{region} is a solid market for {what} (rank {rank}, {ads} ads), but "
+                        f"{fmt(top1)} has the most — search both, or go remote{proxy_note}.")
+            names = ", ".join(fmt(t) for t in tops[:2])
+            return (f"{region} is thin for {what} (rank {rank}/{n}, {ads} ads) — most are in "
+                    f"{names}; search there or go remote{proxy_note}.")
+        names = ", ".join(fmt(t) for t in tops[:2])
+        return f"Most {what} are in {names} — focus there or go remote{proxy_note}."
+
     # ---- cross-region demand outlook (facts for the consultant LLM) ----
     def _regional_outlook(self, pdomain, field_id, region):
         """Where the jobs for the CV's field actually are, ranked by ABSOLUTE ad
@@ -515,12 +545,18 @@ class _Engine:
             })
             if gen:
                 why = gen["why_recommendation"]
+                # Force the two FACTUAL lines deterministically so the model can't
+                # soften the market signal or overstate a rank-2 region. The LLM
+                # keeps why[0] — the CV-specific reasoning.
                 if market_signal and len(why) >= 2:
                     why[1] = (
                         "Public job-ad signals show "
                         + market_signal.replace(" · ", ", ").lower()
                         + "."
                     )
+                advice = self._regional_advice(regional_outlook, domain_name, region)
+                if advice and len(why) >= 3:
+                    why[2] = advice
                 main = self._decision_headline(profile, best, adj, market_signal)
                 backend_label = "llm:" + self.llm.model_id
             else:
