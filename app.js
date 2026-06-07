@@ -951,7 +951,7 @@
       return (cvIndex?.domain_label || {})[domain] || domain || "these";
     }
 
-    function crcCvBuildReport(profile) {
+    function crcCvBuildReport(profile, region) {
       const scored = crcCvRank(profile);
       const { pdomain, best, adj, avoid } = crcCvBucket(profile, scored);
       const isSenior = profile.seniority === "senior";
@@ -1017,11 +1017,11 @@
 
       const sigOcc = best[0] ? crcTopOccupationInField(best[0].field_id)
         : (adj[0] ? crcTopOccupationInField(adj[0].field_id) : null);
-      const signalLine = sigOcc ? crcBuildSignalLine(sigOcc, { region: "" }) : null;
+      const signalLine = sigOcc ? crcBuildSignalLine(sigOcc, { region: region || "" }) : null;
 
       // "Why this recommendation?" — fully derived from CV skills, the market
       // signal, the matched titles and (optional) region. No hardcoded text.
-      const why = crcCvWhy(profile, crcCvDomainLabel(pdomain), best, adj, signalLine, null);
+      const why = crcCvWhy(profile, crcCvDomainLabel(pdomain), best, adj, signalLine, region || null);
 
       return {
         tone, mainAnswer, why, primaryDomain: pdomain, domainLabel: crcCvDomainLabel(pdomain),
@@ -1152,6 +1152,12 @@
 
     // Entry point for all CV inputs (paste / PDF / sample). Dispatches to the
     // neural Nebius path or the fast local baseline based on the mode toggle.
+    function crcCvRegion() {
+      const sel = document.getElementById("cv-region");
+      const v = sel && sel.value ? sel.value.trim() : "";
+      return v || null;
+    }
+
     function crcCvAnalyseText(text, sourceLabel) {
       crcCvClearReport();
       const cleanText = String(text || "").trim();
@@ -1159,23 +1165,24 @@
         crcCvSetStatus("Not enough CV information yet. Add role titles, skills, tools, language level, and recent work or study history.", true);
         return;
       }
+      const region = crcCvRegion();
       if (crcCvMode() === "neural" && cvNeuralAvailable) {
-        crcCvAnalyseNeural(cleanText, sourceLabel);
+        crcCvAnalyseNeural(cleanText, sourceLabel, region);
         return;
       }
-      crcCvRunLocal(cleanText, sourceLabel, false);
+      crcCvRunLocal(cleanText, sourceLabel, false, region);
     }
 
     // Fast local baseline — in-browser TF-IDF matching. `fellBack` is true when
     // we reached here because the neural backend was unavailable.
-    function crcCvRunLocal(cleanText, sourceLabel, fellBack) {
+    function crcCvRunLocal(cleanText, sourceLabel, fellBack, region) {
       if (!cvIndex) { crcCvSetStatus("CV index not loaded — run scripts/build_cv_match_index.py.", true); return; }
       const profile = crcCvExtract(cleanText);
       if (!profile.skills.length && !profile.roles.length) {
         crcCvSetStatus("Not enough recognisable CV information yet. Add role titles, skills, tools, language level, and recent work or study history.", true);
         return;
       }
-      const report = crcCvBuildReport(profile);
+      const report = crcCvBuildReport(profile, region);
       crcCvRenderReport(report, profile);
       const prefix = fellBack ? "Neural backend unavailable — showing fast local baseline. " : "";
       crcCvSetStatus(sourceLabel ? `${prefix}Analysed ${sourceLabel} (local baseline). Nothing was uploaded or stored.` : (prefix || null), false);
@@ -1215,14 +1222,16 @@
     // Nebius neural path: POST the CV text to the same-origin proxy at
     // /api/cv-fit (the Nebius token lives only on the server). On any failure
     // we transparently fall back to the local baseline.
-    async function crcCvAnalyseNeural(cleanText, sourceLabel) {
+    async function crcCvAnalyseNeural(cleanText, sourceLabel, region) {
       crcCvSetStatus("Analysing with the Nebius neural model… nothing is uploaded or stored.", false);
       let data;
       try {
+        const body = { cv_text: cleanText };
+        if (region) body.region = region;
         const res = await fetch("/api/cv-fit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ cv_text: cleanText })
+          body: JSON.stringify(body)
         });
         data = await res.json().catch(() => ({}));
         if (!res.ok || (data && data.fallback === "local")) {
@@ -1231,7 +1240,7 @@
       } catch (err) {
         // Do NOT log the CV text or response body. Static message only.
         console.warn("Neural CV-fit unavailable — falling back to local baseline.");
-        crcCvRunLocal(cleanText, sourceLabel, true);
+        crcCvRunLocal(cleanText, sourceLabel, true, region);
         return;
       }
       const { report, profile } = crcCvNeuralToReport(data);
@@ -1355,6 +1364,16 @@
       modeRadios.forEach((r) => r.addEventListener("change", syncMode));
       crcCvApplyNeuralAvailability();
       syncMode();
+
+      // Region selector (optional) — reuses the same region list as the Career
+      // Reality Check, tailoring the market signal + search tips.
+      const regionSelect = document.getElementById("cv-region");
+      if (regionSelect) {
+        const regions = Array.isArray(careerRealityData?.regions) ? careerRealityData.regions : [];
+        regionSelect.innerHTML = ['<option value="">Anywhere in Sweden</option>']
+          .concat(regions.map((r) => `<option value="${escapeHtml(r.term)}">${escapeHtml(r.term)}</option>`))
+          .join("");
+      }
 
       const row = document.getElementById("cv-sample-row");
       if (row) {
