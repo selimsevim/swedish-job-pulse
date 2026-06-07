@@ -1,0 +1,54 @@
+name: Refresh archive-derived data (monthly)
+
+# The skill / lifespan datasets come from JobTech's enriched YEARLY archive
+# (~0.9 GB each), so they're refreshed monthly rather than in the weekly live-API
+# run. After refreshing them, Career Reality is rebuilt because it consumes
+# skill_velocity + occupation_decay.
+on:
+  schedule:
+    - cron: '0 4 1 * *'   # 04:00 UTC on the 1st of each month
+  workflow_dispatch:
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-ml.txt
+
+      - name: Skill demand over time (skill_velocity.json)
+        continue-on-error: true
+        run: python scripts/process_skill_velocity.py
+
+      - name: Per-field skill demand (field_skills.json)
+        continue-on-error: true
+        run: python scripts/process_field_skills.py
+
+      - name: Long-range field demand (occupation_decay.json)
+        continue-on-error: true
+        run: python scripts/process_decay.py
+
+      - name: Ad lifespan (ad_lifespan.json)
+        continue-on-error: true
+        run: python scripts/process_ad_lifespan.py
+
+      - name: Rebuild Career Reality (consumes skill_velocity + decay)
+        run: ./scripts/rebuild_career_reality.sh
+
+      - name: Commit data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "Monthly archive refresh $(date -u +%Y-%m)"
+          git push
