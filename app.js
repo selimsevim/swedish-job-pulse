@@ -1154,7 +1154,7 @@
     // Entry point for all CV inputs (paste / PDF / sample). One analysis path:
     // the Nebius LLM endpoint when available, otherwise the local baseline as a
     // transparent fallback (no user-facing mode toggle).
-    function crcCvAnalyseText(text, sourceLabel) {
+    async function crcCvAnalyseText(text, sourceLabel) {
       crcCvClearReport();
       const cleanText = String(text || "").trim();
       if (cleanText.length < 40) {
@@ -1163,7 +1163,7 @@
       }
       const region = crcCvRegion();
       if (cvNeuralAvailable) {
-        crcCvAnalyseNeural(cleanText, sourceLabel, region);
+        await crcCvAnalyseNeural(cleanText, sourceLabel, region);
         return;
       }
       crcCvRunLocal(cleanText, sourceLabel, false, region);
@@ -1269,17 +1269,50 @@
     async function crcCvHandleFile(file) {
       if (!file) return;
       if (!/pdf$/i.test(file.name) && file.type !== "application/pdf") {
-        crcCvClearReport();
         crcCvSetStatus("Please choose a PDF file.", true);
         return;
       }
       crcCvSetStatus("Reading your CV in your browser…", false);
       try {
         const text = await crcCvReadPdf(file);
-        crcCvAnalyseText(text, file.name);
+        crcCvLoadCv(text, `PDF “${file.name}”`);
       } catch (error) {
-        console.error("CV read failed", error);
-        crcCvSetStatus("Could not read that PDF in the browser. Try another PDF, or use a sample below.", true);
+        console.error("CV read failed");
+        crcCvSetStatus("Could not read that PDF in the browser. Try another PDF, or paste the text / load a sample.", true);
+      }
+    }
+
+    // Load CV text into the box (from PDF or sample) and prime the Analyse step
+    // — does NOT auto-run, so the user can pick a region first.
+    function crcCvLoadCv(text, label) {
+      const ta = document.getElementById("cv-text");
+      if (ta) ta.value = String(text || "");
+      crcCvClearReport();
+      crcCvRefreshAnalyseEnabled();
+      crcCvSetStatus(`Loaded ${label}. Pick a region (optional), then click “Analyse my CV fit”.`, false);
+      const btn = document.getElementById("cv-analyse");
+      if (btn) btn.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    // Enable the Analyse button only when there's enough CV text.
+    function crcCvRefreshAnalyseEnabled() {
+      const ta = document.getElementById("cv-text");
+      const btn = document.getElementById("cv-analyse");
+      if (!ta || !btn || btn.classList.contains("is-busy")) return;
+      btn.disabled = String(ta.value || "").trim().length < 40;
+    }
+
+    // Processing state on the Analyse button so the wait isn't abrupt.
+    function crcCvSetBusy(busy) {
+      const btn = document.getElementById("cv-analyse");
+      if (!btn) return;
+      btn.classList.toggle("is-busy", busy);
+      if (busy) {
+        btn.disabled = true;
+        btn.textContent = "Analysing your CV…";
+      } else {
+        btn.textContent = "Analyse my CV fit";
+        crcCvRefreshAnalyseEnabled();
       }
     }
 
@@ -1313,12 +1346,19 @@
       const browse = document.getElementById("cv-browse");
       const drop = document.getElementById("cv-drop");
       const textArea = document.getElementById("cv-text");
-      const analyseText = document.getElementById("cv-analyse-text");
+      const analyseBtn = document.getElementById("cv-analyse");
       if (browse && fileInput) browse.addEventListener("click", () => fileInput.click());
       if (fileInput) fileInput.addEventListener("change", (e) => crcCvHandleFile(e.target.files && e.target.files[0]));
-      if (analyseText && textArea) {
-        analyseText.addEventListener("click", () => crcCvAnalyseText(textArea.value, "pasted CV text"));
+      if (textArea) textArea.addEventListener("input", crcCvRefreshAnalyseEnabled);
+      if (analyseBtn && textArea) {
+        analyseBtn.addEventListener("click", async () => {
+          if (analyseBtn.disabled) return;
+          crcCvSetBusy(true);
+          try { await crcCvAnalyseText(textArea.value, "your CV"); }
+          finally { crcCvSetBusy(false); }
+        });
       }
+      crcCvRefreshAnalyseEnabled();
       if (drop) {
         ["dragenter", "dragover"].forEach((ev) => drop.addEventListener(ev, (e) => {
           e.preventDefault(); drop.classList.add("is-drag");
@@ -1352,7 +1392,7 @@
           btn.type = "button";
           btn.className = "cv-sample-btn";
           btn.textContent = cv.name;
-          btn.addEventListener("click", () => crcCvAnalyseText(cv.text, `synthetic sample "${cv.name}"`));
+          btn.addEventListener("click", () => crcCvLoadCv(cv.text, `sample “${cv.name}”`));
           row.appendChild(btn);
         });
       }

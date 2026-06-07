@@ -29,28 +29,34 @@
 
         <p class="cv-engine-note" id="cv-engine-note"></p>
 
-        <label class="crc-field cv-region-field" for="cv-region">
-          <span class="crc-label">Region <span class="crc-label-hint">optional — tailors the market signal &amp; search tips</span></span>
-          <select class="crc-select" id="cv-region" name="cv-region"></select>
-        </label>
+        <ol class="cv-steps">
+          <li class="cv-step"><span class="cv-step-num">1</span> Add your CV — drop a PDF, paste the text, or load a sample.</li>
+          <li class="cv-step"><span class="cv-step-num">2</span> Pick a region (optional).</li>
+          <li class="cv-step"><span class="cv-step-num">3</span> Click <strong>Analyse</strong>. Change the region and click again to compare.</li>
+        </ol>
 
         <div class="cv-drop" id="cv-drop">
           <input type="file" id="cv-file" accept="application/pdf,.pdf" hidden>
           <p class="cv-drop-title">Drop a PDF CV here, or <button type="button" class="cv-link" id="cv-browse">choose a file</button></p>
-          <p class="cv-drop-note">PDF only. Read locally in your browser &mdash; never uploaded, never stored.</p>
+          <p class="cv-drop-note">PDF only. Read locally in your browser &mdash; never uploaded, never stored. We read it into the box below.</p>
         </div>
 
-        <div class="cv-paste">
-          <label class="crc-field" for="cv-text">
-            <span class="crc-label">Or paste CV text</span>
-            <textarea class="crc-input cv-textarea" id="cv-text" rows="7" placeholder="Paste your CV text here"></textarea>
-          </label>
-          <button class="crc-btn cv-paste-btn" type="button" id="cv-analyse-text">Analyse pasted CV</button>
-        </div>
+        <label class="crc-field" for="cv-text">
+          <span class="crc-label">CV text <span class="crc-label-hint">paste here, or drop a PDF / load a sample</span></span>
+          <textarea class="crc-input cv-textarea" id="cv-text" rows="7" placeholder="Paste your CV text here, or drop a PDF / load a sample below"></textarea>
+        </label>
 
         <div class="cv-samples">
-          <span class="crc-label">No CV handy? Try a synthetic sample:</span>
+          <span class="crc-label">No CV handy? Load a synthetic sample:</span>
           <div class="cv-sample-row" id="cv-sample-row"></div>
+        </div>
+
+        <div class="cv-run">
+          <label class="crc-field cv-region-field" for="cv-region">
+            <span class="crc-label">Region <span class="crc-label-hint">optional — tailors the market signal &amp; search tips</span></span>
+            <select class="crc-select" id="cv-region" name="cv-region"></select>
+          </label>
+          <button class="crc-btn cv-analyse-btn" type="button" id="cv-analyse" disabled>Analyse my CV fit</button>
         </div>
 
         <p class="cv-status" id="cv-status" hidden></p>
