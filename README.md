@@ -305,25 +305,25 @@ log records the request path `/api/cv-fit`, not the body).
 
 ## Nebius Serverless AI Mapping
 
-Nebius Serverless AI runs containerized AI workloads as Jobs or Endpoints without managing VMs or clusters. This project maps to that model as batch JSON artifact generation:
+Nebius Serverless AI runs containerized AI workloads as Jobs or Endpoints without managing VMs. This project uses **both**:
 
-- Job 1: public data processing / feature generation
-- Job 2: ML training and evaluation
-- Job 3: batch scoring and JSON artifact generation
-- Endpoint (TF-IDF baseline): `/cv-fit` on CPU — always-on, reproducible
-- Endpoint (neural): `/cv-fit` with **BGE-M3** multilingual embeddings on **GPU (L40S)** — the AI/ML path
+- **Serverless AI Job** — runs `./scripts/rebuild_career_reality.sh` to build the role index + market artifacts (CPU; deterministic, reproducible).
+- **Serverless AI Endpoint — the AI/ML path** — a **grounded-LLM `/cv-fit` advisor on GPU**: deterministic TF-IDF retrieval over the role ontology produces the *facts* (matched roles, skill gaps, market signal, and **cross-region demand ranked by real ad volume**); a self-hosted **Qwen2.5-7B-Instruct** writes the verdict + "why" + region strategy, **constrained to those facts** — it may only use the role titles it is given, so it cannot hallucinate roles or numbers. That is a model-serving + RAG endpoint where the GPU does real work.
+- **CPU fallback** — the same image with no model set serves the deterministic TF-IDF report (reproducible; graceful when the GPU is down).
 
-The artifact-generation jobs are CPU-friendly (a GPU is unnecessary for that dataset size). The **neural `/cv-fit` endpoint** is the part that benefits from a GPU: it runs the BGE-M3 embedding model.
+Why grounded generation rather than a bare embedding model: retrieval stays deterministic (reproducible, grounded) while the LLM turns the evidence into genuinely CV- and region-specific advice — e.g. a senior SFMC CV in a thin region is told to go remote or to the regions that actually carry the ad volume.
 
 ### Verified deployment
 
-Run on **Nebius Serverless AI** from public GHCR images (linux/amd64). The `/cv-fit` service has **two backends deployed as two separate endpoints** — the stable TF-IDF baseline (CPU) and the neural BGE-M3 path (GPU):
+Run on **Nebius Serverless AI** from a public GHCR image (linux/amd64, `ghcr.io/selimsevim/cv-fit-endpoint:llm`):
 
-- **Serverless AI Job** `swedish-job-pulse-rebuild` (`cpu-d3` / `4vcpu-16gb`) — ran `./scripts/rebuild_career_reality.sh` and reached **COMPLETED**. Logs show **7/7 JSON artifacts validated** and the metrics: ML MAE 90.73 vs baseline 80.90; ML trend accuracy 0.61 vs 0.23; ML macro-F1 0.48 vs 0.12; CV primary-domain accuracy 1.0; CV no-collapse 1.0.
-- **Endpoint 1 — TF-IDF baseline** `swedish-job-pulse-cv-fit` (`cpu-d3` / `4vcpu-16gb`) — **RUNNING**, token-protected. `GET /health` → `{"status":"ok","backend":"tfidf-fallback","roles":41}`; `POST /cv-fit` → 200 with the full report for a synthetic SFMC CV; unauthenticated → **401**.
-- **Endpoint 2 — neural BGE-M3** `swedish-job-pulse-cv-fit-neural` (GPU **`gpu-l40s-d` / `1gpu-16vcpu-96gb`, 1× NVIDIA L40S**) — reached **RUNNING**, token-protected. `GET /health` → `{"status":"ok","backend":"neural","model":"BAAI/bge-m3","roles":41,"embedding_dim":1024}` (startup log: `neural backend active: BAAI/bge-m3 (dim=1024, roles=41)`). `POST /cv-fit` → 200: the SFMC CV maps to **CRM / Martech** and a data-analyst CV stays in **data analytics** (no collapse); unauthenticated → **401**. Warm latency **~0.10 s / request**. **Deleted after the proof to stop GPU billing.**
+- **Serverless AI Job** `swedish-job-pulse-rebuild` (`cpu-d3` / `4vcpu-16gb`) — ran `./scripts/rebuild_career_reality.sh` → **COMPLETED**; logs show **7/7 JSON artifacts validated**; CV primary-domain accuracy 1.0, no-collapse 1.0.
+- **Grounded-LLM Endpoint** `swedish-job-pulse-cv-fit-llm` (GPU **`gpu-l40s-d` / `1gpu-16vcpu-96gb`, 1× NVIDIA L40S**), token-protected. `GET /health` → `{"status":"ok","backend":"llm:Qwen/Qwen2.5-7B-Instruct","retrieval":"tfidf-fallback","roles":41,"llm":{"model":"Qwen/Qwen2.5-7B-Instruct","ok":true,"device":"cuda"}}`; unauthenticated `POST /cv-fit` → **401**; warm latency **~1.7 s / request**. The **same senior SFMC CV in different regions yields genuinely different, data-grounded advice**:
+  - *Stockholms län* → "Stockholm has the strongest local market with 1278 ads."
+  - *Norrbottens län / Gotlands län* (thin) → "few ads here — search Stockholm / Västra Götaland, or go remote."
+- **CPU TF-IDF endpoint** `swedish-job-pulse-cv-fit` (`cpu-d3` / `4vcpu-16gb`) — **RUNNING**, token-protected; `GET /health` → `{"backend":"tfidf-fallback","roles":41}` — the reproducible fallback.
 
-**Honest comparison** ([`data/neural_cv_match_metrics.json`](data/neural_cv_match_metrics.json)): both backends use the same rerank and only differ in semantic similarity (TF-IDF cosine vs BGE-M3 cosine). On the synthetic CV set they are **tied** (primary-domain 1.0, no-collapse 1.0, top-3 1.0) — **BGE-M3 is not claimed to beat TF-IDF here.** TF-IDF is ~sub-millisecond on CPU; BGE-M3 is ~0.1 s warm on the L40S. The neural path's real advantage is **learned multilingual paraphrase / abbreviation matching with no hand-written synonym list**, which the small synthetic set does not stress. The trend model is used for **direction** (grow/stable/decline), **not** exact vacancy-count prediction — baseline persistence has lower count MAE. The platform is built on **public Arbetsförmedlingen / JobTech job-ad signals, not all jobs in Sweden**. Both endpoints are **token-protected**, and **CV text is processed per request and not stored**.
+**Honesty.** Retrieval is deterministic and grounds the LLM (no invented roles or numbers); greedy decoding keeps it reproducible. Sales/marketing isn't broken out per region in the public ad data, so for martech CVs the regional view reads the closest tracked field (**Data/IT**) as a **disclosed proxy** rather than fabricating numbers. Built on **public Arbetsförmedlingen / JobTech job-ad signals, not all jobs in Sweden**. CV text is processed per request and **never stored or logged**. The GPU endpoint bills while running and is deleted after the proof to stop billing.
 
 Detailed Nebius notes, expected inputs/outputs, proof-of-execution screenshots, runtime expectations, and placeholder job commands are in [`nebius/README.md`](nebius/README.md).
 
