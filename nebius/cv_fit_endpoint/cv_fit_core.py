@@ -21,6 +21,7 @@ import json
 import math
 import os
 import sys
+import threading
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO_ROOT = os.path.dirname(os.path.dirname(HERE))           # nebius/cv_fit_endpoint -> repo
@@ -166,6 +167,8 @@ class _Engine:
         self.llm = cv_fit_llm.get_llm() if cv_fit_llm.llm_enabled() else None
         if self.llm and self.llm.ok:
             self.backend = "llm:" + self.llm.model_id
+            if self.retrieval_backend == "tfidf-fallback":
+                self.retrieval_backend = "tfidf"
 
     @staticmethod
     def _role_text(role):
@@ -280,6 +283,43 @@ class _Engine:
         if occ.get("remote_signal") and occ["remote_signal"] != "unknown":
             parts.append(f"{occ['remote_signal']} remote signal")
         return " · ".join(parts) if parts else None
+
+    def _decision_headline(self, profile, best, adjacent, market_signal):
+        """Build the prominent decision from verified matcher and market facts."""
+        candidates = best or adjacent
+        if not candidates:
+            return "Your CV does not match a clear role family yet."
+
+        lead = candidates[0]
+        role = lead["title"]
+        role_row = next((row for row in self.catalog if row["role_id"] == lead["role_id"]), {})
+        cv_skills = set(profile.get("skills", []))
+        proof = [
+            pretty(skill)
+            for skill in role_row.get("required_skills", [])
+            if skill in cv_skills
+        ][:2]
+        proof_text = " and ".join(proof) if proof else "relevant experience"
+        signal = (market_signal or "").lower()
+
+        if "rising demand" in signal and "high crowding" in signal:
+            return (
+                f"Prioritise {role}; demand is rising, but high competition means "
+                f"leading with quantified {proof_text} results."
+            )
+        if "high crowding" in signal:
+            return (
+                f"Prioritise {role}, but treat it as competitive and lead with "
+                f"quantified {proof_text} results."
+            )
+        if "cooling demand" in signal:
+            return (
+                f"Treat {role} as a selective target and strengthen proof of "
+                f"{proof_text} before applying broadly."
+            )
+        if best:
+            return f"Prioritise {role} and lead with measurable {proof_text} results."
+        return f"Treat {role} as a stretch role and strengthen {proof_text} first."
 
     # ---- cross-region demand outlook (facts for the consultant LLM) ----
     def _regional_outlook(self, pdomain, field_id, region):
@@ -461,6 +501,7 @@ class _Engine:
         if self.llm and self.llm.ok and (best or adj):
             regional_outlook = self._regional_outlook(pdomain, sig_field, region)
             gen = self.llm.generate({
+                "headline_mode": "deterministic",
                 "domain": domain_name,
                 "seniority": profile["seniority"],
                 "cv_skills": [pretty(s) for s in profile["skills"][:6]],
@@ -473,9 +514,17 @@ class _Engine:
                 "regional_outlook": regional_outlook,
             })
             if gen:
-                main = gen["main_answer"]
                 why = gen["why_recommendation"]
+                if market_signal and len(why) >= 2:
+                    why[1] = (
+                        "Public job-ad signals show "
+                        + market_signal.replace(" · ", ", ").lower()
+                        + "."
+                    )
+                main = self._decision_headline(profile, best, adj, market_signal)
                 backend_label = "llm:" + self.llm.model_id
+            else:
+                raise RuntimeError("LLM generation failed")
 
         return {
             "main_answer": main,
@@ -501,12 +550,15 @@ class _Engine:
 
 
 _engine = None
+_engine_lock = threading.Lock()
 
 
 def get_engine():
     global _engine
     if _engine is None:
-        _engine = _Engine()
+        with _engine_lock:
+            if _engine is None:
+                _engine = _Engine()
     return _engine
 
 

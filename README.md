@@ -17,7 +17,7 @@ This is not a job board and not a generic AI career coach. It is a static websit
 
 Upload a PDF CV, or paste CV text, &rarr; get a one-page job-fit report.
 
-**Privacy / reproducibility.** PDFs are parsed **entirely in your browser** with pdf.js, and pasted CV text is analyzed locally in the page. CV content is **never uploaded and never stored**, and no real CV is committed to this repo. The challenge build is demoed and evaluated only on **synthetic, fictional CVs** in [`data/sample_cvs.json`](data/sample_cvs.json).
+**Privacy / reproducibility.** PDFs are parsed **entirely in your browser** with pdf.js. The extracted or pasted CV text is sent through the Railway proxy to Nebius for one request and is not logged or stored. If the LLM is unavailable, no report is produced. No real CV is committed to this repo. The challenge build is demoed and evaluated only on **synthetic, fictional CVs** in [`data/sample_cvs.json`](data/sample_cvs.json).
 
 Three layers:
 
@@ -26,7 +26,7 @@ Three layers:
 - **Explanation** &mdash; a self-hosted **Qwen2.5-7B-Instruct** at the Nebius `/cv-fit` endpoint turns that evidence into the verdict, the "Why this recommendation?" lines, and a region-aware search strategy — **grounded** in the retrieved facts (it may only use the role titles it is given) — see [`nebius/README.md`](nebius/README.md).
 - **Gap analysis** &mdash; what blocks stronger matches: missing skills, weak proof, language.
 
-**One analysis path.** The scanner calls the Railway proxy (`POST /api/cv-fit`), which forwards to the Nebius grounded-LLM endpoint; if the host has no Nebius credentials or the endpoint is down, it **transparently falls back to the in-browser TF-IDF baseline**, and a one-line note says which engine is active. An optional **Region** selector tailors the market signal and search strategy. The Nebius token is **never** present in `app.js`, `index.html`, or any other file the browser receives — see [Deploy: Railway + Nebius](#deploy-railway-public-app-host--nebius-ai-backend).
+**One analysis path.** The scanner calls the Railway proxy (`POST /api/cv-fit`), which forwards to the Nebius grounded-LLM endpoint. If the LLM is unavailable, the UI shows an error and produces no report; it does not silently substitute the local TF-IDF baseline. An optional **Region** selector tailors the market signal and search strategy. The Nebius token is **never** present in `app.js`, `index.html`, or any other file the browser receives — see [Deploy: Railway + Nebius](#deploy-railway-public-app-host--nebius-ai-backend).
 
 The report:
 
@@ -253,15 +253,15 @@ the server attaches `Authorization: Bearer $NEBIUS_CV_FIT_TOKEN` before forwardi
 `$NEBIUS_CV_FIT_URL/cv-fit`. The Nebius JSON response is returned to the browser
 unchanged.
 
-**One analysis path, with a graceful fallback.** The UI calls `/api/cv-fit`, which
+**One analysis path, enforced end to end.** The UI calls `/api/cv-fit`, which
 the server forwards to the Nebius **grounded-LLM endpoint**: deterministic TF-IDF
 retrieval produces the facts (matched roles, skill gaps, market signal, cross-region
 demand) and a self-hosted **Qwen2.5-7B-Instruct** writes the verdict, the
 "Why this recommendation?" lines, and the region strategy — constrained to those
 facts. An optional **Region** selector tailors it (e.g. a thin local market →
-"search Stockholm / Västra Götaland, or go remote"). If the server has no Nebius
-credentials, or Nebius is unreachable, the app **transparently falls back to the
-in-browser TF-IDF baseline** and a one-line note says which engine is active.
+"search Stockholm / Västra Götaland, or go remote"). The proxy checks the live
+endpoint health and rejects any response whose backend is not explicitly `llm:...`.
+There is no automatic local fallback.
 
 **Railway environment variables** (Project → Variables — server-side only, never
 shipped to the browser):
@@ -290,19 +290,21 @@ Health check: `GET /api/health` → `{"status":"ok","neural_available":true|fals
 python3 -m venv .venv-railway && source .venv-railway/bin/activate
 python3 -m pip install -r requirements-railway.txt
 
-# Local baseline only (no Nebius): the UI works, neural toggle is disabled.
-uvicorn app.server:app --host 0.0.0.0 --port 8000
+# Put the endpoint ID in ignored .env.local:
+NEBIUS_CV_FIT_ENDPOINT_ID="<your-endpoint-id>"
 
-# With neural enabled — point at your Nebius endpoint (token stays server-side):
-export NEBIUS_CV_FIT_URL="https://<endpoint>.nebius.cloud"
-export NEBIUS_CV_FIT_TOKEN="<token>"
-uvicorn app.server:app --host 0.0.0.0 --port 8000
+# Fetches the endpoint address and token through your authenticated Nebius CLI,
+# then starts the local proxy without writing the token to disk:
+./scripts/run_local_nebius.sh
 ```
 
 Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/). See [`env.example`](env.example)
 for the variable template. **Privacy:** the proxy forwards CV text to Nebius for the
 single request only — it **never logs and never stores** CV text (the uvicorn access
 log records the request path `/api/cv-fit`, not the body).
+
+CV reports do not silently fall back to TF-IDF. If the endpoint is unavailable,
+the UI displays an error and produces no report.
 
 ## Nebius Serverless AI Mapping
 

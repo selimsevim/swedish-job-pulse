@@ -22,6 +22,7 @@ WORKDIR /app
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     HF_HOME=/app/.hf_home \
+    PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
     CV_FIT_LLM_MODEL=Qwen/Qwen2.5-7B-Instruct
 
 COPY nebius/cv_fit_endpoint/requirements-llm.txt ./requirements-llm.txt

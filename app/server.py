@@ -14,8 +14,8 @@ Privacy contract (matches the in-browser scanner and the Nebius endpoint):
     * CV text is forwarded to Nebius for the single request only.
     * CV text is NEVER logged and NEVER stored by this server.
     * If the Nebius env vars are missing or the endpoint is unreachable, the
-      API responds with a clear "fallback: local" signal so the frontend
-      transparently uses its fast local baseline instead.
+      API returns an explicit error. It never silently substitutes a local
+      baseline report.
 
 Start (Railway / local):
     uvicorn app.server:app --host 0.0.0.0 --port $PORT
@@ -52,10 +52,33 @@ app = FastAPI(title="Swedish Job Pulse — Public App", version="1.0.0")
 
 
 @app.get("/api/health")
-def api_health():
-    """Tell the frontend whether neural mode is available — without leaking the
-    Nebius URL or token. Used to enable/disable the 'Nebius neural' toggle."""
-    return {"status": "ok", "neural_available": nebius_configured()}
+async def api_health():
+    """Verify that the configured upstream is a healthy LLM endpoint."""
+    if not nebius_configured():
+        return {"status": "ok", "neural_available": False}
+
+    try:
+        async with httpx.AsyncClient(timeout=5) as client:
+            resp = await client.get(
+                f"{NEBIUS_CV_FIT_URL}/health",
+                headers={"Authorization": f"Bearer {NEBIUS_CV_FIT_TOKEN}"},
+            )
+        data = resp.json()
+    except (httpx.HTTPError, ValueError):
+        return {"status": "ok", "neural_available": False}
+
+    backend = data.get("backend") if isinstance(data, dict) else None
+    available = (
+        resp.is_success
+        and data.get("status") == "ok"
+        and isinstance(backend, str)
+        and backend.startswith("llm:")
+    )
+    return {
+        "status": "ok",
+        "neural_available": available,
+        "backend": backend if available else None,
+    }
 
 
 @app.post("/api/cv-fit")
@@ -63,17 +86,15 @@ async def api_cv_fit(request: Request):
     """Securely proxy a CV-fit request to the Nebius `/cv-fit` endpoint.
 
     Never logs or stores the request body (it contains CV text). On any
-    misconfiguration or upstream failure, returns a JSON body carrying
-    ``"fallback": "local"`` so the browser can switch to its local baseline.
+    misconfiguration or upstream failure, returns an explicit JSON error.
     """
     if not nebius_configured():
-        # Neural backend not configured — instruct the UI to use local baseline.
+        # AI backend not configured.
         return JSONResponse(
             status_code=503,
             content={
                 "error": "nebius_unconfigured",
                 "detail": "Neural backend is not configured on the server.",
-                "fallback": "local",
             },
         )
 
@@ -105,7 +126,6 @@ async def api_cv_fit(request: Request):
             content={
                 "error": "nebius_unreachable",
                 "detail": "Could not reach the neural backend.",
-                "fallback": "local",
             },
         )
 
@@ -114,13 +134,20 @@ async def api_cv_fit(request: Request):
     except ValueError:
         return JSONResponse(
             status_code=502,
-            content={"error": "nebius_bad_response", "fallback": "local"},
+            content={"error": "nebius_bad_response"},
         )
 
-    # Pass the upstream status + JSON straight back to the browser. If Nebius
-    # itself errored, still hint that the UI may fall back locally.
-    if resp.status_code >= 400 and isinstance(data, dict):
-        data.setdefault("fallback", "local")
+    backend = data.get("backend") if isinstance(data, dict) else None
+    if resp.is_success and (not isinstance(backend, str) or not backend.startswith("llm:")):
+        return JSONResponse(
+            status_code=502,
+            content={
+                "error": "nebius_non_llm_response",
+                "detail": "The upstream response was not produced by the LLM.",
+            },
+        )
+
+    # Pass the upstream status + JSON straight back to the browser.
     return JSONResponse(status_code=resp.status_code, content=data)
 
 

@@ -577,21 +577,21 @@
 
       const verdictMod = { now: "now", soon: "soon", risky: "risky", unknown: "unknown" }[model.verdictKey] || "unknown";
 
-      const roleList = (items, label, stretch) => items.length ? `
-        <div class="crc-panel">
+      const roleGroup = (items, label, stretch) => items.length ? `
+        <div class="crc-role-group">
           <p class="crc-panel-label">${escapeHtml(label)}</p>
           <ul class="crc-rolelist${stretch ? " crc-rolelist--stretch" : ""}">
-            ${items.map((n) => `<li class="crc-role-simple">${escapeHtml(n)}</li>`).join("")}
+            ${items.slice(0, 4).map((n) => `<li class="crc-role-simple">${escapeHtml(n)}</li>`).join("")}
           </ul>
         </div>` : "";
 
       const whyHtml = model.reasons.length ? `
-        <div class="crc-panel">
-          <p class="crc-panel-label">Why</p>
+        <details class="crc-disclosure">
+          <summary>Why this answer</summary>
           <ul class="crc-reasons">
             ${model.reasons.map((r) => `<li class="crc-reason">${escapeHtml(r)}</li>`).join("")}
           </ul>
-        </div>` : "";
+        </details>` : "";
 
       const nextHtml = model.nextSteps.length ? `
         <div class="crc-panel crc-plan">
@@ -612,11 +612,13 @@
             <h3 class="crc-verdict-title">${escapeHtml(model.mainAnswer)}</h3>
           </div>
         </div>
-        ${whyHtml}
-        ${roleList(model.applyFirst, "Apply for these first", false)}
-        ${roleList(model.stretch, "Keep as stretch target", true)}
+        ${signalHtml}
+        <div class="crc-panel crc-role-grid">
+          ${roleGroup(model.applyFirst, "Apply first", false)}
+          ${roleGroup(model.stretch, "Stretch", true)}
+        </div>
         ${nextHtml}
-        ${signalHtml}`;
+        ${whyHtml}`;
 
       container.hidden = false;
     }
@@ -760,17 +762,6 @@
       if (CV_PRETTY[s]) return CV_PRETTY[s];
       return s.replace(/_/g, " ").split(" ")
         .map((w) => CV_WORD_ACRONYM[w] || (w.charAt(0).toUpperCase() + w.slice(1))).join(" ");
-    }
-
-    // Friendly role-family wording for the headline (field_label is too formal).
-    const CV_FIELD_PHRASE = {
-      RPTn_bxG_ExZ: "CRM / marketing", X82t_awd_Qyc: "analytics / reporting",
-      apaJ_2ja_LuF: "data / developer", NYW6_mP6_vwf: "healthcare",
-      ASGV_zcE_bWf: "logistics", MVqp_eS8_kDZ: "education",
-      ScKy_FHB_7wT: "hospitality", GazW_2TU_kJw: "social care"
-    };
-    function crcCvFieldPhrase(role) {
-      return (role && CV_FIELD_PHRASE[role.field_id]) || role?.field_label || "these";
     }
 
     // Hard / technical skills are the gaps worth surfacing first.
@@ -1065,28 +1056,24 @@
       const container = document.getElementById("cv-results");
       if (!container) return;
 
-      const rolePanel = (label, items, modifier) => items.length ? `
-        <div class="crc-panel">
+      const roleGroup = (label, items, modifier) => items.length ? `
+        <div class="crc-role-group">
           <p class="crc-panel-label">${escapeHtml(label)}</p>
           <ul class="crc-rolelist${modifier ? ` crc-rolelist--${modifier}` : ""}">
-            ${items.map((n) => `<li class="crc-role-simple">${escapeHtml(n)}</li>`).join("")}
+            ${items.slice(0, 4).map((n) => `<li class="crc-role-simple">${escapeHtml(n)}</li>`).join("")}
           </ul>
         </div>` : "";
 
-      const tagPanel = (label, items, gap) => items.length ? `
-        <div class="crc-panel">
-          <p class="crc-panel-label">${escapeHtml(label)}</p>
-          <div class="cv-tags">
-            ${items.map((s) => `<span class="cv-tag${gap ? " cv-tag--gap" : ""}">${escapeHtml(s)}</span>`).join("")}
-          </div>
-        </div>` : "";
-
-      const weaknessHtml = report.weaknesses.length ? `
-        <div class="crc-panel">
-          <p class="crc-panel-label">Improve your CV by adding</p>
-          <ul class="crc-reasons">
-            ${report.weaknesses.map((w) => `<li class="crc-reason">${escapeHtml(w)}</li>`).join("")}
-          </ul>
+      const focusHtml = (report.missing.length || report.weaknesses.length) ? `
+        <div class="crc-panel cv-focus-grid">
+          ${report.missing.length ? `<div>
+            <p class="crc-panel-label">Close these gaps</p>
+            <div class="cv-tags">${report.missing.slice(0, 5).map((s) => `<span class="cv-tag cv-tag--gap">${escapeHtml(s)}</span>`).join("")}</div>
+          </div>` : ""}
+          ${report.weaknesses.length ? `<div>
+            <p class="crc-panel-label">Strengthen the CV</p>
+            <ul class="crc-compact-list">${report.weaknesses.slice(0, 2).map((w) => `<li>${escapeHtml(w)}</li>`).join("")}</ul>
+          </div>` : ""}
         </div>` : "";
 
       const planHtml = report.plan.length ? `
@@ -1101,13 +1088,12 @@
         ? `<p class="crc-signal-line"><b>Market signal</b> ${escapeHtml(report.signalLine)}</p>` : "";
 
       const whyHtml = (report.why && report.why.length) ? `
-        <div class="crc-panel crc-why">
-          <p class="crc-panel-label">Why this recommendation?</p>
-          <p class="crc-why-text">${report.why.map(escapeHtml).join(" ")}</p>
-        </div>` : "";
+        <details class="crc-disclosure">
+          <summary>Why this recommendation</summary>
+          <ul class="crc-compact-list">${report.why.slice(0, 3).map((line) => `<li>${escapeHtml(line)}</li>`).join("")}</ul>
+        </details>` : "";
 
-      const tools = (report.tools && report.tools.length) ? report.tools.join(", ") : "no clear tools detected";
-      const summary = `<p class="cv-summary"><b>Read from your CV</b> ${escapeHtml(profile.seniority)} level · ${escapeHtml(report.domainLabel)} · ${escapeHtml(tools)} · ${escapeHtml(profile.languages.join(", ") || "no language level stated")}</p>`;
+      const summary = `<p class="cv-summary"><b>Profile</b> ${escapeHtml(profile.seniority)} · ${escapeHtml(report.domainLabel)} · ${escapeHtml(profile.languages.join(", ") || "language level not stated")}</p>`;
 
       container.innerHTML = `
         ${summary}
@@ -1117,15 +1103,15 @@
             <h3 class="crc-verdict-title">${escapeHtml(report.mainAnswer)}</h3>
           </div>
         </div>
-        ${whyHtml}
-        ${rolePanel("Best-fit roles now", report.best, "")}
-        ${rolePanel("Adjacent roles", report.adjacent, "stretch")}
-        ${rolePanel("Not your main lane", report.avoid, "avoid")}
-        ${tagPanel("Your CV is missing", report.missing, true)}
-        ${weaknessHtml}
-        ${tagPanel("Search keywords", report.keywords, false)}
+        ${signalHtml}
+        <div class="crc-panel crc-role-grid">
+          ${roleGroup("Best fit", report.best, "")}
+          ${roleGroup("Stretch", report.adjacent, "stretch")}
+          ${roleGroup("Skip for now", report.avoid, "avoid")}
+        </div>
+        ${focusHtml}
         ${planHtml}
-        ${signalHtml}`;
+        ${whyHtml}`;
       container.hidden = false;
     }
 
@@ -1151,9 +1137,8 @@
       return v || null;
     }
 
-    // Entry point for all CV inputs (paste / PDF / sample). One analysis path:
-    // the Nebius LLM endpoint when available, otherwise the local baseline as a
-    // transparent fallback (no user-facing mode toggle).
+    // Entry point for all CV inputs (paste / PDF / sample). CV reports require
+    // the Nebius LLM endpoint; unavailable AI is shown as an error.
     async function crcCvAnalyseText(text, sourceLabel) {
       crcCvClearReport();
       const cleanText = String(text || "").trim();
@@ -1166,23 +1151,7 @@
         await crcCvAnalyseNeural(cleanText, sourceLabel, region);
         return;
       }
-      crcCvRunLocal(cleanText, sourceLabel, false, region);
-    }
-
-    // Fast local baseline — in-browser TF-IDF matching. `fellBack` is true when
-    // we reached here because the neural backend was unavailable.
-    function crcCvRunLocal(cleanText, sourceLabel, fellBack, region) {
-      if (!cvIndex) { crcCvSetStatus("CV index not loaded — run scripts/build_cv_match_index.py.", true); return; }
-      const profile = crcCvExtract(cleanText);
-      if (!profile.skills.length && !profile.roles.length) {
-        crcCvSetStatus("Not enough recognisable CV information yet. Add role titles, skills, tools, language level, and recent work or study history.", true);
-        return;
-      }
-      const report = crcCvBuildReport(profile, region);
-      crcCvRenderReport(report, profile);
-      const prefix = fellBack ? "Neural backend unavailable — showing fast local baseline. " : "";
-      crcCvSetStatus(sourceLabel ? `${prefix}Analysed ${sourceLabel} (local baseline). Nothing was uploaded or stored.` : (prefix || null), false);
-      document.getElementById("cv-results").scrollIntoView({ behavior: "smooth", block: "nearest" });
+      crcCvSetStatus("Nebius AI is unavailable. Start the app with scripts/run_local_nebius.sh and try again.", true);
     }
 
     // Map the Nebius /cv-fit JSON response onto the local report/profile shape
@@ -1216,10 +1185,9 @@
     }
 
     // Nebius neural path: POST the CV text to the same-origin proxy at
-    // /api/cv-fit (the Nebius token lives only on the server). On any failure
-    // we transparently fall back to the local baseline.
+    // /api/cv-fit (the Nebius token lives only on the server).
     async function crcCvAnalyseNeural(cleanText, sourceLabel, region) {
-      crcCvSetStatus("Analysing with the Nebius neural model… nothing is uploaded or stored.", false);
+      crcCvSetStatus("Analysing with Nebius AI…", false);
       let data;
       try {
         const body = { cv_text: cleanText };
@@ -1230,13 +1198,13 @@
           body: JSON.stringify(body)
         });
         data = await res.json().catch(() => ({}));
-        if (!res.ok || (data && data.fallback === "local")) {
+        if (!res.ok) {
           throw new Error("neural_unavailable");
         }
       } catch (err) {
         // Do NOT log the CV text or response body. Static message only.
-        console.warn("Neural CV-fit unavailable — falling back to local baseline.");
-        crcCvRunLocal(cleanText, sourceLabel, true, region);
+        console.warn("Nebius CV-fit request failed. No local fallback was used.");
+        crcCvSetStatus("Nebius AI request failed. No fallback was used. Check the local server and endpoint status.", true);
         return;
       }
       const { report, profile } = crcCvNeuralToReport(data);
@@ -1244,7 +1212,7 @@
       const backend = data.backend ? ` · ${data.backend}` : "";
       crcCvSetStatus(
         sourceLabel
-          ? `Analysed ${sourceLabel} with the Nebius neural model${backend}. Nothing was uploaded or stored.`
+          ? `Analysed ${sourceLabel} with Nebius AI${backend}. CV text was sent for this request and was not stored.`
           : null,
         false
       );
@@ -1289,7 +1257,7 @@
       if (ta) ta.value = String(text || "");
       crcCvClearReport();
       crcCvRefreshAnalyseEnabled();
-      crcCvSetStatus(`Loaded ${label}. Pick a region (optional), then click “Analyse my CV fit”.`, false);
+      crcCvSetStatus(`Loaded ${label}.`, false);
       const btn = document.getElementById("cv-analyse");
       if (btn) btn.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
@@ -1309,9 +1277,9 @@
       btn.classList.toggle("is-busy", busy);
       if (busy) {
         btn.disabled = true;
-        btn.textContent = "Analysing your CV…";
+        btn.textContent = "Analysing…";
       } else {
-        btn.textContent = "Analyse my CV fit";
+        btn.textContent = "Analyse CV";
         crcCvRefreshAnalyseEnabled();
       }
     }
@@ -1321,8 +1289,8 @@
       const note = document.getElementById("cv-engine-note");
       if (!note) return;
       note.textContent = cvNeuralAvailable
-        ? "Analysis runs on the Nebius LLM endpoint (grounded in public job-ad data). Your CV is not stored."
-        : "Analysis runs locally in your browser (baseline). Nothing is uploaded or stored.";
+        ? "Nebius AI is active. CV text is sent for this request and is not stored."
+        : "Nebius AI is unavailable. CV analysis is disabled until the endpoint is connected.";
     }
 
     // Ask the server (not Nebius directly) whether neural mode is available.
@@ -1384,16 +1352,13 @@
           .join("");
       }
 
-      const row = document.getElementById("cv-sample-row");
-      if (row) {
-        row.innerHTML = "";
-        cvSamples.forEach((cv) => {
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "cv-sample-btn";
-          btn.textContent = cv.name;
-          btn.addEventListener("click", () => crcCvLoadCv(cv.text, `sample “${cv.name}”`));
-          row.appendChild(btn);
+      const sampleSelect = document.getElementById("cv-sample");
+      if (sampleSelect) {
+        sampleSelect.innerHTML = '<option value="">Choose a synthetic CV</option>'
+          + cvSamples.map((cv, index) => `<option value="${index}">${escapeHtml(cv.name)}</option>`).join("");
+        sampleSelect.addEventListener("change", () => {
+          const cv = cvSamples[Number(sampleSelect.value)];
+          if (cv) crcCvLoadCv(cv.text, `sample “${cv.name}”`);
         });
       }
     }

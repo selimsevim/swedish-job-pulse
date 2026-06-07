@@ -28,6 +28,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import threading
 
 MODEL_ID = os.environ.get("CV_FIT_LLM_MODEL", "").strip()
 MAX_NEW_TOKENS = int(os.environ.get("CV_FIT_LLM_MAX_NEW_TOKENS", "700"))
@@ -40,6 +41,13 @@ _SYSTEM = (
     "Rules:\n"
     "- Use only the exact role titles provided. Never invent roles, employers, skills, or numbers.\n"
     "- Public job-ad signals are demand signals, not the whole labour market — never claim they cover all jobs.\n"
+    "- The headline must make a DECISION, not repeat the user's filters:\n"
+    "    * Name one or two exact titles from best_fit_roles.\n"
+    "    * State the most important tradeoff from market_signal or missing_skills.\n"
+    "    * Never mention the selected region, local market, or remote work in the headline. Put all "
+    "regional advice in why_recommendation item 3 instead.\n"
+    "    * Preserve the exact strength of market_signal: high crowding must not become moderate or low.\n"
+    "    * Never begin with 'Search in' and never say only 'focus on <domain> roles'.\n"
     "- Reason about region from regional_outlook, like a consultant. Use selected_region.local_market:\n"
     "    * 'thin'  -> SAY this region has few such roles (cite its rank/ads) and advise EITHER remote work OR "
     "moving the search to the strongest regions in top_regions (name 1-2, e.g. the top by 'ads').\n"
@@ -52,6 +60,7 @@ _SYSTEM = (
     "- Be concrete and concise. No hype, no filler.\n"
     "Output ONE single JSON object and NOTHING else (no prose before or after, no second "
     "object). It MUST contain BOTH keys. 'main_answer' is ONE sentence. "
+    "'main_answer' must include an exact best-fit role title and a useful tradeoff. "
     "'why_recommendation' is an array of EXACTLY 3 short sentences (max ~28 words each): "
     "(1) the CV evidence and best-fit titles, (2) the market signal, (3) the regional strategy per the rules above. "
     "Keep the whole response under 130 words. Schema:\n"
@@ -105,25 +114,38 @@ class _LLM:
         user = "FACTS:\n" + json.dumps(evidence, ensure_ascii=False, indent=2)
         messages = [{"role": "system", "content": _SYSTEM},
                     {"role": "user", "content": user}]
-        try:
-            inputs = self._tok.apply_chat_template(
-                messages, add_generation_prompt=True, return_tensors="pt").to(self.device)
-            with torch.no_grad():
-                out = self._model.generate(
-                    inputs, max_new_tokens=MAX_NEW_TOKENS,
-                    do_sample=False,  # greedy -> reproducible
-                    pad_token_id=(self._tok.pad_token_id or self._tok.eos_token_id),
-                )
-            text = self._tok.decode(out[0][inputs.shape[-1]:], skip_special_tokens=True)
-        except Exception as exc:  # pragma: no cover
-            print("[cv-fit] LLM generate failed: " + f"{exc.__class__.__name__}")
-            return None
-        result = _parse_and_ground(text, evidence)
-        if result is None:
-            # No CV text here — only the model's own (non-PII) output head, to
-            # diagnose parse failures from endpoint logs.
-            print("[cv-fit] LLM output unparseable; head=" + repr(text[:280]))
-        return result
+        for attempt in range(2):
+            try:
+                inputs = self._tok.apply_chat_template(
+                    messages, add_generation_prompt=True, return_tensors="pt").to(self.device)
+                with torch.no_grad():
+                    out = self._model.generate(
+                        inputs, max_new_tokens=MAX_NEW_TOKENS,
+                        do_sample=False,  # greedy -> reproducible
+                        pad_token_id=(self._tok.pad_token_id or self._tok.eos_token_id),
+                    )
+                text = self._tok.decode(out[0][inputs.shape[-1]:], skip_special_tokens=True)
+            except Exception as exc:  # pragma: no cover
+                print("[cv-fit] LLM generate failed: " + f"{exc.__class__.__name__}")
+                return None
+            result = _parse_and_ground(text, evidence)
+            if result is not None:
+                return result
+            if attempt == 0:
+                best = evidence.get("best_fit_roles", [])
+                messages.append({"role": "assistant", "content": text})
+                messages.append({
+                    "role": "user",
+                    "content": (
+                        "Rewrite the JSON. The headline failed validation. It must name an exact "
+                        f"best-fit title ({'; '.join(best[:3])}) and state a market or skill-gap "
+                        "tradeoff. Do not begin with 'Search in' or merely repeat the region."
+                    ),
+                })
+        # No CV text here — only the model's own (non-PII) output head, to
+        # diagnose parse or usefulness failures from endpoint logs.
+        print("[cv-fit] LLM output failed validation; head=" + repr(text[:280]))
+        return None
 
 
 def _extract_json(text):
@@ -200,14 +222,32 @@ def _parse_and_ground(text, evidence):
         return None
     if not isinstance(why, list):
         return None
-    why = [str(w).strip() for w in why if isinstance(w, (str, int, float)) and str(w).strip()][:4]
-    if not why:
+    why = [str(w).strip() for w in why if isinstance(w, (str, int, float)) and str(w).strip()][:3]
+    if len(why) != 3:
         return None
-    # Light grounding guard: the verdict must not introduce a role title that the
-    # matcher did not surface (reject -> deterministic fallback).
-    allowed = " ".join(evidence.get("best_fit_roles", [])
-                       + evidence.get("adjacent_roles", [])
-                       + evidence.get("off_lane_roles", [])).lower()
+    best = [str(role).strip() for role in evidence.get("best_fit_roles", []) if str(role).strip()]
+    main_lower = main.lower().strip()
+    if evidence.get("headline_mode") != "deterministic":
+        if main_lower.startswith("search in "):
+            return None
+        if best and not any(role.lower() in main_lower for role in best):
+            return None
+        regional = evidence.get("regional_outlook") or {}
+        selected = regional.get("selected_region") or {}
+        selected_name = str(selected.get("region") or "").lower()
+        if (
+            (selected_name and selected_name in main_lower)
+            or "local market" in main_lower
+            or "remote" in main_lower
+        ):
+            return None
+        market = str(evidence.get("market_signal") or "").lower()
+        blob_lower = (main + " " + " ".join(why)).lower()
+        if "high crowding" in market:
+            if not any(term in main_lower for term in ("high crowding", "high competition", "highly competitive")):
+                return None
+            if "moderate crowding" in blob_lower or "low crowding" in blob_lower:
+                return None
     blob = (main + " " + " ".join(why)).strip()
     if len(blob) < 10:
         return None
@@ -215,12 +255,15 @@ def _parse_and_ground(text, evidence):
 
 
 _llm = None
+_llm_lock = threading.Lock()
 
 
 def get_llm():
     global _llm
     if _llm is None:
-        _llm = _LLM()
+        with _llm_lock:
+            if _llm is None:
+                _llm = _LLM()
     return _llm
 
 
