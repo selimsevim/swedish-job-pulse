@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-07T22:13:57Z",
+  "last_updated": "2026-06-08T07:19:44Z",
   "note": "Synthetic, fictional CVs for demoing the CV Job Fit Scanner. No real or personal data.",
   "cvs": [
     {
@@ -53,6 +53,50 @@
     {
       "name": "Social worker / socialsekreterare (mid)",
       "text": "Lisa Berg — Socialsekreterare, 5 years.\nSocial work and casework, client support, documentation/journal, biståndshandläggning.\nSwedish modersmål, English good."
+    },
+    {
+      "name": "IT support technician (mid)",
+      "text": "Noa Ek — IT Supporttekniker / Service Desk, 4 years.\nHelpdesk and user support, troubleshooting (felsökning), networking (nätverk),\nticketing (ärendehantering, Zendesk), Windows. Swedish good, English good."
+    },
+    {
+      "name": "QA / test engineer (mid)",
+      "text": "Kit Sjöberg — QA / Test Engineer, 4 years.\nTest automation (Selenium, Cypress), manual testing/QA, CI/CD, Python, REST APIs.\nEnglish fluent, Swedish basic."
+    },
+    {
+      "name": "DevOps engineer (mid)",
+      "text": "Robin Ahl — DevOps Engineer, 5 years.\nDocker, Kubernetes, CI/CD (Jenkins), cloud (AWS, Azure), Linux, Git, monitoring.\nEnglish fluent, Swedish good."
+    },
+    {
+      "name": "Dataanalytiker (svensk CV)",
+      "text": "Johanna Ek — Dataanalytiker, 5 år.\nBygger rapporter och instrumentpaneler i Power BI. Stark på SQL, Excel och statistik.\nTar fram nyckeltal (KPI) åt ledningen. Svenska modersmål, engelska flytande."
+    },
+    {
+      "name": "Registered nurse (mid)",
+      "text": "Eva Lind — Legitimerad sjuksköterska, 6 years.\nNursing, patient care, medication (läkemedel) and documentation (journal) on a ward.\nSwedish modersmål, English good."
+    },
+    {
+      "name": "Account manager / sales (mid)",
+      "text": "Theo Holm — Account Manager / Kundansvarig, 5 years.\nB2B sales (försäljning), account management, CRM, negotiation (förhandling) and client\nrelationships. Swedish fluent, English fluent."
+    },
+    {
+      "name": "SEO / digital marketing (mid)",
+      "text": "Wilma Berg — SEO Specialist, 4 years.\nSEO, content and copywriting, Google Analytics (GA4), social media. Grew organic traffic.\nSwedish good, English fluent."
+    },
+    {
+      "name": "Production operator (entry)",
+      "text": "Per Sand — Maskinoperatör / Production Operator, 3 years.\nMachine operation, CNC, montering/assembly on a production line, some welding (svets).\nSwedish good."
+    },
+    {
+      "name": "Maintenance technician (mid)",
+      "text": "Ali Holm — Fastighetsskötare / Maintenance Technician, 5 years.\nFacility maintenance (underhåll, fastighetsskötsel), minor electrical (el) and repairs.\nDriving license. Swedish good."
+    },
+    {
+      "name": "Hairdresser / frisör (entry)",
+      "text": "Nina Ek — Frisör / Hairdresser, 4 years.\nHairdressing (klippning, färgning), styling and customer service in a salon.\nSwedish modersmål."
+    },
+    {
+      "name": "Café / restaurant service (entry)",
+      "text": "Sam Berg — Café & restaurant service / servitör, 2 years.\nCustomer service (kundservice), serving guests, cash register and communication.\nSwedish good, English good."
     }
   ]
 }

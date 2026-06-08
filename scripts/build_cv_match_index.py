@@ -873,6 +873,8 @@ Reported KPIs in Excel. English fluent, Swedish basic.""",
         "name": "Data analyst (mid)",
         "expect_domain": "data_analytics",
         "must_not_top": {"truck_driver", "assistant_nurse", "sfmc_consultant", "barista"},
+        "expect_group": ["analytiker", "arkitekt"],     # not the dev lane
+        "gap_forbidden": ["C++", "Java", "Linux"],       # dev-only skills must not surface
         "text": """Mira Holm — Data Analyst, 4 years.
 SQL, Python, Power BI and Excel. Built dashboards and statistics/regression models.
 Reported KPIs to stakeholders. English fluent, Swedish good.""",
@@ -889,6 +891,7 @@ English fluent, Swedish good.""",
         "name": "Junior developer (entry)",
         "expect_domain": "software",
         "must_not_top": {"truck_driver", "assistant_nurse", "logistics_coordinator"},
+        "expect_group": ["utvecklare", "mjukvar"],       # developer lane (Java/C++ gaps are correct here)
         "text": """Robin Lind — Junior Developer. Recent graduate.
 JavaScript, React, HTML, CSS, Git, some Python and SQL. Built web apps and REST APIs.
 English fluent, Swedish basic.""",
@@ -949,6 +952,104 @@ Office and facility cleaning, sanitation, hygiene routines. Swedish good.""",
         "text": """Lisa Berg — Socialsekreterare, 5 years.
 Social work and casework, client support, documentation/journal, biståndshandläggning.
 Swedish modersmål, English good.""",
+    },
+    # --- broader coverage + occupation-group routing checks ---------------
+    {
+        "name": "IT support technician (mid)",
+        "expect_domain": "software",
+        "must_not_top": {"junior_developer", "data_analyst", "truck_driver"},
+        "expect_group": ["supporttekniker", "support"],   # support lane, NOT developer
+        "gap_forbidden": ["C++", "Java"],
+        "text": """Noa Ek — IT Supporttekniker / Service Desk, 4 years.
+Helpdesk and user support, troubleshooting (felsökning), networking (nätverk),
+ticketing (ärendehantering, Zendesk), Windows. Swedish good, English good.""",
+    },
+    {
+        "name": "QA / test engineer (mid)",
+        "expect_domain": "software",
+        "must_not_top": {"truck_driver", "assistant_nurse"},
+        "expect_group": ["testare", "testled"],           # test lane
+        "gap_forbidden": ["C++"],
+        "text": """Kit Sjöberg — QA / Test Engineer, 4 years.
+Test automation (Selenium, Cypress), manual testing/QA, CI/CD, Python, REST APIs.
+English fluent, Swedish basic.""",
+    },
+    {
+        "name": "DevOps engineer (mid)",
+        "expect_domain": "software",
+        "must_not_top": {"truck_driver", "assistant_nurse", "sfmc_consultant"},
+        "expect_group": ["drifttekniker", "drift"],        # operations lane
+        "gap_forbidden": ["C++", "Java"],
+        "text": """Robin Ahl — DevOps Engineer, 5 years.
+Docker, Kubernetes, CI/CD (Jenkins), cloud (AWS, Azure), Linux, Git, monitoring.
+English fluent, Swedish good.""",
+    },
+    {
+        "name": "Dataanalytiker (svensk CV)",
+        "expect_domain": "data_analytics",
+        "expect_group": ["analytiker", "arkitekt"],
+        "gap_forbidden": ["C++", "Java"],
+        "text": """Johanna Ek — Dataanalytiker, 5 år.
+Bygger rapporter och instrumentpaneler i Power BI. Stark på SQL, Excel och statistik.
+Tar fram nyckeltal (KPI) åt ledningen. Svenska modersmål, engelska flytande.""",
+    },
+    {
+        "name": "Registered nurse (mid)",
+        "expect_domain": "healthcare",
+        "must_not_top": {"data_analyst", "truck_driver", "sfmc_consultant"},
+        "text": """Eva Lind — Legitimerad sjuksköterska, 6 years.
+Nursing, patient care, medication (läkemedel) and documentation (journal) on a ward.
+Swedish modersmål, English good.""",
+    },
+    {
+        "name": "Account manager / sales (mid)",
+        "expect_domain": "sales",
+        "must_not_top": {"data_analyst", "assistant_nurse", "truck_driver"},
+        "text": """Theo Holm — Account Manager / Kundansvarig, 5 years.
+B2B sales (försäljning), account management, CRM, negotiation (förhandling) and client
+relationships. Swedish fluent, English fluent.""",
+    },
+    {
+        "name": "SEO / digital marketing (mid)",
+        "expect_domain": "digital_marketing",
+        "must_not_top": {"truck_driver", "assistant_nurse", "data_engineer"},
+        "text": """Wilma Berg — SEO Specialist, 4 years.
+SEO, content and copywriting, Google Analytics (GA4), social media. Grew organic traffic.
+Swedish good, English fluent.""",
+    },
+    {
+        "name": "Production operator (entry)",
+        "expect_domain": "manufacturing",
+        "must_not_top": {"data_analyst", "sfmc_consultant", "assistant_nurse"},
+        "text": """Per Sand — Maskinoperatör / Production Operator, 3 years.
+Machine operation, CNC, montering/assembly on a production line, some welding (svets).
+Swedish good.""",
+    },
+    {
+        "name": "Maintenance technician (mid)",
+        "expect_domain": "maintenance",
+        # NB: truck_driver legitimately surfaces in the not-your-lane bucket here
+        # (the CV has a driving licence), so it is not a forbidden collapse.
+        "must_not_top": {"data_analyst", "sfmc_consultant"},
+        "text": """Ali Holm — Fastighetsskötare / Maintenance Technician, 5 years.
+Facility maintenance (underhåll, fastighetsskötsel), minor electrical (el) and repairs.
+Driving license. Swedish good.""",
+    },
+    {
+        "name": "Hairdresser / frisör (entry)",
+        "expect_domain": "beauty",
+        "must_not_top": {"data_analyst", "truck_driver", "sfmc_consultant"},
+        "text": """Nina Ek — Frisör / Hairdresser, 4 years.
+Hairdressing (klippning, färgning), styling and customer service in a salon.
+Swedish modersmål.""",
+    },
+    {
+        "name": "Café / restaurant service (entry)",
+        "expect_domain": "hospitality",
+        "must_not_top": {"data_analyst", "truck_driver", "registered_nurse"},
+        "text": """Sam Berg — Café & restaurant service / servitör, 2 years.
+Customer service (kundservice), serving guests, cash register and communication.
+Swedish good, English good.""",
     },
 ]
 

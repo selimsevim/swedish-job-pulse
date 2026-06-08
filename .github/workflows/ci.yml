@@ -1,0 +1,38 @@
+name: CV-fit tests & evaluation
+
+# Deterministic (TF-IDF, no GPU, stdlib-only) gate for the /cv-fit engine:
+# endpoint unit tests + the end-to-end evaluation on the labelled synthetic CVs.
+# --strict fails the build on a domain-routing regression, an occupation-group
+# misroute (e.g. a data analyst drifting to the developer lane), or a gap leak.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'nebius/cv_fit_endpoint/**'
+      - 'scripts/build_cv_match_index.py'
+      - 'scripts/evaluate_cv_fit.py'
+      - 'data/cv_match_index.json'
+      - 'data/field_skills.json'
+  pull_request:
+    paths:
+      - 'nebius/cv_fit_endpoint/**'
+      - 'scripts/build_cv_match_index.py'
+      - 'scripts/evaluate_cv_fit.py'
+      - 'data/cv_match_index.json'
+      - 'data/field_skills.json'
+  workflow_dispatch:
+
+jobs:
+  cv-fit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Endpoint unit tests
+        run: |
+          python nebius/cv_fit_endpoint/test_cv_fit.py
+          (cd nebius/cv_fit_endpoint && python test_cv_fit_llm.py)
+      - name: End-to-end CV-fit evaluation (strict)
+        run: python scripts/evaluate_cv_fit.py --strict

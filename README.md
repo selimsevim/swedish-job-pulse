@@ -43,6 +43,8 @@ python3 scripts/build_cv_match_index.py
 
 Outputs `data/cv_match_index.json`, `data/sample_cvs.json` and `data/cv_match_metrics.json`. The current metrics are primary-domain accuracy and no-collapse rate on synthetic CVs; they prove the demo matcher stays in the right role family and does not collapse specialist profiles into generic jobs. The matcher in `app.js` mirrors the Python matcher in that script, so the evaluation tests the same pipeline.
 
+For the **endpoint** (not just the browser matcher), `scripts/evaluate_cv_fit.py` runs the full `analyze_cv` pipeline over the labelled CVs and additionally scores **occupation-group routing** (does a data analyst land in the analyst lane, not the developer one?) and **gap relevance** (no C++/Java surfaced to a non-developer). It writes `data/cv_fit_eval.json`; `--strict` fails on any routing or gap regression and runs in CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) alongside the endpoint unit tests.
+
 ## Career Reality Check (fallback)
 
 If you would rather not upload a CV, a collapsed form lets you answer a few questions instead. A user enters:

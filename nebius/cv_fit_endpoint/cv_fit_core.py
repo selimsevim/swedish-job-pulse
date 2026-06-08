@@ -78,19 +78,27 @@ REGIONAL_PROXY = {
     "digital_marketing": ("9puE_nYg_crq", "Kultur, media, design"),
 }
 
-# Lane anchors that ENABLE occupation-GROUP gap granularity for a domain. A
-# broad field holds many groups (Data/IT alone has 9: developers, analysts,
-# support, ops, test…), and skill overlap alone can't tell them apart — it drifts
-# to whatever niche group shares a token (a nurse matched to 'pharmacist' on the
-# word "läkemedel"). So group selection runs ONLY for domains pinned here; every
-# other domain keeps the safe whole-field demand. "on" stems (substring-matched
-# against the Swedish occupation-group label) define the domain's lane; "off"
-# stems exclude a confusable neighbour. The headline case this fixes: a data
-# analyst sitting in the dev-dominated Data/IT field was shown C++/Java gaps;
-# now the analyst/architect group's real demand is used instead.
-DOMAIN_GROUP_HINTS = {
-    "data_analytics": {"on": ["analytiker", "arkitekt"], "off": ["utvecklare", "programmer"]},
-    "software":       {"on": ["utvecklare", "systemutveckl", "mjukvar", "programmer"], "off": []},
+# Occupation-GROUP anchor per role (JobTech SSYK-4 concept_id), validated against
+# the real per-group ad demand in data/field_skills.json. A broad field bundles
+# many lanes — Data/IT alone holds developers, analysts, support, test and ops —
+# so whole-field demand pushes the wrong gaps (a data analyst was shown C++/Java
+# because developers dominate the field). When the candidate's top-matched role
+# is anchored here, gaps are drawn from THAT group's demand instead. Anchoring is
+# per ROLE, not per domain, because one domain spans several lanes (the "software"
+# domain contains IT support and QA, which must not be measured against developer
+# ads). Roles with no clean, dense group (data scientist, cybersecurity, generic
+# data/integration engineering) are left unanchored and use whole-field demand.
+ROLE_OCC_GROUP = {
+    # Data/IT — analyst / architect lane (Systemanalytiker och IT-arkitekter)
+    "data_analyst": "UXKZ_3zZ_ipB", "crm_analyst": "UXKZ_3zZ_ipB",
+    "bi_reporting": "UXKZ_3zZ_ipB", "operations_analyst": "UXKZ_3zZ_ipB",
+    # Data/IT — software developer lane (Mjukvaru- och systemutvecklare)
+    "junior_developer": "DJh5_yyF_hEM", "software_developer": "DJh5_yyF_hEM",
+    "senior_developer": "DJh5_yyF_hEM",
+    # Data/IT — IT support / test / operations lanes
+    "it_support": "hmaC_cfi_UKg",                # Supporttekniker, IT
+    "qa_engineer": "D9SL_mtn_vGM",               # Systemtestare och testledare
+    "devops_engineer": "13md_uyV_BNG",           # Drifttekniker, IT
 }
 
 
@@ -176,21 +184,6 @@ class _Engine:
 
         # Canonical skill vocabulary the LLM extractor is constrained to.
         self.skill_vocab = sorted(bm.SKILLS.keys())
-
-        # Precompute, per field, each occupation GROUP's demanded-skill footprint
-        # (the canonical tokens each demanded skill maps to + its ad share), so
-        # per-request group selection is cheap. field_id -> [(group_id,
-        # group_term, ads, [(tokens, share), ...]), ...].
-        self._field_groups = {}
-        for fid, fdata in (self.field_skills.get("fields") or {}).items():
-            groups = []
-            for gid, gdata in (fdata.get("groups") or {}).items():
-                footprint = [(self._term_tokens(s.get("term", "")), s.get("share", 0.0))
-                             for s in gdata.get("skills", [])]
-                groups.append((gid, gdata.get("group_term") or "",
-                               gdata.get("ads_with_skills", 0), footprint))
-            if groups:
-                self._field_groups[fid] = groups
 
         # Backend selection. backend_kind: tfidf | neural | error.
         self.backend_kind = "tfidf"
@@ -297,6 +290,7 @@ class _Engine:
                 "role_id": r["role_id"], "title": r["title"], "domain": r["domain"],
                 "secondary_domains": r.get("secondary_domains", []),
                 "field_id": r["field_id"], "field_label": r["field_label"],
+                "occ_group": ROLE_OCC_GROUP.get(r["role_id"]),
                 "seniority": r["seniority"], "semantic": round(sem, 4),
                 "coverage": round(cov, 3), "gap": gap, "fit": round(fit, 4),
                 "missing": [s for s in req if s not in cv_skills],
@@ -379,37 +373,17 @@ class _Engine:
         return {c for c, variants in bm.SKILLS.items()
                 if any((" " + v + " ") in low or v in low for v in variants)}
 
-    def _select_group(self, field_id, domain, candidate_tokens):
-        """Pick the occupation GROUP for the candidate's lane inside the field, so
-        gaps come from that lane (analyst vs developer inside Data/IT) instead of
-        the dev-dominated whole field. Group selection runs ONLY for domains with
-        a DOMAIN_GROUP_HINTS anchor — elsewhere skill overlap can't reliably tell
-        a field's groups apart, so we fall back to safe whole-field demand. Among
-        the anchored lane's groups, share-weighted overlap with the candidate's
-        tokens (then ad volume) breaks ties. Returns (group_id, group_term,
-        skills_list) or None.
-        """
-        hints = DOMAIN_GROUP_HINTS.get(domain)
-        groups = self._field_groups.get(field_id)
-        if not hints or not groups:
+    def _group_gaps_source(self, field_id, occ_group_id):
+        """The demanded-skill list for a role's anchored occupation group (see
+        ROLE_OCC_GROUP), if that group carries data in this field. Returns
+        (group_term, skills_list) or None to fall back to whole-field demand."""
+        if not occ_group_id:
             return None
-        on, off = hints.get("on") or [], hints.get("off") or []
-        best = None
-        for gid, gterm, ads, footprint in groups:
-            label = gterm.lower()
-            if off and any(h in label for h in off):
-                continue                                   # confusable neighbouring lane
-            if on and not any(h in label for h in on):
-                continue                                   # not this domain's lane
-            overlap = sum(share for toks, share in footprint if toks & candidate_tokens)
-            cand = (overlap, ads, gid)                     # ties -> denser group -> stable id
-            if best is None or cand > best:
-                best = cand
-        if best is None:
+        fdata = (self.field_skills.get("fields") or {}).get(field_id) or {}
+        g = (fdata.get("groups") or {}).get(occ_group_id)
+        if not g or not g.get("skills"):
             return None
-        gid = best[2]
-        gdata = self.field_skills["fields"][field_id]["groups"][gid]
-        return gid, gdata.get("group_term"), gdata.get("skills", [])
+        return g.get("group_term"), g.get("skills")
 
     def _gaps_from_skills(self, skills, profile, role_tokens, source_term, apply_lane_guard):
         """Data-grounded gaps: skills that real ads (for an occupation field or a
@@ -680,20 +654,24 @@ class _Engine:
         # so the field's ad skills don't represent them — keep the role-model gaps
         # there. Every other domain uses the real per-field ad demand.
         use_field_gaps = pdomain not in REGIONAL_PROXY
-        # Occupation-GROUP granularity: within the matched field, pick the group
-        # whose real ad demand fits this candidate's lane (analyst vs developer
-        # inside Data/IT) and draw gaps from it; fall back to the whole field when
-        # no group fits or the field has no group data.
+        # Occupation-GROUP granularity: when the top-matched role is anchored to a
+        # specific occupation group (ROLE_OCC_GROUP), draw gaps from THAT group's
+        # real ad demand (analyst vs developer vs support inside Data/IT) instead
+        # of the broad, dev-dominated field; otherwise fall back to whole-field
+        # demand. The group's demand is already lane-scoped, so the role-token
+        # relevance guard is off for it (kept on for the broad field fallback).
         gap_group_id = gap_group_term = None
         gap_info = None
         if gap_field and use_field_gaps:
-            candidate_tokens = set(profile["skills"]) | role_tokens
-            sel = self._select_group(gap_field, pdomain, candidate_tokens)
-            if sel:
-                gap_group_id, gap_group_term, group_skills = sel
+            top_role = (best or adj)[0]
+            gap_group_id = top_role.get("occ_group")
+            src = self._group_gaps_source(gap_field, gap_group_id)
+            if src:
+                gap_group_term, group_skills = src
                 gap_info = self._gaps_from_skills(group_skills, profile, role_tokens,
                                                   gap_group_term, apply_lane_guard=False)
             else:
+                gap_group_id = None
                 gap_info = self._field_skill_gaps(gap_field, profile, role_tokens)
         if gap_info and gap_info["gaps"]:
             missing = [g["label"] for g in gap_info["gaps"][:5]]

@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-06-07T22:13:57Z",
+  "last_updated": "2026-06-08T07:19:44Z",
   "version": "cv-fit-engine-v2",
   "metrics": {
-    "n_synthetic_cvs": 13,
+    "n_synthetic_cvs": 24,
     "primary_domain_accuracy": 1.0,
     "no_collapse_rate": 1.0,
     "retrieval": "tf-idf cosine over role ontology (multilingual, synonym-expanded)",
@@ -253,6 +253,196 @@
         ],
         "adjacent": [],
         "avoid": []
+      },
+      {
+        "cv": "IT support technician (mid)",
+        "extracted_skills": 3,
+        "seniority": "mid",
+        "primary_domain": "software",
+        "expected_domain": "software",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "IT Support Technician"
+        ],
+        "adjacent": [],
+        "avoid": []
+      },
+      {
+        "cv": "QA / test engineer (mid)",
+        "extracted_skills": 6,
+        "seniority": "mid",
+        "primary_domain": "software",
+        "expected_domain": "software",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "QA / Test Engineer",
+          "Integration Specialist"
+        ],
+        "adjacent": [
+          "Data Integration Specialist",
+          "DevOps Engineer",
+          "Data Engineer"
+        ],
+        "avoid": []
+      },
+      {
+        "cv": "DevOps engineer (mid)",
+        "extracted_skills": 6,
+        "seniority": "mid",
+        "primary_domain": "software",
+        "expected_domain": "software",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "DevOps Engineer"
+        ],
+        "adjacent": [
+          "Data Engineer",
+          "Software Developer",
+          "Junior Developer"
+        ],
+        "avoid": []
+      },
+      {
+        "cv": "Dataanalytiker (svensk CV)",
+        "extracted_skills": 7,
+        "seniority": "mid",
+        "primary_domain": "data_analytics",
+        "expected_domain": "data_analytics",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Data Analyst",
+          "Operations Analyst",
+          "BI / Reporting Specialist"
+        ],
+        "adjacent": [
+          "CRM Analyst",
+          "Data Integration Specialist",
+          "Marketing Operations Engineer"
+        ],
+        "avoid": []
+      },
+      {
+        "cv": "Registered nurse (mid)",
+        "extracted_skills": 5,
+        "seniority": "senior",
+        "primary_domain": "healthcare",
+        "expected_domain": "healthcare",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Registered Nurse",
+          "Assistant Nurse"
+        ],
+        "adjacent": [
+          "Social Worker / Socialsekreterare"
+        ],
+        "avoid": []
+      },
+      {
+        "cv": "Account manager / sales (mid)",
+        "extracted_skills": 4,
+        "seniority": "mid",
+        "primary_domain": "sales",
+        "expected_domain": "sales",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Account Manager",
+          "Sales Coordinator"
+        ],
+        "adjacent": [],
+        "avoid": [
+          "Social Media Specialist",
+          "SEO Specialist",
+          "Content Marketing Specialist"
+        ]
+      },
+      {
+        "cv": "SEO / digital marketing (mid)",
+        "extracted_skills": 5,
+        "seniority": "mid",
+        "primary_domain": "digital_marketing",
+        "expected_domain": "digital_marketing",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Content Marketing Specialist",
+          "SEO Specialist",
+          "Social Media Specialist",
+          "Digital Marketing Specialist"
+        ],
+        "adjacent": [],
+        "avoid": []
+      },
+      {
+        "cv": "Production operator (entry)",
+        "extracted_skills": 2,
+        "seniority": "mid",
+        "primary_domain": "manufacturing",
+        "expected_domain": "manufacturing",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Production Operator / Operatör",
+          "Welder / Svetsare"
+        ],
+        "adjacent": [],
+        "avoid": []
+      },
+      {
+        "cv": "Maintenance technician (mid)",
+        "extracted_skills": 3,
+        "seniority": "mid",
+        "primary_domain": "maintenance",
+        "expected_domain": "maintenance",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Maintenance Technician / Fastighetsskötare",
+          "Electrician / Elektriker"
+        ],
+        "adjacent": [],
+        "avoid": [
+          "Truck Driver",
+          "Security Officer / Väktare",
+          "Warehouse Worker"
+        ]
+      },
+      {
+        "cv": "Hairdresser / frisör (entry)",
+        "extracted_skills": 2,
+        "seniority": "mid",
+        "primary_domain": "beauty",
+        "expected_domain": "beauty",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Hairdresser / Frisör"
+        ],
+        "adjacent": [
+          "Barista / Café"
+        ],
+        "avoid": []
+      },
+      {
+        "cv": "Café / restaurant service (entry)",
+        "extracted_skills": 3,
+        "seniority": "mid",
+        "primary_domain": "hospitality",
+        "expected_domain": "hospitality",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Barista / Café"
+        ],
+        "adjacent": [],
+        "avoid": [
+          "Hairdresser / Frisör"
+        ]
       }
     ]
   }
