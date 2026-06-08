@@ -154,6 +154,9 @@
       document.querySelectorAll(".lang-btn").forEach((b) => {
         b.classList.toggle("is-active", b.getAttribute("data-lang") === currentLang);
       });
+      // The analysis report is returned in English; in Swedish, say so.
+      const langNote = document.getElementById("cv-lang-note");
+      if (langNote) langNote.hidden = currentLang !== "sv";
     }
 
     // Re-localise the dynamic bits that aren't plain data-i18n nodes.

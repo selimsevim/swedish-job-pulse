@@ -59,13 +59,19 @@ _SYSTEM = (
     "this field and advise a national + remote search. Do NOT name regions then.\n"
     "- Be concrete and concise. No hype, no filler.\n"
     "- Write plain prose. Never use em dashes or en dashes (— –); use commas, periods, or colons instead.\n"
+    "- 'cv_improvements': 2 or 3 SPECIFIC fixes, each grounded in cv_weak_spots and the candidate's actual "
+    "cv_skills / best_fit_roles. Say what to change and why it matters for THESE roles, referencing the real CV "
+    "(e.g. 'You list SQL and Power BI but no outcomes: quantify your reporting impact, which analyst ads ask for'). "
+    "No generic boilerplate, and never invent skills, roles, employers, or numbers not in the facts. If "
+    "cv_weak_spots is empty, give one line on the single highest-value next improvement.\n"
     "Output ONE single JSON object and NOTHING else (no prose before or after, no second "
-    "object). It MUST contain BOTH keys. 'main_answer' is ONE sentence. "
+    "object). It MUST contain ALL THREE keys. 'main_answer' is ONE sentence. "
     "'main_answer' must include an exact best-fit role title and a useful tradeoff. "
     "'why_recommendation' is an array of EXACTLY 3 short sentences (max ~28 words each): "
     "(1) the CV evidence and best-fit titles, (2) the market signal, (3) the regional strategy per the rules above. "
-    "Keep the whole response under 130 words. Schema:\n"
-    '{"main_answer": "<one sentence>", "why_recommendation": ["<sentence 1>", "<sentence 2>", "<sentence 3>"]}'
+    "Keep main_answer and why_recommendation under 130 words. Schema:\n"
+    '{"main_answer": "<one sentence>", "why_recommendation": ["<s1>", "<s2>", "<s3>"], '
+    '"cv_improvements": ["<specific fix 1>", "<specific fix 2>"]}'
 )
 
 
@@ -123,7 +129,10 @@ class _LLM:
             print("[cv-fit] LLM LOAD FAILED: " + self.error)
 
     def generate(self, evidence):
-        """Return {"main_answer": str, "why_recommendation": [str]} or None."""
+        """Return {"main_answer": str, "why_recommendation": [str],
+        "cv_improvements": [str] (optional)} or None. cv_improvements is included
+        only when the model returns 2-3 usable items; the caller falls back to its
+        deterministic improvements otherwise."""
         if not self.ok:
             return None
         import torch
@@ -303,7 +312,17 @@ def _parse_and_ground(text, evidence):
     blob = (main + " " + " ".join(why)).strip()
     if len(blob) < 10:
         return None
-    return {"main_answer": main.strip(), "why_recommendation": why}
+    out = {"main_answer": main.strip(), "why_recommendation": why}
+    # cv_improvements is OPTIONAL: include only when the model returned 2-3 usable
+    # strings, otherwise the caller keeps its deterministic improvements. Never
+    # let a missing/garbled value fail the whole generation.
+    imp = obj.get("cv_improvements") if isinstance(obj, dict) else None
+    if isinstance(imp, list):
+        imp = [str(x).strip() for x in imp
+               if isinstance(x, (str, int, float)) and str(x).strip()][:3]
+        if len(imp) >= 2:
+            out["cv_improvements"] = imp
+    return out
 
 
 _llm = None

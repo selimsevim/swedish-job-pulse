@@ -726,18 +726,26 @@ class _Engine:
         if gap_info and gap_info["gaps"]:
             missing = [g["label"] for g in gap_info["gaps"][:5]]
 
-        # CV improvements (domain-agnostic).
+        # CV improvements. The DETECTION is reasoned (it inspects THIS CV), and
+        # the templated lines below are only a fallback used when the LLM is off.
+        # When the LLM is active it rewrites them into CV-specific advice grounded
+        # in the detected weak_spots + the candidate's real skills (see the
+        # generate() call), so nothing the user reads is blind boilerplate.
         t = (cv_text or "").lower()
         result_words = any(w in t for w in ("increase", "reduc", "grew", "growth", "%", "kpi",
                                             "result", "saved", "boosted", "improv", "ökade", "minskade"))
-        improvements = []
+        weak_spots, improvements = [], []
         if not result_words:
+            weak_spots.append("no quantified impact in the CV (no numbers, %, or before/after outcomes)")
             improvements.append("Add measurable impact: numbers, %, and what changed because of your work.")
         if len(profile["skills"]) < 5:
+            weak_spots.append("thin skills section (few concrete tools listed)")
             improvements.append("Add a clear skills section that lists your tools.")
         if not profile["languages"]:
+            weak_spots.append("language level not stated (Swedish / English)")
             improvements.append("State your Swedish and English level explicitly.")
         if is_senior and best:
+            weak_spots.append("senior scope not explicit (ownership, team/budget scale, impact led)")
             improvements.append("Frame senior scope explicitly: ownership, scale, and the impact you led.")
         if not improvements:
             improvements.append("Strong structure. Focus on closing the missing skills above.")
@@ -764,7 +772,6 @@ class _Engine:
             plan.append(f"Build proof for {' and '.join(g['label'] for g in top)}{ev}.")
         elif missing:
             plan.append(f"Build proof for {' and '.join(missing[:2])}: a focused project or short course.")
-        plan.append("Rewrite your CV: add measurable impact and a clear skills section.")
         if keywords:
             plan.append("Search Platsbanken for " + ", ".join(f'"{k}"' for k in keywords[:4]) + ".")
 
@@ -788,6 +795,7 @@ class _Engine:
                 "adjacent_roles": [r["title"] for r in adj[:3]],
                 "off_lane_roles": [r["title"] for r in avoid[:3]],
                 "missing_skills": missing[:4],
+                "cv_weak_spots": weak_spots,
                 "market_signal": market_signal,
                 "region": region,
                 "regional_outlook": regional_outlook,
@@ -808,6 +816,10 @@ class _Engine:
                 if advice and len(why) >= 3:
                     why[2] = advice
                 main = self._decision_headline(profile, best, adj, market_signal)
+                # Prefer the LLM's CV-specific, grounded improvements over the
+                # templated fallback when it produced valid ones.
+                if gen.get("cv_improvements"):
+                    improvements = gen["cv_improvements"]
                 backend_label = "llm:" + self.llm.model_id
             else:
                 raise RuntimeError("LLM generation failed")

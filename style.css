@@ -596,6 +596,12 @@
       font-size: 0.8125rem;
       color: var(--crc-muted);
     }
+    .cv-lang-note {
+      margin: -8px 0 14px;
+      font-size: 0.75rem;
+      font-style: italic;
+      color: var(--crc-muted);
+    }
 
     /* Region + primary Analyse button row */
     .cv-run {
