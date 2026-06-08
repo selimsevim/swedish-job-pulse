@@ -253,13 +253,13 @@ shipped to the browser):
 | `NEBIUS_CV_FIT_TOKEN` | `…` | Bearer token for the Nebius endpoint |
 | `NEBIUS_CV_FIT_TIMEOUT` | `60` | Optional upstream timeout in seconds (default `60`) |
 
-Railway build/run is configured by [`railway.json`](railway.json) and
-[`nixpacks.toml`](nixpacks.toml): it installs only the lightweight
-[`requirements-railway.txt`](requirements-railway.txt) (`fastapi`, `uvicorn`, `httpx`,
-**not** the ML/data deps) and starts with:
+Railway build/run is configured by [`railway.json`](railway.json): it builds the
+root [`Dockerfile`](Dockerfile) (which also installs the app's
+[`requirements-railway.txt`](requirements-railway.txt): `fastapi`, `uvicorn`,
+`httpx`) and starts the proxy with:
 
 ```bash
-uvicorn app.server:app --host 0.0.0.0 --port $PORT
+python -m uvicorn app.server:app --host 0.0.0.0 --port $PORT
 ```
 
 Health check: `GET /api/health` returns `{"status":"ok","neural_available":true|false}`
@@ -348,8 +348,7 @@ Relevant official docs:
 │   ├── DOCUMENTATION.md     # full project doc (problem -> proposal -> solution -> technical)
 │   └── blog-post.md         # the write-up / article
 ├── railway.json             # Railway build/deploy config (start command, healthcheck)
-├── nixpacks.toml            # Railway: install only requirements-railway.txt
-├── requirements-railway.txt # Lightweight deps for the Railway app (fastapi/uvicorn/httpx)
+├── requirements-railway.txt # App deps for the Railway proxy (fastapi/uvicorn/httpx)
 ├── env.example              # NEBIUS_CV_FIT_URL / NEBIUS_CV_FIT_TOKEN template
 ├── Dockerfile
 ├── requirements-ml.txt
