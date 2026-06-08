@@ -158,10 +158,12 @@ def main():
     acc = _Accumulator()
     sources = []
     if args.archive:
+        import re
         for path in args.archive:
             print(f"Reading {path}…")
             consume_archive(path, acc)
-            sources.append(Path(path).name)
+            m = re.search(r"(20\d\d)", Path(path).name)      # prefer a clean year label
+            sources.append(m.group(1) if m else Path(path).name)
     else:
         for year in years:
             print(f"Downloading {year} enriched archive…")

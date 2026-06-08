@@ -1,8 +1,8 @@
 {
   "last_updated": "2026-06-08",
   "years": [
-    "jobtech_2025.zip",
-    "jobtech_2024.zip"
+    "2025",
+    "2024"
   ],
   "source": "JobTech enriched historical ads (must_have + nice_to_have skills), per field and occupation group",
   "min_group_ads": 12,

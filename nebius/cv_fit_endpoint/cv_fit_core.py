@@ -38,12 +38,51 @@ if HERE not in sys.path:
     sys.path.insert(0, HERE)
 import cv_fit_llm  # noqa: E402
 
-INDEX_PATH = os.environ.get("CV_FIT_INDEX_PATH", os.path.join(REPO_ROOT, "data", "cv_match_index.json"))
-CAREER_PATH = os.environ.get("CV_FIT_CAREER_PATH", os.path.join(REPO_ROOT, "data", "career_reality.json"))
-REGIONAL_SPLIT_PATH = os.environ.get("CV_FIT_REGIONAL_SPLIT", os.path.join(REPO_ROOT, "data", "regional_split.json"))
-FIELD_SKILLS_PATH = os.environ.get("CV_FIT_FIELD_SKILLS", os.path.join(REPO_ROOT, "data", "field_skills.json"))
+# Data directory. The image bakes a copy under repo/data, but CV_FIT_DATA_DIR
+# lets the running endpoint read from elsewhere, and CV_FIT_DATA_URL lets it pull
+# the LATEST weekly/monthly refresh from object storage (or any HTTPS/file base)
+# at startup — so data updates flow through without rebuilding the image.
+DATA_DIR = os.environ.get("CV_FIT_DATA_DIR", os.path.join(REPO_ROOT, "data"))
+DATA_URL = os.environ.get("CV_FIT_DATA_URL", "").strip().rstrip("/")
+# Files the endpoint loads; refreshed from DATA_URL when set.
+REFRESHABLE_DATA = ("cv_match_index.json", "career_reality.json",
+                    "regional_split.json", "field_skills.json")
+
+INDEX_PATH = os.environ.get("CV_FIT_INDEX_PATH", os.path.join(DATA_DIR, "cv_match_index.json"))
+CAREER_PATH = os.environ.get("CV_FIT_CAREER_PATH", os.path.join(DATA_DIR, "career_reality.json"))
+REGIONAL_SPLIT_PATH = os.environ.get("CV_FIT_REGIONAL_SPLIT", os.path.join(DATA_DIR, "regional_split.json"))
+FIELD_SKILLS_PATH = os.environ.get("CV_FIT_FIELD_SKILLS", os.path.join(DATA_DIR, "field_skills.json"))
 EMBEDDING_MODEL = os.environ.get("CV_FIT_EMBEDDING_MODEL", "").strip()
 NEURAL_INDEX_PATH = os.environ.get("CV_FIT_NEURAL_INDEX", os.path.join(HERE, "neural_role_index.json"))
+
+
+def refresh_data_from_url():
+    """If CV_FIT_DATA_URL is set, download the data files into DATA_DIR at startup
+    so the running endpoint picks up the latest weekly/monthly refresh without an
+    image rebuild. Best-effort per file and validated as JSON before replacing the
+    baked copy, so a bad fetch never takes the endpoint down — it just keeps the
+    version already on disk. Returns the list of files actually refreshed."""
+    if not DATA_URL:
+        return []
+    import urllib.request
+    os.makedirs(DATA_DIR, exist_ok=True)
+    refreshed = []
+    for fname in REFRESHABLE_DATA:
+        url = DATA_URL + "/" + fname
+        dest = os.path.join(DATA_DIR, fname)
+        try:
+            with urllib.request.urlopen(url, timeout=20) as resp:
+                raw = resp.read()
+            json.loads(raw)                                   # validate before overwrite
+            tmp = dest + ".tmp"
+            with open(tmp, "wb") as fh:
+                fh.write(raw)
+            os.replace(tmp, dest)
+            refreshed.append(fname)
+            print("[cv-fit] refreshed %s from CV_FIT_DATA_URL" % fname)
+        except Exception as exc:  # pragma: no cover - network/IO best-effort
+            print("[cv-fit] data refresh skipped for %s: %s" % (fname, exc.__class__.__name__))
+    return refreshed
 
 # Display + gap-priority maps (mirror app.js).
 CV_PRETTY = {
@@ -150,6 +189,9 @@ class _Engine:
     """Loads the index + career signals once and answers /cv-fit requests."""
 
     def __init__(self):
+        # Pull the latest data from object storage first (no-op unless
+        # CV_FIT_DATA_URL is set), so a fresh boot reflects the weekly refresh.
+        self.data_refreshed = refresh_data_from_url()
         with open(INDEX_PATH, "r", encoding="utf-8") as fh:
             self.index = json.load(fh)
         self.catalog = self.index["roles"]

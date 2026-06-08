@@ -65,6 +65,11 @@ def health():
         "retrieval": eng.retrieval_backend,    # tfidf | neural:<model>
         "roles": len(eng.catalog),
     }
+    out["data"] = {                            # freshness of the loaded datasets
+        "index_updated": eng.index.get("last_updated"),
+        "field_skills_years": eng.field_skills.get("years"),
+        "refreshed_from_url": eng.data_refreshed,   # files pulled at boot (CV_FIT_DATA_URL)
+    }
     if eng.model_name:
         out["embedding_model"] = eng.model_name   # e.g. BAAI/bge-m3
     if eng.embedding_dim:
