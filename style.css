@@ -38,7 +38,8 @@
 
     button,
     input,
-    select {
+    select,
+    textarea {
       font: inherit;
     }
 
@@ -86,6 +87,27 @@
       font-weight: 400;
       color: var(--text-secondary);
     }
+
+    .lang-toggle {
+      display: inline-flex;
+      flex: 0 0 auto;
+      border: 1.5px solid var(--text-primary);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .lang-btn {
+      border: none;
+      background: var(--card-bg);
+      color: var(--text-primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 7px 12px;
+    }
+
+    .lang-btn + .lang-btn { border-left: 1.5px solid var(--text-primary); }
+    .lang-btn.is-active { background: var(--primary-blue); color: #fff; }
 
     .dashboard-main {
       display: flex;

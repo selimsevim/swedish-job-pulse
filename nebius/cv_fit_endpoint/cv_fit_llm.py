@@ -35,12 +35,12 @@ MAX_NEW_TOKENS = int(os.environ.get("CV_FIT_LLM_MAX_NEW_TOKENS", "700"))
 DEVICE_PREF = os.environ.get("CV_FIT_LLM_DEVICE", "auto").strip().lower()
 
 _SYSTEM = (
-    "You are a data-literate Swedish job-market consultant — not a form. You are given FACTS "
+    "You are a data-literate Swedish job-market consultant, not a form. You are given FACTS "
     "produced by a deterministic matcher over public Arbetsförmedlingen / JobTech job-ad data. "
     "Advise honestly and specifically using ONLY these facts.\n"
     "Rules:\n"
     "- Use only the exact role titles provided. Never invent roles, employers, skills, or numbers.\n"
-    "- Public job-ad signals are demand signals, not the whole labour market — never claim they cover all jobs.\n"
+    "- Public job-ad signals are demand signals, not the whole labour market; never claim they cover all jobs.\n"
     "- The headline must make a DECISION, not repeat the user's filters:\n"
     "    * Name one or two exact titles from best_fit_roles.\n"
     "    * State the most important tradeoff from market_signal or missing_skills.\n"
@@ -58,6 +58,7 @@ _SYSTEM = (
     "    * If data_basis is 'national_only' (or regional_outlook is null), say there's no regional breakdown for "
     "this field and advise a national + remote search. Do NOT name regions then.\n"
     "- Be concrete and concise. No hype, no filler.\n"
+    "- Write plain prose. Never use em dashes or en dashes (— –); use commas, periods, or colons instead.\n"
     "Output ONE single JSON object and NOTHING else (no prose before or after, no second "
     "object). It MUST contain BOTH keys. 'main_answer' is ONE sentence. "
     "'main_answer' must include an exact best-fit role title and a useful tradeoff. "
@@ -71,7 +72,7 @@ _SYSTEM = (
 _EXTRACT_SYSTEM = (
     "You read a CV (often Swedish or English) and extract a structured profile for a job matcher. "
     "Return STRICT JSON only, no prose.\n"
-    "- skills: choose EVERY token from SKILL_VOCAB that the CV clearly evidences — including via Swedish "
+    "- skills: choose EVERY token from SKILL_VOCAB that the CV clearly evidences, including via Swedish "
     "wording, tools, certifications, or paraphrase (e.g. 'ledde ett team' -> leadership; 'byggde "
     "instrumentpaneler' -> dashboards; 'truckkort' -> forklift). Use ONLY exact tokens from SKILL_VOCAB; "
     "never invent a token and never include a skill the CV does not show.\n"

@@ -22,6 +22,166 @@
     }
 
     // =====================================================================
+    // Language (EN / SV)
+    // Static UI strings carry data-i18n keys in index.html; dynamic strings
+    // (status messages, report labels) call t(key). The analysis CONTENT
+    // stays in the language the endpoint returns; only the surrounding UI
+    // chrome translates.
+    // =====================================================================
+    const I18N = {
+      en: {
+        subtitle: "Practical job-fit guidance from public Swedish labour-market data.",
+        eyebrow: "CV → Job Fit Report",
+        headline: "See where your CV fits.",
+        lede: "Get realistic roles, skill gaps, and next steps from public Swedish job-ad signals.",
+        dropPre: "Drop a PDF or",
+        dropBtn: "choose a file",
+        dropNote: "The PDF is read locally and converted to text below.",
+        cvTextLabel: "CV text",
+        cvTextHint: "or paste it here",
+        cvTextPlaceholder: "Paste CV text",
+        sampleLabel: "Try a sample",
+        sampleDefault: "Choose a synthetic CV",
+        regionLabel: "Region",
+        regionHint: "optional",
+        regionDefault: "Anywhere in Sweden",
+        analyseBtn: "Analyse CV",
+        analysing: "Analysing…",
+        methodSummary: "How this works & its limits",
+        method1: "PDF text is extracted in your browser. When Nebius AI is active, that text is sent for one analysis request and is not stored.",
+        method2: "Roles are ranked by skills, titles, seniority, language fit, and public job-ad signals.",
+        methodNote: "This is advisory guidance from public job ads, not a hiring guarantee or a view of the entire labour market.",
+        footerCopy: "Data sourced from Arbetsförmedlingen JobTech Development. Public job-ad signals only, not a guarantee of employment.",
+        loading: "Loading job-market signals...",
+        engineActive: "Nebius AI is active. CV text is sent for this request and is not stored.",
+        engineInactive: "Nebius AI is unavailable. CV analysis is disabled until the endpoint is connected.",
+        statusTooShort: "Not enough CV information yet. Add role titles, skills, tools, language level, and recent work or study history.",
+        statusUnavailable: "Nebius AI is unavailable. Start the app with scripts/run_local_nebius.sh and try again.",
+        statusAnalysing: "Analysing with Nebius AI…",
+        statusFailed: "Nebius AI request failed. No fallback was used. Check the local server and endpoint status.",
+        statusReading: "Reading your CV in your browser…",
+        statusNotPdf: "Please choose a PDF file.",
+        statusPdfFailed: "Could not read that PDF in the browser. Try another PDF, or paste the text / load a sample.",
+        loaded: "Loaded",
+        sourceYourCv: "your CV",
+        sourceSample: "sample",
+        analysedTpl: (src, backend) => `Analysed ${src} with Nebius AI${backend}. CV text was sent for this request and was not stored.`,
+        labelClose: "Close these gaps",
+        labelStrengthen: "Strengthen the CV",
+        labelPlan: "7-day action plan",
+        labelMarketSignal: "Market signal",
+        labelWhy: "Why this recommendation?",
+        labelProfile: "Profile",
+        labelNoLang: "language level not stated",
+        labelReportKicker: "Job fit report",
+        labelBest: "Best fit",
+        labelStretch: "Stretch",
+        labelSkip: "Skip for now"
+      },
+      sv: {
+        subtitle: "Praktisk jobbmatchning baserad på offentlig svensk arbetsmarknadsdata.",
+        eyebrow: "CV → Jobbmatchningsrapport",
+        headline: "Se var ditt CV passar.",
+        lede: "Få realistiska roller, kompetensgap och nästa steg utifrån offentliga svenska jobbannonser.",
+        dropPre: "Släpp en PDF eller",
+        dropBtn: "välj en fil",
+        dropNote: "PDF:en läses lokalt i din webbläsare och omvandlas till text nedan.",
+        cvTextLabel: "CV-text",
+        cvTextHint: "eller klistra in här",
+        cvTextPlaceholder: "Klistra in CV-text",
+        sampleLabel: "Prova ett exempel",
+        sampleDefault: "Välj ett exempel-CV",
+        regionLabel: "Region",
+        regionHint: "valfritt",
+        regionDefault: "Var som helst i Sverige",
+        analyseBtn: "Analysera CV",
+        analysing: "Analyserar…",
+        methodSummary: "Så fungerar det och dess gränser",
+        method1: "PDF-texten extraheras i din webbläsare. När Nebius AI är aktiv skickas texten för en analysförfrågan och lagras inte.",
+        method2: "Roller rangordnas efter kompetenser, titlar, senioritet, språkkrav och offentliga jobbannonssignaler.",
+        methodNote: "Detta är vägledande råd från offentliga jobbannonser, inte en anställningsgaranti eller en bild av hela arbetsmarknaden.",
+        footerCopy: "Data från Arbetsförmedlingen JobTech Development. Endast offentliga jobbannonssignaler, inte en garanti för anställning.",
+        loading: "Laddar arbetsmarknadssignaler...",
+        engineActive: "Nebius AI är aktiv. CV-texten skickas för denna förfrågan och lagras inte.",
+        engineInactive: "Nebius AI är inte tillgänglig. CV-analysen är avstängd tills endpointen är ansluten.",
+        statusTooShort: "Inte tillräckligt med CV-information ännu. Lägg till roller, kompetenser, verktyg, språknivå och din senaste arbets- eller studiehistorik.",
+        statusUnavailable: "Nebius AI är inte tillgänglig. Starta appen med scripts/run_local_nebius.sh och försök igen.",
+        statusAnalysing: "Analyserar med Nebius AI…",
+        statusFailed: "Nebius AI-förfrågan misslyckades. Ingen reservlösning användes. Kontrollera den lokala servern och endpointens status.",
+        statusReading: "Läser ditt CV i webbläsaren…",
+        statusNotPdf: "Välj en PDF-fil.",
+        statusPdfFailed: "Det gick inte att läsa den PDF:en i webbläsaren. Prova en annan PDF, eller klistra in texten / ladda ett exempel.",
+        loaded: "Laddade",
+        sourceYourCv: "ditt CV",
+        sourceSample: "exempel",
+        analysedTpl: (src, backend) => `Analyserade ${src} med Nebius AI${backend}. CV-texten skickades för denna förfrågan och lagrades inte.`,
+        labelClose: "Täpp till dessa gap",
+        labelStrengthen: "Stärk ditt CV",
+        labelPlan: "Handlingsplan för 7 dagar",
+        labelMarketSignal: "Marknadssignal",
+        labelWhy: "Varför denna rekommendation?",
+        labelProfile: "Profil",
+        labelNoLang: "språknivå ej angiven",
+        labelReportKicker: "Jobbmatchningsrapport",
+        labelBest: "Bäst matchning",
+        labelStretch: "Utvecklingsbar",
+        labelSkip: "Hoppa över tills vidare"
+      }
+    };
+
+    let currentLang = "en";
+    try {
+      const saved = localStorage.getItem("sjp-lang");
+      if (saved === "en" || saved === "sv") currentLang = saved;
+    } catch (_e) { /* storage blocked; default en */ }
+
+    function t(key) {
+      const dict = I18N[currentLang] || I18N.en;
+      const val = (key in dict) ? dict[key] : I18N.en[key];
+      return (val == null) ? key : val;
+    }
+
+    function applyStaticI18n() {
+      document.documentElement.lang = currentLang;
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const k = el.getAttribute("data-i18n");
+        if (k) el.textContent = t(k);
+      });
+      document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
+        const k = el.getAttribute("data-i18n-ph");
+        if (k) el.setAttribute("placeholder", t(k));
+      });
+      document.querySelectorAll(".lang-btn").forEach((b) => {
+        b.classList.toggle("is-active", b.getAttribute("data-lang") === currentLang);
+      });
+    }
+
+    // Re-localise the dynamic bits that aren't plain data-i18n nodes.
+    function applyDynamicI18n() {
+      crcCvSetEngineNote();
+      const regionSelect = document.getElementById("cv-region");
+      if (regionSelect && regionSelect.options.length) regionSelect.options[0].textContent = t("regionDefault");
+      const sampleSelect = document.getElementById("cv-sample");
+      if (sampleSelect && sampleSelect.options.length) sampleSelect.options[0].textContent = t("sampleDefault");
+      const analyseBtn = document.getElementById("cv-analyse");
+      if (analyseBtn && !analyseBtn.classList.contains("is-busy")) analyseBtn.textContent = t("analyseBtn");
+    }
+
+    function setLang(lang) {
+      if (lang !== "en" && lang !== "sv") return;
+      currentLang = lang;
+      try { localStorage.setItem("sjp-lang", lang); } catch (_e) { /* ignore */ }
+      applyStaticI18n();
+      applyDynamicI18n();
+    }
+
+    function initLangToggle() {
+      document.querySelectorAll(".lang-btn").forEach((b) => {
+        b.addEventListener("click", () => setLang(b.getAttribute("data-lang")));
+      });
+    }
+
+    // =====================================================================
     // Career Reality Check
     // A blunt, practical matcher over data/career_reality.json. The heavy
     // signal work (ML forecast + scoring) happens offline in the Python
@@ -1067,51 +1227,51 @@
       const focusHtml = (report.missing.length || report.weaknesses.length) ? `
         <div class="crc-panel cv-focus-grid">
           ${report.missing.length ? `<div>
-            <p class="crc-panel-label">Close these gaps</p>
+            <p class="crc-panel-label">${t("labelClose")}</p>
             <div class="cv-tags">${report.missing.slice(0, 5).map((s) => `<span class="cv-tag cv-tag--gap">${escapeHtml(s)}</span>`).join("")}</div>
           </div>` : ""}
           ${report.weaknesses.length ? `<div>
-            <p class="crc-panel-label">Strengthen the CV</p>
+            <p class="crc-panel-label">${t("labelStrengthen")}</p>
             <ul class="crc-compact-list">${report.weaknesses.slice(0, 2).map((w) => `<li>${escapeHtml(w)}</li>`).join("")}</ul>
           </div>` : ""}
         </div>` : "";
 
       const planHtml = report.plan.length ? `
         <div class="crc-panel crc-plan">
-          <p class="crc-panel-label">7-day action plan</p>
+          <p class="crc-panel-label">${t("labelPlan")}</p>
           <ul class="crc-plan-list">
             ${report.plan.map((s, i) => `<li class="crc-plan-item"><span class="crc-plan-num">${i + 1}</span><span>${escapeHtml(s)}</span></li>`).join("")}
           </ul>
         </div>` : "";
 
       const signalHtml = report.signalLine
-        ? `<p class="crc-signal-line"><b>Market signal</b> ${escapeHtml(report.signalLine)}</p>` : "";
+        ? `<p class="crc-signal-line"><b>${t("labelMarketSignal")}</b> ${escapeHtml(report.signalLine)}</p>` : "";
 
       // "Why this recommendation?" — visible (not collapsed) and shown high up.
       // Item 3 is the region strategy, which users treat as key.
       const why = (report.why || []).slice(0, 3);
       const whyHtml = why.length ? `
         <div class="crc-panel crc-why">
-          <p class="crc-panel-label">Why this recommendation?</p>
+          <p class="crc-panel-label">${t("labelWhy")}</p>
           <ul class="crc-why-list">${why.map((line, i) => `<li class="${i === why.length - 1 ? "crc-why-region" : ""}">${escapeHtml(line)}</li>`).join("")}</ul>
         </div>` : "";
 
-      const summary = `<p class="cv-summary"><b>Profile</b> ${escapeHtml(profile.seniority)} · ${escapeHtml(report.domainLabel)} · ${escapeHtml(profile.languages.join(", ") || "language level not stated")}</p>`;
+      const summary = `<p class="cv-summary"><b>${t("labelProfile")}</b> ${escapeHtml(profile.seniority)} · ${escapeHtml(report.domainLabel)} · ${escapeHtml(profile.languages.join(", ") || t("labelNoLang"))}</p>`;
 
       container.innerHTML = `
         ${summary}
         <div class="crc-verdict crc-verdict--${report.tone}">
           <div class="crc-verdict-body">
-            <span class="crc-verdict-kicker">Job fit report</span>
+            <span class="crc-verdict-kicker">${t("labelReportKicker")}</span>
             <h3 class="crc-verdict-title">${escapeHtml(report.mainAnswer)}</h3>
           </div>
         </div>
         ${whyHtml}
         ${signalHtml}
         <div class="crc-panel crc-role-grid">
-          ${roleGroup("Best fit", report.best, "")}
-          ${roleGroup("Stretch", report.adjacent, "stretch")}
-          ${roleGroup("Skip for now", report.avoid, "avoid")}
+          ${roleGroup(t("labelBest"), report.best, "")}
+          ${roleGroup(t("labelStretch"), report.adjacent, "stretch")}
+          ${roleGroup(t("labelSkip"), report.avoid, "avoid")}
         </div>
         ${focusHtml}
         ${planHtml}`;
@@ -1146,7 +1306,7 @@
       crcCvClearReport();
       const cleanText = String(text || "").trim();
       if (cleanText.length < 40) {
-        crcCvSetStatus("Not enough CV information yet. Add role titles, skills, tools, language level, and recent work or study history.", true);
+        crcCvSetStatus(t("statusTooShort"), true);
         return;
       }
       const region = crcCvRegion();
@@ -1154,7 +1314,7 @@
         await crcCvAnalyseNeural(cleanText, sourceLabel, region);
         return;
       }
-      crcCvSetStatus("Nebius AI is unavailable. Start the app with scripts/run_local_nebius.sh and try again.", true);
+      crcCvSetStatus(t("statusUnavailable"), true);
     }
 
     // Map the Nebius /cv-fit JSON response onto the local report/profile shape
@@ -1190,7 +1350,7 @@
     // Nebius neural path: POST the CV text to the same-origin proxy at
     // /api/cv-fit (the Nebius token lives only on the server).
     async function crcCvAnalyseNeural(cleanText, sourceLabel, region) {
-      crcCvSetStatus("Analysing with Nebius AI…", false);
+      crcCvSetStatus(t("statusAnalysing"), false);
       let data;
       try {
         const body = { cv_text: cleanText };
@@ -1207,18 +1367,13 @@
       } catch (err) {
         // Do NOT log the CV text or response body. Static message only.
         console.warn("Nebius CV-fit request failed. No local fallback was used.");
-        crcCvSetStatus("Nebius AI request failed. No fallback was used. Check the local server and endpoint status.", true);
+        crcCvSetStatus(t("statusFailed"), true);
         return;
       }
       const { report, profile } = crcCvNeuralToReport(data);
       crcCvRenderReport(report, profile);
       const backend = data.backend ? ` · ${data.backend}` : "";
-      crcCvSetStatus(
-        sourceLabel
-          ? `Analysed ${sourceLabel} with Nebius AI${backend}. CV text was sent for this request and was not stored.`
-          : null,
-        false
-      );
+      crcCvSetStatus(sourceLabel ? t("analysedTpl")(sourceLabel, backend) : null, false);
       document.getElementById("cv-results").scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
@@ -1240,16 +1395,16 @@
     async function crcCvHandleFile(file) {
       if (!file) return;
       if (!/pdf$/i.test(file.name) && file.type !== "application/pdf") {
-        crcCvSetStatus("Please choose a PDF file.", true);
+        crcCvSetStatus(t("statusNotPdf"), true);
         return;
       }
-      crcCvSetStatus("Reading your CV in your browser…", false);
+      crcCvSetStatus(t("statusReading"), false);
       try {
         const text = await crcCvReadPdf(file);
         crcCvLoadCv(text, `PDF “${file.name}”`);
       } catch (error) {
         console.error("CV read failed");
-        crcCvSetStatus("Could not read that PDF in the browser. Try another PDF, or paste the text / load a sample.", true);
+        crcCvSetStatus(t("statusPdfFailed"), true);
       }
     }
 
@@ -1260,7 +1415,7 @@
       if (ta) ta.value = String(text || "");
       crcCvClearReport();
       crcCvRefreshAnalyseEnabled();
-      crcCvSetStatus(`Loaded ${label}.`, false);
+      crcCvSetStatus(`${t("loaded")} ${label}.`, false);
       const btn = document.getElementById("cv-analyse");
       if (btn) btn.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
@@ -1280,9 +1435,9 @@
       btn.classList.toggle("is-busy", busy);
       if (busy) {
         btn.disabled = true;
-        btn.textContent = "Analysing…";
+        btn.textContent = t("analysing");
       } else {
-        btn.textContent = "Analyse CV";
+        btn.textContent = t("analyseBtn");
         crcCvRefreshAnalyseEnabled();
       }
     }
@@ -1291,9 +1446,7 @@
     function crcCvSetEngineNote() {
       const note = document.getElementById("cv-engine-note");
       if (!note) return;
-      note.textContent = cvNeuralAvailable
-        ? "Nebius AI is active. CV text is sent for this request and is not stored."
-        : "Nebius AI is unavailable. CV analysis is disabled until the endpoint is connected.";
+      note.textContent = cvNeuralAvailable ? t("engineActive") : t("engineInactive");
     }
 
     // Ask the server (not Nebius directly) whether neural mode is available.
@@ -1325,7 +1478,7 @@
         analyseBtn.addEventListener("click", async () => {
           if (analyseBtn.disabled) return;
           crcCvSetBusy(true);
-          try { await crcCvAnalyseText(textArea.value, "your CV"); }
+          try { await crcCvAnalyseText(textArea.value, t("sourceYourCv")); }
           finally { crcCvSetBusy(false); }
         });
       }
@@ -1350,18 +1503,18 @@
       const regionSelect = document.getElementById("cv-region");
       if (regionSelect) {
         const regions = Array.isArray(careerRealityData?.regions) ? careerRealityData.regions : [];
-        regionSelect.innerHTML = ['<option value="">Anywhere in Sweden</option>']
+        regionSelect.innerHTML = [`<option value="">${escapeHtml(t("regionDefault"))}</option>`]
           .concat(regions.map((r) => `<option value="${escapeHtml(r.term)}">${escapeHtml(r.term)}</option>`))
           .join("");
       }
 
       const sampleSelect = document.getElementById("cv-sample");
       if (sampleSelect) {
-        sampleSelect.innerHTML = '<option value="">Choose a synthetic CV</option>'
+        sampleSelect.innerHTML = `<option value="">${escapeHtml(t("sampleDefault"))}</option>`
           + cvSamples.map((cv, index) => `<option value="${index}">${escapeHtml(cv.name)}</option>`).join("");
         sampleSelect.addEventListener("change", () => {
           const cv = cvSamples[Number(sampleSelect.value)];
-          if (cv) crcCvLoadCv(cv.text, `sample “${cv.name}”`);
+          if (cv) crcCvLoadCv(cv.text, `${t("sourceSample")} “${cv.name}”`);
         });
       }
     }
@@ -1374,8 +1527,14 @@
         crcCvCheckNeural()
       ]);
       cvNeuralAvailable = neuralOk;
-      crcInitSection(data);
+      // The CV scanner reuses the region list from career_reality.json. The
+      // manual questionnaire was removed, so we just keep the data available
+      // instead of initialising that section.
+      careerRealityData = data || null;
       crcCvInit(cvIndexData, cvSampleData);
+      initLangToggle();
+      applyStaticI18n();
+      applyDynamicI18n();
       const overlay = document.getElementById("loading-overlay");
       if (overlay) overlay.classList.add("hidden");
     }

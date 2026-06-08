@@ -14,7 +14,11 @@
   <header class="page-shell site-header">
     <div>
       <h1 class="site-title">Swedish Job Pulse</h1>
-      <p class="site-subtitle">Practical job-fit guidance from public Swedish labour-market data.</p>
+      <p class="site-subtitle" data-i18n="subtitle">Practical job-fit guidance from public Swedish labour-market data.</p>
+    </div>
+    <div class="lang-toggle" id="lang-toggle" role="group" aria-label="Language">
+      <button type="button" class="lang-btn" data-lang="en">EN</button>
+      <button type="button" class="lang-btn" data-lang="sv">SV</button>
     </div>
   </header>
 
@@ -22,36 +26,36 @@
     <section class="dashboard-section" id="cv-scanner">
       <div class="crc">
         <div class="crc-head">
-          <span class="crc-eyebrow">CV &rarr; Job Fit Report</span>
-          <h2 class="crc-headline">See where your CV fits.</h2>
-          <p class="crc-lede">Get realistic roles, skill gaps, and next steps from public Swedish job-ad signals.</p>
+          <span class="crc-eyebrow" data-i18n="eyebrow">CV &rarr; Job Fit Report</span>
+          <h2 class="crc-headline" data-i18n="headline">See where your CV fits.</h2>
+          <p class="crc-lede" data-i18n="lede">Get realistic roles, skill gaps, and next steps from public Swedish job-ad signals.</p>
         </div>
 
         <p class="cv-engine-note" id="cv-engine-note"></p>
 
         <div class="cv-drop" id="cv-drop">
           <input type="file" id="cv-file" accept="application/pdf,.pdf" hidden>
-          <p class="cv-drop-title">Drop a PDF or <button type="button" class="cv-link" id="cv-browse">choose a file</button></p>
-          <p class="cv-drop-note">The PDF is read locally and converted to text below.</p>
+          <p class="cv-drop-title"><span data-i18n="dropPre">Drop a PDF or</span> <button type="button" class="cv-link" id="cv-browse" data-i18n="dropBtn">choose a file</button></p>
+          <p class="cv-drop-note" data-i18n="dropNote">The PDF is read locally and converted to text below.</p>
         </div>
 
         <label class="crc-field" for="cv-text">
-          <span class="crc-label">CV text <span class="crc-label-hint">or paste it here</span></span>
-          <textarea class="crc-input cv-textarea" id="cv-text" rows="5" placeholder="Paste CV text"></textarea>
+          <span class="crc-label"><span data-i18n="cvTextLabel">CV text</span> <span class="crc-label-hint" data-i18n="cvTextHint">or paste it here</span></span>
+          <textarea class="crc-input cv-textarea" id="cv-text" rows="5" placeholder="Paste CV text" data-i18n-ph="cvTextPlaceholder"></textarea>
         </label>
 
         <div class="cv-run">
           <label class="crc-field cv-sample-field" for="cv-sample">
-            <span class="crc-label">Try a sample</span>
+            <span class="crc-label" data-i18n="sampleLabel">Try a sample</span>
             <select class="crc-select" id="cv-sample" name="cv-sample">
               <option value="">Choose a synthetic CV</option>
             </select>
           </label>
           <label class="crc-field cv-region-field" for="cv-region">
-            <span class="crc-label">Region <span class="crc-label-hint">optional</span></span>
+            <span class="crc-label"><span data-i18n="regionLabel">Region</span> <span class="crc-label-hint" data-i18n="regionHint">optional</span></span>
             <select class="crc-select" id="cv-region" name="cv-region"></select>
           </label>
-          <button class="crc-btn cv-analyse-btn" type="button" id="cv-analyse" disabled>Analyse CV</button>
+          <button class="crc-btn cv-analyse-btn" type="button" id="cv-analyse" data-i18n="analyseBtn" disabled>Analyse CV</button>
         </div>
 
         <p class="cv-status" id="cv-status" hidden></p>
@@ -59,124 +63,28 @@
         <div class="crc-results" id="cv-results" hidden></div>
 
         <details class="crc-method">
-          <summary class="crc-method-summary">How this works &amp; its limits</summary>
+          <summary class="crc-method-summary" data-i18n="methodSummary">How this works &amp; its limits</summary>
           <div class="crc-method-body">
             <ul>
-              <li>PDF text is extracted in your browser. When Nebius AI is active, that text is sent for one analysis request and is not stored.</li>
-              <li>Roles are ranked by skills, titles, seniority, language fit, and public job-ad signals.</li>
+              <li data-i18n="method1">PDF text is extracted in your browser. When Nebius AI is active, that text is sent for one analysis request and is not stored.</li>
+              <li data-i18n="method2">Roles are ranked by skills, titles, seniority, language fit, and public job-ad signals.</li>
             </ul>
-            <p>This is advisory guidance from public job ads, not a hiring guarantee or a view of the entire labour market.</p>
+            <p data-i18n="methodNote">This is advisory guidance from public job ads, not a hiring guarantee or a view of the entire labour market.</p>
           </div>
         </details>
       </div>
     </section>
-
-    <details class="crc-altform">
-      <summary class="crc-altform-summary">No CV? Answer a few questions</summary>
-      <section class="dashboard-section" id="career-reality">
-        <div class="crc">
-          <div class="crc-head">
-            <span class="crc-eyebrow">Career Reality Check</span>
-            <h2 class="crc-headline">Is your target role realistic?</h2>
-            <p class="crc-lede">Get a practical answer from your background and current market signals.</p>
-          </div>
-
-          <form class="crc-form" id="crc-form" novalidate>
-            <div class="crc-grid">
-              <label class="crc-field">
-                <span class="crc-label">Region</span>
-                <select class="crc-select" id="crc-region" name="region"></select>
-              </label>
-
-              <label class="crc-field">
-                <span class="crc-label">Swedish level</span>
-                <select class="crc-select" id="crc-swedish" name="swedish">
-                  <option value="native">Native / fluent</option>
-                  <option value="good">Good working Swedish</option>
-                  <option value="basic">Basic Swedish</option>
-                  <option value="english">English only</option>
-                </select>
-              </label>
-
-              <label class="crc-field">
-                <span class="crc-label">Current experience area</span>
-                <select class="crc-select" id="crc-experience" name="experience">
-                  <option value="customer_service">Customer service</option>
-                  <option value="sales">Sales</option>
-                  <option value="admin">Admin</option>
-                  <option value="it">IT / tech</option>
-                  <option value="healthcare">Healthcare</option>
-                  <option value="education">Education</option>
-                  <option value="restaurant">Restaurant / service</option>
-                  <option value="logistics">Logistics / warehouse</option>
-                  <option value="none">No clear experience</option>
-                </select>
-              </label>
-
-              <label class="crc-field">
-                <span class="crc-label">Target job</span>
-                <input class="crc-input" id="crc-target" name="target" type="text"
-                       placeholder="e.g. data analyst, undersköterska, developer" autocomplete="off">
-              </label>
-
-              <label class="crc-field crc-field--wide">
-                <span class="crc-label">Skills <span class="crc-label-hint">comma-separated</span></span>
-                <input class="crc-input" id="crc-skills" name="skills" type="text"
-                       placeholder="e.g. excel, customer service, python, swedish" autocomplete="off">
-              </label>
-            </div>
-
-            <div class="crc-choices">
-              <fieldset class="crc-fieldset">
-                <legend class="crc-label">Level</legend>
-                <div class="crc-pills" id="crc-level">
-                  <label class="crc-pill is-active"><input type="radio" name="level" value="entry" checked>Entry-level</label>
-                  <label class="crc-pill"><input type="radio" name="level" value="some">Some experience</label>
-                  <label class="crc-pill"><input type="radio" name="level" value="experienced">Experienced</label>
-                </div>
-              </fieldset>
-
-              <fieldset class="crc-fieldset">
-                <legend class="crc-label">Remote preference</legend>
-                <div class="crc-pills" id="crc-remote">
-                  <label class="crc-pill"><input type="radio" name="remote" value="important">Important</label>
-                  <label class="crc-pill is-active"><input type="radio" name="remote" value="nice" checked>Nice to have</label>
-                  <label class="crc-pill"><input type="radio" name="remote" value="no">Not important</label>
-                </div>
-              </fieldset>
-
-              <fieldset class="crc-fieldset">
-                <legend class="crc-label">Study willingness</legend>
-                <div class="crc-pills" id="crc-study">
-                  <label class="crc-pill is-active"><input type="radio" name="study" value="none" checked>No extra study</label>
-                  <label class="crc-pill"><input type="radio" name="study" value="short">1&ndash;3 months</label>
-                  <label class="crc-pill"><input type="radio" name="study" value="mid">3&ndash;6 months</label>
-                  <label class="crc-pill"><input type="radio" name="study" value="long">6+ months</label>
-                </div>
-              </fieldset>
-            </div>
-
-            <div class="crc-actions">
-              <button class="crc-btn" type="submit" id="crc-submit">Check my career reality</button>
-              <span class="crc-model-tag" id="crc-model-tag" hidden></span>
-            </div>
-          </form>
-
-          <div class="crc-results" id="crc-results" hidden></div>
-        </div>
-      </section>
-    </details>
   </main>
 
   <footer class="page-shell site-footer">
-    <p class="footer-copy">Data sourced from Arbetsförmedlingen JobTech Development. Public job-ad signals only — not a guarantee of employment.</p>
+    <p class="footer-copy" data-i18n="footerCopy">Data sourced from Arbetsförmedlingen JobTech Development. Public job-ad signals only, not a guarantee of employment.</p>
     <a class="footer-link" href="https://jobtechdev.se" target="_blank" rel="noreferrer">jobtechdev.se</a>
   </footer>
 
   <div class="overlay" id="loading-overlay">
     <div class="overlay-card">
       <div class="overlay-spinner"></div>
-      <p class="helper-copy" style="margin:0;">Loading job-market signals...</p>
+      <p class="helper-copy" style="margin:0;" data-i18n="loading">Loading job-market signals...</p>
     </div>
   </div>
 

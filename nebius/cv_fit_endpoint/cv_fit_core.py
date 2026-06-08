@@ -505,7 +505,7 @@ class _Engine:
         tail = " or go remote" if remote_ok else ""
         scope = ", and keep remote roles in scope" if remote_ok else ""
         if outlook.get("data_basis") == "national_only" or not tops:
-            base = "Public ad data isn't broken down by region for this field — search nationally"
+            base = "Public ad data isn't broken down by region for this field, so search nationally"
             return base + (" and include remote roles." if remote_ok else ".")
         field = domain_label or "these"
         proxy_field = outlook.get("proxy_field")
@@ -522,15 +522,15 @@ class _Engine:
         if region and sel and sel.get("rank"):
             rank, ads, n = sel["rank"], sel.get("ads", 0), sel.get("of")
             if rank == 1:
-                return f"{region} has the most {what} ({ads} ads) — focus here{scope}{proxy_note}."
+                return f"{region} has the most {what} ({ads} ads). Focus here{scope}{proxy_note}."
             if rank <= 3:
                 return (f"{region} is a solid market for {what} (rank {rank}, {ads} ads), but "
-                        f"{fmt(top1)} has the most — search both{tail}{proxy_note}.")
+                        f"{fmt(top1)} has the most, so search both{tail}{proxy_note}.")
             names = ", ".join(fmt(t) for t in tops[:2])
-            return (f"{region} is thin for {what} (rank {rank}/{n}, {ads} ads) — most are in "
+            return (f"{region} is thin for {what} (rank {rank}/{n}, {ads} ads); most are in "
                     f"{names}; search there{tail}{proxy_note}.")
         names = ", ".join(fmt(t) for t in tops[:2])
-        return f"Most {what} are in {names} — focus there{tail}{proxy_note}."
+        return f"Most {what} are in {names}. Focus there{tail}{proxy_note}."
 
     # ---- cross-region demand outlook (facts for the consultant LLM) ----
     def _regional_outlook(self, pdomain, field_id, region):
@@ -668,9 +668,9 @@ class _Engine:
             lead = "strongest for"
             main = f"Your CV is {lead} {domain_name} roles."
         elif adj:
-            main = f"Your CV is close to {self.domain_label.get(adj[0]['domain'], adj[0]['domain'])} roles — strengthen the proof first."
+            main = f"Your CV is close to {self.domain_label.get(adj[0]['domain'], adj[0]['domain'])} roles; strengthen the proof first."
         else:
-            main = "Your CV doesn't match a clear role family yet — here's what to strengthen."
+            main = "Your CV doesn't match a clear role family yet. Here's what to strengthen."
 
         # "Your CV is missing" — display-ready skill gaps aggregated from the
         # roles the CV is closest to. Domain-agnostic: never lists a skill the
@@ -732,15 +732,15 @@ class _Engine:
                                             "result", "saved", "boosted", "improv", "ökade", "minskade"))
         improvements = []
         if not result_words:
-            improvements.append("Add measurable impact — numbers, %, and what changed because of your work.")
+            improvements.append("Add measurable impact: numbers, %, and what changed because of your work.")
         if len(profile["skills"]) < 5:
             improvements.append("Add a clear skills section that lists your tools.")
         if not profile["languages"]:
             improvements.append("State your Swedish and English level explicitly.")
         if is_senior and best:
-            improvements.append("Frame senior scope explicitly — ownership, scale, and the impact you led.")
+            improvements.append("Frame senior scope explicitly: ownership, scale, and the impact you led.")
         if not improvements:
-            improvements.append("Strong structure — focus on closing the missing skills above.")
+            improvements.append("Strong structure. Focus on closing the missing skills above.")
 
         # Keywords.
         seen, keywords = set(), []
@@ -757,13 +757,13 @@ class _Engine:
         apply_n = len(best) or len(adj)
         if apply_n:
             plan.append(f"Apply to the {apply_n} best-fit role" + ("s" if apply_n != 1 else "")
-                        + " this week" + (f" — e.g. {', '.join(best_titles)}." if best_titles else "."))
+                        + " this week" + (f", e.g. {', '.join(best_titles)}." if best_titles else "."))
         if gap_info and gap_info["gaps"]:
             top = gap_info["gaps"][:2]
-            ev = f" — each requested in {top[-1]['count']}+ {gap_info.get('field_term') or 'field'} ads" if top else ""
+            ev = f", each requested in {top[-1]['count']}+ {gap_info.get('field_term') or 'field'} ads" if top else ""
             plan.append(f"Build proof for {' and '.join(g['label'] for g in top)}{ev}.")
         elif missing:
-            plan.append(f"Build proof for {' and '.join(missing[:2])} — a focused project or short course.")
+            plan.append(f"Build proof for {' and '.join(missing[:2])}: a focused project or short course.")
         plan.append("Rewrite your CV: add measurable impact and a clear skills section.")
         if keywords:
             plan.append("Search Platsbanken for " + ", ".join(f'"{k}"' for k in keywords[:4]) + ".")
