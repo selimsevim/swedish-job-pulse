@@ -3,8 +3,11 @@
 # The repo-root requirements.txt does NOT contain this app's server deps
 # (fastapi / uvicorn / httpx), so the default Nixpacks Python install would
 # leave the app unable to start. Override the install phase to build a
-# virtualenv at /opt/venv (the path Nixpacks adds to PATH for the start
-# command) and install ONLY the lightweight requirements-railway.txt into it.
+# virtualenv at /opt/venv and install ONLY the lightweight
+# requirements-railway.txt into it. The start command calls uvicorn by its
+# absolute venv path (/opt/venv/bin/uvicorn) rather than relying on it being on
+# PATH at runtime — Nixpacks does not reliably add a hand-created venv's bin to
+# PATH for the start phase, which otherwise fails with "uvicorn not found".
 providers = ["python"]
 
 [phases.install]
@@ -14,4 +17,4 @@ cmds = [
 ]
 
 [start]
-cmd = "uvicorn app.server:app --host 0.0.0.0 --port $PORT"
+cmd = "/opt/venv/bin/uvicorn app.server:app --host 0.0.0.0 --port $PORT"
