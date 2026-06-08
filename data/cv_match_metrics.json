@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-06-08T07:19:44Z",
+  "last_updated": "2026-06-08T07:59:29Z",
   "version": "cv-fit-engine-v2",
   "metrics": {
-    "n_synthetic_cvs": 24,
+    "n_synthetic_cvs": 26,
     "primary_domain_accuracy": 1.0,
     "no_collapse_rate": 1.0,
     "retrieval": "tf-idf cosine over role ontology (multilingual, synonym-expanded)",
@@ -121,14 +121,16 @@
       },
       {
         "cv": "Teaching assistant (entry)",
-        "extracted_skills": 3,
+        "extracted_skills": 2,
         "seniority": "mid",
         "primary_domain": "education",
         "expected_domain": "education",
         "domain_hit": true,
         "no_collapse": true,
         "best": [
-          "Teaching Assistant"
+          "Teaching Assistant / Elevassistent",
+          "Teacher / Lärare",
+          "Preschool Teacher / Förskollärare"
         ],
         "adjacent": [],
         "avoid": []
@@ -424,20 +426,55 @@
           "Hairdresser / Frisör"
         ],
         "adjacent": [
-          "Barista / Café"
+          "Barista / Café",
+          "Waiter / Servitör"
         ],
         "avoid": []
       },
       {
         "cv": "Café / restaurant service (entry)",
-        "extracted_skills": 3,
+        "extracted_skills": 4,
         "seniority": "mid",
         "primary_domain": "hospitality",
         "expected_domain": "hospitality",
         "domain_hit": true,
         "no_collapse": true,
         "best": [
+          "Waiter / Servitör",
           "Barista / Café"
+        ],
+        "adjacent": [],
+        "avoid": [
+          "Hairdresser / Frisör"
+        ]
+      },
+      {
+        "cv": "Preschool teacher (mid)",
+        "extracted_skills": 3,
+        "seniority": "senior",
+        "primary_domain": "education",
+        "expected_domain": "education",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Preschool Teacher / Förskollärare",
+          "Childminder / Barnskötare",
+          "Teacher / Lärare",
+          "Teaching Assistant / Elevassistent"
+        ],
+        "adjacent": [],
+        "avoid": []
+      },
+      {
+        "cv": "Chef / kock (entry)",
+        "extracted_skills": 2,
+        "seniority": "senior",
+        "primary_domain": "hospitality",
+        "expected_domain": "hospitality",
+        "domain_hit": true,
+        "no_collapse": true,
+        "best": [
+          "Chef / Kock"
         ],
         "adjacent": [],
         "avoid": [

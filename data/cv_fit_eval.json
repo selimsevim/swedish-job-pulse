@@ -1,12 +1,12 @@
 {
-  "generated": "2026-06-08T07:51:42Z",
+  "generated": "2026-06-08T08:01:51Z",
   "summary": {
-    "n_cvs": 24,
+    "n_cvs": 26,
     "domain_accuracy": 1.0,
     "top3_domain_hit": 1.0,
     "no_collapse_rate": 1.0,
     "group_routing_accuracy": 1.0,
-    "group_routing_n": 6,
+    "group_routing_n": 9,
     "gap_relevance_rate": 1.0,
     "gap_relevance_n": 5,
     "backend": "tfidf-fallback"
@@ -133,18 +133,20 @@
       "domain_hit": true,
       "top3_domain_hit": true,
       "no_collapse": true,
-      "matched_occupation_group": null,
-      "group_ok": null,
+      "matched_occupation_group": "Elevassistenter m.fl.",
+      "group_ok": true,
       "gap_ok": null,
       "missing_skills": [
-        "Lärarexamen",
-        "Förskollärarexamen",
-        "Lärarexamen inr senare år",
-        "Godkänd trafiklärare/Godkännandebevis",
-        "Speciallärarexamen"
+        "Barn med särskilda behov",
+        "Python",
+        "Autismspektrumtillstånd",
+        "Elever med funktionsnedsättning",
+        "Barn och ungdom"
       ],
       "best": [
-        "Teaching Assistant"
+        "Teaching Assistant / Elevassistent",
+        "Teacher / Lärare",
+        "Preschool Teacher / Förskollärare"
       ]
     },
     {
@@ -521,18 +523,63 @@
       "domain_hit": true,
       "top3_domain_hit": true,
       "no_collapse": true,
-      "matched_occupation_group": null,
+      "matched_occupation_group": "Hovmästare och servitörer",
       "group_ok": null,
       "gap_ok": null,
       "missing_skills": [
-        "Bordsservering",
         "Kassavana",
-        "Pizzabakning",
-        "A la carte",
-        "Varmkök"
+        "Bararbete",
+        "Vinkunskap",
+        "Sommelierkompetens",
+        "A la carte"
       ],
       "best": [
+        "Waiter / Servitör",
         "Barista / Café"
+      ]
+    },
+    {
+      "cv": "Preschool teacher (mid)",
+      "primary_domain": "education",
+      "expected_domain": "education",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": "Förskollärare",
+      "group_ok": true,
+      "gap_ok": null,
+      "missing_skills": [
+        "Förskollärarexamen",
+        "Förskollärarlegitimation",
+        "Lärarlegitimation",
+        "Pedagogiskt ledarskap",
+        "Lärarexamen"
+      ],
+      "best": [
+        "Preschool Teacher / Förskollärare",
+        "Childminder / Barnskötare",
+        "Teacher / Lärare"
+      ]
+    },
+    {
+      "cv": "Chef / kock (entry)",
+      "primary_domain": "hospitality",
+      "expected_domain": "hospitality",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": "Kockar och kallskänkor",
+      "group_ok": true,
+      "gap_ok": null,
+      "missing_skills": [
+        "Sushi",
+        "Livsmedelshygien",
+        "Husmanskost",
+        "Pizzabakning",
+        "Arbetsledarerfarenhet"
+      ],
+      "best": [
+        "Chef / Kock"
       ]
     }
   ]

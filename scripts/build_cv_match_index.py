@@ -470,20 +470,55 @@ def build_catalog():
              aliases=["truck driver", "lastbilsförare", "chaufför"],
              kw=["Lastbilsförare", "Truck Driver"],
              terms=["driver", "truck", "transport", "delivery"]),
-        role("teaching_assistant", "Teaching Assistant", "education", "entry",
+        role("teaching_assistant", "Teaching Assistant / Elevassistent", "education", "entry",
              ["pedagogy", "childcare", "communication"],
              [],
              lang=True,
-             aliases=["teaching assistant", "elevassistent", "barnskötare", "lärarassistent"],
+             aliases=["teaching assistant", "elevassistent", "lärarassistent"],
              kw=["Elevassistent", "Teaching Assistant"],
-             terms=["school", "pedagogy", "children", "classroom"]),
+             terms=["school", "pedagogy", "children", "classroom", "support"]),
+        role("preschool_teacher", "Preschool Teacher / Förskollärare", "education", "mid",
+             ["pedagogy", "childcare"],
+             ["communication"],
+             lang=True,
+             aliases=["förskollärare", "preschool teacher", "förskolepedagog"],
+             kw=["Förskollärare", "Preschool Teacher"],
+             terms=["förskola", "preschool", "children", "pedagogy", "play"]),
+        role("primary_teacher", "Teacher / Lärare", "education", "mid",
+             ["pedagogy", "communication"],
+             [],
+             lang=True,
+             aliases=["lärare", "grundskollärare", "teacher", "klasslärare", "ämneslärare", "gymnasielärare"],
+             kw=["Grundskollärare", "Lärare", "Teacher"],
+             terms=["school", "teacher", "pedagogy", "classroom", "subject", "lessons"]),
+        role("childminder", "Childminder / Barnskötare", "education", "entry",
+             ["childcare"],
+             ["pedagogy"],
+             lang=True,
+             aliases=["barnskötare", "childminder", "dagbarnvårdare"],
+             kw=["Barnskötare"],
+             terms=["förskola", "children", "childcare", "care"]),
         role("barista", "Barista / Café", "hospitality", "entry",
              ["customer_service", "communication"],
              [],
              lang=True,
-             aliases=["barista", "café", "servitör", "waiter"],
-             kw=["Barista", "Servitör"],
+             aliases=["barista", "café", "kafé", "coffee shop"],
+             kw=["Barista", "Café"],
              terms=["café", "coffee", "service", "customers"]),
+        role("chef", "Chef / Kock", "hospitality", "entry",
+             ["cooking"],
+             ["customer_service"],
+             lang=True,
+             aliases=["kock", "chef", "kallskänka", "cook", "kock/kallskänka"],
+             kw=["Kock", "Chef"],
+             terms=["kitchen", "kök", "matlagning", "restaurant", "food", "meals"]),
+        role("waiter", "Waiter / Servitör", "hospitality", "entry",
+             ["food_service", "customer_service"],
+             ["communication"],
+             lang=True,
+             aliases=["servitör", "waiter", "hovmästare", "serveringspersonal", "servitris"],
+             kw=["Servitör", "Waiter"],
+             terms=["servering", "restaurant", "guests", "service", "dining"]),
 
         # --- Security / guarding (väktare, ordningsvakt, night guard) -------
         role("security_officer", "Security Officer / Väktare", "security", "entry",
@@ -626,6 +661,8 @@ SKILLS = {
     "maintenance": ["maintenance", "fastighetsskötsel", "fastighetsskötare", "vaktmästare", "drifttekniker", "underhåll"],
     "social_work": ["social work", "socialt arbete", "socialsekreterare", "behandlingsassistent", "boendestöd", "stödassistent", "casework", "biståndshandläggare"],
     "hairdressing": ["hairdressing", "frisör", "barber", "hudterapeut", "stylist", "skönhetsvård"],
+    "cooking": ["cooking", "matlagning", "kock", "kallskänka", "tillagning", "à la carte", "kök"],
+    "food_service": ["servering", "servitör", "hovmästare", "waiter", "serveringspersonal"],
 }
 
 
@@ -900,8 +937,9 @@ English fluent, Swedish basic.""",
         "name": "Teaching assistant (entry)",
         "expect_domain": "education",
         "must_not_top": {"data_analyst", "sfmc_consultant", "truck_driver", "software_developer"},
+        "expect_group": ["elevassist"],                  # assistant lane, not a qualified teacher
         "text": """Sam Nyberg — Elevassistent / Teaching Assistant, 3 years in school.
-Pedagogy and childcare (förskola), classroom support and communication.
+Classroom support for pupils, assisting the teacher, and communication.
 Swedish modersmål, English good.""",
     },
     {
@@ -1050,6 +1088,24 @@ Swedish modersmål.""",
         "text": """Sam Berg — Café & restaurant service / servitör, 2 years.
 Customer service (kundservice), serving guests, cash register and communication.
 Swedish good, English good.""",
+    },
+    {
+        "name": "Preschool teacher (mid)",
+        "expect_domain": "education",
+        "must_not_top": {"data_analyst", "truck_driver", "sfmc_consultant"},
+        "expect_group": ["förskoll"],                    # preschool teacher lane
+        "text": """Lena Holm — Förskollärare / Preschool Teacher, 6 years.
+Pedagogy and childcare in förskola, planning play-based learning for children.
+Swedish modersmål, English good.""",
+    },
+    {
+        "name": "Chef / kock (entry)",
+        "expect_domain": "hospitality",
+        "must_not_top": {"data_analyst", "truck_driver", "registered_nurse"},
+        "expect_group": ["kock", "kallskänk"],           # kitchen lane, not front-of-house
+        "text": """Omar Sand — Kock / Chef, 3 years.
+Cooking (matlagning) and food prep in a restaurant kitchen (kök), à la carte.
+Swedish good.""",
     },
 ]
 

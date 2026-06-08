@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-08T07:19:44Z",
+  "last_updated": "2026-06-08T07:59:29Z",
   "note": "Synthetic, fictional CVs for demoing the CV Job Fit Scanner. No real or personal data.",
   "cvs": [
     {
@@ -24,7 +24,7 @@
     },
     {
       "name": "Teaching assistant (entry)",
-      "text": "Sam Nyberg — Elevassistent / Teaching Assistant, 3 years in school.\nPedagogy and childcare (förskola), classroom support and communication.\nSwedish modersmål, English good."
+      "text": "Sam Nyberg — Elevassistent / Teaching Assistant, 3 years in school.\nClassroom support for pupils, assisting the teacher, and communication.\nSwedish modersmål, English good."
     },
     {
       "name": "Admin / reporting (mid)",
@@ -97,6 +97,14 @@
     {
       "name": "Café / restaurant service (entry)",
       "text": "Sam Berg — Café & restaurant service / servitör, 2 years.\nCustomer service (kundservice), serving guests, cash register and communication.\nSwedish good, English good."
+    },
+    {
+      "name": "Preschool teacher (mid)",
+      "text": "Lena Holm — Förskollärare / Preschool Teacher, 6 years.\nPedagogy and childcare in förskola, planning play-based learning for children.\nSwedish modersmål, English good."
+    },
+    {
+      "name": "Chef / kock (entry)",
+      "text": "Omar Sand — Kock / Chef, 3 years.\nCooking (matlagning) and food prep in a restaurant kitchen (kök), à la carte.\nSwedish good."
     }
   ]
 }

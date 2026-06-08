@@ -138,6 +138,14 @@ ROLE_OCC_GROUP = {
     "it_support": "hmaC_cfi_UKg",                # Supporttekniker, IT
     "qa_engineer": "D9SL_mtn_vGM",               # Systemtestare och testledare
     "devops_engineer": "13md_uyV_BNG",           # Drifttekniker, IT
+    # Education — teachers vs assistants are distinct occupation groups
+    "primary_teacher": "oQUQ_D11_HPx",           # Grundskollärare
+    "preschool_teacher": "5ek3_Cgq_WeZ",         # Förskollärare
+    "childminder": "Hi9c_iTe_gHH",               # Barnskötare
+    "teaching_assistant": "XW9L_tA9_WaX",        # Elevassistenter m.fl.
+    # Hospitality — kitchen vs front-of-house are distinct occupation groups
+    "chef": "BStc_SJh_DKG",                      # Kockar och kallskänkor
+    "waiter": "UjoW_meY_Zwt",                    # Hovmästare och servitörer
 }
 
 
