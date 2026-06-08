@@ -1,6 +1,9 @@
 # Next steps (handoff)
 
-_Branch: `railway-cv-fit-proxy`. All work below is committed locally; nothing is pushed._
+_Status: `railway-cv-fit-proxy` is merged into `main` and pushed (merge `b792f59`).
+The merge kept the branch's coherent, eval-passing data over the automated W24
+weekly refresh; the next weekly bot run restores raw freshness on top of the new
+pipeline. Eval verified green on the merge result (`--strict` exit 0)._
 
 ## Done this session (committed)
 Section 3 "analysis intelligence" + supporting work:
@@ -31,9 +34,12 @@ gap relevance 1.0 (5/5). Run: `python scripts/evaluate_cv_fit.py --strict`.
 3. Optional: set `CV_FIT_DATA_URL` (object storage or raw repo `…/data`) and
    confirm `/health` `data.refreshed_from_url` lists the 4 files.
 
-## Submission (your part — not started)
-- **Push the repo public** (merge `railway-cv-fit-proxy` → `main`, push). Highest
-  priority; nothing is pushed yet. Deadline June 30.
+## Submission (your part)
+- ~~**Push the repo public** (merge `railway-cv-fit-proxy` → `main`, push).~~ ✅ done
+  (merge `b792f59`). Repo was already public; main now carries all CV-fit work.
+- **Recreate the live endpoint + set the live URL** — endpoints are torn down;
+  see "Test next session" below, then fill `Live website URL` in
+  `SUBMISSION_CHECKLIST.md`. Deadline June 30.
 - **Blog post** (≥600 words, `#NebiusServerlessChallenge`) — outline in
   `docs/blog-outline.md`. Good angle: grounded-LLM endpoint + occupation-group
   gaps + the eval harness that caught the nurse→pharmacist drift.
