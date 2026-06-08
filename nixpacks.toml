@@ -1,0 +1,17 @@
+# Railway / Nixpacks build for the public CV-fit proxy app (app/server.py).
+#
+# The repo-root requirements.txt does NOT contain this app's server deps
+# (fastapi / uvicorn / httpx), so the default Nixpacks Python install would
+# leave the app unable to start. Override the install phase to build a
+# virtualenv at /opt/venv (the path Nixpacks adds to PATH for the start
+# command) and install ONLY the lightweight requirements-railway.txt into it.
+providers = ["python"]
+
+[phases.install]
+cmds = [
+  "python -m venv --copies /opt/venv",
+  ". /opt/venv/bin/activate && pip install --upgrade pip && pip install -r requirements-railway.txt",
+]
+
+[start]
+cmd = "uvicorn app.server:app --host 0.0.0.0 --port $PORT"

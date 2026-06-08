@@ -361,12 +361,12 @@
     .crc-model-tag strong { color: var(--crc-ink); font-weight: 600; }
 
     /* ---- Results ---- */
-    .crc-results { margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
+    .crc-results { margin-top: 24px; display: flex; flex-direction: column; gap: 14px; }
 
     .crc-verdict {
       border: 2px solid var(--crc-ink);
       border-radius: 3px;
-      padding: 26px 28px;
+      padding: 20px 22px;
       color: var(--crc-paper);
     }
 
@@ -448,6 +448,53 @@
       font-weight: 500;
     }
 
+    .crc-role-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 20px;
+    }
+
+    .crc-role-group .crc-panel-label { margin-bottom: 8px; }
+    .crc-role-group .crc-role-simple {
+      padding: 7px 0 7px 10px;
+      font-size: 0.875rem;
+    }
+
+    .crc-disclosure {
+      border-top: 1px solid var(--crc-soft);
+      padding: 12px 2px 0;
+    }
+    .crc-disclosure summary {
+      cursor: pointer;
+      color: var(--crc-muted);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      list-style: none;
+    }
+    .crc-disclosure summary::-webkit-details-marker { display: none; }
+    .crc-disclosure summary::before { content: "+ "; color: var(--crc-ink); }
+    .crc-disclosure[open] summary::before { content: "\2212  "; }
+    .crc-disclosure .crc-reasons,
+    .crc-disclosure .crc-compact-list { margin-top: 12px; }
+
+    .crc-compact-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--crc-ink);
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+    .crc-compact-list li + li { margin-top: 6px; }
+
+    /* "Why this recommendation?" — visible, high up; region line emphasised */
+    .crc-why { border-left: 3px solid var(--crc-go, var(--crc-ink)); padding-left: 14px; }
+    .crc-why-list {
+      margin: 8px 0 0; padding-left: 18px;
+      color: var(--crc-ink); font-size: 0.9rem; line-height: 1.5;
+    }
+    .crc-why-list li + li { margin-top: 6px; }
+    .crc-why-region { font-weight: 600; color: var(--crc-ink); }
+
     /* Data signal — one compact muted line */
     .crc-signal-line {
       margin: 2px 2px 0;
@@ -518,20 +565,45 @@
 
     /* ====================================================================
        CV Job Fit Scanner — reuses the .crc flat identity, adds an upload
-       dropzone, synthetic-sample buttons, skill/keyword chips and an
-       "avoid" role list. Scoped under .cv-* / .crc-rolelist--avoid.
+       dropzone, compact controls, gap chips and an "avoid" role list.
        ==================================================================== */
+    .cv-region-field,
+    .cv-sample-field { max-width: 310px; }
+    .cv-engine-note {
+      margin: 0 0 14px;
+      font-size: 0.8125rem;
+      color: var(--crc-muted);
+    }
+
+    /* Region + primary Analyse button row */
+    .cv-run {
+      display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px;
+      margin-top: 16px;
+    }
+    .cv-run .crc-field { margin-bottom: 0; flex: 1 1 220px; }
+    .cv-analyse-btn { min-height: 46px; padding: 12px 24px; font-size: 0.95rem; }
+    .cv-analyse-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .cv-analyse-btn:disabled:hover { background: var(--crc-ink); border-color: var(--crc-ink); }
+    .crc-btn.is-busy { cursor: progress; opacity: 0.92; }
+    .crc-btn.is-busy::before {
+      content: ""; display: inline-block; width: 14px; height: 14px;
+      margin-right: 9px; vertical-align: -2px;
+      border: 2px solid currentColor; border-top-color: transparent;
+      border-radius: 50%; animation: cv-spin 0.7s linear infinite;
+    }
+    @keyframes cv-spin { to { transform: rotate(360deg); } }
+
     .cv-drop {
       border: 2px dashed var(--crc-ink);
       border-radius: 3px;
       background: var(--crc-paper);
-      padding: 30px 24px;
+      padding: 20px;
       text-align: center;
       transition: background-color 0.15s ease, border-color 0.15s ease;
     }
     .cv-drop.is-drag { background: var(--crc-wash); border-color: var(--crc-go); }
-    .cv-drop-title { margin: 0; font-size: 1rem; font-weight: 600; color: var(--crc-ink); }
-    .cv-drop-note { margin: 8px 0 0; font-size: 0.8125rem; color: var(--crc-muted); }
+    .cv-drop-title { margin: 0; font-size: 0.9375rem; font-weight: 600; color: var(--crc-ink); }
+    .cv-drop-note { margin: 5px 0 0; font-size: 0.75rem; color: var(--crc-muted); }
     .cv-link {
       border: none;
       background: none;
@@ -543,42 +615,15 @@
       cursor: pointer;
     }
 
-    .cv-paste {
-      display: grid;
-      gap: 10px;
-      margin-top: 16px;
+    .cv-drop + .crc-field {
+      margin-top: 18px;
     }
+
     .cv-textarea {
-      min-height: 150px;
+      min-height: 116px;
       resize: vertical;
       line-height: 1.45;
     }
-    .cv-paste-btn {
-      justify-self: flex-start;
-      min-height: 42px;
-      padding: 10px 18px;
-    }
-
-    .cv-samples {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px;
-      margin-top: 16px;
-    }
-    .cv-sample-row { display: flex; flex-wrap: wrap; gap: 8px; }
-    .cv-sample-btn {
-      border: 1.5px solid var(--crc-ink);
-      border-radius: 2px;
-      background: var(--crc-paper);
-      color: var(--crc-ink);
-      font-size: 0.8125rem;
-      font-weight: 500;
-      padding: 7px 12px;
-      cursor: pointer;
-      transition: background-color 0.12s ease, color 0.12s ease;
-    }
-    .cv-sample-btn:hover { background: var(--crc-ink); color: var(--crc-paper); }
 
     .cv-status {
       margin: 16px 2px 0;
@@ -619,6 +664,12 @@
     }
     .cv-tag--gap { border-color: var(--crc-prep); color: var(--crc-prep); }
 
+    .cv-focus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
     /* Avoid role list (red) — pairs with .crc-rolelist / .crc-rolelist--stretch */
     .crc-rolelist--avoid .crc-role-simple {
       border-left-color: var(--crc-risk);
@@ -648,6 +699,6 @@
 
     @media (max-width: 767px) {
       .cv-drop { padding: 22px 16px; }
-      .cv-paste-btn { width: 100%; }
-      .cv-samples { flex-direction: column; align-items: flex-start; }
+      .cv-run .crc-field,
+      .cv-analyse-btn { width: 100%; max-width: none; flex-basis: 100%; }
     }

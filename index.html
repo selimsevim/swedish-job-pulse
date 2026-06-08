@@ -14,7 +14,7 @@
   <header class="page-shell site-header">
     <div>
       <h1 class="site-title">Swedish Job Pulse</h1>
-      <p class="site-subtitle">CV-to-market fit for Sweden &mdash; based on public Arbetsf&ouml;rmedlingen / JobTech data, not the hidden job market</p>
+      <p class="site-subtitle">Practical job-fit guidance from public Swedish labour-market data.</p>
     </div>
   </header>
 
@@ -23,27 +23,35 @@
       <div class="crc">
         <div class="crc-head">
           <span class="crc-eyebrow">CV &rarr; Job Fit Report</span>
-          <h2 class="crc-headline">Upload your CV. Get a one-page job-fit report.</h2>
-          <p class="crc-lede">See which Swedish roles your CV is strongest for now, which are within reach, which to skip for now, and exactly what to add. Matched against public job-ad signals. <strong>Your CV is read in your browser &mdash; nothing is uploaded or stored.</strong></p>
+          <h2 class="crc-headline">See where your CV fits.</h2>
+          <p class="crc-lede">Get realistic roles, skill gaps, and next steps from public Swedish job-ad signals.</p>
         </div>
+
+        <p class="cv-engine-note" id="cv-engine-note"></p>
 
         <div class="cv-drop" id="cv-drop">
           <input type="file" id="cv-file" accept="application/pdf,.pdf" hidden>
-          <p class="cv-drop-title">Drop a PDF CV here, or <button type="button" class="cv-link" id="cv-browse">choose a file</button></p>
-          <p class="cv-drop-note">PDF only. Read locally in your browser &mdash; never uploaded, never stored.</p>
+          <p class="cv-drop-title">Drop a PDF or <button type="button" class="cv-link" id="cv-browse">choose a file</button></p>
+          <p class="cv-drop-note">The PDF is read locally and converted to text below.</p>
         </div>
 
-        <div class="cv-paste">
-          <label class="crc-field" for="cv-text">
-            <span class="crc-label">Or paste CV text</span>
-            <textarea class="crc-input cv-textarea" id="cv-text" rows="7" placeholder="Paste your CV text here"></textarea>
+        <label class="crc-field" for="cv-text">
+          <span class="crc-label">CV text <span class="crc-label-hint">or paste it here</span></span>
+          <textarea class="crc-input cv-textarea" id="cv-text" rows="5" placeholder="Paste CV text"></textarea>
+        </label>
+
+        <div class="cv-run">
+          <label class="crc-field cv-sample-field" for="cv-sample">
+            <span class="crc-label">Try a sample</span>
+            <select class="crc-select" id="cv-sample" name="cv-sample">
+              <option value="">Choose a synthetic CV</option>
+            </select>
           </label>
-          <button class="crc-btn cv-paste-btn" type="button" id="cv-analyse-text">Analyse pasted CV</button>
-        </div>
-
-        <div class="cv-samples">
-          <span class="crc-label">No CV handy? Try a synthetic sample:</span>
-          <div class="cv-sample-row" id="cv-sample-row"></div>
+          <label class="crc-field cv-region-field" for="cv-region">
+            <span class="crc-label">Region <span class="crc-label-hint">optional</span></span>
+            <select class="crc-select" id="cv-region" name="cv-region"></select>
+          </label>
+          <button class="crc-btn cv-analyse-btn" type="button" id="cv-analyse" disabled>Analyse CV</button>
         </div>
 
         <p class="cv-status" id="cv-status" hidden></p>
@@ -53,26 +61,24 @@
         <details class="crc-method">
           <summary class="crc-method-summary">How this works &amp; its limits</summary>
           <div class="crc-method-body">
-            <p>The CV Job Fit Scanner runs in three layers:</p>
             <ul>
-              <li><strong>Extraction</strong> &mdash; your PDF is parsed <em>in your browser</em> into skills, roles, languages and seniority. The file never leaves your device and is not stored.</li>
-              <li><strong>Matching</strong> &mdash; your profile is scored against a role-skill index (skill overlap, role title, seniority and Swedish-language fit), enriched with public demand, crowding, regional and 4-week trend signals.</li>
-              <li><strong>Gap analysis</strong> &mdash; what blocks stronger matches: missing skills, weak proof, language.</li>
+              <li>PDF text is extracted in your browser. When Nebius AI is active, that text is sent for one analysis request and is not stored.</li>
+              <li>Roles are ranked by skills, titles, seniority, language fit, and public job-ad signals.</li>
             </ul>
-            <p>It reflects <strong>public Swedish job-ad data, not the entire hidden job market</strong>, and is not a guarantee of employment. The challenge build is evaluated on <strong>synthetic, fictional CVs only</strong> &mdash; no real or personal data is used or stored (<code>data/cv_match_metrics.json</code>).</p>
+            <p>This is advisory guidance from public job ads, not a hiring guarantee or a view of the entire labour market.</p>
           </div>
         </details>
       </div>
     </section>
 
     <details class="crc-altform">
-      <summary class="crc-altform-summary">Prefer not to upload a CV? Answer a few questions instead</summary>
+      <summary class="crc-altform-summary">No CV? Answer a few questions</summary>
       <section class="dashboard-section" id="career-reality">
         <div class="crc">
           <div class="crc-head">
             <span class="crc-eyebrow">Career Reality Check</span>
-            <h2 class="crc-headline">Before you spend weeks applying, check if the role is realistic.</h2>
-            <p class="crc-lede">Tell us where you are and where you want to go. We use public job-ad signals and a 4-week demand trend forecast to show what is realistic now, what is reachable, and what to avoid for now.</p>
+            <h2 class="crc-headline">Is your target role realistic?</h2>
+            <p class="crc-lede">Get a practical answer from your background and current market signals.</p>
           </div>
 
           <form class="crc-form" id="crc-form" novalidate>

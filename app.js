@@ -577,21 +577,21 @@
 
       const verdictMod = { now: "now", soon: "soon", risky: "risky", unknown: "unknown" }[model.verdictKey] || "unknown";
 
-      const roleList = (items, label, stretch) => items.length ? `
-        <div class="crc-panel">
+      const roleGroup = (items, label, stretch) => items.length ? `
+        <div class="crc-role-group">
           <p class="crc-panel-label">${escapeHtml(label)}</p>
           <ul class="crc-rolelist${stretch ? " crc-rolelist--stretch" : ""}">
-            ${items.map((n) => `<li class="crc-role-simple">${escapeHtml(n)}</li>`).join("")}
+            ${items.slice(0, 4).map((n) => `<li class="crc-role-simple">${escapeHtml(n)}</li>`).join("")}
           </ul>
         </div>` : "";
 
       const whyHtml = model.reasons.length ? `
-        <div class="crc-panel">
-          <p class="crc-panel-label">Why</p>
+        <details class="crc-disclosure">
+          <summary>Why this answer</summary>
           <ul class="crc-reasons">
             ${model.reasons.map((r) => `<li class="crc-reason">${escapeHtml(r)}</li>`).join("")}
           </ul>
-        </div>` : "";
+        </details>` : "";
 
       const nextHtml = model.nextSteps.length ? `
         <div class="crc-panel crc-plan">
@@ -612,11 +612,13 @@
             <h3 class="crc-verdict-title">${escapeHtml(model.mainAnswer)}</h3>
           </div>
         </div>
-        ${whyHtml}
-        ${roleList(model.applyFirst, "Apply for these first", false)}
-        ${roleList(model.stretch, "Keep as stretch target", true)}
+        ${signalHtml}
+        <div class="crc-panel crc-role-grid">
+          ${roleGroup(model.applyFirst, "Apply first", false)}
+          ${roleGroup(model.stretch, "Stretch", true)}
+        </div>
         ${nextHtml}
-        ${signalHtml}`;
+        ${whyHtml}`;
 
       container.hidden = false;
     }
@@ -737,6 +739,7 @@
     // =====================================================================
     let cvIndex = null;
     let cvSamples = [];
+    let cvNeuralAvailable = false;   // set from GET /api/health at init
 
     // Display names for canonical (lower_snake) skill / token ids.
     const CV_PRETTY = {
@@ -759,17 +762,6 @@
       if (CV_PRETTY[s]) return CV_PRETTY[s];
       return s.replace(/_/g, " ").split(" ")
         .map((w) => CV_WORD_ACRONYM[w] || (w.charAt(0).toUpperCase() + w.slice(1))).join(" ");
-    }
-
-    // Friendly role-family wording for the headline (field_label is too formal).
-    const CV_FIELD_PHRASE = {
-      RPTn_bxG_ExZ: "CRM / marketing", X82t_awd_Qyc: "analytics / reporting",
-      apaJ_2ja_LuF: "data / developer", NYW6_mP6_vwf: "healthcare",
-      ASGV_zcE_bWf: "logistics", MVqp_eS8_kDZ: "education",
-      ScKy_FHB_7wT: "hospitality", GazW_2TU_kJw: "social care"
-    };
-    function crcCvFieldPhrase(role) {
-      return (role && CV_FIELD_PHRASE[role.field_id]) || role?.field_label || "these";
     }
 
     // Hard / technical skills are the gaps worth surfacing first.
@@ -882,12 +874,33 @@
         const langPen = (r.language_sensitive && profile.weakSwedish) ? 0.12 : 0;
         const fit = Math.max(0, 0.55 * sem + 0.30 * cov - senPen - langPen);
         return {
-          title: r.title, domain: r.domain, field_id: r.field_id, field_label: r.field_label,
+          title: r.title, domain: r.domain, secondaryDomains: r.secondary_domains || [],
+          field_id: r.field_id, field_label: r.field_label,
           seniority: r.seniority, semantic: sem, coverage: cov, gap, fit,
           missing: req.filter((s) => !cv.has(s)),
           languageSensitive: !!r.language_sensitive, keywords: r.search_keywords || []
         };
       }).sort((a, b) => b.fit - a.fit);
+    }
+
+    // Bucketing thresholds — mirror of scripts/build_cv_match_index.py. Driven
+    // by skill COVERAGE and DOMAIN RELATION (both backend-independent), not by
+    // absolute semantic-similarity cutoffs, so it ranks the same regardless of
+    // which backend produced the scores.
+    const CV_ON_BEST_COV = 0.5;     // cover >= half of required skills -> best, in-lane
+    const CV_ON_ADJ_COV = 0.25;     // some in-lane coverage -> adjacent
+    const CV_ADJ_DOMAIN_COV = 0.34; // adjacent-domain role must share >= ~1/3 of its skills
+    const CV_STRETCH_COV = 0.34;    // in-lane role above your seniority -> reachable stretch
+
+    // Relation of a role to the CV's primary domain (mirror of _domain_relation).
+    function crcCvDomainRelation(role, pdomain, adjMap) {
+      if (!pdomain) return "far";
+      const sec = new Set(role.secondaryDomains || []);
+      if (role.domain === pdomain || sec.has(pdomain)) return "on";
+      const adjOfP = adjMap[pdomain] || [];
+      if (adjOfP.includes(role.domain) || adjOfP.some((d) => sec.has(d))) return "adjacent";
+      if ((adjMap[role.domain] || []).includes(pdomain)) return "confusable";
+      return "far";
     }
 
     function crcCvBucket(profile, scored) {
@@ -896,58 +909,48 @@
       let pdomain = null, bw = 0;
       for (const d in weights) if (weights[d] > bw) { bw = weights[d]; pdomain = d; }
       const adjMap = cvIndex?.domain_adjacency || {};
-      const adjacent = new Set(adjMap[pdomain] || []);
-      if (pdomain) adjacent.add(pdomain);
-      // "Confusable" domains: ones that treat your domain as adjacent, but you
-      // don't treat as yours (e.g. digital marketing vs a technical martech CV).
-      // These belong in "not your main lane" even at low fit, to make the point.
-      const confusable = new Set();
-      if (pdomain) {
-        for (const d in adjMap) {
-          if (d !== pdomain && (adjMap[d] || []).includes(pdomain) && !adjacent.has(d)) confusable.add(d);
-        }
-      }
-      const best = [], adj = [], avoid = [];
+      const bestPool = [], adjPool = [], avoidPool = [];
       scored.forEach((s) => {
+        const rel = crcCvDomainRelation(s, pdomain, adjMap);
+        if (rel === "far") return;                       // never shown anywhere
         const overreach = s.gap >= 2 || (s.seniority === "senior" && s.gap > 0);
-        const onLane = s.domain === pdomain;
-        const nearLane = adjacent.has(s.domain);
-        const strong = s.fit >= 0.30 && (s.semantic >= 0.12 || s.coverage >= 0.5);
-        if (overreach) {
-          if (s.fit >= 0.12) avoid.push(s);            // aspirational over-reach with real signal
-        } else if (onLane && strong) {
-          best.push(s);
-        } else if ((onLane || nearLane) && (s.fit >= 0.20 || s.semantic >= 0.15)) {
-          adj.push(s);
-        } else if (confusable.has(s.domain)) {
-          avoid.push(s);                                // looks adjacent but isn't your lane
-        } else if (s.fit >= 0.22) {
-          avoid.push(s);                                // off-lane but a notable, mismatched pull
+        const cov = s.coverage;
+        if (rel === "on") {
+          if (overreach) {
+            if (cov >= CV_STRETCH_COV) adjPool.push(s);  // in-lane but above your level
+          } else if (cov >= CV_ON_BEST_COV) {
+            bestPool.push(s);
+          } else if (cov >= CV_ON_ADJ_COV) {
+            adjPool.push(s);
+          }
+        } else if (rel === "adjacent") {
+          if (!overreach && cov >= CV_ADJ_DOMAIN_COV) adjPool.push(s);
+        } else if (rel === "confusable") {
+          avoidPool.push(s);                              // related-looking but off your lane
         }
-        // else: irrelevant / near-zero fit -> not shown at all
       });
-      return { pdomain, best: best.slice(0, 6), adj: adj.slice(0, 5), avoid: avoid.slice(0, 5) };
+      bestPool.sort((a, b) => b.fit - a.fit);
+      adjPool.sort((a, b) => b.fit - a.fit);
+      avoidPool.sort((a, b) => b.fit - a.fit);
+      const best = bestPool.slice(0, 6);
+      const adj = bestPool.slice(6).concat(adjPool).slice(0, 5); // best overflow stays visible
+      const avoid = avoidPool.slice(0, 5);
+      return { pdomain, best, adj, avoid };
     }
 
     function crcCvDomainLabel(domain) {
       return (cvIndex?.domain_label || {})[domain] || domain || "these";
     }
 
-    function crcCvBuildReport(profile) {
+    function crcCvBuildReport(profile, region) {
       const scored = crcCvRank(profile);
       const { pdomain, best, adj, avoid } = crcCvBucket(profile, scored);
-
-      // Senior CRM / SFMC / Martech / Integration profile: architecture-led
-      // framing + concrete improvement areas (not vague skill tokens).
-      const seniorMartech = profile.seniority === "senior" && pdomain === "crm_martech";
-      const langStated = (profile.languages || []).some((l) => /english/i.test(l)) && profile.swedish !== "none";
+      const isSenior = profile.seniority === "senior";
 
       let tone, mainAnswer;
       if (best.length) {
         tone = "now";
-        mainAnswer = seniorMartech
-          ? "Your CV is strongest for SFMC / Martech Integration and Marketing Technology Architecture roles."
-          : `Your CV is strongest for ${crcCvDomainLabel(pdomain)} roles.`;
+        mainAnswer = `Your CV is strongest for ${crcCvDomainLabel(pdomain)} roles.`;
       } else if (adj.length) {
         tone = "soon";
         mainAnswer = `Your CV is close to ${crcCvDomainLabel(adj[0].domain)} roles — strengthen the proof first.`;
@@ -956,42 +959,32 @@
         mainAnswer = "Your CV doesn't match a clear role family yet — here's what to strengthen.";
       }
 
-      // "Your CV is missing" — display-ready strings.
-      let missing;
-      if (seniorMartech) {
-        // Concrete CV improvement areas for a senior niche profile, never a bare
-        // "Leadership" token.
-        missing = [];
-        if (!langStated) missing.push("state your Swedish and English level");
-        missing.push("add measurable business impact");
-        missing.push("make architecture ownership explicit");
-        if (!profile.skills.includes("data_cloud")) missing.push("broader Salesforce architecture / Data Cloud");
-        missing.push("technical leadership examples");
-        missing = missing.slice(0, 5);
-      } else {
-        // Aggregate role-gap tokens; drop the too-vague "leadership"; prettify.
-        const freq = new Map();
-        [...best, ...adj].forEach((r) => r.missing.forEach((s) => {
-          if (s !== "leadership") freq.set(s, (freq.get(s) || 0) + 1);
-        }));
-        let toks = [...freq.entries()]
-          .sort((a, b) => ((CV_HARD_GAPS.has(b[0]) ? 1 : 0) - (CV_HARD_GAPS.has(a[0]) ? 1 : 0)) || (b[1] - a[1]))
-          .map((e) => e[0]).slice(0, 6);
-        if (profile.weakSwedish && [...best, ...adj].some((r) => r.languageSensitive)) {
-          toks = toks.slice(0, 5); toks.push("swedish working proficiency");
-        }
-        missing = toks.map(crcCvPretty);
+      // "Your CV is missing" — display-ready skill gaps aggregated from the
+      // roles the CV is closest to. Domain-agnostic; never lists a skill the CV
+      // already has (per-role `missing` already excludes the CV's skills).
+      const cvSkillSet = new Set(profile.skills);
+      const freq = new Map();
+      [...best, ...adj].forEach((r) => r.missing.forEach((s) => {
+        if (s === "leadership" || cvSkillSet.has(s)) return;  // vague / already present
+        freq.set(s, (freq.get(s) || 0) + 1);
+      }));
+      let toks = [...freq.entries()]
+        .sort((a, b) => ((CV_HARD_GAPS.has(b[0]) ? 1 : 0) - (CV_HARD_GAPS.has(a[0]) ? 1 : 0)) || (b[1] - a[1]))
+        .map((e) => e[0]).slice(0, 6);
+      if (profile.weakSwedish && [...best, ...adj].some((r) => r.languageSensitive)) {
+        toks = toks.slice(0, 5); toks.push("swedish working proficiency");
       }
+      const missing = toks.map(crcCvPretty);
 
-      // CV weaknesses (heuristics on the raw text + profile).
+      // CV weaknesses (heuristics on the raw text + profile) — domain-agnostic.
       const t = profile.text || "";
       const resultWords = /(increase|increased|reduc|grew|growth|%|procent|\bkpi\b|results?|resultat|saved|boosted|improv|ökade|minskade)/i.test(t);
       const weaknesses = [];
       if (!resultWords) weaknesses.push("Add measurable impact — numbers, %, and what changed because of your work.");
-      if (profile.skills.length < 5) weaknesses.push("Add a clear technical skills section that lists your tools.");
+      if (profile.skills.length < 5) weaknesses.push("Add a clear skills section that lists your tools.");
       if (!profile.languages.length) weaknesses.push("State your Swedish and English level explicitly.");
-      if (profile.seniority === "senior" && pdomain === "crm_martech") {
-        weaknesses.push("Frame senior scope explicitly — architecture ownership and 'solution architect' positioning.");
+      if (isSenior && best.length) {
+        weaknesses.push("Frame senior scope explicitly — ownership, scale, and the impact you led.");
       }
       if (!weaknesses.length) weaknesses.push("Strong structure — focus on closing the missing skills above.");
 
@@ -1003,58 +996,84 @@
         if (!seen.has(key)) { seen.add(key); keywords.push(k); }
       }));
 
-      // 7-day action plan (max 4).
+      // 7-day action plan (max 4) — domain-agnostic. Apply count = the number
+      // of roles that actually fit (precision over volume), not an inflated target.
       const plan = [];
       const bestTitles = best.slice(0, 2).map((r) => r.title);
-      if (seniorMartech) {
-        plan.push(`Apply to 5–7 high-fit roles this week${bestTitles.length ? ` — e.g. ${bestTitles.join(", ")}` : ""}.`);
-        plan.push("Make platform / integration architecture ownership and measurable business impact explicit on your CV.");
-        plan.push("Add broader Salesforce architecture / Data Cloud if relevant, and state your Swedish and English level.");
-      } else {
-        plan.push(`Apply to ${Math.max(6, best.length * 2)} best-fit roles this week${bestTitles.length ? ` — e.g. ${bestTitles.join(", ")}` : ""}.`);
-        if (missing.length) plan.push(`Build proof for ${missing.slice(0, 2).join(" and ")} — a focused project or short course.`);
-        plan.push("Rewrite your CV: add measurable impact and a clear skills section.");
-      }
+      const applyN = best.length || adj.length;
+      if (applyN) plan.push(`Apply to the ${applyN} best-fit role${applyN !== 1 ? "s" : ""} this week${bestTitles.length ? ` — e.g. ${bestTitles.join(", ")}` : ""}.`);
+      if (missing.length) plan.push(`Build proof for ${missing.slice(0, 2).join(" and ")} — a focused project or short course.`);
+      plan.push("Rewrite your CV: add measurable impact and a clear skills section.");
       if (keywords.length) plan.push(`Search Platsbanken for ${keywords.slice(0, 4).map((k) => `"${k}"`).join(", ")}.`);
 
       const sigOcc = best[0] ? crcTopOccupationInField(best[0].field_id)
         : (adj[0] ? crcTopOccupationInField(adj[0].field_id) : null);
-      const signalLine = sigOcc ? crcBuildSignalLine(sigOcc, { region: "" }) : null;
+      const signalLine = sigOcc ? crcBuildSignalLine(sigOcc, { region: region || "" }) : null;
+
+      // "Why this recommendation?" — fully derived from CV skills, the market
+      // signal, the matched titles and (optional) region. No hardcoded text.
+      const why = crcCvWhy(profile, crcCvDomainLabel(pdomain), best, adj, signalLine, region || null);
 
       return {
-        tone, mainAnswer, primaryDomain: pdomain, domainLabel: crcCvDomainLabel(pdomain),
+        tone, mainAnswer, why, primaryDomain: pdomain, domainLabel: crcCvDomainLabel(pdomain),
         best: best.map((r) => r.title), adjacent: adj.map((r) => r.title), avoid: avoid.map((r) => r.title),
         missing, weaknesses, keywords: keywords.slice(0, 7), plan, signalLine,
         tools: profile.skills.slice(0, 7).map(crcCvPretty)
       };
     }
 
+    function crcCvJoinList(items) {
+      const a = (items || []).filter(Boolean);
+      if (a.length <= 1) return a[0] || "";
+      return a.slice(0, -1).join(", ") + " and " + a[a.length - 1];
+    }
+
+    // Compact, derived "Why this recommendation?" lines (max 4). Mirror of
+    // cv_fit_core.why_recommendation — uses only data we already have.
+    function crcCvWhy(profile, domainName, best, adj, marketSignal, region) {
+      const why = [];
+      const signals = (profile.skills || []).slice(0, 5).map(crcCvPretty);
+      const titles = (best.length ? best : adj).map((r) => r.title);
+      if (signals.length && domainName) {
+        why.push(`Your CV matches ${domainName} because it shows ${crcCvJoinList(signals)}.`);
+      }
+      if (marketSignal) {
+        why.push("Public job-ad signals show " + String(marketSignal).replace(/ · /g, ", ").toLowerCase() + ".");
+      }
+      if (titles.length) {
+        const primary = titles[0];
+        const alts = crcCvJoinList(titles.slice(1, 4)) || primary;
+        if (region) {
+          why.push(`In ${region}, prioritise ${crcCvJoinList(titles.slice(0, 3))}; if local demand is thin, broaden to nearby regions and remote roles.`);
+        } else {
+          why.push(`For smaller local markets, broaden your title search beyond “${primary}” to ${alts}, and include remote roles.`);
+        }
+      }
+      return why.slice(0, 4);
+    }
+
     function crcCvRenderReport(report, profile) {
       const container = document.getElementById("cv-results");
       if (!container) return;
 
-      const rolePanel = (label, items, modifier) => items.length ? `
-        <div class="crc-panel">
+      const roleGroup = (label, items, modifier) => items.length ? `
+        <div class="crc-role-group">
           <p class="crc-panel-label">${escapeHtml(label)}</p>
           <ul class="crc-rolelist${modifier ? ` crc-rolelist--${modifier}` : ""}">
-            ${items.map((n) => `<li class="crc-role-simple">${escapeHtml(n)}</li>`).join("")}
+            ${items.slice(0, 4).map((n) => `<li class="crc-role-simple">${escapeHtml(n)}</li>`).join("")}
           </ul>
         </div>` : "";
 
-      const tagPanel = (label, items, gap) => items.length ? `
-        <div class="crc-panel">
-          <p class="crc-panel-label">${escapeHtml(label)}</p>
-          <div class="cv-tags">
-            ${items.map((s) => `<span class="cv-tag${gap ? " cv-tag--gap" : ""}">${escapeHtml(s)}</span>`).join("")}
-          </div>
-        </div>` : "";
-
-      const weaknessHtml = report.weaknesses.length ? `
-        <div class="crc-panel">
-          <p class="crc-panel-label">Improve your CV by adding</p>
-          <ul class="crc-reasons">
-            ${report.weaknesses.map((w) => `<li class="crc-reason">${escapeHtml(w)}</li>`).join("")}
-          </ul>
+      const focusHtml = (report.missing.length || report.weaknesses.length) ? `
+        <div class="crc-panel cv-focus-grid">
+          ${report.missing.length ? `<div>
+            <p class="crc-panel-label">Close these gaps</p>
+            <div class="cv-tags">${report.missing.slice(0, 5).map((s) => `<span class="cv-tag cv-tag--gap">${escapeHtml(s)}</span>`).join("")}</div>
+          </div>` : ""}
+          ${report.weaknesses.length ? `<div>
+            <p class="crc-panel-label">Strengthen the CV</p>
+            <ul class="crc-compact-list">${report.weaknesses.slice(0, 2).map((w) => `<li>${escapeHtml(w)}</li>`).join("")}</ul>
+          </div>` : ""}
         </div>` : "";
 
       const planHtml = report.plan.length ? `
@@ -1068,8 +1087,16 @@
       const signalHtml = report.signalLine
         ? `<p class="crc-signal-line"><b>Market signal</b> ${escapeHtml(report.signalLine)}</p>` : "";
 
-      const tools = (report.tools && report.tools.length) ? report.tools.join(", ") : "no clear tools detected";
-      const summary = `<p class="cv-summary"><b>Read from your CV</b> ${escapeHtml(profile.seniority)} level · ${escapeHtml(report.domainLabel)} · ${escapeHtml(tools)} · ${escapeHtml(profile.languages.join(", ") || "no language level stated")}</p>`;
+      // "Why this recommendation?" — visible (not collapsed) and shown high up.
+      // Item 3 is the region strategy, which users treat as key.
+      const why = (report.why || []).slice(0, 3);
+      const whyHtml = why.length ? `
+        <div class="crc-panel crc-why">
+          <p class="crc-panel-label">Why this recommendation?</p>
+          <ul class="crc-why-list">${why.map((line, i) => `<li class="${i === why.length - 1 ? "crc-why-region" : ""}">${escapeHtml(line)}</li>`).join("")}</ul>
+        </div>` : "";
+
+      const summary = `<p class="cv-summary"><b>Profile</b> ${escapeHtml(profile.seniority)} · ${escapeHtml(report.domainLabel)} · ${escapeHtml(profile.languages.join(", ") || "language level not stated")}</p>`;
 
       container.innerHTML = `
         ${summary}
@@ -1079,14 +1106,15 @@
             <h3 class="crc-verdict-title">${escapeHtml(report.mainAnswer)}</h3>
           </div>
         </div>
-        ${rolePanel("Best-fit roles now", report.best, "")}
-        ${rolePanel("Adjacent roles", report.adjacent, "stretch")}
-        ${rolePanel("Not your main lane", report.avoid, "avoid")}
-        ${tagPanel("Your CV is missing", report.missing, true)}
-        ${weaknessHtml}
-        ${tagPanel("Search keywords", report.keywords, false)}
-        ${planHtml}
-        ${signalHtml}`;
+        ${whyHtml}
+        ${signalHtml}
+        <div class="crc-panel crc-role-grid">
+          ${roleGroup("Best fit", report.best, "")}
+          ${roleGroup("Stretch", report.adjacent, "stretch")}
+          ${roleGroup("Skip for now", report.avoid, "avoid")}
+        </div>
+        ${focusHtml}
+        ${planHtml}`;
       container.hidden = false;
     }
 
@@ -1106,22 +1134,91 @@
       container.innerHTML = "";
     }
 
-    function crcCvAnalyseText(text, sourceLabel) {
-      if (!cvIndex) { crcCvSetStatus("CV index not loaded — run scripts/build_cv_match_index.py.", true); return; }
+    function crcCvRegion() {
+      const sel = document.getElementById("cv-region");
+      const v = sel && sel.value ? sel.value.trim() : "";
+      return v || null;
+    }
+
+    // Entry point for all CV inputs (paste / PDF / sample). CV reports require
+    // the Nebius LLM endpoint; unavailable AI is shown as an error.
+    async function crcCvAnalyseText(text, sourceLabel) {
       crcCvClearReport();
       const cleanText = String(text || "").trim();
       if (cleanText.length < 40) {
         crcCvSetStatus("Not enough CV information yet. Add role titles, skills, tools, language level, and recent work or study history.", true);
         return;
       }
-      const profile = crcCvExtract(cleanText);
-      if (!profile.skills.length && !profile.roles.length) {
-        crcCvSetStatus("Not enough recognisable CV information yet. Add role titles, skills, tools, language level, and recent work or study history.", true);
+      const region = crcCvRegion();
+      if (cvNeuralAvailable) {
+        await crcCvAnalyseNeural(cleanText, sourceLabel, region);
         return;
       }
-      const report = crcCvBuildReport(profile);
+      crcCvSetStatus("Nebius AI is unavailable. Start the app with scripts/run_local_nebius.sh and try again.", true);
+    }
+
+    // Map the Nebius /cv-fit JSON response onto the local report/profile shape
+    // so the same renderer (crcCvRenderReport) draws it.
+    function crcCvNeuralToReport(r) {
+      const best = r.best_fit_roles || [];
+      const adj = r.adjacent_roles || [];
+      const tone = best.length ? "now" : (adj.length ? "soon" : "risky");
+      const ex = r.extracted || {};
+      const report = {
+        tone,
+        mainAnswer: r.main_answer || "",
+        why: r.why_recommendation || [],
+        primaryDomain: r.primary_domain || "",
+        domainLabel: r.domain_label || "these",
+        best, adjacent: adj,
+        avoid: r.not_your_main_lane_roles || [],
+        missing: r.missing_skills || [],
+        weaknesses: r.cv_improvements || [],
+        keywords: r.search_keywords || [],
+        plan: r.action_plan_7_day || [],
+        signalLine: r.market_signal || null,
+        tools: ex.tools || []
+      };
+      const profile = {
+        seniority: ex.seniority || "unknown",
+        languages: ex.languages || [],
+        skills: ex.tools || []
+      };
+      return { report, profile };
+    }
+
+    // Nebius neural path: POST the CV text to the same-origin proxy at
+    // /api/cv-fit (the Nebius token lives only on the server).
+    async function crcCvAnalyseNeural(cleanText, sourceLabel, region) {
+      crcCvSetStatus("Analysing with Nebius AI…", false);
+      let data;
+      try {
+        const body = { cv_text: cleanText };
+        if (region) body.region = region;
+        const res = await fetch("/api/cv-fit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+        data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          throw new Error("neural_unavailable");
+        }
+      } catch (err) {
+        // Do NOT log the CV text or response body. Static message only.
+        console.warn("Nebius CV-fit request failed. No local fallback was used.");
+        crcCvSetStatus("Nebius AI request failed. No fallback was used. Check the local server and endpoint status.", true);
+        return;
+      }
+      const { report, profile } = crcCvNeuralToReport(data);
       crcCvRenderReport(report, profile);
-      crcCvSetStatus(sourceLabel ? `Analysed ${sourceLabel}. Nothing was uploaded or stored.` : null, false);
+      const backend = data.backend ? ` · ${data.backend}` : "";
+      crcCvSetStatus(
+        sourceLabel
+          ? `Analysed ${sourceLabel} with Nebius AI${backend}. CV text was sent for this request and was not stored.`
+          : null,
+        false
+      );
       document.getElementById("cv-results").scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
@@ -1143,17 +1240,72 @@
     async function crcCvHandleFile(file) {
       if (!file) return;
       if (!/pdf$/i.test(file.name) && file.type !== "application/pdf") {
-        crcCvClearReport();
         crcCvSetStatus("Please choose a PDF file.", true);
         return;
       }
       crcCvSetStatus("Reading your CV in your browser…", false);
       try {
         const text = await crcCvReadPdf(file);
-        crcCvAnalyseText(text, file.name);
+        crcCvLoadCv(text, `PDF “${file.name}”`);
       } catch (error) {
-        console.error("CV read failed", error);
-        crcCvSetStatus("Could not read that PDF in the browser. Try another PDF, or use a sample below.", true);
+        console.error("CV read failed");
+        crcCvSetStatus("Could not read that PDF in the browser. Try another PDF, or paste the text / load a sample.", true);
+      }
+    }
+
+    // Load CV text into the box (from PDF or sample) and prime the Analyse step
+    // — does NOT auto-run, so the user can pick a region first.
+    function crcCvLoadCv(text, label) {
+      const ta = document.getElementById("cv-text");
+      if (ta) ta.value = String(text || "");
+      crcCvClearReport();
+      crcCvRefreshAnalyseEnabled();
+      crcCvSetStatus(`Loaded ${label}.`, false);
+      const btn = document.getElementById("cv-analyse");
+      if (btn) btn.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    // Enable the Analyse button only when there's enough CV text.
+    function crcCvRefreshAnalyseEnabled() {
+      const ta = document.getElementById("cv-text");
+      const btn = document.getElementById("cv-analyse");
+      if (!ta || !btn || btn.classList.contains("is-busy")) return;
+      btn.disabled = String(ta.value || "").trim().length < 40;
+    }
+
+    // Processing state on the Analyse button so the wait isn't abrupt.
+    function crcCvSetBusy(busy) {
+      const btn = document.getElementById("cv-analyse");
+      if (!btn) return;
+      btn.classList.toggle("is-busy", busy);
+      if (busy) {
+        btn.disabled = true;
+        btn.textContent = "Analysing…";
+      } else {
+        btn.textContent = "Analyse CV";
+        crcCvRefreshAnalyseEnabled();
+      }
+    }
+
+    // One analysis path — reflect which engine is active (informational only).
+    function crcCvSetEngineNote() {
+      const note = document.getElementById("cv-engine-note");
+      if (!note) return;
+      note.textContent = cvNeuralAvailable
+        ? "Nebius AI is active. CV text is sent for this request and is not stored."
+        : "Nebius AI is unavailable. CV analysis is disabled until the endpoint is connected.";
+    }
+
+    // Ask the server (not Nebius directly) whether neural mode is available.
+    // Never receives or exposes any token.
+    async function crcCvCheckNeural() {
+      try {
+        const res = await fetch("/api/health", { cache: "no-store" });
+        if (!res.ok) return false;
+        const data = await res.json();
+        return !!(data && data.neural_available);
+      } catch (_err) {
+        return false;
       }
     }
 
@@ -1165,12 +1317,19 @@
       const browse = document.getElementById("cv-browse");
       const drop = document.getElementById("cv-drop");
       const textArea = document.getElementById("cv-text");
-      const analyseText = document.getElementById("cv-analyse-text");
+      const analyseBtn = document.getElementById("cv-analyse");
       if (browse && fileInput) browse.addEventListener("click", () => fileInput.click());
       if (fileInput) fileInput.addEventListener("change", (e) => crcCvHandleFile(e.target.files && e.target.files[0]));
-      if (analyseText && textArea) {
-        analyseText.addEventListener("click", () => crcCvAnalyseText(textArea.value, "pasted CV text"));
+      if (textArea) textArea.addEventListener("input", crcCvRefreshAnalyseEnabled);
+      if (analyseBtn && textArea) {
+        analyseBtn.addEventListener("click", async () => {
+          if (analyseBtn.disabled) return;
+          crcCvSetBusy(true);
+          try { await crcCvAnalyseText(textArea.value, "your CV"); }
+          finally { crcCvSetBusy(false); }
+        });
       }
+      crcCvRefreshAnalyseEnabled();
       if (drop) {
         ["dragenter", "dragover"].forEach((ev) => drop.addEventListener(ev, (e) => {
           e.preventDefault(); drop.classList.add("is-drag");
@@ -1184,26 +1343,37 @@
         });
       }
 
-      const row = document.getElementById("cv-sample-row");
-      if (row) {
-        row.innerHTML = "";
-        cvSamples.forEach((cv) => {
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "cv-sample-btn";
-          btn.textContent = cv.name;
-          btn.addEventListener("click", () => crcCvAnalyseText(cv.text, `synthetic sample "${cv.name}"`));
-          row.appendChild(btn);
+      crcCvSetEngineNote();
+
+      // Region selector (optional) — reuses the same region list as the Career
+      // Reality Check, tailoring the market signal + search tips.
+      const regionSelect = document.getElementById("cv-region");
+      if (regionSelect) {
+        const regions = Array.isArray(careerRealityData?.regions) ? careerRealityData.regions : [];
+        regionSelect.innerHTML = ['<option value="">Anywhere in Sweden</option>']
+          .concat(regions.map((r) => `<option value="${escapeHtml(r.term)}">${escapeHtml(r.term)}</option>`))
+          .join("");
+      }
+
+      const sampleSelect = document.getElementById("cv-sample");
+      if (sampleSelect) {
+        sampleSelect.innerHTML = '<option value="">Choose a synthetic CV</option>'
+          + cvSamples.map((cv, index) => `<option value="${index}">${escapeHtml(cv.name)}</option>`).join("");
+        sampleSelect.addEventListener("change", () => {
+          const cv = cvSamples[Number(sampleSelect.value)];
+          if (cv) crcCvLoadCv(cv.text, `sample “${cv.name}”`);
         });
       }
     }
 
     async function init() {
-      const [data, cvIndexData, cvSampleData] = await Promise.all([
+      const [data, cvIndexData, cvSampleData, neuralOk] = await Promise.all([
         fetchLocalJson("data/career_reality.json"),
         fetchLocalJson("data/cv_match_index.json"),
-        fetchLocalJson("data/sample_cvs.json")
+        fetchLocalJson("data/sample_cvs.json"),
+        crcCvCheckNeural()
       ]);
+      cvNeuralAvailable = neuralOk;
       crcInitSection(data);
       crcCvInit(cvIndexData, cvSampleData);
       const overlay = document.getElementById("loading-overlay");

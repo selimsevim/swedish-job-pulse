@@ -11,17 +11,22 @@ It answers one practical question:
 
 This is not a job board and not a generic AI career coach. It is a static website backed by public Arbetsformedlingen / JobTech labour-market data, an occupation demand trend forecast, a role-skill index, and transparent scoring rules for crowding risk, entry-level access, regional fit, remote signal, and skill momentum.
 
+**Hosting.** The public app is deployed on **Railway** (not GitHub Pages): a small FastAPI server serves the static frontend and securely proxies the optional neural CV analysis to **Nebius**. See [Deploy: Railway + Nebius](#deploy-railway-public-app-host--nebius-ai-backend).
+
 ## CV Job Fit Scanner
 
 Upload a PDF CV, or paste CV text, &rarr; get a one-page job-fit report.
 
-**Privacy / reproducibility.** PDFs are parsed **entirely in your browser** with pdf.js, and pasted CV text is analyzed locally in the page. CV content is **never uploaded and never stored**, and no real CV is committed to this repo. The challenge build is demoed and evaluated only on **synthetic, fictional CVs** in [`data/sample_cvs.json`](data/sample_cvs.json).
+**Privacy / reproducibility.** PDFs are parsed **entirely in your browser** with pdf.js. The extracted or pasted CV text is sent through the Railway proxy to Nebius for one request and is not logged or stored. If the LLM is unavailable, no report is produced. No real CV is committed to this repo. The challenge build is demoed and evaluated only on **synthetic, fictional CVs** in [`data/sample_cvs.json`](data/sample_cvs.json).
 
 Three layers:
 
 - **Extraction** &mdash; PDF or pasted CV text is parsed in-browser into `{skills, roles, languages, seniority}`.
-- **Retrieval + ranking** &mdash; the profile is vectorized and matched against a role ontology ([`data/cv_match_index.json`](data/cv_match_index.json)), then reranked by skill overlap, seniority, domain fit and Swedish-language fit, enriched with public demand / crowding / regional / trend signals. The shipped static site uses a reproducible **multilingual TF-IDF vector space** with synonym/domain expansion (so `SFMC == Salesforce Marketing Cloud == Martech` and a technical martech CV is not flattened into "digital marketing"). The hand-written synonym list is a **bootstrap**; the scalable replacement is a **neural embedding model (BGE-M3 / Qwen3) at the Nebius `/cv-fit` endpoint** (no synonym list needed) — see [`nebius/README.md`](nebius/README.md).
+- **Retrieval + ranking** &mdash; the profile is vectorized and matched against a role ontology ([`data/cv_match_index.json`](data/cv_match_index.json)), then reranked by skill overlap, seniority, domain fit and Swedish-language fit, enriched with public demand / crowding / regional / trend signals. Retrieval uses a reproducible **multilingual TF-IDF vector space** with synonym/domain expansion (so `SFMC == Salesforce Marketing Cloud == Martech` and a technical martech CV is not flattened into "digital marketing"). The reranker is **domain-agnostic** — no role names or domain special-casing in code.
+- **Explanation** &mdash; a self-hosted **Qwen2.5-7B-Instruct** at the Nebius `/cv-fit` endpoint turns that evidence into the verdict, the "Why this recommendation?" lines, and a region-aware search strategy — **grounded** in the retrieved facts (it may only use the role titles it is given) — see [`nebius/README.md`](nebius/README.md).
 - **Gap analysis** &mdash; what blocks stronger matches: missing skills, weak proof, language.
+
+**One analysis path.** The scanner calls the Railway proxy (`POST /api/cv-fit`), which forwards to the Nebius grounded-LLM endpoint. If the LLM is unavailable, the UI shows an error and produces no report; it does not silently substitute the local TF-IDF baseline. An optional **Region** selector tailors the market signal and search strategy. The Nebius token is **never** present in `app.js`, `index.html`, or any other file the browser receives — see [Deploy: Railway + Nebius](#deploy-railway-public-app-host--nebius-ai-backend).
 
 The report:
 
@@ -37,6 +42,8 @@ python3 scripts/build_cv_match_index.py
 ```
 
 Outputs `data/cv_match_index.json`, `data/sample_cvs.json` and `data/cv_match_metrics.json`. The current metrics are primary-domain accuracy and no-collapse rate on synthetic CVs; they prove the demo matcher stays in the right role family and does not collapse specialist profiles into generic jobs. The matcher in `app.js` mirrors the Python matcher in that script, so the evaluation tests the same pipeline.
+
+For the **endpoint** (not just the browser matcher), `scripts/evaluate_cv_fit.py` runs the full `analyze_cv` pipeline over the labelled CVs and additionally scores **occupation-group routing** (does a data analyst land in the analyst lane, not the developer one?) and **gap relevance** (no C++/Java surfaced to a non-developer). It writes `data/cv_fit_eval.json`; `--strict` fails on any routing or gap regression and runs in CI ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) alongside the endpoint unit tests.
 
 ## Career Reality Check (fallback)
 
@@ -228,27 +235,108 @@ Then open:
 
 The Dockerfile installs dependencies, rebuilds the ML/data artifacts, and serves the static website. It does not require secrets or private data.
 
+## Deploy: Railway (public app host) + Nebius (AI backend)
+
+The public app is hosted on **[Railway](https://railway.app)** — **not** GitHub Pages.
+Railway runs a small FastAPI server ([`app/server.py`](app/server.py)) that does two
+things: it serves the existing static frontend, and it **securely proxies** CV-fit
+requests to the **Nebius** neural `/cv-fit` endpoint. Nebius is the AI/ML backend;
+Railway is the public front door that keeps the Nebius token server-side.
+
+```text
+Browser  →  Railway app (app/server.py)  →  Nebius /cv-fit endpoint
+            ├── serves index.html / app.js / style.css / data/*.json
+            └── POST /api/cv-fit  ──(Authorization: Bearer <token>)──▶  $NEBIUS_CV_FIT_URL/cv-fit
+```
+
+**Why a proxy?** The Nebius endpoint is token-protected. The token must never reach
+the browser, so the frontend calls the **same-origin** route `POST /api/cv-fit`, and
+the server attaches `Authorization: Bearer $NEBIUS_CV_FIT_TOKEN` before forwarding to
+`$NEBIUS_CV_FIT_URL/cv-fit`. The Nebius JSON response is returned to the browser
+unchanged.
+
+**One analysis path, enforced end to end.** The UI calls `/api/cv-fit`, which
+the server forwards to the Nebius **grounded-LLM endpoint**: deterministic TF-IDF
+retrieval produces the facts (matched roles, skill gaps, market signal, cross-region
+demand) and a self-hosted **Qwen2.5-7B-Instruct** writes the verdict, the
+"Why this recommendation?" lines, and the region strategy — constrained to those
+facts.
+
+Skill gaps are grounded at **occupation-group** granularity, not just the broad
+field: a data analyst lands in the developer-dominated "Data/IT" field, so
+whole-field demand would wrongly tell them to learn C++/Java. Instead the
+endpoint routes gaps to the analyst/architect occupation group's *real* ad demand
+(`data/field_skills.json`, aggregated per JobTech occupation group from two years
+of enriched ads), and falls back to whole-field demand only where no group lane
+applies. An optional **Region** selector tailors it (e.g. a thin local market →
+"search Stockholm / Västra Götaland, or go remote"). The proxy checks the live
+endpoint health and rejects any response whose backend is not explicitly `llm:...`.
+There is no automatic local fallback.
+
+**Railway environment variables** (Project → Variables — server-side only, never
+shipped to the browser):
+
+| Variable | Example | Purpose |
+|---|---|---|
+| `NEBIUS_CV_FIT_URL` | `https://<endpoint>.nebius.cloud` | Base URL of the Nebius endpoint (**no** trailing `/cv-fit` — the server appends it) |
+| `NEBIUS_CV_FIT_TOKEN` | `…` | Bearer token for the Nebius endpoint |
+| `NEBIUS_CV_FIT_TIMEOUT` | `60` | Optional upstream timeout in seconds (default `60`) |
+
+Railway build/run is configured by [`railway.json`](railway.json) +
+[`nixpacks.toml`](nixpacks.toml): it installs only the lightweight
+[`requirements-railway.txt`](requirements-railway.txt) (`fastapi`, `uvicorn`, `httpx`
+— **not** the ML/data deps) and starts with:
+
+```bash
+uvicorn app.server:app --host 0.0.0.0 --port $PORT
+```
+
+Health check: `GET /api/health` → `{"status":"ok","neural_available":true|false}`
+(reports capability without exposing the URL or token).
+
+**Run the public app locally:**
+
+```bash
+python3 -m venv .venv-railway && source .venv-railway/bin/activate
+python3 -m pip install -r requirements-railway.txt
+
+# Put the endpoint ID in ignored .env.local:
+NEBIUS_CV_FIT_ENDPOINT_ID="<your-endpoint-id>"
+
+# Fetches the endpoint address and token through your authenticated Nebius CLI,
+# then starts the local proxy without writing the token to disk:
+./scripts/run_local_nebius.sh
+```
+
+Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/). See [`env.example`](env.example)
+for the variable template. **Privacy:** the proxy forwards CV text to Nebius for the
+single request only — it **never logs and never stores** CV text (the uvicorn access
+log records the request path `/api/cv-fit`, not the body).
+
+CV reports do not silently fall back to TF-IDF. If the endpoint is unavailable,
+the UI displays an error and produces no report.
+
 ## Nebius Serverless AI Mapping
 
-Nebius Serverless AI runs containerized AI workloads as Jobs or Endpoints without managing VMs or clusters. This project maps to that model as batch JSON artifact generation:
+Nebius Serverless AI runs containerized AI workloads as Jobs or Endpoints without managing VMs. This project uses **both**:
 
-- Job 1: public data processing / feature generation
-- Job 2: ML training and evaluation
-- Job 3: batch scoring and JSON artifact generation
-- Endpoint (TF-IDF baseline): `/cv-fit` on CPU — always-on, reproducible
-- Endpoint (neural): `/cv-fit` with **BGE-M3** multilingual embeddings on **GPU (L40S)** — the AI/ML path
+- **Serverless AI Job** — runs `./scripts/rebuild_career_reality.sh` to build the role index + market artifacts (CPU; deterministic, reproducible).
+- **Serverless AI Endpoint — the AI/ML path** — a **grounded-LLM `/cv-fit` advisor on GPU**: deterministic TF-IDF retrieval over the role ontology produces the *facts* (matched roles, skill gaps, market signal, and **cross-region demand ranked by real ad volume**); a self-hosted **Qwen2.5-7B-Instruct** writes the verdict + "why" + region strategy, **constrained to those facts** — it may only use the role titles it is given, so it cannot hallucinate roles or numbers. That is a model-serving + RAG endpoint where the GPU does real work.
+- **CPU fallback** — the same image with no model set serves the deterministic TF-IDF report (reproducible; graceful when the GPU is down).
 
-The artifact-generation jobs are CPU-friendly (a GPU is unnecessary for that dataset size). The **neural `/cv-fit` endpoint** is the part that benefits from a GPU: it runs the BGE-M3 embedding model.
+Why grounded generation rather than a bare embedding model: retrieval stays deterministic (reproducible, grounded) while the LLM turns the evidence into genuinely CV- and region-specific advice — e.g. a senior SFMC CV in a thin region is told to go remote or to the regions that actually carry the ad volume.
 
 ### Verified deployment
 
-Run on **Nebius Serverless AI** from public GHCR images (linux/amd64). The `/cv-fit` service has **two backends deployed as two separate endpoints** — the stable TF-IDF baseline (CPU) and the neural BGE-M3 path (GPU):
+Run on **Nebius Serverless AI** from a public GHCR image (linux/amd64, `ghcr.io/selimsevim/cv-fit-endpoint:llm`):
 
-- **Serverless AI Job** `swedish-job-pulse-rebuild` (`cpu-d3` / `4vcpu-16gb`) — ran `./scripts/rebuild_career_reality.sh` and reached **COMPLETED**. Logs show **7/7 JSON artifacts validated** and the metrics: ML MAE 90.73 vs baseline 80.90; ML trend accuracy 0.61 vs 0.23; ML macro-F1 0.48 vs 0.12; CV primary-domain accuracy 1.0; CV no-collapse 1.0.
-- **Endpoint 1 — TF-IDF baseline** `swedish-job-pulse-cv-fit` (`cpu-d3` / `4vcpu-16gb`) — **RUNNING**, token-protected. `GET /health` → `{"status":"ok","backend":"tfidf-fallback","roles":41}`; `POST /cv-fit` → 200 with the full report for a synthetic SFMC CV; unauthenticated → **401**.
-- **Endpoint 2 — neural BGE-M3** `swedish-job-pulse-cv-fit-neural` (GPU **`gpu-l40s-d` / `1gpu-16vcpu-96gb`, 1× NVIDIA L40S**) — reached **RUNNING**, token-protected. `GET /health` → `{"status":"ok","backend":"neural","model":"BAAI/bge-m3","roles":41,"embedding_dim":1024}` (startup log: `neural backend active: BAAI/bge-m3 (dim=1024, roles=41)`). `POST /cv-fit` → 200: the SFMC CV maps to **CRM / Martech** and a data-analyst CV stays in **data analytics** (no collapse); unauthenticated → **401**. Warm latency **~0.10 s / request**. **Deleted after the proof to stop GPU billing.**
+- **Serverless AI Job** `swedish-job-pulse-rebuild` (`cpu-d3` / `4vcpu-16gb`) — ran `./scripts/rebuild_career_reality.sh` → **COMPLETED**; logs show **7/7 JSON artifacts validated**; CV primary-domain accuracy 1.0, no-collapse 1.0.
+- **Grounded-LLM Endpoint** `swedish-job-pulse-cv-fit-llm` (GPU **`gpu-l40s-d` / `1gpu-16vcpu-96gb`, 1× NVIDIA L40S**), token-protected. `GET /health` → `{"status":"ok","backend":"llm:Qwen/Qwen2.5-7B-Instruct","retrieval":"tfidf-fallback","roles":58,"llm":{"model":"Qwen/Qwen2.5-7B-Instruct","ok":true,"device":"cuda"}}`; unauthenticated `POST /cv-fit` → **401**; warm latency **~1.7 s / request**. The **same senior SFMC CV in different regions yields genuinely different, data-grounded advice**:
+  - *Stockholms län* → "Stockholm has the strongest local market with 1278 ads."
+  - *Norrbottens län / Gotlands län* (thin) → "few ads here — search Stockholm / Västra Götaland, or go remote."
+- **CPU TF-IDF endpoint** `swedish-job-pulse-cv-fit` (`cpu-d3` / `4vcpu-16gb`) — **RUNNING**, token-protected; `GET /health` → `{"backend":"tfidf-fallback","roles":58}` — the reproducible fallback.
 
-**Honest comparison** ([`data/neural_cv_match_metrics.json`](data/neural_cv_match_metrics.json)): both backends use the same rerank and only differ in semantic similarity (TF-IDF cosine vs BGE-M3 cosine). On the synthetic CV set they are **tied** (primary-domain 1.0, no-collapse 1.0, top-3 1.0) — **BGE-M3 is not claimed to beat TF-IDF here.** TF-IDF is ~sub-millisecond on CPU; BGE-M3 is ~0.1 s warm on the L40S. The neural path's real advantage is **learned multilingual paraphrase / abbreviation matching with no hand-written synonym list**, which the small synthetic set does not stress. The trend model is used for **direction** (grow/stable/decline), **not** exact vacancy-count prediction — baseline persistence has lower count MAE. The platform is built on **public Arbetsförmedlingen / JobTech job-ad signals, not all jobs in Sweden**. Both endpoints are **token-protected**, and **CV text is processed per request and not stored**.
+**Honesty.** Retrieval is deterministic and grounds the LLM (no invented roles or numbers); greedy decoding keeps it reproducible. Sales/marketing isn't broken out per region in the public ad data, so for martech CVs the regional view reads the closest tracked field (**Data/IT**) as a **disclosed proxy** rather than fabricating numbers. Built on **public Arbetsförmedlingen / JobTech job-ad signals, not all jobs in Sweden**. CV text is processed per request and **never stored or logged**. The GPU endpoint bills while running and is deleted after the proof to stop billing.
 
 Detailed Nebius notes, expected inputs/outputs, proof-of-execution screenshots, runtime expectations, and placeholder job commands are in [`nebius/README.md`](nebius/README.md).
 
@@ -264,6 +352,8 @@ Relevant official docs:
 ├── index.html
 ├── style.css
 ├── app.js
+├── app/                      # Railway public app (static serving + Nebius proxy)
+│   └── server.py             # FastAPI: serves frontend, POST /api/cv-fit → Nebius
 ├── data/
 │   ├── live.json
 │   ├── history.json
@@ -276,9 +366,19 @@ Relevant official docs:
 │   ├── process_career_reality.py
 │   └── rebuild_career_reality.sh
 ├── nebius/
-│   └── README.md
+│   ├── README.md
+│   └── cv_fit_endpoint/         # Serverless AI /cv-fit endpoint
+│       ├── app.py               # FastAPI: /cv-fit + /health
+│       ├── cv_fit_core.py       # deterministic TF-IDF retrieval + ranking (the facts)
+│       ├── cv_fit_llm.py        # grounded LLM narrative (Qwen2.5-7B), with fallback
+│       ├── Dockerfile.llm        # grounded-LLM GPU image (cv-fit-endpoint:llm)
+│       └── requirements-llm.txt
 ├── docs/
 │   └── blog-outline.md
+├── railway.json             # Railway build/deploy config (start command, healthcheck)
+├── nixpacks.toml            # Railway: install only requirements-railway.txt
+├── requirements-railway.txt # Lightweight deps for the Railway app (fastapi/uvicorn/httpx)
+├── env.example              # NEBIUS_CV_FIT_URL / NEBIUS_CV_FIT_TOKEN template
 ├── Dockerfile
 ├── SUBMISSION_CHECKLIST.md
 ├── requirements-ml.txt
@@ -320,6 +420,8 @@ requests==2.32.3
 - No personal data
 - No private data
 - No API keys or tokens required for the local rebuild
+- The Nebius token (`NEBIUS_CV_FIT_TOKEN`) lives **only** in Railway environment variables, read server-side by `app/server.py`. It is never embedded in `app.js`, `index.html`, or any file sent to the browser; `env.example` ships placeholders only.
+- The Railway proxy **never logs and never stores CV text** — it forwards each CV-fit request to Nebius once and returns the response.
 - No `.env` files committed
 - `.gitignore` excludes virtual environments, Python caches, `.DS_Store`, logs, local env files, and old screenshot exports
 

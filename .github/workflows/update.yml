@@ -35,6 +35,18 @@ jobs:
       - name: Collect data
         run: python scripts/collect.py
 
+      # Refresh the live-API / search-trends inputs so the weekly Career Reality
+      # rebuild uses CURRENT regional + crowding data, not a stale snapshot.
+      # continue-on-error: a transient API hiccup must not break the weekly run —
+      # the rebuild then falls back to the previously committed input.
+      - name: Refresh regional split (live API)
+        continue-on-error: true
+        run: python scripts/process_regional_split.py
+
+      - name: Refresh demand gap (search trends)
+        continue-on-error: true
+        run: python scripts/process_demand_gap.py
+
       - name: Rebuild Career Reality Check artifacts
         run: ./scripts/rebuild_career_reality.sh
 

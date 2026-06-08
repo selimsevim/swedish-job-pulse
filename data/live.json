@@ -1,52 +1,52 @@
 {
-  "week": "2026-W24",
-  "date": "2026-06-08",
-  "total_ads": 41013,
-  "total_positions": 72863,
-  "remote_ads": 519,
+  "week": "2026-W23",
+  "date": "2026-06-01",
+  "total_ads": 42486,
+  "total_positions": 78464,
+  "remote_ads": 597,
   "remote_by_field": [
-    {
-      "concept_id": "RPTn_bxG_ExZ",
-      "term": "Försäljning, inköp, marknadsföring",
-      "count": 125
-    },
     {
       "concept_id": "X82t_awd_Qyc",
       "term": "Administration, ekonomi, juridik",
-      "count": 114
+      "count": 151
+    },
+    {
+      "concept_id": "RPTn_bxG_ExZ",
+      "term": "Försäljning, inköp, marknadsföring",
+      "count": 136
     },
     {
       "concept_id": "apaJ_2ja_LuF",
       "term": "Data/IT",
-      "count": 82
+      "count": 100
     },
     {
       "concept_id": "NYW6_mP6_vwf",
       "term": "Hälso- och sjukvård",
-      "count": 67
+      "count": 69
     },
     {
       "concept_id": "6Hq3_tKo_V57",
       "term": "Yrken med teknisk inriktning",
-      "count": 36
+      "count": 45
     }
   ],
-  "entry_level_ads": 405,
+  "entry_level_ads": 511,
   "entry_by_field": [
     {
       "concept_id": "GazW_2TU_kJw",
       "term": "Yrken med social inriktning",
-      "count": 114
-    },
-    {
-      "concept_id": "RPTn_bxG_ExZ",
-      "term": "Försäljning, inköp, marknadsföring",
-      "count": 88
+      "count": 132
     },
     {
       "concept_id": "NYW6_mP6_vwf",
       "term": "Hälso- och sjukvård",
-      "count": 62
+      "count": 95
+    },
+    {
+      "concept_id": "RPTn_bxG_ExZ",
+      "term": "Försäljning, inköp, marknadsföring",
+      "count": 91
     },
     {
       "concept_id": "PaxQ_o1G_wWH",
@@ -56,112 +56,112 @@
     {
       "concept_id": "ScKy_FHB_7wT",
       "term": "Hotell, restaurang, storhushåll",
-      "count": 23
+      "count": 28
     }
   ],
-  "trainee_ads": 9,
-  "larling_ads": 19,
+  "trainee_ads": 6,
+  "larling_ads": 22,
   "by_occupation_field": [
     {
       "concept_id": "X82t_awd_Qyc",
       "term": "Administration, ekonomi, juridik",
-      "count": 7387
+      "count": 7717
     },
     {
       "concept_id": "NYW6_mP6_vwf",
       "term": "Hälso- och sjukvård",
-      "count": 5653
+      "count": 5769
     },
     {
       "concept_id": "MVqp_eS8_kDZ",
       "term": "Pedagogik",
-      "count": 4279
+      "count": 4821
     },
     {
       "concept_id": "GazW_2TU_kJw",
       "term": "Yrken med social inriktning",
-      "count": 3928
+      "count": 4178
     }
   ],
   "by_occupation_group": [
     {
       "concept_id": "sq3e_WVv_Fjd",
       "term": "Personliga assistenter",
-      "count": 2159
-    },
-    {
-      "concept_id": "Z8ci_bBE_tmx",
-      "term": "Grundutbildade sjuksköterskor",
-      "count": 1552
-    },
-    {
-      "concept_id": "bjqk_F3A_5Hk",
-      "term": "Personal- och HR-specialister",
-      "count": 1489
+      "count": 2160
     },
     {
       "concept_id": "oQUQ_D11_HPx",
       "term": "Grundskollärare",
-      "count": 1411
+      "count": 1617
+    },
+    {
+      "concept_id": "Z8ci_bBE_tmx",
+      "term": "Grundutbildade sjuksköterskor",
+      "count": 1582
+    },
+    {
+      "concept_id": "bjqk_F3A_5Hk",
+      "term": "Personal- och HR-specialister",
+      "count": 1443
     },
     {
       "concept_id": "DJh5_yyF_hEM",
       "term": "Mjukvaru- och systemutvecklare m.fl.",
-      "count": 1281
+      "count": 1259
     }
   ],
   "by_region": [
     {
       "concept_id": "CifL_Rzy_Mku",
       "term": "Stockholms län",
-      "count": 10417
+      "count": 10863
     },
     {
       "concept_id": "zdoY_6u5_Krt",
       "term": "Västra Götalands län",
-      "count": 6424
+      "count": 6743
     },
     {
       "concept_id": "CaRE_1nn_cSU",
       "term": "Skåne län",
-      "count": 4694
+      "count": 4995
     },
     {
       "concept_id": "oLT3_Q9p_3nn",
       "term": "Östergötlands län",
-      "count": 2209
+      "count": 2168
     },
     {
       "concept_id": "MtbE_xWT_eMi",
       "term": "Jönköpings län",
-      "count": 1621
+      "count": 1635
     }
   ],
   "by_municipality": [
     {
       "concept_id": "AvNB_uwa_6n6",
       "term": "Stockholm",
-      "count": 6311
+      "count": 6574
     },
     {
       "concept_id": "PVZL_BQT_XtL",
       "term": "Göteborg",
-      "count": 3033
+      "count": 3162
     },
     {
       "concept_id": "oYPt_yRA_Smm",
       "term": "Malmö",
-      "count": 1570
-    },
-    {
-      "concept_id": "bm2x_1mr_Qhx",
-      "term": "Linköping",
-      "count": 1099
+      "count": 1655
     },
     {
       "concept_id": "otaF_bQY_4ZD",
       "term": "Uppsala",
-      "count": 1008
+      "count": 1105
+    },
+    {
+      "concept_id": "bm2x_1mr_Qhx",
+      "term": "Linköping",
+      "count": 1050
     }
   ]
 }

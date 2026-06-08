@@ -1,0 +1,7 @@
+# Dependencies for the public Railway app (app/server.py).
+# Intentionally lightweight: this app only serves the static frontend and
+# proxies /api/cv-fit to Nebius — it does NOT run the ML/data pipeline, so the
+# heavy deps in requirements.txt / requirements-ml.txt are not installed here.
+fastapi>=0.110
+uvicorn[standard]>=0.29
+httpx>=0.27

@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-06-08T10:21:20Z",
+  "last_updated": "2026-06-05T13:34:13Z",
   "methodology_version": "career-reality-v1",
   "forecast_model_source": "ml",
   "sources": {
-    "live_week": "2026-W24",
+    "live_week": "2026-W23",
     "demand_gap_week": "2026-W14",
     "regional_split_week": "2026-W14",
     "skill_velocity_updated": "2026-04-05",
-    "forecast_updated": "2026-06-08T10:21:20Z"
+    "forecast_updated": "2026-06-05T13:34:13Z"
   },
   "regions": [
     {
@@ -2542,15 +2542,15 @@
       "field": "Yrken med social inriktning",
       "field_id": "GazW_2TU_kJw",
       "field_label": "Social care",
-      "current_ads": 2159,
+      "current_ads": 2160,
       "current_positions": null,
       "search_count": 20964,
       "demand_level": "high",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 2357,
-        "pct_change": 0.0918,
+        "forecast_ads_4w": 2372,
+        "pct_change": 0.0982,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -2624,17 +2624,17 @@
       "field": "Administration, ekonomi, juridik",
       "field_id": "X82t_awd_Qyc",
       "field_label": "Admin / economy / legal",
-      "current_ads": 1489,
+      "current_ads": 1443,
       "current_positions": null,
       "search_count": null,
       "demand_level": "high",
       "demand_trend": "rising",
       "trend_source": "history",
       "forecast": null,
-      "opportunity_score": 80,
+      "opportunity_score": 83,
       "crowding_risk": "unknown",
       "entry_level_signal": "unknown",
-      "remote_signal": "medium",
+      "remote_signal": "strong",
       "skill_momentum": "unknown",
       "regional_strength": [],
       "related_skills": [
@@ -2663,6 +2663,91 @@
       "best_for": [
         "realistic-now",
         "remote-friendly"
+      ],
+      "caution": null
+    },
+    {
+      "concept_id": "Z8ci_bBE_tmx",
+      "term": "Grundutbildade sjuksköterskor",
+      "field": "Hälso- och sjukvård",
+      "field_id": "NYW6_mP6_vwf",
+      "field_label": "Healthcare",
+      "current_ads": 1582,
+      "current_positions": null,
+      "search_count": 17348,
+      "demand_level": "high",
+      "demand_trend": "rising",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 1767,
+        "pct_change": 0.1168,
+        "trend_class": "grow",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 76,
+      "crowding_risk": "high",
+      "entry_level_signal": "medium",
+      "remote_signal": "weak",
+      "skill_momentum": "unknown",
+      "regional_strength": [
+        {
+          "region": "Uppsala län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Södermanlands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Gotlands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Gävleborgs län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Västernorrlands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Jämtlands län",
+          "score": 88,
+          "signal": "strong"
+        }
+      ],
+      "related_skills": [
+        {
+          "skill": "omvårdnad",
+          "signal": "unknown"
+        },
+        {
+          "skill": "journal",
+          "signal": "unknown"
+        },
+        {
+          "skill": "läkemedel",
+          "signal": "unknown"
+        },
+        {
+          "skill": "svensk legitimation",
+          "signal": "unknown"
+        },
+        {
+          "skill": "patient",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Strong, busy market, but competitive. Plenty of ads, plenty of applicants. Better for people who can already show proof than for complete beginners. Demand has been rising in recent weeks.",
+      "best_for": [
+        "experienced"
       ],
       "caution": null
     },
@@ -2746,61 +2831,6 @@
       "caution": null
     },
     {
-      "concept_id": "s1Qk_o98_2o1",
-      "term": "Butikssäljare, dagligvaror",
-      "field": "Försäljning, inköp, marknadsföring",
-      "field_id": "RPTn_bxG_ExZ",
-      "field_label": "Sales / marketing",
-      "current_ads": 1425,
-      "current_positions": null,
-      "search_count": 29443,
-      "demand_level": "high",
-      "demand_trend": "rising",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 650,
-        "pct_change": 0.0893,
-        "trend_class": "grow",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 71,
-      "crowding_risk": "high",
-      "entry_level_signal": "medium",
-      "remote_signal": "strong",
-      "skill_momentum": "declining",
-      "regional_strength": [],
-      "related_skills": [
-        {
-          "skill": "Customer Relationship Management/CRM",
-          "signal": "declining"
-        },
-        {
-          "skill": "Försäljningsvana, direktförsäljning konsument",
-          "signal": "stable"
-        },
-        {
-          "skill": "key account",
-          "signal": "unknown"
-        },
-        {
-          "skill": "förhandling",
-          "signal": "unknown"
-        },
-        {
-          "skill": "kundbemötande",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Strong, busy market, but competitive. Plenty of ads, plenty of applicants. Better for people who can already show proof than for complete beginners. Demand has been rising in recent weeks.",
-      "best_for": [
-        "experienced",
-        "remote-friendly"
-      ],
-      "caution": null
-    },
-    {
       "concept_id": "tPox_ie4_X9X",
       "term": "Restaurang- och köksbiträden m.fl.",
       "field": "Hotell, restaurang, storhushåll",
@@ -2813,8 +2843,8 @@
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1304,
-        "pct_change": 0.2528,
+        "forecast_ads_4w": 1398,
+        "pct_change": 0.3433,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -2882,20 +2912,75 @@
       "caution": "Entry-level access looks limited compared with total demand. Beginners may need a nearby role first."
     },
     {
-      "concept_id": "Z8ci_bBE_tmx",
-      "term": "Grundutbildade sjuksköterskor",
+      "concept_id": "s1Qk_o98_2o1",
+      "term": "Butikssäljare, dagligvaror",
+      "field": "Försäljning, inköp, marknadsföring",
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "current_ads": 1425,
+      "current_positions": null,
+      "search_count": 29443,
+      "demand_level": "high",
+      "demand_trend": "rising",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 753,
+        "pct_change": 0.2605,
+        "trend_class": "grow",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 68,
+      "crowding_risk": "high",
+      "entry_level_signal": "medium",
+      "remote_signal": "medium",
+      "skill_momentum": "declining",
+      "regional_strength": [],
+      "related_skills": [
+        {
+          "skill": "Customer Relationship Management/CRM",
+          "signal": "declining"
+        },
+        {
+          "skill": "Försäljningsvana, direktförsäljning konsument",
+          "signal": "stable"
+        },
+        {
+          "skill": "key account",
+          "signal": "unknown"
+        },
+        {
+          "skill": "förhandling",
+          "signal": "unknown"
+        },
+        {
+          "skill": "kundbemötande",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Strong, busy market, but competitive. Plenty of ads, plenty of applicants. Better for people who can already show proof than for complete beginners. Demand has been rising in recent weeks.",
+      "best_for": [
+        "experienced",
+        "remote-friendly"
+      ],
+      "caution": null
+    },
+    {
+      "concept_id": "jY19_knH_MJp",
+      "term": "Undersköterskor, hemtjänst, hemsjukvård, äldreboende och habilitering",
       "field": "Hälso- och sjukvård",
       "field_id": "NYW6_mP6_vwf",
       "field_label": "Healthcare",
-      "current_ads": 1552,
+      "current_ads": 1359,
       "current_positions": null,
-      "search_count": 17348,
+      "search_count": 26661,
       "demand_level": "high",
       "demand_trend": "stable",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1593,
-        "pct_change": 0.0263,
+        "forecast_ads_4w": 1300,
+        "pct_change": -0.052,
         "trend_class": "stable",
         "horizon_weeks": 4,
         "source": "ml",
@@ -2979,8 +3064,8 @@
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 974,
-        "pct_change": 0.4887,
+        "forecast_ads_4w": 995,
+        "pct_change": 0.521,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3060,8 +3145,8 @@
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 645,
-        "pct_change": 0.0807,
+        "forecast_ads_4w": 704,
+        "pct_change": 0.1788,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3134,15 +3219,15 @@
       "field": "Pedagogik",
       "field_id": "MVqp_eS8_kDZ",
       "field_label": "Education",
-      "current_ads": 1411,
+      "current_ads": 1617,
       "current_positions": null,
       "search_count": 69079,
       "demand_level": "high",
       "demand_trend": "stable",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1507,
-        "pct_change": 0.0678,
+        "forecast_ads_4w": 1583,
+        "pct_change": -0.0212,
         "trend_class": "stable",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3211,15 +3296,15 @@
       "field": "Data/IT",
       "field_id": "apaJ_2ja_LuF",
       "field_label": "Data / IT",
-      "current_ads": 1281,
+      "current_ads": 1259,
       "current_positions": null,
       "search_count": 15227,
       "demand_level": "high",
       "demand_trend": "stable",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1348,
-        "pct_change": 0.0525,
+        "forecast_ads_4w": 1342,
+        "pct_change": 0.0655,
         "trend_class": "stable",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3292,91 +3377,6 @@
       "caution": null
     },
     {
-      "concept_id": "jY19_knH_MJp",
-      "term": "Undersköterskor, hemtjänst, hemsjukvård, äldreboende och habilitering",
-      "field": "Hälso- och sjukvård",
-      "field_id": "NYW6_mP6_vwf",
-      "field_label": "Healthcare",
-      "current_ads": 1359,
-      "current_positions": null,
-      "search_count": 26661,
-      "demand_level": "high",
-      "demand_trend": "declining",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 1236,
-        "pct_change": -0.0986,
-        "trend_class": "decline",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 60,
-      "crowding_risk": "high",
-      "entry_level_signal": "medium",
-      "remote_signal": "weak",
-      "skill_momentum": "unknown",
-      "regional_strength": [
-        {
-          "region": "Uppsala län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Södermanlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Gotlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Gävleborgs län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Västernorrlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Jämtlands län",
-          "score": 88,
-          "signal": "strong"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "omvårdnad",
-          "signal": "unknown"
-        },
-        {
-          "skill": "journal",
-          "signal": "unknown"
-        },
-        {
-          "skill": "läkemedel",
-          "signal": "unknown"
-        },
-        {
-          "skill": "svensk legitimation",
-          "signal": "unknown"
-        },
-        {
-          "skill": "patient",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Strong, busy market, but competitive. Plenty of ads, plenty of applicants. Better for people who can already show proof than for complete beginners. Demand has been softening in recent weeks.",
-      "best_for": [
-        "experienced"
-      ],
-      "caution": null
-    },
-    {
       "concept_id": "nu7c_QuB_KVQ",
       "term": "Specialistläkare",
       "field": "Hälso- och sjukvård",
@@ -3389,8 +3389,8 @@
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 676,
-        "pct_change": 0.2033,
+        "forecast_ads_4w": 735,
+        "pct_change": 0.3073,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3472,8 +3472,8 @@
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1299,
-        "pct_change": 0.6243,
+        "forecast_ads_4w": 1245,
+        "pct_change": 0.5558,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3551,8 +3551,8 @@
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1349,
-        "pct_change": 0.3063,
+        "forecast_ads_4w": 1478,
+        "pct_change": 0.4308,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3613,8 +3613,8 @@
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1448,
-        "pct_change": 0.5687,
+        "forecast_ads_4w": 1568,
+        "pct_change": 0.6988,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3696,8 +3696,8 @@
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1599,
-        "pct_change": 0.982,
+        "forecast_ads_4w": 1324,
+        "pct_change": 0.6401,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3779,8 +3779,8 @@
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 690,
-        "pct_change": 0.1111,
+        "forecast_ads_4w": 773,
+        "pct_change": 0.2452,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3858,8 +3858,8 @@
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 550,
-        "pct_change": 0.1497,
+        "forecast_ads_4w": 668,
+        "pct_change": 0.3965,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3921,20 +3921,20 @@
       "caution": null
     },
     {
-      "concept_id": "BStc_SJh_DKG",
-      "term": "Kockar och kallskänkor",
+      "concept_id": "UjoW_meY_Zwt",
+      "term": "Hovmästare och servitörer",
       "field": "Hotell, restaurang, storhushåll",
       "field_id": "ScKy_FHB_7wT",
       "field_label": "Hospitality / food",
-      "current_ads": 842,
+      "current_ads": 537,
       "current_positions": null,
-      "search_count": 13622,
+      "search_count": 7716,
       "demand_level": "medium",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1191,
-        "pct_change": 0.2984,
+        "forecast_ads_4w": 658,
+        "pct_change": 0.0829,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -4000,107 +4000,26 @@
       "caution": "Entry-level access looks limited compared with total demand. Beginners may need a nearby role first."
     },
     {
-      "concept_id": "aA2Z_9XX_R1v",
-      "term": "Fritidsledare m.fl.",
-      "field": "Yrken med social inriktning",
-      "field_id": "GazW_2TU_kJw",
-      "field_label": "Social care",
-      "current_ads": 425,
+      "concept_id": "BStc_SJh_DKG",
+      "term": "Kockar och kallskänkor",
+      "field": "Hotell, restaurang, storhushåll",
+      "field_id": "ScKy_FHB_7wT",
+      "field_label": "Hospitality / food",
+      "current_ads": 842,
       "current_positions": null,
-      "search_count": 16014,
-      "demand_level": "low",
+      "search_count": 13622,
+      "demand_level": "medium",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 123,
-        "pct_change": 0.3505,
+        "forecast_ads_4w": 1418,
+        "pct_change": 0.5465,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
         "confidence": "high"
       },
-      "opportunity_score": 47,
-      "crowding_risk": "high",
-      "entry_level_signal": "strong",
-      "remote_signal": "unknown",
-      "skill_momentum": "growing",
-      "regional_strength": [
-        {
-          "region": "Jönköpings län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Gotlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Blekinge län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Värmlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Dalarnas län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Gävleborgs län",
-          "score": 88,
-          "signal": "strong"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "Socionomexamen",
-          "signal": "growing"
-        },
-        {
-          "skill": "dokumentation",
-          "signal": "unknown"
-        },
-        {
-          "skill": "bemötande",
-          "signal": "unknown"
-        },
-        {
-          "skill": "lågaffektivt",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step. Demand has been rising in recent weeks.",
-      "best_for": [
-        "entry-friendly"
-      ],
-      "caution": null
-    },
-    {
-      "concept_id": "UjoW_meY_Zwt",
-      "term": "Hovmästare och servitörer",
-      "field": "Hotell, restaurang, storhushåll",
-      "field_id": "ScKy_FHB_7wT",
-      "field_label": "Hospitality / food",
-      "current_ads": 537,
-      "current_positions": null,
-      "search_count": 7716,
-      "demand_level": "medium",
-      "demand_trend": "stable",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 610,
-        "pct_change": 0.0041,
-        "trend_class": "stable",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 43,
+      "opportunity_score": 51,
       "crowding_risk": "high",
       "entry_level_signal": "weak",
       "remote_signal": "unknown",
@@ -4155,7 +4074,7 @@
           "signal": "unknown"
         }
       ],
-      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings.",
+      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings. Demand has been rising in recent weeks.",
       "best_for": [],
       "caution": "Entry-level access looks limited compared with total demand. Beginners may need a nearby role first."
     },
@@ -4172,8 +4091,8 @@
       "demand_trend": "stable",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 450,
-        "pct_change": -0.0638,
+        "forecast_ads_4w": 464,
+        "pct_change": -0.0361,
         "trend_class": "stable",
         "horizon_weeks": 4,
         "source": "ml",
@@ -4253,8 +4172,8 @@
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 526,
-        "pct_change": 0.6928,
+        "forecast_ads_4w": 543,
+        "pct_change": 0.746,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -4320,6 +4239,114 @@
       "caution": null
     },
     {
+      "concept_id": "vPP6_rsw_dck",
+      "term": "Planerare och utredare m.fl.",
+      "field": "Administration, ekonomi, juridik",
+      "field_id": "X82t_awd_Qyc",
+      "field_label": "Admin / economy / legal",
+      "current_ads": 489,
+      "current_positions": null,
+      "search_count": 29384,
+      "demand_level": "low",
+      "demand_trend": "rising",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 444,
+        "pct_change": 0.093,
+        "trend_class": "grow",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 35,
+      "crowding_risk": "high",
+      "entry_level_signal": "unknown",
+      "remote_signal": "strong",
+      "skill_momentum": "unknown",
+      "regional_strength": [],
+      "related_skills": [
+        {
+          "skill": "excel",
+          "signal": "unknown"
+        },
+        {
+          "skill": "sql",
+          "signal": "unknown"
+        },
+        {
+          "skill": "redovisning",
+          "signal": "unknown"
+        },
+        {
+          "skill": "lön",
+          "signal": "unknown"
+        },
+        {
+          "skill": "bokföring",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step. Demand has been rising in recent weeks.",
+      "best_for": [
+        "remote-friendly"
+      ],
+      "caution": null
+    },
+    {
+      "concept_id": "pwRH_MT1_8nR",
+      "term": "Kundtjänstpersonal",
+      "field": "Administration, ekonomi, juridik",
+      "field_id": "X82t_awd_Qyc",
+      "field_label": "Admin / economy / legal",
+      "current_ads": 463,
+      "current_positions": null,
+      "search_count": 20172,
+      "demand_level": "low",
+      "demand_trend": "rising",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 620,
+        "pct_change": 0.3334,
+        "trend_class": "grow",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 35,
+      "crowding_risk": "high",
+      "entry_level_signal": "unknown",
+      "remote_signal": "strong",
+      "skill_momentum": "unknown",
+      "regional_strength": [],
+      "related_skills": [
+        {
+          "skill": "excel",
+          "signal": "unknown"
+        },
+        {
+          "skill": "sql",
+          "signal": "unknown"
+        },
+        {
+          "skill": "redovisning",
+          "signal": "unknown"
+        },
+        {
+          "skill": "lön",
+          "signal": "unknown"
+        },
+        {
+          "skill": "bokföring",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step. Demand has been rising in recent weeks.",
+      "best_for": [
+        "remote-friendly"
+      ],
+      "caution": null
+    },
+    {
       "concept_id": "SPYW_7Z1_ShT",
       "term": "Civilingenjörsyrken inom elektroteknik",
       "field": "Yrken med teknisk inriktning",
@@ -4332,8 +4359,8 @@
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 500,
-        "pct_change": 0.3483,
+        "forecast_ads_4w": 478,
+        "pct_change": 0.2897,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -4411,8 +4438,8 @@
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 534,
-        "pct_change": 0.1007,
+        "forecast_ads_4w": 601,
+        "pct_change": 0.2397,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -4478,20 +4505,20 @@
       "caution": null
     },
     {
-      "concept_id": "pwRH_MT1_8nR",
-      "term": "Kundtjänstpersonal",
-      "field": "Administration, ekonomi, juridik",
-      "field_id": "X82t_awd_Qyc",
-      "field_label": "Admin / economy / legal",
-      "current_ads": 463,
+      "concept_id": "thZP_oR7_WrY",
+      "term": "Ingenjörer och tekniker inom bygg och anläggning",
+      "field": "Bygg och anläggning",
+      "field_id": "j7Cq_ZJe_GkT",
+      "field_label": "Construction",
+      "current_ads": 470,
       "current_positions": null,
-      "search_count": 20172,
+      "search_count": 8344,
       "demand_level": "low",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 546,
-        "pct_change": 0.1737,
+        "forecast_ads_4w": 501,
+        "pct_change": 0.1124,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -4500,34 +4527,136 @@
       "opportunity_score": 32,
       "crowding_risk": "high",
       "entry_level_signal": "unknown",
-      "remote_signal": "medium",
-      "skill_momentum": "unknown",
-      "regional_strength": [],
+      "remote_signal": "unknown",
+      "skill_momentum": "declining",
+      "regional_strength": [
+        {
+          "region": "Stockholms län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Västerbottens län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Norrbottens län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Södermanlands län",
+          "score": 62,
+          "signal": "medium"
+        },
+        {
+          "region": "Skåne län",
+          "score": 62,
+          "signal": "medium"
+        },
+        {
+          "region": "Hallands län",
+          "score": 62,
+          "signal": "medium"
+        }
+      ],
       "related_skills": [
         {
-          "skill": "excel",
+          "skill": "Ritningsläsning",
+          "signal": "declining"
+        },
+        {
+          "skill": "byggvana",
           "signal": "unknown"
         },
         {
-          "skill": "sql",
-          "signal": "unknown"
-        },
-        {
-          "skill": "redovisning",
-          "signal": "unknown"
-        },
-        {
-          "skill": "lön",
-          "signal": "unknown"
-        },
-        {
-          "skill": "bokföring",
+          "skill": "ställning",
           "signal": "unknown"
         }
       ],
       "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step. Demand has been rising in recent weeks.",
+      "best_for": [],
+      "caution": null
+    },
+    {
+      "concept_id": "aA2Z_9XX_R1v",
+      "term": "Fritidsledare m.fl.",
+      "field": "Yrken med social inriktning",
+      "field_id": "GazW_2TU_kJw",
+      "field_label": "Social care",
+      "current_ads": 425,
+      "current_positions": null,
+      "search_count": 16014,
+      "demand_level": "low",
+      "demand_trend": "declining",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 82,
+        "pct_change": -0.0982,
+        "trend_class": "decline",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 31,
+      "crowding_risk": "high",
+      "entry_level_signal": "strong",
+      "remote_signal": "unknown",
+      "skill_momentum": "growing",
+      "regional_strength": [
+        {
+          "region": "Jönköpings län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Gotlands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Blekinge län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Värmlands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Dalarnas län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Gävleborgs län",
+          "score": 88,
+          "signal": "strong"
+        }
+      ],
+      "related_skills": [
+        {
+          "skill": "Socionomexamen",
+          "signal": "growing"
+        },
+        {
+          "skill": "dokumentation",
+          "signal": "unknown"
+        },
+        {
+          "skill": "bemötande",
+          "signal": "unknown"
+        },
+        {
+          "skill": "lågaffektivt",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step. Demand has been softening in recent weeks.",
       "best_for": [
-        "remote-friendly"
+        "entry-friendly"
       ],
       "caution": null
     },
@@ -4544,8 +4673,8 @@
       "demand_trend": "stable",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 380,
-        "pct_change": -0.0526,
+        "forecast_ads_4w": 410,
+        "pct_change": 0.0217,
         "trend_class": "stable",
         "horizon_weeks": 4,
         "source": "ml",
@@ -4608,135 +4737,6 @@
       ],
       "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step.",
       "best_for": [],
-      "caution": null
-    },
-    {
-      "concept_id": "thZP_oR7_WrY",
-      "term": "Ingenjörer och tekniker inom bygg och anläggning",
-      "field": "Bygg och anläggning",
-      "field_id": "j7Cq_ZJe_GkT",
-      "field_label": "Construction",
-      "current_ads": 470,
-      "current_positions": null,
-      "search_count": 8344,
-      "demand_level": "low",
-      "demand_trend": "stable",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 458,
-        "pct_change": 0.0184,
-        "trend_class": "stable",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 24,
-      "crowding_risk": "high",
-      "entry_level_signal": "unknown",
-      "remote_signal": "unknown",
-      "skill_momentum": "declining",
-      "regional_strength": [
-        {
-          "region": "Stockholms län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Västerbottens län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Norrbottens län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Södermanlands län",
-          "score": 62,
-          "signal": "medium"
-        },
-        {
-          "region": "Skåne län",
-          "score": 62,
-          "signal": "medium"
-        },
-        {
-          "region": "Hallands län",
-          "score": 62,
-          "signal": "medium"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "Ritningsläsning",
-          "signal": "declining"
-        },
-        {
-          "skill": "byggvana",
-          "signal": "unknown"
-        },
-        {
-          "skill": "ställning",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step.",
-      "best_for": [],
-      "caution": null
-    },
-    {
-      "concept_id": "vPP6_rsw_dck",
-      "term": "Planerare och utredare m.fl.",
-      "field": "Administration, ekonomi, juridik",
-      "field_id": "X82t_awd_Qyc",
-      "field_label": "Admin / economy / legal",
-      "current_ads": 489,
-      "current_positions": null,
-      "search_count": 29384,
-      "demand_level": "low",
-      "demand_trend": "stable",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 420,
-        "pct_change": 0.0353,
-        "trend_class": "stable",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 24,
-      "crowding_risk": "high",
-      "entry_level_signal": "unknown",
-      "remote_signal": "medium",
-      "skill_momentum": "unknown",
-      "regional_strength": [],
-      "related_skills": [
-        {
-          "skill": "excel",
-          "signal": "unknown"
-        },
-        {
-          "skill": "sql",
-          "signal": "unknown"
-        },
-        {
-          "skill": "redovisning",
-          "signal": "unknown"
-        },
-        {
-          "skill": "lön",
-          "signal": "unknown"
-        },
-        {
-          "skill": "bokföring",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step.",
-      "best_for": [
-        "remote-friendly"
-      ],
       "caution": null
     }
   ],

@@ -1,0 +1,11 @@
+# Grounded-LLM /cv-fit endpoint (the Nebius GPU path).
+# Retrieval stays deterministic TF-IDF (standard library); the LLM writes the
+# narrative. torch is already in the pytorch CUDA base image, so this only adds
+# transformers + accelerate (small layers, fast cross-arch build).
+transformers==4.44.2
+accelerate>=0.33,<1.1
+numpy>=1.26,<2.2
+huggingface-hub>=0.24
+fastapi>=0.110
+uvicorn>=0.29
+pydantic>=2.6

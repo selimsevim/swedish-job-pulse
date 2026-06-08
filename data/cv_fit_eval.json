@@ -1,0 +1,586 @@
+{
+  "generated": "2026-06-08T08:01:51Z",
+  "summary": {
+    "n_cvs": 26,
+    "domain_accuracy": 1.0,
+    "top3_domain_hit": 1.0,
+    "no_collapse_rate": 1.0,
+    "group_routing_accuracy": 1.0,
+    "group_routing_n": 9,
+    "gap_relevance_rate": 1.0,
+    "gap_relevance_n": 5,
+    "backend": "tfidf-fallback"
+  },
+  "per_cv": [
+    {
+      "cv": "SFMC / Martech Integration (senior)",
+      "primary_domain": "crm_martech",
+      "expected_domain": "crm_martech",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Segmentation",
+        "ETL",
+        "Email marketing",
+        "Reporting"
+      ],
+      "best": [
+        "Salesforce Marketing Cloud Consultant",
+        "Solution Architect, Marketing Technology",
+        "Martech Consultant"
+      ]
+    },
+    {
+      "cv": "Marketing / CRM (mid)",
+      "primary_domain": "crm_martech",
+      "expected_domain": "crm_martech",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "SQL",
+        "Integration",
+        "Architecture",
+        "Customer service",
+        "Swedish Working Proficiency"
+      ],
+      "best": [
+        "Marketing Automation Specialist",
+        "Campaign Operations Specialist",
+        "CRM Analyst"
+      ]
+    },
+    {
+      "cv": "Data analyst (mid)",
+      "primary_domain": "data_analytics",
+      "expected_domain": "data_analytics",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": "Systemanalytiker och IT-arkitekter m.fl.",
+      "group_ok": true,
+      "gap_ok": true,
+      "missing_skills": [
+        "Microsoft Dynamics AX",
+        "Configuration Management/CM",
+        "Microsoft Dynamics NAV",
+        "Mjukvaruutveckling",
+        "Customer Relationship Management/CRM"
+      ],
+      "best": [
+        "Data Analyst",
+        "BI / Reporting Specialist",
+        "Operations Analyst"
+      ]
+    },
+    {
+      "cv": "Data engineer (mid)",
+      "primary_domain": "data_analytics",
+      "expected_domain": "data_analytics",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Linux",
+        "C++",
+        "Java",
+        "Mjukvaruutveckling",
+        "Systemutveckling"
+      ],
+      "best": [
+        "Data Engineer",
+        "Data Integration Specialist",
+        "Marketing Operations Engineer"
+      ]
+    },
+    {
+      "cv": "Junior developer (entry)",
+      "primary_domain": "software",
+      "expected_domain": "software",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": "Mjukvaru- och systemutvecklare m.fl.",
+      "group_ok": true,
+      "gap_ok": null,
+      "missing_skills": [
+        "Java",
+        "C++",
+        "Linux",
+        "Mjukvaruutveckling",
+        "Systemutveckling"
+      ],
+      "best": [
+        "Junior Developer",
+        "Software Developer",
+        "Integration Specialist"
+      ]
+    },
+    {
+      "cv": "Teaching assistant (entry)",
+      "primary_domain": "education",
+      "expected_domain": "education",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": "Elevassistenter m.fl.",
+      "group_ok": true,
+      "gap_ok": null,
+      "missing_skills": [
+        "Barn med särskilda behov",
+        "Python",
+        "Autismspektrumtillstånd",
+        "Elever med funktionsnedsättning",
+        "Barn och ungdom"
+      ],
+      "best": [
+        "Teaching Assistant / Elevassistent",
+        "Teacher / Lärare",
+        "Preschool Teacher / Förskollärare"
+      ]
+    },
+    {
+      "cv": "Admin / reporting (mid)",
+      "primary_domain": "admin_ops",
+      "expected_domain": "admin_ops",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Receptionsvana",
+        "Customer Relationship Management/CRM",
+        "Fortnox",
+        "Avtalsjuridik",
+        "Bokföringsvana"
+      ],
+      "best": [
+        "Admin Coordinator",
+        "Reporting Assistant",
+        "Operations Analyst"
+      ]
+    },
+    {
+      "cv": "Assistant nurse (entry)",
+      "primary_domain": "healthcare",
+      "expected_domain": "healthcare",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Legitimation som sjuksköterska",
+        "Vård av äldre",
+        "Sjuksköterskeexamen",
+        "Demensvård",
+        "Behörighet som kontaktlinsoptiker"
+      ],
+      "best": [
+        "Assistant Nurse",
+        "Registered Nurse"
+      ]
+    },
+    {
+      "cv": "Warehouse / logistics (entry)",
+      "primary_domain": "logistics",
+      "expected_domain": "logistics",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Yrkeskompetensbevis YKB",
+        "ADR",
+        "ADR 1.3",
+        "Budtransporter",
+        "Distributionskörning"
+      ],
+      "best": [
+        "Warehouse Worker",
+        "Truck Driver"
+      ]
+    },
+    {
+      "cv": "Security guard / väktare (entry)",
+      "primary_domain": "security",
+      "expected_domain": "security",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Väktarutbildning (grundutbildning)",
+        "Svenskt medborgarskap",
+        "Hundförarkompetens",
+        "Hunddagis",
+        "Djurslagsspecialisering"
+      ],
+      "best": [
+        "Security Officer / Väktare",
+        "Security Coordinator"
+      ]
+    },
+    {
+      "cv": "Construction worker (entry)",
+      "primary_domain": "construction",
+      "expected_domain": "construction",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Certifikat",
+        "Yrkesbevis",
+        "Projektledning",
+        "Ritningsläsning",
+        "Plattsättning"
+      ],
+      "best": [
+        "Construction Worker / Byggnadsarbetare",
+        "Carpenter / Snickare"
+      ]
+    },
+    {
+      "cv": "Cleaner / lokalvårdare (entry)",
+      "primary_domain": "cleaning",
+      "expected_domain": "cleaning",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Yrkesbevis",
+        "Barntillsyn",
+        "God fysik (tunga lyft)",
+        "Fönsterputsning",
+        "Arbetsledarerfarenhet"
+      ],
+      "best": [
+        "Cleaner / Lokalvårdare"
+      ]
+    },
+    {
+      "cv": "Social worker / socialsekreterare (mid)",
+      "primary_domain": "social_care",
+      "expected_domain": "social_care",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Receptionsvana",
+        "Begravningstjänster",
+        "Avtalsjuridik",
+        "Allmän omvårdnadserfarenhet",
+        "Omvårdnad"
+      ],
+      "best": [
+        "Social Worker / Socialsekreterare",
+        "Support Worker / Stödassistent"
+      ]
+    },
+    {
+      "cv": "IT support technician (mid)",
+      "primary_domain": "software",
+      "expected_domain": "software",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": "Supporttekniker, IT",
+      "group_ok": true,
+      "gap_ok": true,
+      "missing_skills": [
+        "Användarsupport",
+        "PC-datorer",
+        "Mobiltelefoni",
+        "IT-konsultuppdrag",
+        "MS Office"
+      ],
+      "best": [
+        "IT Support Technician"
+      ]
+    },
+    {
+      "cv": "QA / test engineer (mid)",
+      "primary_domain": "software",
+      "expected_domain": "software",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": "Systemtestare och testledare",
+      "group_ok": true,
+      "gap_ok": true,
+      "missing_skills": [
+        "Testning",
+        "Systemtestning",
+        "Git",
+        "Testkoordinering",
+        "C"
+      ],
+      "best": [
+        "QA / Test Engineer",
+        "Integration Specialist"
+      ]
+    },
+    {
+      "cv": "DevOps engineer (mid)",
+      "primary_domain": "software",
+      "expected_domain": "software",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": "Drifttekniker, IT",
+      "group_ok": true,
+      "gap_ok": true,
+      "missing_skills": [
+        "Data- och nätverkslösningar",
+        "Windows Server",
+        "Användarsupport",
+        "PC-datorer",
+        "Nätverk"
+      ],
+      "best": [
+        "DevOps Engineer"
+      ]
+    },
+    {
+      "cv": "Dataanalytiker (svensk CV)",
+      "primary_domain": "data_analytics",
+      "expected_domain": "data_analytics",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": "Systemanalytiker och IT-arkitekter m.fl.",
+      "group_ok": true,
+      "gap_ok": true,
+      "missing_skills": [
+        "Microsoft Dynamics AX",
+        "Configuration Management/CM",
+        "Microsoft Dynamics NAV",
+        "Mjukvaruutveckling",
+        "Customer Relationship Management/CRM"
+      ],
+      "best": [
+        "Data Analyst",
+        "Operations Analyst",
+        "BI / Reporting Specialist"
+      ]
+    },
+    {
+      "cv": "Registered nurse (mid)",
+      "primary_domain": "healthcare",
+      "expected_domain": "healthcare",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Vård av äldre",
+        "Sjuksköterskeexamen",
+        "Hemtjänst",
+        "Demensvård",
+        "Behörighet som kontaktlinsoptiker"
+      ],
+      "best": [
+        "Registered Nurse",
+        "Assistant Nurse"
+      ]
+    },
+    {
+      "cv": "Account manager / sales (mid)",
+      "primary_domain": "sales",
+      "expected_domain": "sales",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Butiksvana",
+        "Marknadsföring/Marknadskommunikation",
+        "Kassavana",
+        "Marknadsföring/PR",
+        "Besöksbokning"
+      ],
+      "best": [
+        "Account Manager",
+        "Sales Coordinator"
+      ]
+    },
+    {
+      "cv": "SEO / digital marketing (mid)",
+      "primary_domain": "digital_marketing",
+      "expected_domain": "digital_marketing",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [],
+      "best": [
+        "Content Marketing Specialist",
+        "SEO Specialist",
+        "Social Media Specialist"
+      ]
+    },
+    {
+      "cv": "Production operator (entry)",
+      "primary_domain": "manufacturing",
+      "expected_domain": "manufacturing",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Ritningsläsning",
+        "Däckbyten",
+        "Personbilslackering",
+        "Mätteknik",
+        "Verkstadsmetallarbete"
+      ],
+      "best": [
+        "Production Operator / Operatör",
+        "Welder / Svetsare"
+      ]
+    },
+    {
+      "cv": "Maintenance technician (mid)",
+      "primary_domain": "maintenance",
+      "expected_domain": "maintenance",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Elteknik",
+        "Fordonsteknik",
+        "Automationsteknik",
+        "Mekaniska reparationsarbeten",
+        "Ritningsläsning"
+      ],
+      "best": [
+        "Maintenance Technician / Fastighetsskötare",
+        "Electrician / Elektriker"
+      ]
+    },
+    {
+      "cv": "Hairdresser / frisör (entry)",
+      "primary_domain": "beauty",
+      "expected_domain": "beauty",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": null,
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Diplomerad massageterapeut",
+        "Diplomerad massör",
+        "Medicinsk fotvård",
+        "Klassisk massage",
+        "Certifierad massör"
+      ],
+      "best": [
+        "Hairdresser / Frisör"
+      ]
+    },
+    {
+      "cv": "Café / restaurant service (entry)",
+      "primary_domain": "hospitality",
+      "expected_domain": "hospitality",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": "Hovmästare och servitörer",
+      "group_ok": null,
+      "gap_ok": null,
+      "missing_skills": [
+        "Kassavana",
+        "Bararbete",
+        "Vinkunskap",
+        "Sommelierkompetens",
+        "A la carte"
+      ],
+      "best": [
+        "Waiter / Servitör",
+        "Barista / Café"
+      ]
+    },
+    {
+      "cv": "Preschool teacher (mid)",
+      "primary_domain": "education",
+      "expected_domain": "education",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": "Förskollärare",
+      "group_ok": true,
+      "gap_ok": null,
+      "missing_skills": [
+        "Förskollärarexamen",
+        "Förskollärarlegitimation",
+        "Lärarlegitimation",
+        "Pedagogiskt ledarskap",
+        "Lärarexamen"
+      ],
+      "best": [
+        "Preschool Teacher / Förskollärare",
+        "Childminder / Barnskötare",
+        "Teacher / Lärare"
+      ]
+    },
+    {
+      "cv": "Chef / kock (entry)",
+      "primary_domain": "hospitality",
+      "expected_domain": "hospitality",
+      "domain_hit": true,
+      "top3_domain_hit": true,
+      "no_collapse": true,
+      "matched_occupation_group": "Kockar och kallskänkor",
+      "group_ok": true,
+      "gap_ok": null,
+      "missing_skills": [
+        "Sushi",
+        "Livsmedelshygien",
+        "Husmanskost",
+        "Pizzabakning",
+        "Arbetsledarerfarenhet"
+      ],
+      "best": [
+        "Chef / Kock"
+      ]
+    }
+  ]
+}

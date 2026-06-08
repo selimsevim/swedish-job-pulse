@@ -71,8 +71,10 @@ is **learned, not enumerated**, so the hand-written synonym list is unnecessary.
 
 Returns the same report structure as the website: `main_answer`,
 `best_fit_roles`, `adjacent_roles`, `not_your_main_lane_roles`, `missing_skills`,
-`cv_improvements`, `search_keywords`, `action_plan_7_day`, `market_signal`, plus
-`backend` and `extracted`. A synthetic request is in
+`matched_occupation_group` (the SSYK occupation group the gaps are grounded in,
+or `null` when whole-field demand is used), `cv_improvements`, `search_keywords`,
+`action_plan_7_day`, `market_signal`, plus `backend` and `extracted`. A synthetic
+request is in
 [`test_payload.json`](./test_payload.json); the expected shape (TF-IDF fallback)
 is in [`expected_response.json`](./expected_response.json).
 
@@ -93,10 +95,26 @@ docker run --rm -p 8080:8080 cv_fit_endpoint
 # neural: docker run --rm -e CV_FIT_EMBEDDING_MODEL=BAAI/bge-m3 -p 8080:8080 cv_fit_endpoint
 ```
 
+## Keeping data fresh without rebuilding the image
+
+The image bakes a copy of `data/`, but the datasets are refreshed weekly/monthly
+by GitHub Actions. Set **`CV_FIT_DATA_URL`** to a base (object storage, or even a
+`raw.githubusercontent.com/<repo>/<branch>/data` URL) and the endpoint pulls the
+latest `cv_match_index.json`, `career_reality.json`, `regional_split.json` and
+`field_skills.json` at startup — so a restart picks up new data with no rebuild.
+Each file is validated as JSON before it replaces the baked copy, so a bad fetch
+never takes the endpoint down. `GET /health` reports `data.index_updated`,
+`data.field_skills_years` and `data.refreshed_from_url` so you can confirm what
+loaded.
+
 ## Environment variables
 
 | Var | Default | Purpose |
 |---|---|---|
 | `CV_FIT_EMBEDDING_MODEL` | _(unset → TF-IDF)_ | Neural embedding model id (e.g. `BAAI/bge-m3`) |
-| `CV_FIT_INDEX_PATH` | `data/cv_match_index.json` | Role ontology + vectors |
-| `CV_FIT_CAREER_PATH` | `data/career_reality.json` | Market signals (optional) |
+| `CV_FIT_DATA_URL` | _(unset)_ | Base URL to pull the latest data files at startup (object storage / raw repo) |
+| `CV_FIT_DATA_DIR` | `data/` | Directory the data files are read from (and refreshed into) |
+| `CV_FIT_INDEX_PATH` | `$CV_FIT_DATA_DIR/cv_match_index.json` | Role ontology + vectors |
+| `CV_FIT_CAREER_PATH` | `$CV_FIT_DATA_DIR/career_reality.json` | Market signals (optional) |
+| `CV_FIT_FIELD_SKILLS` | `$CV_FIT_DATA_DIR/field_skills.json` | Per-field & per-occupation-group ad skill demand (gaps) |
+| `CV_FIT_REGIONAL_SPLIT` | `$CV_FIT_DATA_DIR/regional_split.json` | Per-region ad counts (cross-region outlook) |

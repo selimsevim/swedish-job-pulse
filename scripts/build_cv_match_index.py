@@ -146,6 +146,14 @@ FIELDS = {
     "logistics": ("ASGV_zcE_bWf", "Transport / logistics"),
     "education": ("MVqp_eS8_kDZ", "Education"),
     "hospitality": ("ScKy_FHB_7wT", "Hospitality / food"),
+    # Broad Swedish labour market beyond office/IT (real JobTech field ids).
+    "security": ("E7hm_BLq_fqZ", "Security / guarding"),
+    "construction": ("j7Cq_ZJe_GkT", "Construction"),
+    "manufacturing": ("wTEr_CBC_bqh", "Manufacturing"),
+    "maintenance": ("yhCP_AqT_tns", "Installation / maintenance"),
+    "cleaning": ("whao_Q6A_ScE", "Cleaning / sanitation"),
+    "social_care": ("GazW_2TU_kJw", "Social work"),
+    "beauty": ("Uuf1_GMh_Uvw", "Beauty / personal care"),
 }
 
 # Domain adjacency (for bucketing into adjacent vs not-your-lane). Asymmetric on
@@ -157,10 +165,18 @@ DOMAIN_ADJACENCY = {
     "admin_ops": {"crm_martech", "data_analytics", "sales"},
     "sales": {"crm_martech", "admin_ops"},
     "digital_marketing": {"crm_martech", "sales"},
-    "healthcare": set(),
-    "logistics": {"admin_ops"},
-    "education": set(),
-    "hospitality": {"sales"},
+    "healthcare": {"social_care"},
+    "logistics": {"admin_ops", "manufacturing", "maintenance"},
+    "education": {"social_care"},
+    "hospitality": {"sales", "cleaning"},
+    # Broad market
+    "security": {"maintenance", "logistics"},
+    "construction": {"maintenance", "manufacturing"},
+    "manufacturing": {"construction", "maintenance", "logistics"},
+    "maintenance": {"construction", "manufacturing"},
+    "cleaning": {"maintenance", "hospitality"},
+    "social_care": {"healthcare", "education"},
+    "beauty": {"hospitality"},
 }
 
 DOMAIN_LABEL = {
@@ -168,6 +184,10 @@ DOMAIN_LABEL = {
     "sales": "sales", "data_analytics": "analytics / BI", "software": "software / IT",
     "admin_ops": "admin / operations", "healthcare": "healthcare",
     "logistics": "logistics", "education": "education", "hospitality": "hospitality",
+    "security": "security / guarding", "construction": "construction",
+    "manufacturing": "manufacturing", "maintenance": "installation / maintenance",
+    "cleaning": "cleaning / sanitation", "social_care": "social work / care",
+    "beauty": "beauty / personal care",
 }
 
 
@@ -234,10 +254,10 @@ def build_catalog():
              aliases=["marketing operations engineer", "marketing ops", "marketing operations"],
              kw=["Marketing Operations Engineer", "Marketing Ops"],
              terms=["marketing", "operations", "automation", "data", "campaign", "engineer"]),
-        role("data_integration_specialist", "Data Integration Specialist", "crm_martech", "mid",
+        role("data_integration_specialist", "Data Integration Specialist", "data_analytics", "mid",
              ["integration", "sql", "apis"],
              ["etl", "data_cloud", "cloud"],
-             secondary=["data_analytics", "software"],
+             secondary=["crm_martech", "software"],
              aliases=["data integration specialist", "data integration engineer"],
              kw=["Data Integration Specialist"],
              terms=["data", "integration", "etl", "sql", "pipelines", "apis"]),
@@ -450,20 +470,149 @@ def build_catalog():
              aliases=["truck driver", "lastbilsförare", "chaufför"],
              kw=["Lastbilsförare", "Truck Driver"],
              terms=["driver", "truck", "transport", "delivery"]),
-        role("teaching_assistant", "Teaching Assistant", "education", "entry",
+        role("teaching_assistant", "Teaching Assistant / Elevassistent", "education", "entry",
              ["pedagogy", "childcare", "communication"],
              [],
              lang=True,
-             aliases=["teaching assistant", "elevassistent", "barnskötare", "lärarassistent"],
+             aliases=["teaching assistant", "elevassistent", "lärarassistent"],
              kw=["Elevassistent", "Teaching Assistant"],
-             terms=["school", "pedagogy", "children", "classroom"]),
+             terms=["school", "pedagogy", "children", "classroom", "support"]),
+        role("preschool_teacher", "Preschool Teacher / Förskollärare", "education", "mid",
+             ["pedagogy", "childcare"],
+             ["communication"],
+             lang=True,
+             aliases=["förskollärare", "preschool teacher", "förskolepedagog"],
+             kw=["Förskollärare", "Preschool Teacher"],
+             terms=["förskola", "preschool", "children", "pedagogy", "play"]),
+        role("primary_teacher", "Teacher / Lärare", "education", "mid",
+             ["pedagogy", "communication"],
+             [],
+             lang=True,
+             aliases=["lärare", "grundskollärare", "teacher", "klasslärare", "ämneslärare", "gymnasielärare"],
+             kw=["Grundskollärare", "Lärare", "Teacher"],
+             terms=["school", "teacher", "pedagogy", "classroom", "subject", "lessons"]),
+        role("childminder", "Childminder / Barnskötare", "education", "entry",
+             ["childcare"],
+             ["pedagogy"],
+             lang=True,
+             aliases=["barnskötare", "childminder", "dagbarnvårdare"],
+             kw=["Barnskötare"],
+             terms=["förskola", "children", "childcare", "care"]),
         role("barista", "Barista / Café", "hospitality", "entry",
              ["customer_service", "communication"],
              [],
              lang=True,
-             aliases=["barista", "café", "servitör", "waiter"],
-             kw=["Barista", "Servitör"],
+             aliases=["barista", "café", "kafé", "coffee shop"],
+             kw=["Barista", "Café"],
              terms=["café", "coffee", "service", "customers"]),
+        role("chef", "Chef / Kock", "hospitality", "entry",
+             ["cooking"],
+             ["customer_service"],
+             lang=True,
+             aliases=["kock", "chef", "kallskänka", "cook", "kock/kallskänka"],
+             kw=["Kock", "Chef"],
+             terms=["kitchen", "kök", "matlagning", "restaurant", "food", "meals"]),
+        role("waiter", "Waiter / Servitör", "hospitality", "entry",
+             ["food_service", "customer_service"],
+             ["communication"],
+             lang=True,
+             aliases=["servitör", "waiter", "hovmästare", "serveringspersonal", "servitris"],
+             kw=["Servitör", "Waiter"],
+             terms=["servering", "restaurant", "guests", "service", "dining"]),
+
+        # --- Security / guarding (väktare, ordningsvakt, night guard) -------
+        role("security_officer", "Security Officer / Väktare", "security", "entry",
+             ["guarding", "surveillance"],
+             ["communication", "incident_response", "driving_license"],
+             lang=True,
+             aliases=["väktare", "security officer", "security guard", "ordningsvakt", "nightguard", "night guard", "skyddsvakt"],
+             kw=["Väktare", "Security Officer", "Ordningsvakt"],
+             terms=["security", "guarding", "surveillance", "patrol", "alarm", "safety", "bevakning"]),
+        role("security_coordinator", "Security Coordinator", "security", "mid",
+             ["guarding", "surveillance", "coordination"],
+             ["incident_response", "planning"],
+             lang=True,
+             aliases=["security coordinator", "säkerhetssamordnare", "skyddsledare", "security supervisor"],
+             kw=["Security Coordinator", "Säkerhetssamordnare"],
+             terms=["security", "coordination", "risk", "safety", "planning", "bevakning"]),
+
+        # --- Construction / trades ------------------------------------------
+        role("construction_worker", "Construction Worker / Byggnadsarbetare", "construction", "entry",
+             ["construction_work"],
+             ["carpentry", "driving_license"],
+             aliases=["byggnadsarbetare", "construction worker", "byggarbetare", "anläggningsarbetare"],
+             kw=["Byggnadsarbetare", "Construction Worker"],
+             terms=["construction", "building", "site", "concrete", "anläggning", "bygg"]),
+        role("carpenter", "Carpenter / Snickare", "construction", "mid",
+             ["carpentry", "construction_work"],
+             ["driving_license"],
+             aliases=["snickare", "carpenter", "träarbetare"],
+             kw=["Snickare", "Carpenter"],
+             terms=["carpentry", "wood", "construction", "snickeri", "bygg"]),
+        role("electrician", "Electrician / Elektriker", "construction", "mid",
+             ["electrical"],
+             ["maintenance", "construction_work"],
+             secondary=["maintenance"],
+             aliases=["elektriker", "electrician", "el-tekniker", "installationselektriker"],
+             kw=["Elektriker", "Electrician"],
+             terms=["electrical", "wiring", "installation", "el", "elinstallation"]),
+
+        # --- Manufacturing / industry --------------------------------------
+        role("production_operator", "Production Operator / Operatör", "manufacturing", "entry",
+             ["machine_operation"],
+             ["welding"],
+             aliases=["operatör", "production operator", "industriarbetare", "montör", "maskinoperatör", "produktionsmedarbetare"],
+             kw=["Operatör", "Production Operator", "Montör"],
+             terms=["production", "machine", "assembly", "manufacturing", "industri", "montering"]),
+        role("welder", "Welder / Svetsare", "manufacturing", "mid",
+             ["welding"],
+             ["machine_operation"],
+             aliases=["svetsare", "welder", "svets"],
+             kw=["Svetsare", "Welder"],
+             terms=["welding", "metal", "fabrication", "svets", "mig", "mag"]),
+
+        # --- Installation / maintenance ------------------------------------
+        role("maintenance_tech", "Maintenance Technician / Fastighetsskötare", "maintenance", "mid",
+             ["maintenance"],
+             ["electrical", "construction_work", "driving_license"],
+             lang=True,
+             aliases=["fastighetsskötare", "maintenance technician", "drifttekniker", "vaktmästare", "facility technician", "fastighetstekniker"],
+             kw=["Fastighetsskötare", "Maintenance Technician", "Drifttekniker"],
+             terms=["maintenance", "facilities", "repair", "drift", "fastighet", "underhåll"]),
+
+        # --- Cleaning / sanitation ------------------------------------------
+        role("cleaner", "Cleaner / Lokalvårdare", "cleaning", "entry",
+             ["cleaning"],
+             ["communication"],
+             lang=True,
+             aliases=["lokalvårdare", "städare", "cleaner", "city cleaner", "saneringstekniker", "städ"],
+             kw=["Lokalvårdare", "Städare", "Cleaner"],
+             terms=["cleaning", "sanitation", "hygiene", "lokalvård", "sanering"]),
+
+        # --- Social work / care ---------------------------------------------
+        role("support_worker", "Support Worker / Stödassistent", "social_care", "entry",
+             ["social_work"],
+             ["documentation", "communication"],
+             lang=True,
+             aliases=["stödassistent", "support worker", "boendestödjare", "behandlingsassistent", "personlig assistent"],
+             kw=["Stödassistent", "Support Worker", "Boendestödjare"],
+             terms=["support", "care", "social", "assistance", "stöd", "omsorg"]),
+        role("social_worker", "Social Worker / Socialsekreterare", "social_care", "mid",
+             ["social_work", "documentation"],
+             ["communication", "coordination"],
+             lang=True,
+             aliases=["socialsekreterare", "social worker", "kurator", "biståndshandläggare"],
+             kw=["Socialsekreterare", "Social Worker", "Kurator"],
+             terms=["social work", "casework", "client", "welfare", "documentation", "socialtjänst"]),
+
+        # --- Beauty / personal care -----------------------------------------
+        role("hairdresser", "Hairdresser / Frisör", "beauty", "entry",
+             ["hairdressing"],
+             ["customer_service"],
+             lang=True,
+             aliases=["frisör", "hairdresser", "barber", "hudterapeut", "stylist"],
+             kw=["Frisör", "Hairdresser"],
+             terms=["hair", "beauty", "styling", "skönhetsvård", "salon", "salong"]),
     ]
 
 
@@ -488,7 +637,7 @@ SKILLS = {
     "linux": ["linux", "bash"], "networking": ["networking", "nätverk"], "troubleshooting": ["troubleshooting", "felsökning"],
     "testing": ["testing", "qa"], "test_automation": ["test_automation", "selenium", "cypress"],
     "security": ["security", "säkerhet"], "incident_response": ["incident", "soc", "siem"],
-    "customer_service": ["customer_service", "kundtjänst", "kundsupport"], "communication": ["communication", "kommunikation"],
+    "customer_service": ["customer_service", "customer service", "kundtjänst", "kundsupport", "kundservice"], "communication": ["communication", "kommunikation"],
     "ticketing": ["ticketing", "zendesk", "ärendehantering"], "account_management": ["account_management"],
     "sales": ["sales", "försäljning"], "negotiation": ["negotiation", "förhandling"], "pipeline": ["pipeline"],
     "patient_care": ["patient_care"], "elderly_care": ["elderly_care", "hemtjänst"], "nursing": ["nursing", "sjuksköterska"],
@@ -500,6 +649,20 @@ SKILLS = {
     "stakeholder": ["stakeholder", "intressent"], "office_tools": ["powerpoint", "word", "officepaket"],
     "administration": ["administration", "administrativ", "admin"], "pedagogy": ["pedagogy", "pedagogik", "teaching"],
     "childcare": ["childcare", "förskola"],
+    # --- broad market skills (Swedish + English surface forms) ---
+    "guarding": ["guarding", "väktare", "ordningsvakt", "security guard", "nightguard", "night guard", "skyddsvakt"],
+    "surveillance": ["surveillance", "cctv", "patrol", "patrullering", "bevakning", "larm", "alarm"],
+    "construction_work": ["construction", "byggnadsarbetare", "byggarbetare", "anläggning", "bygg"],
+    "carpentry": ["carpentry", "snickare", "snickeri", "carpenter", "träarbete"],
+    "electrical": ["electrical", "elektriker", "electrician", "el-arbete", "elinstallation"],
+    "machine_operation": ["machine operation", "operatör", "montör", "maskinoperatör", "cnc", "montering"],
+    "welding": ["welding", "svets", "svetsare", "welder", "mig/mag"],
+    "cleaning": ["cleaning", "städ", "lokalvård", "lokalvårdare", "städare", "sanitation", "sanering"],
+    "maintenance": ["maintenance", "fastighetsskötsel", "fastighetsskötare", "vaktmästare", "drifttekniker", "underhåll"],
+    "social_work": ["social work", "socialt arbete", "socialsekreterare", "behandlingsassistent", "boendestöd", "stödassistent", "casework", "biståndshandläggare"],
+    "hairdressing": ["hairdressing", "frisör", "barber", "hudterapeut", "stylist", "skönhetsvård"],
+    "cooking": ["cooking", "matlagning", "kock", "kallskänka", "tillagning", "à la carte", "kök"],
+    "food_service": ["servering", "servitör", "hovmästare", "waiter", "serveringspersonal"],
 }
 
 
@@ -614,6 +777,7 @@ def rank_roles(profile, catalog, idf, vectors):
         fit = 0.55 * sem + 0.30 * coverage - sen_pen - lang_pen
         scored.append({
             "role_id": r["role_id"], "title": r["title"], "domain": r["domain"],
+            "secondary_domains": r.get("secondary_domains", []),
             "field_id": r["field_id"], "field_label": r["field_label"],
             "seniority": r["seniority"], "semantic": round(sem, 4),
             "coverage": round(coverage, 3), "gap": gap,
@@ -638,35 +802,86 @@ def primary_domain(profile, scored):
     return best_domain
 
 
+# Bucketing thresholds. Deliberately driven by SKILL COVERAGE and DOMAIN
+# RELATION (both backend-independent) rather than absolute semantic-similarity
+# cutoffs. Neural cosines (BGE-M3) sit higher and flatter than TF-IDF cosines,
+# so absolute semantic thresholds that work for one backend misfire on the
+# other; coverage + domain relation rank the same way regardless of backend.
+ON_BEST_COV = 0.5      # cover >= half of a role's required skills -> best, in-lane
+ON_ADJ_COV = 0.25      # some in-lane coverage -> adjacent (reachable in your lane)
+ADJ_DOMAIN_COV = 0.34  # adjacent-domain role must share >= ~1/3 of its skills to show
+STRETCH_COV = 0.34     # in-lane role above your seniority shown as a reachable stretch
+
+
+def _domain_relation(role_row, pdomain):
+    """Relation of a role to the CV's primary domain, using primary + secondary
+    domains and the (asymmetric) adjacency graph.
+
+      on         -> your lane (same domain, or pdomain is a secondary domain)
+      adjacent   -> a neighbouring domain you can credibly cross into
+      confusable -> a domain that treats yours as adjacent but you don't treat
+                    as yours (e.g. digital marketing vs a technical martech CV)
+      far        -> unrelated domain (never shown)
+    """
+    if not pdomain:
+        return "far"
+    dom = role_row["domain"]
+    sec = set(role_row.get("secondary_domains", []))
+    if dom == pdomain or pdomain in sec:
+        return "on"
+    adj_of_p = DOMAIN_ADJACENCY.get(pdomain, set())
+    if dom in adj_of_p or (sec & adj_of_p):
+        return "adjacent"
+    if pdomain in DOMAIN_ADJACENCY.get(dom, set()):
+        return "confusable"
+    return "far"
+
+
 def bucket(profile, scored):
+    """Assign roles to best / adjacent / not-your-main-lane, domain-agnostically.
+
+    Rules (apply to EVERY domain — no role names, no domain special-casing):
+      * far-domain roles are excluded from all visible buckets (not demoted);
+      * in-lane roles enter "best" by skill coverage, weaker ones drop to adjacent;
+      * a role above your seniority is, at most, a reachable in-lane "stretch";
+      * adjacent-domain roles show only when the CV actually covers their skills;
+      * confusable (related-looking but off-lane) roles are the "not your main
+        lane" list — capped, and only when they carry real retrieval signal.
+    """
     pdomain = primary_domain(profile, scored)
-    adjacent_domains = (DOMAIN_ADJACENCY.get(pdomain, set()) | {pdomain}) if pdomain else set()
-    # "Confusable" domains: treat your domain as adjacent, but you don't treat
-    # as yours (e.g. digital marketing vs a technical martech CV).
-    confusable = set()
-    if pdomain:
-        for d, adj_of_d in DOMAIN_ADJACENCY.items():
-            if d != pdomain and pdomain in adj_of_d and d not in adjacent_domains:
-                confusable.add(d)
-    best, adj, avoid = [], [], []
+    best_pool, adj_pool, avoid_pool = [], [], []
     for s in scored:
+        rel = _domain_relation(s, pdomain)
+        if rel == "far":
+            continue                                  # never shown anywhere
         overreach = s["gap"] >= 2 or (s["seniority"] == "senior" and s["gap"] > 0)
-        on_lane = s["domain"] == pdomain
-        near_lane = s["domain"] in adjacent_domains
-        strong = s["fit"] >= 0.30 and (s["semantic"] >= 0.12 or s["coverage"] >= 0.5)
-        if overreach:
-            if s["fit"] >= 0.12:                     # aspirational over-reach with real signal
-                avoid.append(s)
-        elif on_lane and strong:
-            best.append(s)
-        elif (on_lane or near_lane) and (s["fit"] >= 0.20 or s["semantic"] >= 0.15):
-            adj.append(s)
-        elif s["domain"] in confusable:              # looks adjacent but isn't your lane
-            avoid.append(s)
-        elif s["fit"] >= 0.22:                       # off-lane but a notable, mismatched pull
-            avoid.append(s)
-        # else: irrelevant / near-zero fit -> not shown
-    return pdomain, best[:6], adj[:5], avoid[:5]
+        cov = s["coverage"]
+        if rel == "on":
+            if overreach:
+                if cov >= STRETCH_COV:                # in-lane but above your level
+                    adj_pool.append(s)
+            elif cov >= ON_BEST_COV:
+                best_pool.append(s)
+            elif cov >= ON_ADJ_COV:
+                adj_pool.append(s)
+            # else: weak in-lane signal -> drop
+        elif rel == "adjacent":
+            if not overreach and cov >= ADJ_DOMAIN_COV:
+                adj_pool.append(s)                    # credible cross-domain move
+            # adjacent-domain roles you have no skills for (e.g. a developer
+            # role for a martech CV) -> drop, not shown
+        elif rel == "confusable":
+            # related-looking but off your lane: the domain relation itself is
+            # the signal, so show these in "not your main lane" regardless of
+            # backend (keeps TF-IDF and neural consistent). Capped + fit-sorted.
+            avoid_pool.append(s)
+    best_pool.sort(key=lambda s: s["fit"], reverse=True)
+    adj_pool.sort(key=lambda s: s["fit"], reverse=True)
+    avoid_pool.sort(key=lambda s: s["fit"], reverse=True)
+    best = best_pool[:6]
+    adj = (best_pool[6:] + adj_pool)[:5]              # best overflow stays visible
+    avoid = avoid_pool[:5]
+    return pdomain, best, adj, avoid
 
 
 # ---------------------------------------------------------------------------
@@ -676,7 +891,7 @@ SYNTHETIC_CVS = [
     {
         "name": "SFMC / Martech Integration (senior)",
         "expect_domain": "crm_martech",
-        "must_not_top": {"seo_specialist", "social_media_specialist", "software_developer", "cybersecurity_specialist"},
+        "must_not_top": {"truck_driver", "it_support", "junior_developer", "cybersecurity_specialist"},
         "text": """Sasha Lindqvist — Senior Salesforce Marketing Cloud / Martech Integration Specialist
 8 years in marketing technology and CRM automation.
 Built SFMC journeys with AMPscript and SSJS, integrated systems via REST and SOAP APIs.
@@ -692,11 +907,40 @@ Salesforce Marketing Cloud, HubSpot, CRM, email marketing. Built segmentation an
 Reported KPIs in Excel. English fluent, Swedish basic.""",
     },
     {
+        "name": "Data analyst (mid)",
+        "expect_domain": "data_analytics",
+        "must_not_top": {"truck_driver", "assistant_nurse", "sfmc_consultant", "barista"},
+        "expect_group": ["analytiker", "arkitekt"],     # not the dev lane
+        "gap_forbidden": ["C++", "Java", "Linux"],       # dev-only skills must not surface
+        "text": """Mira Holm — Data Analyst, 4 years.
+SQL, Python, Power BI and Excel. Built dashboards and statistics/regression models.
+Reported KPIs to stakeholders. English fluent, Swedish good.""",
+    },
+    {
+        "name": "Data engineer (mid)",
+        "expect_domain": "data_analytics",
+        "must_not_top": {"sfmc_consultant", "martech_consultant", "truck_driver", "assistant_nurse"},
+        "text": """Robin Sand — Data Engineer, 5 years.
+SQL, Python, ETL (Airflow), cloud (AWS), Docker, data pipelines and integration.
+English fluent, Swedish good.""",
+    },
+    {
         "name": "Junior developer (entry)",
         "expect_domain": "software",
+        "must_not_top": {"truck_driver", "assistant_nurse", "logistics_coordinator"},
+        "expect_group": ["utvecklare", "mjukvar"],       # developer lane (Java/C++ gaps are correct here)
         "text": """Robin Lind — Junior Developer. Recent graduate.
 JavaScript, React, HTML, CSS, Git, some Python and SQL. Built web apps and REST APIs.
 English fluent, Swedish basic.""",
+    },
+    {
+        "name": "Teaching assistant (entry)",
+        "expect_domain": "education",
+        "must_not_top": {"data_analyst", "sfmc_consultant", "truck_driver", "software_developer"},
+        "expect_group": ["elevassist"],                  # assistant lane, not a qualified teacher
+        "text": """Sam Nyberg — Elevassistent / Teaching Assistant, 3 years in school.
+Classroom support for pupils, assisting the teacher, and communication.
+Swedish modersmål, English good.""",
     },
     {
         "name": "Admin / reporting (mid)",
@@ -717,6 +961,152 @@ Patient care and documentation (journal). Swedish modersmål, English basic.""",
         "text": """Jamie Berg — Lagerarbetare. 2 years warehouse, forklift (truckkort), inventory.
 Driving license. Swedish good, English basic.""",
     },
+    {
+        "name": "Security guard / väktare (entry)",
+        "expect_domain": "security",
+        "must_not_top": {"software_developer", "warehouse_worker", "assistant_nurse"},
+        "text": """Erik Sand — Väktare / Security Officer, 3 years.
+Ordningsvakt, surveillance and patrol, alarm response, incident reports, access control.
+Swedish good, English basic.""",
+    },
+    {
+        "name": "Construction worker (entry)",
+        "expect_domain": "construction",
+        "must_not_top": {"data_analyst", "sfmc_consultant", "assistant_nurse"},
+        "text": """Sven Holm — Byggnadsarbetare, 6 years.
+Construction site work, snickare/carpentry, concrete, anläggning. Driving license. Swedish fluent.""",
+    },
+    {
+        "name": "Cleaner / lokalvårdare (entry)",
+        "expect_domain": "cleaning",
+        "must_not_top": {"data_analyst", "truck_driver", "registered_nurse"},
+        "text": """Mona Ek — Lokalvårdare / städare, 4 years.
+Office and facility cleaning, sanitation, hygiene routines. Swedish good.""",
+    },
+    {
+        "name": "Social worker / socialsekreterare (mid)",
+        "expect_domain": "social_care",
+        "must_not_top": {"data_analyst", "truck_driver", "sfmc_consultant"},
+        "text": """Lisa Berg — Socialsekreterare, 5 years.
+Social work and casework, client support, documentation/journal, biståndshandläggning.
+Swedish modersmål, English good.""",
+    },
+    # --- broader coverage + occupation-group routing checks ---------------
+    {
+        "name": "IT support technician (mid)",
+        "expect_domain": "software",
+        "must_not_top": {"junior_developer", "data_analyst", "truck_driver"},
+        "expect_group": ["supporttekniker", "support"],   # support lane, NOT developer
+        "gap_forbidden": ["C++", "Java"],
+        "text": """Noa Ek — IT Supporttekniker / Service Desk, 4 years.
+Helpdesk and user support, troubleshooting (felsökning), networking (nätverk),
+ticketing (ärendehantering, Zendesk), Windows. Swedish good, English good.""",
+    },
+    {
+        "name": "QA / test engineer (mid)",
+        "expect_domain": "software",
+        "must_not_top": {"truck_driver", "assistant_nurse"},
+        "expect_group": ["testare", "testled"],           # test lane
+        "gap_forbidden": ["C++"],
+        "text": """Kit Sjöberg — QA / Test Engineer, 4 years.
+Test automation (Selenium, Cypress), manual testing/QA, CI/CD, Python, REST APIs.
+English fluent, Swedish basic.""",
+    },
+    {
+        "name": "DevOps engineer (mid)",
+        "expect_domain": "software",
+        "must_not_top": {"truck_driver", "assistant_nurse", "sfmc_consultant"},
+        "expect_group": ["drifttekniker", "drift"],        # operations lane
+        "gap_forbidden": ["C++", "Java"],
+        "text": """Robin Ahl — DevOps Engineer, 5 years.
+Docker, Kubernetes, CI/CD (Jenkins), cloud (AWS, Azure), Linux, Git, monitoring.
+English fluent, Swedish good.""",
+    },
+    {
+        "name": "Dataanalytiker (svensk CV)",
+        "expect_domain": "data_analytics",
+        "expect_group": ["analytiker", "arkitekt"],
+        "gap_forbidden": ["C++", "Java"],
+        "text": """Johanna Ek — Dataanalytiker, 5 år.
+Bygger rapporter och instrumentpaneler i Power BI. Stark på SQL, Excel och statistik.
+Tar fram nyckeltal (KPI) åt ledningen. Svenska modersmål, engelska flytande.""",
+    },
+    {
+        "name": "Registered nurse (mid)",
+        "expect_domain": "healthcare",
+        "must_not_top": {"data_analyst", "truck_driver", "sfmc_consultant"},
+        "text": """Eva Lind — Legitimerad sjuksköterska, 6 years.
+Nursing, patient care, medication (läkemedel) and documentation (journal) on a ward.
+Swedish modersmål, English good.""",
+    },
+    {
+        "name": "Account manager / sales (mid)",
+        "expect_domain": "sales",
+        "must_not_top": {"data_analyst", "assistant_nurse", "truck_driver"},
+        "text": """Theo Holm — Account Manager / Kundansvarig, 5 years.
+B2B sales (försäljning), account management, CRM, negotiation (förhandling) and client
+relationships. Swedish fluent, English fluent.""",
+    },
+    {
+        "name": "SEO / digital marketing (mid)",
+        "expect_domain": "digital_marketing",
+        "must_not_top": {"truck_driver", "assistant_nurse", "data_engineer"},
+        "text": """Wilma Berg — SEO Specialist, 4 years.
+SEO, content and copywriting, Google Analytics (GA4), social media. Grew organic traffic.
+Swedish good, English fluent.""",
+    },
+    {
+        "name": "Production operator (entry)",
+        "expect_domain": "manufacturing",
+        "must_not_top": {"data_analyst", "sfmc_consultant", "assistant_nurse"},
+        "text": """Per Sand — Maskinoperatör / Production Operator, 3 years.
+Machine operation, CNC, montering/assembly on a production line, some welding (svets).
+Swedish good.""",
+    },
+    {
+        "name": "Maintenance technician (mid)",
+        "expect_domain": "maintenance",
+        # NB: truck_driver legitimately surfaces in the not-your-lane bucket here
+        # (the CV has a driving licence), so it is not a forbidden collapse.
+        "must_not_top": {"data_analyst", "sfmc_consultant"},
+        "text": """Ali Holm — Fastighetsskötare / Maintenance Technician, 5 years.
+Facility maintenance (underhåll, fastighetsskötsel), minor electrical (el) and repairs.
+Driving license. Swedish good.""",
+    },
+    {
+        "name": "Hairdresser / frisör (entry)",
+        "expect_domain": "beauty",
+        "must_not_top": {"data_analyst", "truck_driver", "sfmc_consultant"},
+        "text": """Nina Ek — Frisör / Hairdresser, 4 years.
+Hairdressing (klippning, färgning), styling and customer service in a salon.
+Swedish modersmål.""",
+    },
+    {
+        "name": "Café / restaurant service (entry)",
+        "expect_domain": "hospitality",
+        "must_not_top": {"data_analyst", "truck_driver", "registered_nurse"},
+        "text": """Sam Berg — Café & restaurant service / servitör, 2 years.
+Customer service (kundservice), serving guests, cash register and communication.
+Swedish good, English good.""",
+    },
+    {
+        "name": "Preschool teacher (mid)",
+        "expect_domain": "education",
+        "must_not_top": {"data_analyst", "truck_driver", "sfmc_consultant"},
+        "expect_group": ["förskoll"],                    # preschool teacher lane
+        "text": """Lena Holm — Förskollärare / Preschool Teacher, 6 years.
+Pedagogy and childcare in förskola, planning play-based learning for children.
+Swedish modersmål, English good.""",
+    },
+    {
+        "name": "Chef / kock (entry)",
+        "expect_domain": "hospitality",
+        "must_not_top": {"data_analyst", "truck_driver", "registered_nurse"},
+        "expect_group": ["kock", "kallskänk"],           # kitchen lane, not front-of-house
+        "text": """Omar Sand — Kock / Chef, 3 years.
+Cooking (matlagning) and food prep in a restaurant kitchen (kök), à la carte.
+Swedish good.""",
+    },
 ]
 
 
@@ -729,8 +1119,10 @@ def evaluate(catalog, idf, vectors):
         pdomain, best, adj, avoid = bucket(profile, scored)
         dom_ok = pdomain == cv["expect_domain"]
         dom_hits += int(dom_ok)
-        top_ids = {s["role_id"] for s in (best + adj)[:5]}
-        no_collapse = not (cv.get("must_not_top", set()) & top_ids)
+        # "must not show" roles must appear in NO visible bucket (best/adjacent/
+        # not-your-lane) — far-domain roles are excluded outright, not demoted.
+        shown_ids = {s["role_id"] for s in best + adj + avoid}
+        no_collapse = not (cv.get("must_not_top", set()) & shown_ids)
         collapse_ok += int(no_collapse)
         rows.append({
             "cv": cv["name"], "extracted_skills": len(profile["skills"]),
