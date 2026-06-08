@@ -345,13 +345,13 @@ Relevant official docs:
 │       ├── Dockerfile.llm        # grounded-LLM GPU image (cv-fit-endpoint:llm)
 │       └── requirements-llm.txt
 ├── docs/
-│   └── blog-outline.md
+│   ├── DOCUMENTATION.md     # full project doc (problem -> proposal -> solution -> technical)
+│   └── blog-post.md         # the write-up / article
 ├── railway.json             # Railway build/deploy config (start command, healthcheck)
 ├── nixpacks.toml            # Railway: install only requirements-railway.txt
 ├── requirements-railway.txt # Lightweight deps for the Railway app (fastapi/uvicorn/httpx)
 ├── env.example              # NEBIUS_CV_FIT_URL / NEBIUS_CV_FIT_TOKEN template
 ├── Dockerfile
-├── SUBMISSION_CHECKLIST.md
 ├── requirements-ml.txt
 └── LICENSE
 ```

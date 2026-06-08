@@ -37,12 +37,14 @@ gap relevance 1.0 (5/5). Run: `python scripts/evaluate_cv_fit.py --strict`.
 ## Submission (your part)
 - ~~**Push the repo public** (merge `railway-cv-fit-proxy` → `main`, push).~~ ✅ done
   (merge `b792f59`). Repo was already public; main now carries all CV-fit work.
-- **Recreate the live endpoint + set the live URL** — endpoints are torn down;
-  see "Test next session" below, then fill `Live website URL` in
-  `SUBMISSION_CHECKLIST.md`. Deadline June 30.
-- **Blog post** (≥600 words, `#NebiusServerlessChallenge`) — outline in
-  `docs/blog-outline.md`. Good angle: grounded-LLM endpoint + occupation-group
-  gaps + the eval harness that caught the nurse→pharmacist drift.
+- **Set the live URL** — deploy on Railway, point `NEBIUS_CV_FIT_URL` +
+  `NEBIUS_CV_FIT_TOKEN` at the running GPU endpoint, confirm a report renders,
+  then submit that URL. The endpoint must stay up through judging (the proxy only
+  accepts an `llm:` backend). Deadline June 30.
+- **Blog post** (≥600 words, `#NebiusServerlessChallenge`) — full write-up in
+  `docs/blog-post.md`; project doc in `docs/DOCUMENTATION.md`. Angle: grounded-LLM
+  endpoint + occupation-group gaps + the eval harness that caught the
+  nurse→pharmacist drift.
 - **Video walkthrough**, reproducibility pass (`run_local_nebius.sh`).
 
 ## Investigated and intentionally NOT done
