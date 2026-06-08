@@ -258,7 +258,15 @@ the server forwards to the Nebius **grounded-LLM endpoint**: deterministic TF-ID
 retrieval produces the facts (matched roles, skill gaps, market signal, cross-region
 demand) and a self-hosted **Qwen2.5-7B-Instruct** writes the verdict, the
 "Why this recommendation?" lines, and the region strategy — constrained to those
-facts. An optional **Region** selector tailors it (e.g. a thin local market →
+facts.
+
+Skill gaps are grounded at **occupation-group** granularity, not just the broad
+field: a data analyst lands in the developer-dominated "Data/IT" field, so
+whole-field demand would wrongly tell them to learn C++/Java. Instead the
+endpoint routes gaps to the analyst/architect occupation group's *real* ad demand
+(`data/field_skills.json`, aggregated per JobTech occupation group from two years
+of enriched ads), and falls back to whole-field demand only where no group lane
+applies. An optional **Region** selector tailors it (e.g. a thin local market →
 "search Stockholm / Västra Götaland, or go remote"). The proxy checks the live
 endpoint health and rejects any response whose backend is not explicitly `llm:...`.
 There is no automatic local fallback.

@@ -30,7 +30,10 @@ jobs:
         continue-on-error: true
         run: python scripts/process_skill_velocity.py
 
-      - name: Per-field skill demand (field_skills.json)
+      - name: Per-field & per-occupation-group skill demand (field_skills.json)
+        # Aggregates the two most recent completed years (default) so per-group
+        # counts are dense enough for the endpoint's analyst-vs-developer lane
+        # routing. Downloads ~0.9 GB per year.
         continue-on-error: true
         run: python scripts/process_field_skills.py
 

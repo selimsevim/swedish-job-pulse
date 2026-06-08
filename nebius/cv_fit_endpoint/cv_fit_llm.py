@@ -68,6 +68,21 @@ _SYSTEM = (
 )
 
 
+_EXTRACT_SYSTEM = (
+    "You read a CV (often Swedish or English) and extract a structured profile for a job matcher. "
+    "Return STRICT JSON only, no prose.\n"
+    "- skills: choose EVERY token from SKILL_VOCAB that the CV clearly evidences — including via Swedish "
+    "wording, tools, certifications, or paraphrase (e.g. 'ledde ett team' -> leadership; 'byggde "
+    "instrumentpaneler' -> dashboards; 'truckkort' -> forklift). Use ONLY exact tokens from SKILL_VOCAB; "
+    "never invent a token and never include a skill the CV does not show.\n"
+    "- seniority: entry | mid | senior, inferred from years and scope of responsibility.\n"
+    "- target_role: the role the candidate says they are seeking (their words), or empty.\n"
+    "- swedish_level: native | good | basic | none | unknown.\n"
+    'Schema: {"skills": ["<token>", ...], "seniority": "<entry|mid|senior>", '
+    '"target_role": "<role or empty>", "swedish_level": "<level>"}'
+)
+
+
 class _LLM:
     def __init__(self):
         self.model_id = MODEL_ID
@@ -146,6 +161,42 @@ class _LLM:
         # diagnose parse or usefulness failures from endpoint logs.
         print("[cv-fit] LLM output failed validation; head=" + repr(text[:280]))
         return None
+
+    def extract_profile(self, cv_text, vocab):
+        """Read the CV into a structured profile, constrained to the known skill
+        vocabulary. Adds recall over keyword matching (Swedish, paraphrase,
+        implied skills) and infers seniority + the candidate's target role.
+        Returns {"skills":[token], "seniority":?, "target_role":?,
+        "swedish_level":?} or None. Skills are validated against vocab by the
+        caller, so the model cannot inject unknown tokens."""
+        if not self.ok:
+            return None
+        import torch
+        user = ("SKILL_VOCAB (use only these exact tokens): " + ", ".join(vocab)
+                + "\n\nCV:\n" + (cv_text or "")[:6000])
+        messages = [{"role": "system", "content": _EXTRACT_SYSTEM},
+                    {"role": "user", "content": user}]
+        try:
+            inputs = self._tok.apply_chat_template(
+                messages, add_generation_prompt=True, return_tensors="pt").to(self.device)
+            with torch.no_grad():
+                out = self._model.generate(
+                    inputs, max_new_tokens=256, do_sample=False,
+                    pad_token_id=(self._tok.pad_token_id or self._tok.eos_token_id))
+            text = self._tok.decode(out[0][inputs.shape[-1]:], skip_special_tokens=True)
+        except Exception as exc:  # pragma: no cover
+            print("[cv-fit] LLM extract failed: " + f"{exc.__class__.__name__}")
+            return None
+        obj = _extract_json(text)
+        if not isinstance(obj, dict):
+            return None
+        skills = obj.get("skills")
+        skills = [s for s in skills if isinstance(s, str)] if isinstance(skills, list) else []
+        sen = obj.get("seniority") if obj.get("seniority") in ("entry", "mid", "senior") else None
+        tgt = obj.get("target_role")
+        tgt = tgt.strip() if isinstance(tgt, str) and tgt.strip() else None
+        sw = obj.get("swedish_level") if obj.get("swedish_level") in ("native", "good", "basic", "none") else None
+        return {"skills": skills, "seniority": sen, "target_role": tgt, "swedish_level": sw}
 
 
 def _extract_json(text):

@@ -78,6 +78,21 @@ REGIONAL_PROXY = {
     "digital_marketing": ("9puE_nYg_crq", "Kultur, media, design"),
 }
 
+# Lane anchors that ENABLE occupation-GROUP gap granularity for a domain. A
+# broad field holds many groups (Data/IT alone has 9: developers, analysts,
+# support, ops, test…), and skill overlap alone can't tell them apart — it drifts
+# to whatever niche group shares a token (a nurse matched to 'pharmacist' on the
+# word "läkemedel"). So group selection runs ONLY for domains pinned here; every
+# other domain keeps the safe whole-field demand. "on" stems (substring-matched
+# against the Swedish occupation-group label) define the domain's lane; "off"
+# stems exclude a confusable neighbour. The headline case this fixes: a data
+# analyst sitting in the dev-dominated Data/IT field was shown C++/Java gaps;
+# now the analyst/architect group's real demand is used instead.
+DOMAIN_GROUP_HINTS = {
+    "data_analytics": {"on": ["analytiker", "arkitekt"], "off": ["utvecklare", "programmer"]},
+    "software":       {"on": ["utvecklare", "systemutveckl", "mjukvar", "programmer"], "off": []},
+}
+
 
 def pretty(skill):
     s = str(skill or "").lower()
@@ -158,6 +173,24 @@ class _Engine:
                 self.field_skills = json.load(fh)
         except Exception:
             self.field_skills = {}
+
+        # Canonical skill vocabulary the LLM extractor is constrained to.
+        self.skill_vocab = sorted(bm.SKILLS.keys())
+
+        # Precompute, per field, each occupation GROUP's demanded-skill footprint
+        # (the canonical tokens each demanded skill maps to + its ad share), so
+        # per-request group selection is cheap. field_id -> [(group_id,
+        # group_term, ads, [(tokens, share), ...]), ...].
+        self._field_groups = {}
+        for fid, fdata in (self.field_skills.get("fields") or {}).items():
+            groups = []
+            for gid, gdata in (fdata.get("groups") or {}).items():
+                footprint = [(self._term_tokens(s.get("term", "")), s.get("share", 0.0))
+                             for s in gdata.get("skills", [])]
+                groups.append((gid, gdata.get("group_term") or "",
+                               gdata.get("ads_with_skills", 0), footprint))
+            if groups:
+                self._field_groups[fid] = groups
 
         # Backend selection. backend_kind: tfidf | neural | error.
         self.backend_kind = "tfidf"
@@ -273,11 +306,18 @@ class _Engine:
         return scored
 
     # ---- market signal (mirror of crcBuildSignalLine) ------------------
-    def _market_signal(self, field_id, region):
+    def _market_signal(self, field_id, region, group_id=None):
         occs = [o for o in self.career.get("occupations", []) if o.get("field_id") == field_id]
         if not occs:
             return None
-        occ = max(occs, key=lambda o: o.get("opportunity_score", 0))
+        # Prefer the candidate's matched occupation group when career_reality
+        # tracks it, so the signal reflects the right lane (e.g. the dev group's
+        # demand for a developer) rather than the field's busiest occupation.
+        occ = None
+        if group_id:
+            occ = next((o for o in occs if o.get("concept_id") == group_id), None)
+        if occ is None:
+            occ = max(occs, key=lambda o: o.get("opportunity_score", 0))
         parts = []
         trend_word = {"rising": "Rising", "stable": "Stable", "declining": "Cooling"}.get(occ.get("demand_trend"))
         if trend_word:
@@ -339,25 +379,59 @@ class _Engine:
         return {c for c, variants in bm.SKILLS.items()
                 if any((" " + v + " ") in low or v in low for v in variants)}
 
-    def _field_skill_gaps(self, field_id, profile, role_tokens=None):
-        """Data-grounded gaps: skills that real ads in this occupation field
-        request (data/field_skills.json) but the CV does not evidence. Each gap
+    def _select_group(self, field_id, domain, candidate_tokens):
+        """Pick the occupation GROUP for the candidate's lane inside the field, so
+        gaps come from that lane (analyst vs developer inside Data/IT) instead of
+        the dev-dominated whole field. Group selection runs ONLY for domains with
+        a DOMAIN_GROUP_HINTS anchor — elsewhere skill overlap can't reliably tell
+        a field's groups apart, so we fall back to safe whole-field demand. Among
+        the anchored lane's groups, share-weighted overlap with the candidate's
+        tokens (then ad volume) breaks ties. Returns (group_id, group_term,
+        skills_list) or None.
+        """
+        hints = DOMAIN_GROUP_HINTS.get(domain)
+        groups = self._field_groups.get(field_id)
+        if not hints or not groups:
+            return None
+        on, off = hints.get("on") or [], hints.get("off") or []
+        best = None
+        for gid, gterm, ads, footprint in groups:
+            label = gterm.lower()
+            if off and any(h in label for h in off):
+                continue                                   # confusable neighbouring lane
+            if on and not any(h in label for h in on):
+                continue                                   # not this domain's lane
+            overlap = sum(share for toks, share in footprint if toks & candidate_tokens)
+            cand = (overlap, ads, gid)                     # ties -> denser group -> stable id
+            if best is None or cand > best:
+                best = cand
+        if best is None:
+            return None
+        gid = best[2]
+        gdata = self.field_skills["fields"][field_id]["groups"][gid]
+        return gid, gdata.get("group_term"), gdata.get("skills", [])
+
+    def _gaps_from_skills(self, skills, profile, role_tokens, source_term, apply_lane_guard):
+        """Data-grounded gaps: skills that real ads (for an occupation field or a
+        single occupation group) request but the CV does not evidence. Each gap
         carries the ad count, so the advice is provable, not invented.
 
-        role_tokens (skills the candidate's matched roles value) is used as a
-        relevance guard: a demanded skill that maps to a canonical skill OUTSIDE
-        those roles is dropped (e.g. broad 'Sales/marketing' ads ask for phone
-        sales, irrelevant to a martech architect). Field-specific items we can't
-        map (licences, certifications) are kept — those are the real niche gaps.
+        When apply_lane_guard is True (whole-field demand, a broad mix), a
+        demanded skill that maps to a canonical skill OUTSIDE the candidate's
+        matched roles is dropped (e.g. broad 'Sales/marketing' ads ask for phone
+        sales, irrelevant to a martech architect). When the skills already come
+        from the candidate's SELECTED occupation group the lane is established, so
+        the guard is off and the group's real niche skills (Dynamics, CRM,
+        certifications) are kept. Field-specific items we can't map are always
+        kept — those are the real niche gaps.
         """
-        fdata = (self.field_skills.get("fields") or {}).get(field_id)
-        if not fdata or not fdata.get("skills"):
+        if not skills:
             return None
         role_tokens = role_tokens or set()
         cv_skills = set(profile.get("skills", []))
         cv_text = " " + bm.canon(profile.get("text", "")) + " "
         gaps, have, seen = [], [], set()
-        for s in fdata["skills"]:
+        for s in skills:
             term = s.get("term", "")
             label = (term.split(",")[0].strip() or term)
             key = label.lower()
@@ -369,7 +443,7 @@ class _Engine:
                 if mapped & cv_skills:
                     have.append({"label": label, "count": s.get("count", 0)})
                     continue
-                if role_tokens and not (mapped & role_tokens):
+                if apply_lane_guard and role_tokens and not (mapped & role_tokens):
                     continue                               # demanded, but off the candidate's lane
             else:                                          # no canonical mapping -> text match
                 kw = label.lower().split()
@@ -377,7 +451,15 @@ class _Engine:
                     have.append({"label": label, "count": s.get("count", 0)})
                     continue
             gaps.append({"label": label, "count": s.get("count", 0)})
-        return {"field_term": fdata.get("field_term"), "gaps": gaps, "have": have}
+        return {"field_term": source_term, "gaps": gaps, "have": have}
+
+    def _field_skill_gaps(self, field_id, profile, role_tokens=None):
+        """Whole-field demand gaps (the fallback when no occupation group fits)."""
+        fdata = (self.field_skills.get("fields") or {}).get(field_id)
+        if not fdata or not fdata.get("skills"):
+            return None
+        return self._gaps_from_skills(fdata["skills"], profile, role_tokens,
+                                      fdata.get("field_term"), apply_lane_guard=True)
 
     def _remote_ok(self, field_id):
         """True only when the field's public ad data shows real remote demand —
@@ -496,6 +578,7 @@ class _Engine:
                 "adjacent_roles": [],
                 "not_your_main_lane_roles": [],
                 "missing_skills": [],
+                "matched_occupation_group": None,
                 "cv_improvements": [
                     "Add role titles, skills, tools, language level, and recent work or study history."
                 ],
@@ -512,6 +595,31 @@ class _Engine:
                     "languages": profile["languages"],
                 },
             }
+        # LLM-based CV understanding: the model reads the CV and adds skills the
+        # keyword matcher misses (Swedish, paraphrase, implied), refines seniority,
+        # and surfaces the candidate's target role. MERGED with the deterministic
+        # extraction (recall-only) and constrained to the known vocabulary, so the
+        # matcher stays grounded and reproducible. Falls back silently if disabled.
+        if self.llm and self.llm.ok:
+            ex = self.llm.extract_profile(cv_text or "", self.skill_vocab)
+            if ex:
+                valid = set(self.skill_vocab)
+                # Keyword extraction is high-precision and primary. Only fold in
+                # LLM-found skills when the keyword pass is SPARSE (a paraphrase-
+                # heavy CV with almost no literal matches) — capped — so a good
+                # keyword profile is never polluted by model over-generation.
+                if len(profile["skills"]) < 2 and ex.get("skills"):
+                    add = [s for s in ex["skills"] if s in valid][:6]
+                    profile["skills"] = sorted(set(profile["skills"]) | set(add))
+                # Seniority + the candidate's TARGET role are low-risk and
+                # high-value (target makes matching goal-aware).
+                if ex.get("seniority"):
+                    profile["seniority"] = ex["seniority"]
+                if not target_role and ex.get("target_role"):
+                    target_role = ex["target_role"]
+                if swedish_level is None and ex.get("swedish_level") and profile.get("swedish") == "none":
+                    swedish_level = ex["swedish_level"]
+
         if swedish_level in ("native", "good", "basic", "none"):
             profile["swedish"] = swedish_level
             profile["weak_swedish"] = swedish_level in ("none", "basic")
@@ -519,7 +627,8 @@ class _Engine:
             if swedish_level != "none":
                 profile["languages"].append("Swedish (%s)" % swedish_level)
 
-        # Target role (optional) nudges retrieval by joining it to the query.
+        # Target role (optional, from the request or inferred from the CV) nudges
+        # retrieval by joining it to the query.
         query_text = cv_text or ""
         if target_role:
             query_text = query_text + " " + target_role
@@ -556,10 +665,10 @@ class _Engine:
             toks = toks[:5] + ["swedish working proficiency"]
         missing = [pretty(s) for s in toks]
 
-        # Prefer DATA-GROUNDED gaps: compare the CV against the skills REAL ads in
-        # this field request (data/field_skills.json), not a curated list. Each
-        # gap carries the ad count, so the advice is provable. Falls back to the
-        # role-ontology gaps above when the field has no ad-skill data.
+        # Prefer DATA-GROUNDED gaps: compare the CV against the skills REAL ads
+        # request (data/field_skills.json), not a curated list. Each gap carries
+        # the ad count, so the advice is provable. Falls back to the role-ontology
+        # gaps above when the field has no ad-skill data.
         gap_field = best[0]["field_id"] if best else (adj[0]["field_id"] if adj else None)
         gap_role_ids = {r["role_id"] for r in best + adj}
         role_tokens = set()
@@ -571,7 +680,21 @@ class _Engine:
         # so the field's ad skills don't represent them — keep the role-model gaps
         # there. Every other domain uses the real per-field ad demand.
         use_field_gaps = pdomain not in REGIONAL_PROXY
-        gap_info = self._field_skill_gaps(gap_field, profile, role_tokens) if (gap_field and use_field_gaps) else None
+        # Occupation-GROUP granularity: within the matched field, pick the group
+        # whose real ad demand fits this candidate's lane (analyst vs developer
+        # inside Data/IT) and draw gaps from it; fall back to the whole field when
+        # no group fits or the field has no group data.
+        gap_group_id = gap_group_term = None
+        gap_info = None
+        if gap_field and use_field_gaps:
+            candidate_tokens = set(profile["skills"]) | role_tokens
+            sel = self._select_group(gap_field, pdomain, candidate_tokens)
+            if sel:
+                gap_group_id, gap_group_term, group_skills = sel
+                gap_info = self._gaps_from_skills(group_skills, profile, role_tokens,
+                                                  gap_group_term, apply_lane_guard=False)
+            else:
+                gap_info = self._field_skill_gaps(gap_field, profile, role_tokens)
         if gap_info and gap_info["gaps"]:
             missing = [g["label"] for g in gap_info["gaps"][:5]]
 
@@ -618,7 +741,7 @@ class _Engine:
             plan.append("Search Platsbanken for " + ", ".join(f'"{k}"' for k in keywords[:4]) + ".")
 
         sig_field = best[0]["field_id"] if best else (adj[0]["field_id"] if adj else None)
-        market_signal = self._market_signal(sig_field, region) if sig_field else None
+        market_signal = self._market_signal(sig_field, region, gap_group_id) if sig_field else None
         why = why_recommendation(profile, domain_name, best, adj, market_signal, region)
 
         # Grounded LLM narrative: the model rewrites the verdict + "why" using ONLY
@@ -670,6 +793,7 @@ class _Engine:
             "adjacent_roles": [r["title"] for r in adj],
             "not_your_main_lane_roles": [r["title"] for r in avoid],
             "missing_skills": missing,
+            "matched_occupation_group": gap_group_term,
             "cv_improvements": improvements,
             "search_keywords": keywords[:7],
             "action_plan_7_day": plan,
