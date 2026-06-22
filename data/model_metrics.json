@@ -1,14 +1,13 @@
 {
-  "last_updated": "2026-06-15T11:49:38Z",
+  "last_updated": "2026-06-22T11:38:41Z",
   "methodology_version": "career-signal-forecast-v1",
   "model_source": "ml",
   "notes": [
-    "Trained HistGradientBoostingRegressor on 654 samples, tested on 164.",
-    "Model does not beat the persistence baseline on count MAE, but is far stronger at calling trend direction, which is what the career advice consumes."
+    "Trained HistGradientBoostingRegressor on 657 samples, tested on 165."
   ],
   "metrics": {
     "horizon_weeks": 4,
-    "n_samples": 818,
+    "n_samples": 822,
     "n_groups_with_history": 394,
     "features": [
       "ad_count_previous_week",
@@ -22,26 +21,26 @@
     ],
     "model": {
       "name": "HistGradientBoostingRegressor",
-      "mae": 98.48,
-      "mape": 20.85,
-      "trend_accuracy": 0.579,
-      "trend_macro_f1": 0.437
+      "mae": 83.37,
+      "mape": 17.93,
+      "trend_accuracy": 0.582,
+      "trend_macro_f1": 0.469
     },
     "baseline_persistence": {
       "name": "last-value (persistence)",
-      "mae": 84.16,
-      "mape": 21.2,
-      "trend_accuracy": 0.238,
-      "trend_macro_f1": 0.128
+      "mae": 89.59,
+      "mape": 21.03,
+      "trend_accuracy": 0.236,
+      "trend_macro_f1": 0.127
     },
     "baseline_moving_average": {
       "name": "4-week moving average",
-      "mae": 94.19,
-      "mape": 21.44
+      "mae": 100.46,
+      "mape": 21.4
     },
-    "n_train": 654,
-    "n_test": 164,
-    "beats_baseline_mae": false,
+    "n_train": 657,
+    "n_test": 165,
+    "beats_baseline_mae": true,
     "beats_baseline_trend_f1": true
   }
 }
