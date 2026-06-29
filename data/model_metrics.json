@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-06-22T11:38:41Z",
+  "last_updated": "2026-06-29T10:26:54Z",
   "methodology_version": "career-signal-forecast-v1",
   "model_source": "ml",
   "notes": [
-    "Trained HistGradientBoostingRegressor on 657 samples, tested on 165."
+    "Trained HistGradientBoostingRegressor on 660 samples, tested on 166."
   ],
   "metrics": {
     "horizon_weeks": 4,
-    "n_samples": 822,
+    "n_samples": 826,
     "n_groups_with_history": 394,
     "features": [
       "ad_count_previous_week",
@@ -21,25 +21,25 @@
     ],
     "model": {
       "name": "HistGradientBoostingRegressor",
-      "mae": 83.37,
-      "mape": 17.93,
-      "trend_accuracy": 0.582,
-      "trend_macro_f1": 0.469
+      "mae": 91.53,
+      "mape": 17.8,
+      "trend_accuracy": 0.584,
+      "trend_macro_f1": 0.497
     },
     "baseline_persistence": {
       "name": "last-value (persistence)",
-      "mae": 89.59,
-      "mape": 21.03,
-      "trend_accuracy": 0.236,
-      "trend_macro_f1": 0.127
+      "mae": 95.81,
+      "mape": 21.01,
+      "trend_accuracy": 0.229,
+      "trend_macro_f1": 0.124
     },
     "baseline_moving_average": {
       "name": "4-week moving average",
-      "mae": 100.46,
-      "mape": 21.4
+      "mae": 106.62,
+      "mape": 21.46
     },
-    "n_train": 657,
-    "n_test": 165,
+    "n_train": 660,
+    "n_test": 166,
     "beats_baseline_mae": true,
     "beats_baseline_trend_f1": true
   }
