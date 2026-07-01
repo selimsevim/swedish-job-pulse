@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-04-05",
-  "weeks_tracked": 14,
+  "last_updated": "2026-07-01",
+  "weeks_tracked": 26,
   "occupation_fields": [
     {
       "term": "Militära yrken",
@@ -12,6 +12,15 @@
       "sample_size": 1368
     },
     {
+      "term": "Försäljning, inköp, marknadsföring",
+      "concept_id": "RPTn_bxG_ExZ",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 45,
+      "pct_filled_under_7d": 6.0,
+      "pct_open_over_60d": 16.3,
+      "sample_size": 70592
+    },
+    {
       "term": "Data/IT",
       "concept_id": "apaJ_2ja_LuF",
       "median_lifespan_days": 30,
@@ -19,24 +28,6 @@
       "pct_filled_under_7d": 7.5,
       "pct_open_over_60d": 22.4,
       "sample_size": 36828
-    },
-    {
-      "term": "Hotell, restaurang, storhushåll",
-      "concept_id": "ScKy_FHB_7wT",
-      "median_lifespan_days": 30,
-      "mean_lifespan_days": 47,
-      "pct_filled_under_7d": 2.1,
-      "pct_open_over_60d": 18.8,
-      "sample_size": 27162
-    },
-    {
-      "term": "Transport, distribution, lager",
-      "concept_id": "ASGV_zcE_bWf",
-      "median_lifespan_days": 30,
-      "mean_lifespan_days": 43,
-      "pct_filled_under_7d": 5.5,
-      "pct_open_over_60d": 15.9,
-      "sample_size": 28690
     },
     {
       "term": "Yrken med teknisk inriktning",
@@ -48,13 +39,22 @@
       "sample_size": 28986
     },
     {
-      "term": "Installation, drift, underhåll",
-      "concept_id": "yhCP_AqT_tns",
+      "term": "Transport, distribution, lager",
+      "concept_id": "ASGV_zcE_bWf",
       "median_lifespan_days": 30,
-      "mean_lifespan_days": 46,
-      "pct_filled_under_7d": 2.8,
-      "pct_open_over_60d": 17.6,
-      "sample_size": 25775
+      "mean_lifespan_days": 43,
+      "pct_filled_under_7d": 5.5,
+      "pct_open_over_60d": 15.9,
+      "sample_size": 28690
+    },
+    {
+      "term": "Hotell, restaurang, storhushåll",
+      "concept_id": "ScKy_FHB_7wT",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 47,
+      "pct_filled_under_7d": 2.1,
+      "pct_open_over_60d": 18.8,
+      "sample_size": 27162
     },
     {
       "term": "Bygg och anläggning",
@@ -73,6 +73,15 @@
       "pct_filled_under_7d": 5.0,
       "pct_open_over_60d": 13.1,
       "sample_size": 25291
+    },
+    {
+      "term": "Installation, drift, underhåll",
+      "concept_id": "yhCP_AqT_tns",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 46,
+      "pct_filled_under_7d": 2.8,
+      "pct_open_over_60d": 17.6,
+      "sample_size": 25775
     },
     {
       "term": "Sanering och renhållning",
@@ -147,6 +156,24 @@
       "sample_size": 82703
     },
     {
+      "term": "Administration, ekonomi, juridik",
+      "concept_id": "X82t_awd_Qyc",
+      "median_lifespan_days": 23,
+      "mean_lifespan_days": 38,
+      "pct_filled_under_7d": 4.9,
+      "pct_open_over_60d": 12.2,
+      "sample_size": 62979
+    },
+    {
+      "term": "Chefer och verksamhetsledare",
+      "concept_id": "bh3H_Y3h_5eD",
+      "median_lifespan_days": 23,
+      "mean_lifespan_days": 34,
+      "pct_filled_under_7d": 3.5,
+      "pct_open_over_60d": 9.1,
+      "sample_size": 28276
+    },
+    {
       "term": "Naturvetenskap",
       "concept_id": "kJeN_wmw_9wX",
       "median_lifespan_days": 23,
@@ -170,74 +197,74 @@
     "mean_lifespan_days": 40,
     "longest_running_ads": [
       {
-        "id": "29465044",
-        "headline": "Kock till Turkiska köket",
-        "occupation_field": "Hotell, restaurang, storhushåll",
-        "days_open": 416,
-        "region": "Västra Götalands län"
-      },
-      {
-        "id": "29719109",
-        "headline": "Farmaceut till Apotek Hjärtat ICA Maxi, Visby",
-        "occupation_field": "Hälso- och sjukvård",
-        "days_open": 319,
-        "region": "Gotlands län"
-      },
-      {
-        "id": "29777436",
-        "headline": "Städare/Lokalvårdare",
-        "occupation_field": "Sanering och renhållning",
-        "days_open": 291,
-        "region": "Skåne län"
-      },
-      {
         "id": "29799942",
         "headline": "Massage Therapist - Accommodation Provided",
         "occupation_field": "Kropps- och skönhetsvård",
-        "days_open": 280,
+        "days_open": 367,
         "region": "Skåne län"
-      },
-      {
-        "id": "29815251",
-        "headline": "Pizzabagare",
-        "occupation_field": "Hotell, restaurang, storhushåll",
-        "days_open": 274,
-        "region": "Västra Götalands län"
-      },
-      {
-        "id": "29820889",
-        "headline": "Städare med körkort och erfarenhet! ",
-        "occupation_field": "Sanering och renhållning",
-        "days_open": 271,
-        "region": "—"
       },
       {
         "id": "29824618",
         "headline": "Städare i Malmö ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 270,
+        "days_open": 357,
         "region": "Skåne län"
       },
       {
         "id": "29824626",
         "headline": "Städare i Stockholm ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 270,
+        "days_open": 357,
         "region": "Stockholms län"
       },
       {
         "id": "29824638",
         "headline": "Cleaner in Stockholm ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 270,
+        "days_open": 357,
         "region": "Stockholms län"
       },
       {
         "id": "29824645",
         "headline": "Cleaner in Malmö ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 270,
+        "days_open": 357,
         "region": "Skåne län"
+      },
+      {
+        "id": "29824651",
+        "headline": "Cleaner in Gothenburg ",
+        "occupation_field": "Sanering och renhållning",
+        "days_open": 357,
+        "region": "Västra Götalands län"
+      },
+      {
+        "id": "30090826",
+        "headline": "Taxichaufför",
+        "occupation_field": "Transport, distribution, lager",
+        "days_open": 273,
+        "region": "Skåne län"
+      },
+      {
+        "id": "30334648",
+        "headline": "Städare i Göteborg ",
+        "occupation_field": "Sanering och renhållning",
+        "days_open": 210,
+        "region": "Västra Götalands län"
+      },
+      {
+        "id": "30352072",
+        "headline": "Taxiförare sökes",
+        "occupation_field": "Transport, distribution, lager",
+        "days_open": 204,
+        "region": "Stockholms län"
+      },
+      {
+        "id": "30392702",
+        "headline": "Kyltekniker - Stockholm",
+        "occupation_field": "Bygg och anläggning",
+        "days_open": 196,
+        "region": "Stockholms län"
       }
     ]
   },
