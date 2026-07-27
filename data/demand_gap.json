@@ -1,167 +1,176 @@
 {
-  "week": "2026-W30",
-  "last_updated": "2026-07-20T08:44:04Z",
+  "week": "2026-W31",
+  "last_updated": "2026-07-27T09:35:18Z",
   "occupations": [
     {
       "concept_id": "Lzpv_ofL_3H5",
       "term": "Motorfordonsmekaniker och fordonsreparatörer",
-      "ad_count": 647,
-      "search_count": 5138,
+      "ad_count": 658,
+      "search_count": 4916,
       "gap_ratio": 0.13,
       "signal": "high_attention_low_demand"
     },
     {
       "concept_id": "nu7c_QuB_KVQ",
       "term": "Specialistläkare",
-      "ad_count": 443,
-      "search_count": 3366,
+      "ad_count": 432,
+      "search_count": 3240,
       "gap_ratio": 0.13,
       "signal": "high_attention_low_demand"
     },
     {
-      "concept_id": "nDaB_vdy_eAy",
-      "term": "Ingenjörer och tekniker inom elektroteknik",
-      "ad_count": 620,
-      "search_count": 7004,
-      "gap_ratio": 0.09,
-      "signal": "high_attention_low_demand"
+      "concept_id": "oXSW_fbY_XrY",
+      "term": "Företagssäljare",
+      "ad_count": 1326,
+      "search_count": 11544,
+      "gap_ratio": 0.11,
+      "signal": "high_attention_low_demand",
+      "previous_gap_ratio": 0.12
     },
     {
       "concept_id": "sq3e_WVv_Fjd",
       "term": "Personliga assistenter",
-      "ad_count": 1742,
-      "search_count": 21021,
-      "gap_ratio": 0.08,
+      "ad_count": 1751,
+      "search_count": 18306,
+      "gap_ratio": 0.1,
       "signal": "high_attention_low_demand",
-      "previous_gap_ratio": 0.08
+      "previous_gap_ratio": 0.09
+    },
+    {
+      "concept_id": "nDaB_vdy_eAy",
+      "term": "Ingenjörer och tekniker inom elektroteknik",
+      "ad_count": 613,
+      "search_count": 5951,
+      "gap_ratio": 0.1,
+      "signal": "high_attention_low_demand"
+    },
+    {
+      "concept_id": "qn2U_dB9_Cmh",
+      "term": "Civilingenjörsyrken inom kemi och kemiteknik",
+      "ad_count": 399,
+      "search_count": 3998,
+      "gap_ratio": 0.1,
+      "signal": "high_attention_low_demand"
     },
     {
       "concept_id": "Z8ci_bBE_tmx",
       "term": "Grundutbildade sjuksköterskor",
-      "ad_count": 1356,
-      "search_count": 16742,
-      "gap_ratio": 0.08,
+      "ad_count": 1333,
+      "search_count": 15366,
+      "gap_ratio": 0.09,
       "signal": "high_attention_low_demand",
-      "previous_gap_ratio": 0.08
+      "previous_gap_ratio": 0.09
     },
     {
       "concept_id": "DJh5_yyF_hEM",
       "term": "Mjukvaru- och systemutvecklare m.fl.",
-      "ad_count": 1286,
-      "search_count": 16060,
-      "gap_ratio": 0.08,
+      "ad_count": 1276,
+      "search_count": 14935,
+      "gap_ratio": 0.09,
       "signal": "high_attention_low_demand",
-      "previous_gap_ratio": 0.08
+      "previous_gap_ratio": 0.09
     },
     {
       "concept_id": "K8yg_U4C_gkY",
       "term": "Ingenjörer och tekniker inom maskinteknik",
-      "ad_count": 784,
-      "search_count": 10044,
-      "gap_ratio": 0.08,
+      "ad_count": 767,
+      "search_count": 8382,
+      "gap_ratio": 0.09,
       "signal": "high_attention_low_demand"
     },
     {
       "concept_id": "vaEp_iBS_c5h",
       "term": "Maskinställare och maskinoperatörer, metallarbete",
-      "ad_count": 417,
-      "search_count": 4914,
-      "gap_ratio": 0.08,
-      "signal": "high_attention_low_demand"
-    },
-    {
-      "concept_id": "SPYW_7Z1_ShT",
-      "term": "Civilingenjörsyrken inom elektroteknik",
-      "ad_count": 405,
-      "search_count": 5199,
-      "gap_ratio": 0.08,
+      "ad_count": 413,
+      "search_count": 4779,
+      "gap_ratio": 0.09,
       "signal": "high_attention_low_demand"
     },
     {
       "concept_id": "KttZ_Skc_bMR",
       "term": "Underhållsmekaniker och maskinreparatörer",
-      "ad_count": 376,
-      "search_count": 4506,
-      "gap_ratio": 0.08,
-      "signal": "high_attention_low_demand"
-    },
-    {
-      "concept_id": "bjqk_F3A_5Hk",
-      "term": "Personal- och HR-specialister",
-      "ad_count": 2126,
-      "search_count": 30879,
-      "gap_ratio": 0.07,
+      "ad_count": 365,
+      "search_count": 3885,
+      "gap_ratio": 0.09,
       "signal": "high_attention_low_demand"
     },
     {
       "concept_id": "PRQn_9yw_NJA",
       "term": "Civilingenjörsyrken inom maskinteknik",
-      "ad_count": 477,
-      "search_count": 7040,
-      "gap_ratio": 0.07,
+      "ad_count": 446,
+      "search_count": 5840,
+      "gap_ratio": 0.08,
       "signal": "high_attention_low_demand"
     },
     {
       "concept_id": "thZP_oR7_WrY",
       "term": "Ingenjörer och tekniker inom bygg och anläggning",
-      "ad_count": 555,
-      "search_count": 9890,
+      "ad_count": 544,
+      "search_count": 8971,
       "gap_ratio": 0.06,
+      "signal": "high_attention_low_demand"
+    },
+    {
+      "concept_id": "Z6TY_xDf_Yup",
+      "term": "Städare",
+      "ad_count": 695,
+      "search_count": 14262,
+      "gap_ratio": 0.05,
       "signal": "high_attention_low_demand"
     },
     {
       "concept_id": "BStc_SJh_DKG",
       "term": "Kockar och kallskänkor",
-      "ad_count": 581,
-      "search_count": 12457,
+      "ad_count": 607,
+      "search_count": 11947,
       "gap_ratio": 0.05,
       "signal": "high_attention_low_demand"
     },
     {
       "concept_id": "UXKZ_3zZ_ipB",
       "term": "Systemanalytiker och IT-arkitekter m.fl.",
-      "ad_count": 337,
-      "search_count": 7180,
+      "ad_count": 336,
+      "search_count": 6538,
       "gap_ratio": 0.05,
-      "signal": "high_attention_low_demand"
-    },
-    {
-      "concept_id": "Z6TY_xDf_Yup",
-      "term": "Städare",
-      "ad_count": 704,
-      "search_count": 16367,
-      "gap_ratio": 0.04,
-      "signal": "high_attention_low_demand"
-    },
-    {
-      "concept_id": "3MBw_pDA_P2F",
-      "term": "Lastbilsförare m.fl.",
-      "ad_count": 599,
-      "search_count": 16694,
-      "gap_ratio": 0.04,
       "signal": "high_attention_low_demand"
     },
     {
       "concept_id": "XeBP_nMe_pXx",
       "term": "Civilingenjörsyrken inom bygg och anläggning",
-      "ad_count": 329,
-      "search_count": 7521,
+      "ad_count": 326,
+      "search_count": 7012,
+      "gap_ratio": 0.05,
+      "signal": "high_attention_low_demand"
+    },
+    {
+      "concept_id": "UjoW_meY_Zwt",
+      "term": "Hovmästare och servitörer",
+      "ad_count": 326,
+      "search_count": 6660,
+      "gap_ratio": 0.05,
+      "signal": "high_attention_low_demand"
+    },
+    {
+      "concept_id": "3MBw_pDA_P2F",
+      "term": "Lastbilsförare m.fl.",
+      "ad_count": 530,
+      "search_count": 14422,
       "gap_ratio": 0.04,
       "signal": "high_attention_low_demand"
     },
     {
       "concept_id": "jY19_knH_MJp",
       "term": "Undersköterskor, hemtjänst, hemsjukvård, äldreboende och habilitering",
-      "ad_count": 686,
-      "search_count": 27050,
+      "ad_count": 743,
+      "search_count": 23747,
       "gap_ratio": 0.03,
       "signal": "high_attention_low_demand"
     },
     {
       "concept_id": "tPox_ie4_X9X",
       "term": "Restaurang- och köksbiträden m.fl.",
-      "ad_count": 685,
-      "search_count": 23255,
+      "ad_count": 697,
+      "search_count": 20840,
       "gap_ratio": 0.03,
       "signal": "high_attention_low_demand"
     },
@@ -169,64 +178,72 @@
       "concept_id": "kLyY_rwr_aJr",
       "term": "Lager- och terminalpersonal",
       "ad_count": 541,
-      "search_count": 25608,
+      "search_count": 20428,
+      "gap_ratio": 0.03,
+      "signal": "high_attention_low_demand"
+    },
+    {
+      "concept_id": "vPP6_rsw_dck",
+      "term": "Planerare och utredare m.fl.",
+      "ad_count": 512,
+      "search_count": 31958,
+      "gap_ratio": 0.02,
+      "signal": "high_attention_low_demand"
+    },
+    {
+      "concept_id": "pok1_ipJ_yzD",
+      "term": "Socialsekreterare",
+      "ad_count": 499,
+      "search_count": 27174,
+      "gap_ratio": 0.02,
+      "signal": "high_attention_low_demand"
+    },
+    {
+      "concept_id": "Qo7p_wjf_gtv",
+      "term": "Lednings- och organisationsutvecklare",
+      "ad_count": 480,
+      "search_count": 26404,
+      "gap_ratio": 0.02,
+      "signal": "high_attention_low_demand"
+    },
+    {
+      "concept_id": "YKL2_FCB_1yr",
+      "term": "Butikssäljare, fackhandel",
+      "ad_count": 480,
+      "search_count": 25199,
+      "gap_ratio": 0.02,
+      "signal": "high_attention_low_demand"
+    },
+    {
+      "concept_id": "pwRH_MT1_8nR",
+      "term": "Kundtjänstpersonal",
+      "ad_count": 323,
+      "search_count": 21086,
       "gap_ratio": 0.02,
       "signal": "high_attention_low_demand"
     },
     {
       "concept_id": "oQUQ_D11_HPx",
       "term": "Grundskollärare",
-      "ad_count": 803,
-      "search_count": 64013,
+      "ad_count": 760,
+      "search_count": 60067,
       "gap_ratio": 0.01,
       "signal": "high_attention_low_demand",
       "previous_gap_ratio": 0.01
     },
     {
-      "concept_id": "vPP6_rsw_dck",
-      "term": "Planerare och utredare m.fl.",
-      "ad_count": 476,
-      "search_count": 41399,
-      "gap_ratio": 0.01,
-      "signal": "high_attention_low_demand"
-    },
-    {
-      "concept_id": "YKL2_FCB_1yr",
-      "term": "Butikssäljare, fackhandel",
-      "ad_count": 468,
-      "search_count": 32271,
-      "gap_ratio": 0.01,
-      "signal": "high_attention_low_demand"
-    },
-    {
-      "concept_id": "pok1_ipJ_yzD",
-      "term": "Socialsekreterare",
-      "ad_count": 459,
-      "search_count": 35215,
-      "gap_ratio": 0.01,
-      "signal": "high_attention_low_demand"
-    },
-    {
-      "concept_id": "pwRH_MT1_8nR",
-      "term": "Kundtjänstpersonal",
-      "ad_count": 326,
-      "search_count": 27487,
-      "gap_ratio": 0.01,
-      "signal": "high_attention_low_demand"
-    },
-    {
       "concept_id": "s1Qk_o98_2o1",
       "term": "Butikssäljare, dagligvaror",
-      "ad_count": 317,
-      "search_count": 34977,
+      "ad_count": 354,
+      "search_count": 27482,
       "gap_ratio": 0.01,
       "signal": "high_attention_low_demand"
     },
     {
-      "concept_id": "eQ4M_CNm_ozj",
-      "term": "Övriga kontorsassistenter och sekreterare",
-      "ad_count": 310,
-      "search_count": 49914,
+      "concept_id": "bjqk_F3A_5Hk",
+      "term": "Personal- och HR-specialister",
+      "ad_count": 351,
+      "search_count": 26563,
       "gap_ratio": 0.01,
       "signal": "high_attention_low_demand"
     }
@@ -234,16 +251,16 @@
   "changes_vs_last_week": [
     {
       "term": "Personliga assistenter",
-      "change": 0.0
+      "change": 0.01
+    },
+    {
+      "term": "Företagssäljare",
+      "change": -0.01
     },
     {
       "term": "Grundutbildade sjuksköterskor",
       "change": 0.0
-    },
-    {
-      "term": "Mjukvaru- och systemutvecklare m.fl.",
-      "change": 0.0
     }
   ],
-  "trends_file": "jobsearch-daily-2026-07-19.zip"
+  "trends_file": "jobsearch-daily-2026-07-25.zip"
 }
