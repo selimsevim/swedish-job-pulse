@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-08-17T06:37:11Z",
+  "last_updated": "2026-08-24T06:39:52Z",
   "methodology_version": "career-reality-v1",
   "forecast_model_source": "ml",
   "sources": {
-    "live_week": "2026-W34",
-    "demand_gap_week": "2026-W34",
-    "regional_split_week": "2026-W34",
+    "live_week": "2026-W35",
+    "demand_gap_week": "2026-W35",
+    "regional_split_week": "2026-W35",
     "skill_velocity_updated": "2026-08-01",
-    "forecast_updated": "2026-08-17T06:37:11Z"
+    "forecast_updated": "2026-08-24T06:39:51Z"
   },
   "regions": [
     {
@@ -97,45 +97,30 @@
   ],
   "regional_field_strength": {
     "Stockholms län": {
+      "RPTn_bxG_ExZ": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.66
+      },
+      "GazW_2TU_kJw": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.56
+      },
       "NYW6_mP6_vwf": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.73
-      },
-      "RPTn_bxG_ExZ": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.24
-      },
-      "yhCP_AqT_tns": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.47
-      },
-      "GazW_2TU_kJw": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.88
-      },
-      "X82t_awd_Qyc": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.36
-      },
-      "apaJ_2ja_LuF": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.75
+        "vs_national": 0.77
       },
       "ScKy_FHB_7wT": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 1.0
+        "vs_national": 1.04
       },
-      "MVqp_eS8_kDZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.92
+      "apaJ_2ja_LuF": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.74
       },
       "6Hq3_tKo_V57": {
         "score": 48,
@@ -143,258 +128,258 @@
         "vs_national": 0.81
       },
       "ASGV_zcE_bWf": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.09
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.35
       },
-      "bh3H_Y3h_5eD": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.9
+      "wTEr_CBC_bqh": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.58
       },
       "j7Cq_ZJe_GkT": {
         "score": 76,
         "signal": "strong",
-        "vs_national": 1.24
+        "vs_national": 1.28
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.92
+      },
+      "yhCP_AqT_tns": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.98
       },
       "whao_Q6A_ScE": {
         "score": 76,
         "signal": "strong",
-        "vs_national": 1.19
+        "vs_national": 1.29
       },
       "E7hm_BLq_fqZ": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.1
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.0
       },
       "9puE_nYg_crq": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 1.52
-      },
-      "kJeN_wmw_9wX": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.94
+        "vs_national": 1.36
       },
       "Uuf1_GMh_Uvw": {
         "score": 88,
         "signal": "strong",
         "vs_national": 1.67
       },
-      "VuuL_7CH_adj": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.86
-      },
-      "wTEr_CBC_bqh": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 5.89
-      },
-      "bH5L_uXD_ZAX": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.66
-      }
-    },
-    "Uppsala län": {
-      "NYW6_mP6_vwf": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.57
-      },
-      "RPTn_bxG_ExZ": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.73
-      },
-      "yhCP_AqT_tns": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.48
-      },
-      "GazW_2TU_kJw": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.05
-      },
-      "X82t_awd_Qyc": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.06
-      },
-      "apaJ_2ja_LuF": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.62
-      },
-      "ScKy_FHB_7wT": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.72
-      },
-      "MVqp_eS8_kDZ": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.36
-      },
-      "6Hq3_tKo_V57": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.8
-      },
-      "ASGV_zcE_bWf": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.85
-      },
-      "bh3H_Y3h_5eD": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.09
-      },
-      "j7Cq_ZJe_GkT": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.82
-      },
-      "whao_Q6A_ScE": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.04
-      },
-      "E7hm_BLq_fqZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.9
-      },
-      "9puE_nYg_crq": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.7
-      },
       "kJeN_wmw_9wX": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 5.78
-      },
-      "Uuf1_GMh_Uvw": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.24
-      },
-      "VuuL_7CH_adj": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.52
-      },
-      "wTEr_CBC_bqh": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 3.73
-      },
-      "bH5L_uXD_ZAX": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 5.14
-      }
-    },
-    "Södermanlands län": {
-      "NYW6_mP6_vwf": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.44
-      },
-      "RPTn_bxG_ExZ": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.8
-      },
-      "yhCP_AqT_tns": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.69
-      },
-      "GazW_2TU_kJw": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.06
-      },
-      "X82t_awd_Qyc": {
         "score": 48,
         "signal": "weak",
         "vs_national": 0.75
       },
-      "apaJ_2ja_LuF": {
+      "VuuL_7CH_adj": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.82
+      },
+      "PaxQ_o1G_wWH": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.23
+      },
+      "bH5L_uXD_ZAX": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.24
+        "vs_national": 0.53
+      }
+    },
+    "Uppsala län": {
+      "RPTn_bxG_ExZ": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.38
+      },
+      "GazW_2TU_kJw": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.65
+      },
+      "NYW6_mP6_vwf": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.68
       },
       "ScKy_FHB_7wT": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.72
+        "vs_national": 0.73
       },
-      "MVqp_eS8_kDZ": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.22
+      "apaJ_2ja_LuF": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.56
       },
       "6Hq3_tKo_V57": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.1
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.76
       },
       "ASGV_zcE_bWf": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.27
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.84
+      },
+      "wTEr_CBC_bqh": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.52
+      },
+      "j7Cq_ZJe_GkT": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.79
       },
       "bh3H_Y3h_5eD": {
         "score": 62,
         "signal": "medium",
         "vs_national": 1.03
       },
-      "j7Cq_ZJe_GkT": {
+      "yhCP_AqT_tns": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 0.99
+        "vs_national": 0.87
       },
       "whao_Q6A_ScE": {
         "score": 76,
         "signal": "strong",
-        "vs_national": 1.2
+        "vs_national": 1.14
       },
       "E7hm_BLq_fqZ": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.71
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.63
       },
       "9puE_nYg_crq": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.69
-      },
-      "kJeN_wmw_9wX": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.54
+        "vs_national": 0.66
       },
       "Uuf1_GMh_Uvw": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.0
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.31
+      },
+      "kJeN_wmw_9wX": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 5.33
       },
       "VuuL_7CH_adj": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.93
+      },
+      "PaxQ_o1G_wWH": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.43
+      },
+      "bH5L_uXD_ZAX": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 5.3
+      }
+    },
+    "Södermanlands län": {
+      "RPTn_bxG_ExZ": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.44
+      },
+      "GazW_2TU_kJw": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.63
+      },
+      "NYW6_mP6_vwf": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.51
+      },
+      "ScKy_FHB_7wT": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.77
+      },
+      "apaJ_2ja_LuF": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.26
+      },
+      "6Hq3_tKo_V57": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.94
+      },
+      "ASGV_zcE_bWf": {
         "score": 38,
         "signal": "weak",
         "vs_national": 0.0
       },
       "wTEr_CBC_bqh": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.22
+      },
+      "j7Cq_ZJe_GkT": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.11
+      },
+      "bh3H_Y3h_5eD": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 14.28
+        "vs_national": 2.21
+      },
+      "yhCP_AqT_tns": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.39
+      },
+      "whao_Q6A_ScE": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.08
+      },
+      "E7hm_BLq_fqZ": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.74
+      },
+      "9puE_nYg_crq": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.68
+      },
+      "Uuf1_GMh_Uvw": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.78
+      },
+      "kJeN_wmw_9wX": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.0
+      },
+      "VuuL_7CH_adj": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 2.44
+      },
+      "PaxQ_o1G_wWH": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.99
       },
       "bH5L_uXD_ZAX": {
         "score": 38,
@@ -403,304 +388,289 @@
       }
     },
     "Östergötlands län": {
-      "NYW6_mP6_vwf": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.09
-      },
       "RPTn_bxG_ExZ": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 1.0
-      },
-      "yhCP_AqT_tns": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.34
+        "vs_national": 1.05
       },
       "GazW_2TU_kJw": {
-        "score": 48,
+        "score": 38,
         "signal": "weak",
-        "vs_national": 0.84
+        "vs_national": 0.52
       },
-      "X82t_awd_Qyc": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.17
-      },
-      "apaJ_2ja_LuF": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.45
+      "NYW6_mP6_vwf": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.06
       },
       "ScKy_FHB_7wT": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.67
+        "vs_national": 0.64
       },
-      "MVqp_eS8_kDZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.07
+      "apaJ_2ja_LuF": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.49
       },
       "6Hq3_tKo_V57": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 1.93
+        "vs_national": 1.95
       },
       "ASGV_zcE_bWf": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.0
-      },
-      "bh3H_Y3h_5eD": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 1.04
+        "vs_national": 0.94
+      },
+      "wTEr_CBC_bqh": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.98
       },
       "j7Cq_ZJe_GkT": {
-        "score": 38,
+        "score": 48,
         "signal": "weak",
-        "vs_national": 0.0
+        "vs_national": 0.63
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.12
+      },
+      "yhCP_AqT_tns": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.01
       },
       "whao_Q6A_ScE": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.71
+        "vs_national": 0.68
       },
       "E7hm_BLq_fqZ": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.76
+        "vs_national": 0.64
       },
       "9puE_nYg_crq": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.19
-      },
-      "kJeN_wmw_9wX": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.48
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.06
       },
       "Uuf1_GMh_Uvw": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.42
+        "vs_national": 0.38
       },
-      "VuuL_7CH_adj": {
+      "kJeN_wmw_9wX": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.66
+        "vs_national": 0.73
       },
-      "wTEr_CBC_bqh": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 9.65
+      "VuuL_7CH_adj": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.56
+      },
+      "PaxQ_o1G_wWH": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.68
       },
       "bH5L_uXD_ZAX": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 2.0
+        "vs_national": 3.23
       }
     },
     "Jönköpings län": {
+      "RPTn_bxG_ExZ": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.5
+      },
+      "GazW_2TU_kJw": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.56
+      },
       "NYW6_mP6_vwf": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.78
-      },
-      "RPTn_bxG_ExZ": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.81
-      },
-      "yhCP_AqT_tns": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.65
-      },
-      "GazW_2TU_kJw": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.87
-      },
-      "X82t_awd_Qyc": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.9
-      },
-      "apaJ_2ja_LuF": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.7
+        "vs_national": 0.76
       },
       "ScKy_FHB_7wT": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 0.99
+        "vs_national": 0.96
       },
-      "MVqp_eS8_kDZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.88
+      "apaJ_2ja_LuF": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.62
       },
       "6Hq3_tKo_V57": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.75
+        "vs_national": 0.84
       },
       "ASGV_zcE_bWf": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 1.75
+        "vs_national": 1.74
+      },
+      "wTEr_CBC_bqh": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 3.18
+      },
+      "j7Cq_ZJe_GkT": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.77
       },
       "bh3H_Y3h_5eD": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 1.0
+        "vs_national": 0.87
+      },
+      "yhCP_AqT_tns": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.21
+      },
+      "whao_Q6A_ScE": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.72
+      },
+      "E7hm_BLq_fqZ": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.89
+      },
+      "9puE_nYg_crq": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.05
+      },
+      "Uuf1_GMh_Uvw": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.12
+      },
+      "kJeN_wmw_9wX": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.58
+      },
+      "VuuL_7CH_adj": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.44
+      },
+      "PaxQ_o1G_wWH": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.23
+      },
+      "bH5L_uXD_ZAX": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.0
+      }
+    },
+    "Kronobergs län": {
+      "RPTn_bxG_ExZ": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.54
+      },
+      "GazW_2TU_kJw": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.56
+      },
+      "NYW6_mP6_vwf": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.99
+      },
+      "ScKy_FHB_7wT": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.16
+      },
+      "apaJ_2ja_LuF": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.4
+      },
+      "6Hq3_tKo_V57": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.91
+      },
+      "ASGV_zcE_bWf": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.38
+      },
+      "wTEr_CBC_bqh": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 3.44
       },
       "j7Cq_ZJe_GkT": {
         "score": 48,
         "signal": "weak",
         "vs_national": 0.72
       },
-      "whao_Q6A_ScE": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.79
-      },
-      "E7hm_BLq_fqZ": {
+      "bh3H_Y3h_5eD": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 0.91
-      },
-      "9puE_nYg_crq": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.75
-      },
-      "kJeN_wmw_9wX": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.52
-      },
-      "Uuf1_GMh_Uvw": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.44
-      },
-      "VuuL_7CH_adj": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.46
-      },
-      "wTEr_CBC_bqh": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 33.06
-      },
-      "bH5L_uXD_ZAX": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.63
-      }
-    },
-    "Kronobergs län": {
-      "NYW6_mP6_vwf": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.09
-      },
-      "RPTn_bxG_ExZ": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.81
+        "vs_national": 0.99
       },
       "yhCP_AqT_tns": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.38
-      },
-      "GazW_2TU_kJw": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.82
-      },
-      "X82t_awd_Qyc": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.66
-      },
-      "apaJ_2ja_LuF": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.38
-      },
-      "ScKy_FHB_7wT": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.19
-      },
-      "MVqp_eS8_kDZ": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.11
-      },
-      "6Hq3_tKo_V57": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.92
-      },
-      "ASGV_zcE_bWf": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.33
-      },
-      "bh3H_Y3h_5eD": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.11
-      },
-      "j7Cq_ZJe_GkT": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.8
+        "vs_national": 0.67
       },
       "whao_Q6A_ScE": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.0
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.74
       },
       "E7hm_BLq_fqZ": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.42
+        "vs_national": 0.3
       },
       "9puE_nYg_crq": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 1.31
-      },
-      "kJeN_wmw_9wX": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.19
+        "vs_national": 1.43
       },
       "Uuf1_GMh_Uvw": {
         "score": 38,
         "signal": "weak",
         "vs_national": 0.0
       },
+      "kJeN_wmw_9wX": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.19
+      },
       "VuuL_7CH_adj": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 2.03
+        "vs_national": 1.6
       },
-      "wTEr_CBC_bqh": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 31.59
+      "PaxQ_o1G_wWH": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.0
       },
       "bH5L_uXD_ZAX": {
         "score": 38,
@@ -709,100 +679,95 @@
       }
     },
     "Kalmar län": {
+      "RPTn_bxG_ExZ": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.42
+      },
+      "GazW_2TU_kJw": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.17
+      },
       "NYW6_mP6_vwf": {
         "score": 76,
         "signal": "strong",
-        "vs_national": 1.27
-      },
-      "RPTn_bxG_ExZ": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.71
-      },
-      "yhCP_AqT_tns": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.52
-      },
-      "GazW_2TU_kJw": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.84
-      },
-      "X82t_awd_Qyc": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.58
-      },
-      "apaJ_2ja_LuF": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.44
+        "vs_national": 1.17
       },
       "ScKy_FHB_7wT": {
         "score": 76,
         "signal": "strong",
-        "vs_national": 1.28
+        "vs_national": 1.2
       },
-      "MVqp_eS8_kDZ": {
+      "apaJ_2ja_LuF": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.0
+        "vs_national": 0.48
       },
       "6Hq3_tKo_V57": {
         "score": 76,
         "signal": "strong",
-        "vs_national": 1.12
+        "vs_national": 1.24
       },
       "ASGV_zcE_bWf": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.41
-      },
-      "bh3H_Y3h_5eD": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.21
-      },
-      "j7Cq_ZJe_GkT": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.89
-      },
-      "whao_Q6A_ScE": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 2.07
-      },
-      "E7hm_BLq_fqZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.98
-      },
-      "9puE_nYg_crq": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.19
-      },
-      "kJeN_wmw_9wX": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.59
-      },
-      "Uuf1_GMh_Uvw": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.4
-      },
-      "VuuL_7CH_adj": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.69
+        "vs_national": 0.45
       },
       "wTEr_CBC_bqh": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 18.34
+        "vs_national": 1.62
+      },
+      "j7Cq_ZJe_GkT": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.9
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.46
+      },
+      "yhCP_AqT_tns": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.18
+      },
+      "whao_Q6A_ScE": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.7
+      },
+      "E7hm_BLq_fqZ": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.92
+      },
+      "9puE_nYg_crq": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.8
+      },
+      "Uuf1_GMh_Uvw": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.37
+      },
+      "kJeN_wmw_9wX": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.76
+      },
+      "VuuL_7CH_adj": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.42
+      },
+      "PaxQ_o1G_wWH": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.69
       },
       "bH5L_uXD_ZAX": {
         "score": 38,
@@ -811,87 +776,82 @@
       }
     },
     "Gotlands län": {
-      "NYW6_mP6_vwf": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 2.5
-      },
       "RPTn_bxG_ExZ": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.38
-      },
-      "yhCP_AqT_tns": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.21
+        "vs_national": 0.26
       },
       "GazW_2TU_kJw": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.19
+      },
+      "NYW6_mP6_vwf": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 2.06
+        "vs_national": 2.82
       },
-      "X82t_awd_Qyc": {
-        "score": 48,
+      "ScKy_FHB_7wT": {
+        "score": 38,
         "signal": "weak",
-        "vs_national": 0.73
+        "vs_national": 0.58
       },
       "apaJ_2ja_LuF": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.16
+        "vs_national": 0.17
       },
-      "ScKy_FHB_7wT": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.63
+      "6Hq3_tKo_V57": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.0
       },
-      "MVqp_eS8_kDZ": {
+      "ASGV_zcE_bWf": {
         "score": 76,
         "signal": "strong",
         "vs_national": 1.21
       },
-      "6Hq3_tKo_V57": {
+      "wTEr_CBC_bqh": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.44
-      },
-      "ASGV_zcE_bWf": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.09
-      },
-      "bh3H_Y3h_5eD": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.39
+        "vs_national": 0.0
       },
       "j7Cq_ZJe_GkT": {
-        "score": 48,
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.94
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.29
+      },
+      "yhCP_AqT_tns": {
+        "score": 38,
         "signal": "weak",
-        "vs_national": 0.8
+        "vs_national": 0.55
       },
       "whao_Q6A_ScE": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.45
+        "vs_national": 0.47
       },
       "E7hm_BLq_fqZ": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.37
+        "vs_national": 0.38
       },
       "9puE_nYg_crq": {
         "score": 38,
         "signal": "weak",
         "vs_national": 0.0
       },
-      "kJeN_wmw_9wX": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 2.66
-      },
       "Uuf1_GMh_Uvw": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.0
+      },
+      "kJeN_wmw_9wX": {
         "score": 38,
         "signal": "weak",
         "vs_national": 0.0
@@ -899,12 +859,12 @@
       "VuuL_7CH_adj": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.71
+        "vs_national": 0.76
       },
-      "wTEr_CBC_bqh": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 4.89
+      "PaxQ_o1G_wWH": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.0
       },
       "bH5L_uXD_ZAX": {
         "score": 38,
@@ -913,172 +873,162 @@
       }
     },
     "Blekinge län": {
-      "NYW6_mP6_vwf": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.23
-      },
       "RPTn_bxG_ExZ": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.83
-      },
-      "yhCP_AqT_tns": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.46
-      },
-      "GazW_2TU_kJw": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 2.13
-      },
-      "X82t_awd_Qyc": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.88
-      },
-      "apaJ_2ja_LuF": {
         "score": 38,
         "signal": "weak",
         "vs_national": 0.49
       },
-      "ScKy_FHB_7wT": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.1
+      "GazW_2TU_kJw": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.87
       },
-      "MVqp_eS8_kDZ": {
+      "NYW6_mP6_vwf": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.31
+      },
+      "ScKy_FHB_7wT": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.98
+      },
+      "apaJ_2ja_LuF": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.0
+        "vs_national": 0.53
       },
       "6Hq3_tKo_V57": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 1.69
+        "vs_national": 1.53
       },
       "ASGV_zcE_bWf": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.95
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.84
       },
-      "bh3H_Y3h_5eD": {
+      "wTEr_CBC_bqh": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 0.99
+        "vs_national": 1.01
       },
       "j7Cq_ZJe_GkT": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.54
+        "vs_national": 0.45
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.1
+      },
+      "yhCP_AqT_tns": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.0
       },
       "whao_Q6A_ScE": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.82
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.16
       },
       "E7hm_BLq_fqZ": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.66
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.9
       },
       "9puE_nYg_crq": {
-        "score": 48,
+        "score": 38,
         "signal": "weak",
-        "vs_national": 0.77
-      },
-      "kJeN_wmw_9wX": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.8
+        "vs_national": 0.47
       },
       "Uuf1_GMh_Uvw": {
         "score": 38,
         "signal": "weak",
         "vs_national": 0.0
       },
+      "kJeN_wmw_9wX": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.68
+      },
       "VuuL_7CH_adj": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 0.96
+        "vs_national": 0.89
       },
-      "wTEr_CBC_bqh": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 7.95
+      "PaxQ_o1G_wWH": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.83
       },
       "bH5L_uXD_ZAX": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 4.34
+        "vs_national": 4.02
       }
     },
     "Skåne län": {
+      "RPTn_bxG_ExZ": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.66
+      },
+      "GazW_2TU_kJw": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.76
+      },
       "NYW6_mP6_vwf": {
         "score": 76,
         "signal": "strong",
-        "vs_national": 1.24
-      },
-      "RPTn_bxG_ExZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.09
-      },
-      "yhCP_AqT_tns": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.42
-      },
-      "GazW_2TU_kJw": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.22
-      },
-      "X82t_awd_Qyc": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.9
-      },
-      "apaJ_2ja_LuF": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.71
+        "vs_national": 1.14
       },
       "ScKy_FHB_7wT": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 1.02
+        "vs_national": 1.01
       },
-      "MVqp_eS8_kDZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.09
+      "apaJ_2ja_LuF": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.7
       },
       "6Hq3_tKo_V57": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 0.91
+        "vs_national": 0.87
       },
       "ASGV_zcE_bWf": {
         "score": 76,
         "signal": "strong",
         "vs_national": 1.25
       },
-      "bh3H_Y3h_5eD": {
+      "wTEr_CBC_bqh": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 0.89
+        "vs_national": 0.92
       },
       "j7Cq_ZJe_GkT": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.75
+        "vs_national": 0.76
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.9
+      },
+      "yhCP_AqT_tns": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.91
       },
       "whao_Q6A_ScE": {
-        "score": 88,
+        "score": 76,
         "signal": "strong",
-        "vs_national": 1.32
+        "vs_national": 1.23
       },
       "E7hm_BLq_fqZ": {
         "score": 48,
@@ -1088,91 +1038,86 @@
       "9puE_nYg_crq": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 1.01
-      },
-      "kJeN_wmw_9wX": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.14
+        "vs_national": 0.9
       },
       "Uuf1_GMh_Uvw": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 1.43
+        "vs_national": 1.34
+      },
+      "kJeN_wmw_9wX": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.93
       },
       "VuuL_7CH_adj": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 1.54
+        "vs_national": 1.51
       },
-      "wTEr_CBC_bqh": {
-        "score": 88,
+      "PaxQ_o1G_wWH": {
+        "score": 76,
         "signal": "strong",
-        "vs_national": 9.88
+        "vs_national": 1.28
       },
       "bH5L_uXD_ZAX": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.32
+        "vs_national": 0.46
       }
     },
     "Hallands län": {
-      "NYW6_mP6_vwf": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.2
-      },
       "RPTn_bxG_ExZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.0
-      },
-      "yhCP_AqT_tns": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.45
+        "vs_national": 0.52
       },
       "GazW_2TU_kJw": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.87
-      },
-      "X82t_awd_Qyc": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.65
+        "vs_national": 0.6
       },
-      "apaJ_2ja_LuF": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.28
+      "NYW6_mP6_vwf": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.31
       },
       "ScKy_FHB_7wT": {
         "score": 88,
         "signal": "strong",
         "vs_national": 1.37
       },
-      "MVqp_eS8_kDZ": {
+      "apaJ_2ja_LuF": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.0
+        "vs_national": 0.33
       },
       "6Hq3_tKo_V57": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.55
+        "vs_national": 0.49
       },
       "ASGV_zcE_bWf": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 0.94
+        "vs_national": 1.02
+      },
+      "wTEr_CBC_bqh": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.9
+      },
+      "j7Cq_ZJe_GkT": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.72
       },
       "bh3H_Y3h_5eD": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 1.04
+        "vs_national": 0.97
       },
-      "j7Cq_ZJe_GkT": {
+      "yhCP_AqT_tns": {
         "score": 48,
         "signal": "weak",
         "vs_national": 0.78
@@ -1180,390 +1125,360 @@
       "whao_Q6A_ScE": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 1.97
+        "vs_national": 2.03
       },
       "E7hm_BLq_fqZ": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 1.48
-      },
-      "9puE_nYg_crq": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.13
-      },
-      "kJeN_wmw_9wX": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.3
-      },
-      "Uuf1_GMh_Uvw": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.21
-      },
-      "VuuL_7CH_adj": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.11
-      },
-      "wTEr_CBC_bqh": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 19.26
-      },
-      "bH5L_uXD_ZAX": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.72
-      }
-    },
-    "Västra Götalands län": {
-      "NYW6_mP6_vwf": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.84
-      },
-      "RPTn_bxG_ExZ": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.8
-      },
-      "yhCP_AqT_tns": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.54
-      },
-      "GazW_2TU_kJw": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.06
-      },
-      "X82t_awd_Qyc": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.0
-      },
-      "apaJ_2ja_LuF": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.1
-      },
-      "ScKy_FHB_7wT": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.13
-      },
-      "MVqp_eS8_kDZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.91
-      },
-      "6Hq3_tKo_V57": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.08
-      },
-      "ASGV_zcE_bWf": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.14
-      },
-      "bh3H_Y3h_5eD": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.17
-      },
-      "j7Cq_ZJe_GkT": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.11
-      },
-      "whao_Q6A_ScE": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.84
-      },
-      "E7hm_BLq_fqZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.96
-      },
-      "9puE_nYg_crq": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.86
-      },
-      "kJeN_wmw_9wX": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.88
-      },
-      "Uuf1_GMh_Uvw": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.8
-      },
-      "VuuL_7CH_adj": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.76
-      },
-      "wTEr_CBC_bqh": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 12.65
-      },
-      "bH5L_uXD_ZAX": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.55
-      }
-    },
-    "Värmlands län": {
-      "NYW6_mP6_vwf": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.28
-      },
-      "RPTn_bxG_ExZ": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.21
-      },
-      "yhCP_AqT_tns": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.49
-      },
-      "GazW_2TU_kJw": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.33
-      },
-      "X82t_awd_Qyc": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.81
-      },
-      "apaJ_2ja_LuF": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.24
-      },
-      "ScKy_FHB_7wT": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.4
-      },
-      "MVqp_eS8_kDZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.04
-      },
-      "6Hq3_tKo_V57": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.38
-      },
-      "ASGV_zcE_bWf": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.5
-      },
-      "bh3H_Y3h_5eD": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.22
-      },
-      "j7Cq_ZJe_GkT": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.5
-      },
-      "whao_Q6A_ScE": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.91
-      },
-      "E7hm_BLq_fqZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.01
+        "vs_national": 1.39
       },
       "9puE_nYg_crq": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.72
-      },
-      "kJeN_wmw_9wX": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.0
+        "vs_national": 0.61
       },
       "Uuf1_GMh_Uvw": {
-        "score": 38,
+        "score": 48,
         "signal": "weak",
-        "vs_national": 0.51
+        "vs_national": 0.69
       },
-      "VuuL_7CH_adj": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 2.14
-      },
-      "wTEr_CBC_bqh": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 9.58
-      },
-      "bH5L_uXD_ZAX": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.61
-      }
-    },
-    "Örebro län": {
-      "NYW6_mP6_vwf": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.02
-      },
-      "RPTn_bxG_ExZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.07
-      },
-      "yhCP_AqT_tns": {
+      "kJeN_wmw_9wX": {
         "score": 38,
         "signal": "weak",
         "vs_national": 0.43
       },
-      "GazW_2TU_kJw": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.4
-      },
-      "X82t_awd_Qyc": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.89
-      },
-      "apaJ_2ja_LuF": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.86
-      },
-      "ScKy_FHB_7wT": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.8
-      },
-      "MVqp_eS8_kDZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.95
-      },
-      "6Hq3_tKo_V57": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 3.21
-      },
-      "ASGV_zcE_bWf": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.33
-      },
-      "bh3H_Y3h_5eD": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.0
-      },
-      "j7Cq_ZJe_GkT": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.55
-      },
-      "whao_Q6A_ScE": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.86
-      },
-      "E7hm_BLq_fqZ": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.34
-      },
-      "9puE_nYg_crq": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.4
-      },
-      "kJeN_wmw_9wX": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.95
-      },
-      "Uuf1_GMh_Uvw": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.38
-      },
       "VuuL_7CH_adj": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.68
+      },
+      "PaxQ_o1G_wWH": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 0.87
-      },
-      "wTEr_CBC_bqh": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.0
+        "vs_national": 0.85
       },
       "bH5L_uXD_ZAX": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.65
+        "vs_national": 0.82
+      }
+    },
+    "Västra Götalands län": {
+      "RPTn_bxG_ExZ": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.62
+      },
+      "GazW_2TU_kJw": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.99
+      },
+      "NYW6_mP6_vwf": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.87
+      },
+      "ScKy_FHB_7wT": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.08
+      },
+      "apaJ_2ja_LuF": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.15
+      },
+      "6Hq3_tKo_V57": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.12
+      },
+      "ASGV_zcE_bWf": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.15
+      },
+      "wTEr_CBC_bqh": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.3
+      },
+      "j7Cq_ZJe_GkT": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.05
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.08
+      },
+      "yhCP_AqT_tns": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.17
+      },
+      "whao_Q6A_ScE": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.78
+      },
+      "E7hm_BLq_fqZ": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.91
+      },
+      "9puE_nYg_crq": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.03
+      },
+      "Uuf1_GMh_Uvw": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.83
+      },
+      "kJeN_wmw_9wX": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.0
+      },
+      "VuuL_7CH_adj": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.72
+      },
+      "PaxQ_o1G_wWH": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.16
+      },
+      "bH5L_uXD_ZAX": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.42
+      }
+    },
+    "Värmlands län": {
+      "RPTn_bxG_ExZ": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.73
+      },
+      "GazW_2TU_kJw": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.86
+      },
+      "NYW6_mP6_vwf": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.24
+      },
+      "ScKy_FHB_7wT": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.25
+      },
+      "apaJ_2ja_LuF": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.34
+      },
+      "6Hq3_tKo_V57": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.39
+      },
+      "ASGV_zcE_bWf": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.71
+      },
+      "wTEr_CBC_bqh": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.08
+      },
+      "j7Cq_ZJe_GkT": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.44
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.15
+      },
+      "yhCP_AqT_tns": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.1
+      },
+      "whao_Q6A_ScE": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.9
+      },
+      "E7hm_BLq_fqZ": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.0
+      },
+      "9puE_nYg_crq": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.67
+      },
+      "Uuf1_GMh_Uvw": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.31
+      },
+      "kJeN_wmw_9wX": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.0
+      },
+      "VuuL_7CH_adj": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 2.36
+      },
+      "PaxQ_o1G_wWH": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.94
+      },
+      "bH5L_uXD_ZAX": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.91
+      }
+    },
+    "Örebro län": {
+      "RPTn_bxG_ExZ": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.6
+      },
+      "GazW_2TU_kJw": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.77
+      },
+      "NYW6_mP6_vwf": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.08
+      },
+      "ScKy_FHB_7wT": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.73
+      },
+      "apaJ_2ja_LuF": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.84
+      },
+      "6Hq3_tKo_V57": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.34
+      },
+      "ASGV_zcE_bWf": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.2
+      },
+      "wTEr_CBC_bqh": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.19
+      },
+      "j7Cq_ZJe_GkT": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.57
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.12
+      },
+      "yhCP_AqT_tns": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.97
+      },
+      "whao_Q6A_ScE": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.81
+      },
+      "E7hm_BLq_fqZ": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.43
+      },
+      "9puE_nYg_crq": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.46
+      },
+      "Uuf1_GMh_Uvw": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.16
+      },
+      "kJeN_wmw_9wX": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.93
+      },
+      "VuuL_7CH_adj": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.99
+      },
+      "PaxQ_o1G_wWH": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.2
+      },
+      "bH5L_uXD_ZAX": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.38
       }
     },
     "Västmanlands län": {
+      "RPTn_bxG_ExZ": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.84
+      },
+      "GazW_2TU_kJw": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.6
+      },
       "NYW6_mP6_vwf": {
         "score": 62,
         "signal": "medium",
         "vs_national": 0.99
       },
-      "RPTn_bxG_ExZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.85
-      },
-      "yhCP_AqT_tns": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.13
-      },
-      "GazW_2TU_kJw": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.12
-      },
-      "X82t_awd_Qyc": {
+      "ScKy_FHB_7wT": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.81
+        "vs_national": 0.7
       },
       "apaJ_2ja_LuF": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 1.06
-      },
-      "ScKy_FHB_7wT": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.72
-      },
-      "MVqp_eS8_kDZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.95
+        "vs_national": 0.92
       },
       "6Hq3_tKo_V57": {
         "score": 88,
@@ -1573,256 +1488,256 @@
       "ASGV_zcE_bWf": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.68
-      },
-      "bh3H_Y3h_5eD": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.09
-      },
-      "j7Cq_ZJe_GkT": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.91
-      },
-      "whao_Q6A_ScE": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.92
-      },
-      "E7hm_BLq_fqZ": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.0
-      },
-      "9puE_nYg_crq": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.47
-      },
-      "kJeN_wmw_9wX": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.25
-      },
-      "Uuf1_GMh_Uvw": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.95
-      },
-      "VuuL_7CH_adj": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.5
+        "vs_national": 0.73
       },
       "wTEr_CBC_bqh": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 14.89
-      },
-      "bH5L_uXD_ZAX": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.75
-      }
-    },
-    "Dalarnas län": {
-      "NYW6_mP6_vwf": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.3
-      },
-      "RPTn_bxG_ExZ": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.77
-      },
-      "yhCP_AqT_tns": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.74
-      },
-      "GazW_2TU_kJw": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.25
-      },
-      "X82t_awd_Qyc": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.81
-      },
-      "apaJ_2ja_LuF": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.4
-      },
-      "ScKy_FHB_7wT": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.54
-      },
-      "MVqp_eS8_kDZ": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.23
-      },
-      "6Hq3_tKo_V57": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.81
-      },
-      "ASGV_zcE_bWf": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.67
-      },
-      "bh3H_Y3h_5eD": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.28
+        "vs_national": 1.35
       },
       "j7Cq_ZJe_GkT": {
         "score": 76,
         "signal": "strong",
         "vs_national": 1.14
       },
-      "whao_Q6A_ScE": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.78
-      },
-      "E7hm_BLq_fqZ": {
+      "bh3H_Y3h_5eD": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 0.87
+        "vs_national": 1.05
       },
-      "9puE_nYg_crq": {
+      "yhCP_AqT_tns": {
         "score": 76,
         "signal": "strong",
         "vs_national": 1.24
       },
-      "kJeN_wmw_9wX": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.39
+      "whao_Q6A_ScE": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.99
+      },
+      "E7hm_BLq_fqZ": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.06
+      },
+      "9puE_nYg_crq": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.15
       },
       "Uuf1_GMh_Uvw": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 0.94
+        "vs_national": 0.88
       },
-      "VuuL_7CH_adj": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.56
-      },
-      "wTEr_CBC_bqh": {
+      "kJeN_wmw_9wX": {
         "score": 38,
         "signal": "weak",
         "vs_national": 0.0
       },
-      "bH5L_uXD_ZAX": {
+      "VuuL_7CH_adj": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.48
+      },
+      "PaxQ_o1G_wWH": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.63
+        "vs_national": 0.67
+      },
+      "bH5L_uXD_ZAX": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.87
       }
     },
-    "Gävleborgs län": {
-      "NYW6_mP6_vwf": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.32
-      },
+    "Dalarnas län": {
       "RPTn_bxG_ExZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.0
-      },
-      "yhCP_AqT_tns": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.64
+        "vs_national": 0.84
       },
       "GazW_2TU_kJw": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.71
+      },
+      "NYW6_mP6_vwf": {
         "score": 76,
         "signal": "strong",
-        "vs_national": 1.26
+        "vs_national": 1.2
       },
-      "X82t_awd_Qyc": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.92
+      "ScKy_FHB_7wT": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.61
       },
       "apaJ_2ja_LuF": {
         "score": 38,
         "signal": "weak",
         "vs_national": 0.48
       },
-      "ScKy_FHB_7wT": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.19
-      },
-      "MVqp_eS8_kDZ": {
+      "6Hq3_tKo_V57": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 1.75
-      },
-      "6Hq3_tKo_V57": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.8
+        "vs_national": 1.78
       },
       "ASGV_zcE_bWf": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.61
+        "vs_national": 0.77
       },
-      "bh3H_Y3h_5eD": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.99
+      "wTEr_CBC_bqh": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.6
       },
       "j7Cq_ZJe_GkT": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.18
-      },
-      "whao_Q6A_ScE": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.49
-      },
-      "E7hm_BLq_fqZ": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.58
-      },
-      "9puE_nYg_crq": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.15
-      },
-      "kJeN_wmw_9wX": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.36
-      },
-      "Uuf1_GMh_Uvw": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 0.91
+        "vs_national": 1.05
       },
-      "VuuL_7CH_adj": {
+      "bh3H_Y3h_5eD": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.4
+      },
+      "yhCP_AqT_tns": {
         "score": 76,
         "signal": "strong",
         "vs_national": 1.15
       },
-      "wTEr_CBC_bqh": {
+      "whao_Q6A_ScE": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.77
+      },
+      "E7hm_BLq_fqZ": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.08
+      },
+      "9puE_nYg_crq": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.17
+      },
+      "Uuf1_GMh_Uvw": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.85
+      },
+      "kJeN_wmw_9wX": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.38
+      },
+      "VuuL_7CH_adj": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.54
+      },
+      "PaxQ_o1G_wWH": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.0
+      },
+      "bH5L_uXD_ZAX": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.0
+      }
+    },
+    "Gävleborgs län": {
+      "RPTn_bxG_ExZ": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.52
+      },
+      "GazW_2TU_kJw": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.84
+      },
+      "NYW6_mP6_vwf": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 6.34
+        "vs_national": 1.36
+      },
+      "ScKy_FHB_7wT": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.11
+      },
+      "apaJ_2ja_LuF": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.25
+      },
+      "6Hq3_tKo_V57": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.62
+      },
+      "ASGV_zcE_bWf": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.48
+      },
+      "wTEr_CBC_bqh": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.74
+      },
+      "j7Cq_ZJe_GkT": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.1
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.21
+      },
+      "yhCP_AqT_tns": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.4
+      },
+      "whao_Q6A_ScE": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.64
+      },
+      "E7hm_BLq_fqZ": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.96
+      },
+      "9puE_nYg_crq": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.29
+      },
+      "Uuf1_GMh_Uvw": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 1.01
+      },
+      "kJeN_wmw_9wX": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.52
+      },
+      "VuuL_7CH_adj": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.11
+      },
+      "PaxQ_o1G_wWH": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.26
       },
       "bH5L_uXD_ZAX": {
         "score": 38,
@@ -1831,269 +1746,157 @@
       }
     },
     "Västernorrlands län": {
-      "NYW6_mP6_vwf": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.61
-      },
       "RPTn_bxG_ExZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.97
-      },
-      "yhCP_AqT_tns": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.39
-      },
-      "GazW_2TU_kJw": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.35
-      },
-      "X82t_awd_Qyc": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.05
-      },
-      "apaJ_2ja_LuF": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.97
-      },
-      "ScKy_FHB_7wT": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.72
-      },
-      "MVqp_eS8_kDZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.92
-      },
-      "6Hq3_tKo_V57": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.01
-      },
-      "ASGV_zcE_bWf": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.5
-      },
-      "bh3H_Y3h_5eD": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.25
-      },
-      "j7Cq_ZJe_GkT": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.09
-      },
-      "whao_Q6A_ScE": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.53
-      },
-      "E7hm_BLq_fqZ": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.64
-      },
-      "9puE_nYg_crq": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.42
-      },
-      "kJeN_wmw_9wX": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.66
-      },
-      "Uuf1_GMh_Uvw": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.34
-      },
-      "VuuL_7CH_adj": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.88
-      },
-      "wTEr_CBC_bqh": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 7.75
-      },
-      "bH5L_uXD_ZAX": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.19
-      }
-    },
-    "Jämtlands län": {
-      "NYW6_mP6_vwf": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.63
-      },
-      "RPTn_bxG_ExZ": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.56
-      },
-      "yhCP_AqT_tns": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.43
-      },
-      "GazW_2TU_kJw": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.14
-      },
-      "X82t_awd_Qyc": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.0
-      },
-      "apaJ_2ja_LuF": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.56
-      },
-      "ScKy_FHB_7wT": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 2.32
-      },
-      "MVqp_eS8_kDZ": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.42
-      },
-      "6Hq3_tKo_V57": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.59
-      },
-      "ASGV_zcE_bWf": {
         "score": 38,
         "signal": "weak",
         "vs_national": 0.55
       },
-      "bh3H_Y3h_5eD": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.07
+      "GazW_2TU_kJw": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 2.43
       },
-      "j7Cq_ZJe_GkT": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.68
-      },
-      "whao_Q6A_ScE": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.91
-      },
-      "E7hm_BLq_fqZ": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.59
-      },
-      "9puE_nYg_crq": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.23
-      },
-      "kJeN_wmw_9wX": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.8
-      },
-      "Uuf1_GMh_Uvw": {
+      "NYW6_mP6_vwf": {
         "score": 38,
         "signal": "weak",
         "vs_national": 0.0
       },
-      "VuuL_7CH_adj": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.85
-      },
-      "wTEr_CBC_bqh": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 3.92
-      },
-      "bH5L_uXD_ZAX": {
+      "ScKy_FHB_7wT": {
         "score": 48,
         "signal": "weak",
         "vs_national": 0.64
-      }
-    },
-    "Västerbottens län": {
-      "NYW6_mP6_vwf": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.48
-      },
-      "RPTn_bxG_ExZ": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.89
-      },
-      "yhCP_AqT_tns": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.4
-      },
-      "GazW_2TU_kJw": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.23
-      },
-      "X82t_awd_Qyc": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.95
       },
       "apaJ_2ja_LuF": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.39
-      },
-      "ScKy_FHB_7wT": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.12
-      },
-      "MVqp_eS8_kDZ": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.43
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.86
       },
       "6Hq3_tKo_V57": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 1.0
+        "vs_national": 1.09
       },
       "ASGV_zcE_bWf": {
-        "score": 38,
+        "score": 48,
         "signal": "weak",
-        "vs_national": 0.54
+        "vs_national": 0.67
       },
-      "bh3H_Y3h_5eD": {
+      "wTEr_CBC_bqh": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 1.38
+        "vs_national": 1.74
       },
       "j7Cq_ZJe_GkT": {
         "score": 62,
         "signal": "medium",
-        "vs_national": 1.06
+        "vs_national": 0.99
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.0
+      },
+      "yhCP_AqT_tns": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.92
+      },
+      "whao_Q6A_ScE": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.39
+      },
+      "E7hm_BLq_fqZ": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.78
+      },
+      "9puE_nYg_crq": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.41
+      },
+      "Uuf1_GMh_Uvw": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.31
+      },
+      "kJeN_wmw_9wX": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.64
+      },
+      "VuuL_7CH_adj": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.2
+      },
+      "PaxQ_o1G_wWH": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.47
+      },
+      "bH5L_uXD_ZAX": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 2.31
+      }
+    },
+    "Jämtlands län": {
+      "RPTn_bxG_ExZ": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.36
+      },
+      "GazW_2TU_kJw": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.64
+      },
+      "NYW6_mP6_vwf": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.81
+      },
+      "ScKy_FHB_7wT": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 2.62
+      },
+      "apaJ_2ja_LuF": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.6
+      },
+      "6Hq3_tKo_V57": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.48
+      },
+      "ASGV_zcE_bWf": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.56
+      },
+      "wTEr_CBC_bqh": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.43
+      },
+      "j7Cq_ZJe_GkT": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.63
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.1
+      },
+      "yhCP_AqT_tns": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.7
       },
       "whao_Q6A_ScE": {
         "score": 62,
@@ -2101,81 +1904,66 @@
         "vs_national": 0.87
       },
       "E7hm_BLq_fqZ": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.43
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.54
       },
       "9puE_nYg_crq": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.53
-      },
-      "kJeN_wmw_9wX": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.48
+        "vs_national": 0.21
       },
       "Uuf1_GMh_Uvw": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.5
+        "vs_national": 0.0
+      },
+      "kJeN_wmw_9wX": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.0
       },
       "VuuL_7CH_adj": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 1.32
+        "vs_national": 1.6
       },
-      "wTEr_CBC_bqh": {
-        "score": 88,
+      "PaxQ_o1G_wWH": {
+        "score": 76,
         "signal": "strong",
-        "vs_national": 6.18
+        "vs_national": 1.11
       },
       "bH5L_uXD_ZAX": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.3
+        "vs_national": 0.0
       }
     },
-    "Norrbottens län": {
-      "NYW6_mP6_vwf": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.18
-      },
+    "Västerbottens län": {
       "RPTn_bxG_ExZ": {
-        "score": 48,
+        "score": 38,
         "signal": "weak",
-        "vs_national": 0.71
-      },
-      "yhCP_AqT_tns": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.77
+        "vs_national": 0.51
       },
       "GazW_2TU_kJw": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 1.06
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.31
       },
-      "X82t_awd_Qyc": {
-        "score": 48,
-        "signal": "weak",
-        "vs_national": 0.75
+      "NYW6_mP6_vwf": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.36
+      },
+      "ScKy_FHB_7wT": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.1
       },
       "apaJ_2ja_LuF": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.57
-      },
-      "ScKy_FHB_7wT": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.34
-      },
-      "MVqp_eS8_kDZ": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 1.35
+        "vs_national": 0.5
       },
       "6Hq3_tKo_V57": {
         "score": 38,
@@ -2183,59 +1971,166 @@
         "vs_national": 0.0
       },
       "ASGV_zcE_bWf": {
-        "score": 62,
-        "signal": "medium",
-        "vs_national": 0.98
-      },
-      "bh3H_Y3h_5eD": {
-        "score": 76,
-        "signal": "strong",
-        "vs_national": 1.18
-      },
-      "j7Cq_ZJe_GkT": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 2.78
-      },
-      "whao_Q6A_ScE": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.72
+        "vs_national": 0.66
+      },
+      "wTEr_CBC_bqh": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.65
+      },
+      "j7Cq_ZJe_GkT": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.82
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 2.52
+      },
+      "yhCP_AqT_tns": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.87
+      },
+      "whao_Q6A_ScE": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.89
       },
       "E7hm_BLq_fqZ": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 1.85
+        "vs_national": 1.45
       },
       "9puE_nYg_crq": {
-        "score": 38,
-        "signal": "weak",
-        "vs_national": 0.44
-      },
-      "kJeN_wmw_9wX": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.81
+        "vs_national": 0.69
       },
       "Uuf1_GMh_Uvw": {
         "score": 38,
         "signal": "weak",
-        "vs_national": 0.41
+        "vs_national": 0.56
+      },
+      "kJeN_wmw_9wX": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 2.1
+      },
+      "VuuL_7CH_adj": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.24
+      },
+      "PaxQ_o1G_wWH": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.38
+      },
+      "bH5L_uXD_ZAX": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.33
+      }
+    },
+    "Norrbottens län": {
+      "RPTn_bxG_ExZ": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.4
+      },
+      "GazW_2TU_kJw": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.68
+      },
+      "NYW6_mP6_vwf": {
+        "score": 76,
+        "signal": "strong",
+        "vs_national": 1.29
+      },
+      "ScKy_FHB_7wT": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.32
+      },
+      "apaJ_2ja_LuF": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.56
+      },
+      "6Hq3_tKo_V57": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.87
+      },
+      "ASGV_zcE_bWf": {
+        "score": 62,
+        "signal": "medium",
+        "vs_national": 0.86
+      },
+      "wTEr_CBC_bqh": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.78
+      },
+      "j7Cq_ZJe_GkT": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.59
+      },
+      "bh3H_Y3h_5eD": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.34
+      },
+      "yhCP_AqT_tns": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.4
+      },
+      "whao_Q6A_ScE": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.67
+      },
+      "E7hm_BLq_fqZ": {
+        "score": 88,
+        "signal": "strong",
+        "vs_national": 1.56
+      },
+      "9puE_nYg_crq": {
+        "score": 48,
+        "signal": "weak",
+        "vs_national": 0.63
+      },
+      "Uuf1_GMh_Uvw": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.45
+      },
+      "kJeN_wmw_9wX": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.56
       },
       "VuuL_7CH_adj": {
         "score": 48,
         "signal": "weak",
-        "vs_national": 0.76
+        "vs_national": 0.8
       },
-      "wTEr_CBC_bqh": {
-        "score": 88,
-        "signal": "strong",
-        "vs_national": 9.1
+      "PaxQ_o1G_wWH": {
+        "score": 38,
+        "signal": "weak",
+        "vs_national": 0.41
       },
       "bH5L_uXD_ZAX": {
         "score": 88,
         "signal": "strong",
-        "vs_national": 2.2
+        "vs_national": 2.41
       }
     }
   },
@@ -2752,55 +2647,55 @@
       "field": "Yrken med social inriktning",
       "field_id": "GazW_2TU_kJw",
       "field_label": "Social care",
-      "current_ads": 1945,
+      "current_ads": 2059,
       "current_positions": null,
-      "search_count": 22228,
+      "search_count": 23934,
       "demand_level": "high",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 2111,
-        "pct_change": 0.0854,
+        "forecast_ads_4w": 2293,
+        "pct_change": 0.1139,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
         "confidence": "high"
       },
-      "opportunity_score": 87,
+      "opportunity_score": 81,
       "crowding_risk": "high",
-      "entry_level_signal": "strong",
+      "entry_level_signal": "medium",
       "remote_signal": "unknown",
       "skill_momentum": "growing",
       "regional_strength": [
         {
-          "region": "Kalmar län",
+          "region": "Västernorrlands län",
           "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Västerbottens län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Kalmar län",
+          "score": 76,
           "signal": "strong"
         },
         {
           "region": "Gotlands län",
-          "score": 88,
+          "score": 76,
           "signal": "strong"
         },
         {
           "region": "Blekinge län",
-          "score": 88,
-          "signal": "strong"
+          "score": 62,
+          "signal": "medium"
         },
         {
-          "region": "Hallands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Värmlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Örebro län",
-          "score": 88,
-          "signal": "strong"
+          "region": "Västra Götalands län",
+          "score": 62,
+          "signal": "medium"
         }
       ],
       "related_skills": [
@@ -2823,8 +2718,88 @@
       ],
       "consultant_summary": "Strong, busy market, but competitive. Plenty of ads, plenty of applicants. Better for people who can already show proof than for complete beginners. Demand has been rising in recent weeks.",
       "best_for": [
-        "experienced",
-        "entry-friendly"
+        "experienced"
+      ],
+      "caution": null
+    },
+    {
+      "concept_id": "Lzpv_ofL_3H5",
+      "term": "Motorfordonsmekaniker och fordonsreparatörer",
+      "field": "Installation, drift, underhåll",
+      "field_id": "yhCP_AqT_tns",
+      "field_label": "Install / maintenance",
+      "current_ads": 679,
+      "current_positions": null,
+      "search_count": 5661,
+      "demand_level": "high",
+      "demand_trend": "rising",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 1493,
+        "pct_change": 0.866,
+        "trend_class": "grow",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 76,
+      "crowding_risk": "high",
+      "entry_level_signal": "unknown",
+      "remote_signal": "unknown",
+      "skill_momentum": "stable",
+      "regional_strength": [
+        {
+          "region": "Södermanlands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Gävleborgs län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Norrbottens län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Jönköpings län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Kalmar län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Västra Götalands län",
+          "score": 76,
+          "signal": "strong"
+        }
+      ],
+      "related_skills": [
+        {
+          "skill": "Felsökning, fordonsmekanik",
+          "signal": "declining"
+        },
+        {
+          "skill": "underhåll",
+          "signal": "unknown"
+        },
+        {
+          "skill": "Kabelinstallationer",
+          "signal": "growing"
+        },
+        {
+          "skill": "körkort",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Strong, busy market, but competitive. Plenty of ads, plenty of applicants. Better for people who can already show proof than for complete beginners. Demand has been rising in recent weeks.",
+      "best_for": [
+        "experienced"
       ],
       "caution": null
     },
@@ -2834,15 +2809,15 @@
       "field": "Hotell, restaurang, storhushåll",
       "field_id": "ScKy_FHB_7wT",
       "field_label": "Hospitality / food",
-      "current_ads": 648,
+      "current_ads": 680,
       "current_positions": null,
-      "search_count": 13730,
+      "search_count": 14108,
       "demand_level": "high",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1429,
-        "pct_change": 0.5588,
+        "forecast_ads_4w": 1418,
+        "pct_change": 0.5463,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -2856,11 +2831,6 @@
       "regional_strength": [
         {
           "region": "Hallands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Värmlands län",
           "score": 88,
           "signal": "strong"
         },
@@ -2881,6 +2851,11 @@
         },
         {
           "region": "Kronobergs län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Kalmar län",
           "score": 76,
           "signal": "strong"
         }
@@ -2915,15 +2890,15 @@
       "field": "Hotell, restaurang, storhushåll",
       "field_id": "ScKy_FHB_7wT",
       "field_label": "Hospitality / food",
-      "current_ads": 775,
+      "current_ads": 812,
       "current_positions": null,
-      "search_count": 24671,
+      "search_count": 25870,
       "demand_level": "high",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1429,
-        "pct_change": 0.3725,
+        "forecast_ads_4w": 1424,
+        "pct_change": 0.3678,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -2937,11 +2912,6 @@
       "regional_strength": [
         {
           "region": "Hallands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Värmlands län",
           "score": 88,
           "signal": "strong"
         },
@@ -2962,6 +2932,11 @@
         },
         {
           "region": "Kronobergs län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Kalmar län",
           "score": 76,
           "signal": "strong"
         }
@@ -2996,15 +2971,15 @@
       "field": "Transport, distribution, lager",
       "field_id": "ASGV_zcE_bWf",
       "field_label": "Transport / logistics",
-      "current_ads": 645,
+      "current_ads": 709,
       "current_positions": null,
-      "search_count": 29396,
+      "search_count": 30121,
       "demand_level": "high",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1340,
-        "pct_change": 0.66,
+        "forecast_ads_4w": 1359,
+        "pct_change": 0.6842,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3017,6 +2992,11 @@
       "skill_momentum": "stable",
       "regional_strength": [
         {
+          "region": "Stockholms län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
           "region": "Jönköpings län",
           "score": 88,
           "signal": "strong"
@@ -3027,12 +3007,7 @@
           "signal": "strong"
         },
         {
-          "region": "Örebro län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Södermanlands län",
+          "region": "Gotlands län",
           "score": 76,
           "signal": "strong"
         },
@@ -3081,15 +3056,15 @@
       "field": "Data/IT",
       "field_id": "apaJ_2ja_LuF",
       "field_label": "Data / IT",
-      "current_ads": 1067,
+      "current_ads": 1134,
       "current_positions": null,
-      "search_count": 16055,
+      "search_count": 15877,
       "demand_level": "high",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1232,
-        "pct_change": 0.1549,
+        "forecast_ads_4w": 1230,
+        "pct_change": 0.085,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3117,11 +3092,6 @@
           "signal": "strong"
         },
         {
-          "region": "Örebro län",
-          "score": 62,
-          "signal": "medium"
-        },
-        {
           "region": "Västmanlands län",
           "score": 62,
           "signal": "medium"
@@ -3130,6 +3100,11 @@
           "region": "Västernorrlands län",
           "score": 62,
           "signal": "medium"
+        },
+        {
+          "region": "Jönköpings län",
+          "score": 48,
+          "signal": "weak"
         }
       ],
       "related_skills": [
@@ -3162,95 +3137,14 @@
       "caution": null
     },
     {
-      "concept_id": "Lzpv_ofL_3H5",
-      "term": "Motorfordonsmekaniker och fordonsreparatörer",
-      "field": "Installation, drift, underhåll",
-      "field_id": "yhCP_AqT_tns",
-      "field_label": "Install / maintenance",
-      "current_ads": 650,
-      "current_positions": null,
-      "search_count": 5350,
-      "demand_level": "high",
-      "demand_trend": "rising",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 1406,
-        "pct_change": 0.757,
-        "trend_class": "grow",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 71,
-      "crowding_risk": "high",
-      "entry_level_signal": "weak",
-      "remote_signal": "unknown",
-      "skill_momentum": "stable",
-      "regional_strength": [
-        {
-          "region": "Östergötlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Södermanlands län",
-          "score": 48,
-          "signal": "weak"
-        },
-        {
-          "region": "Jönköpings län",
-          "score": 48,
-          "signal": "weak"
-        },
-        {
-          "region": "Dalarnas län",
-          "score": 48,
-          "signal": "weak"
-        },
-        {
-          "region": "Gävleborgs län",
-          "score": 48,
-          "signal": "weak"
-        },
-        {
-          "region": "Norrbottens län",
-          "score": 48,
-          "signal": "weak"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "Felsökning, fordonsmekanik",
-          "signal": "declining"
-        },
-        {
-          "skill": "underhåll",
-          "signal": "unknown"
-        },
-        {
-          "skill": "Kabelinstallationer",
-          "signal": "growing"
-        },
-        {
-          "skill": "körkort",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Strong, busy market, but competitive. Plenty of ads, plenty of applicants. Better for people who can already show proof than for complete beginners. Demand has been rising in recent weeks.",
-      "best_for": [
-        "experienced"
-      ],
-      "caution": "Entry-level access looks limited compared with total demand. Beginners may need a nearby role first."
-    },
-    {
       "concept_id": "Z6TY_xDf_Yup",
       "term": "Städare",
       "field": "Sanering och renhållning",
       "field_id": "whao_Q6A_ScE",
       "field_label": "Cleaning / sanitation",
-      "current_ads": 790,
+      "current_ads": 878,
       "current_positions": null,
-      "search_count": 16928,
+      "search_count": 18098,
       "demand_level": "high",
       "demand_trend": "rising",
       "trend_source": "history",
@@ -3267,11 +3161,6 @@
           "signal": "strong"
         },
         {
-          "region": "Skåne län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
           "region": "Hallands län",
           "score": 88,
           "signal": "strong"
@@ -3282,14 +3171,19 @@
           "signal": "strong"
         },
         {
-          "region": "Södermanlands län",
+          "region": "Uppsala län",
           "score": 76,
           "signal": "strong"
         },
         {
-          "region": "Uppsala län",
-          "score": 62,
-          "signal": "medium"
+          "region": "Blekinge län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Skåne län",
+          "score": 76,
+          "signal": "strong"
         }
       ],
       "related_skills": [],
@@ -3300,138 +3194,60 @@
       "caution": "Entry-level access looks limited compared with total demand. Beginners may need a nearby role first."
     },
     {
-      "concept_id": "jY19_knH_MJp",
-      "term": "Undersköterskor, hemtjänst, hemsjukvård, äldreboende och habilitering",
-      "field": "Hälso- och sjukvård",
-      "field_id": "NYW6_mP6_vwf",
-      "field_label": "Healthcare",
-      "current_ads": 779,
-      "current_positions": null,
-      "search_count": 29478,
-      "demand_level": "high",
-      "demand_trend": "stable",
-      "trend_source": "history",
-      "forecast": null,
-      "opportunity_score": 68,
-      "crowding_risk": "high",
-      "entry_level_signal": "unknown",
-      "remote_signal": "weak",
-      "skill_momentum": "unknown",
-      "regional_strength": [
-        {
-          "region": "Uppsala län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Södermanlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Gotlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Dalarnas län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Gävleborgs län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Västernorrlands län",
-          "score": 88,
-          "signal": "strong"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "omvårdnad",
-          "signal": "unknown"
-        },
-        {
-          "skill": "journal",
-          "signal": "unknown"
-        },
-        {
-          "skill": "läkemedel",
-          "signal": "unknown"
-        },
-        {
-          "skill": "svensk legitimation",
-          "signal": "unknown"
-        },
-        {
-          "skill": "patient",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Strong, busy market, but competitive. Plenty of ads, plenty of applicants. Better for people who can already show proof than for complete beginners.",
-      "best_for": [
-        "experienced"
-      ],
-      "caution": null
-    },
-    {
       "concept_id": "oXSW_fbY_XrY",
       "term": "Företagssäljare",
       "field": "Försäljning, inköp, marknadsföring",
       "field_id": "RPTn_bxG_ExZ",
       "field_label": "Sales / marketing",
-      "current_ads": 1288,
+      "current_ads": 1335,
       "current_positions": null,
-      "search_count": 12691,
+      "search_count": 13680,
       "demand_level": "high",
       "demand_trend": "stable",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1338,
-        "pct_change": 0.0387,
+        "forecast_ads_4w": 1365,
+        "pct_change": 0.0226,
         "trend_class": "stable",
         "horizon_weeks": 4,
         "source": "ml",
         "confidence": "high"
       },
-      "opportunity_score": 66,
+      "opportunity_score": 69,
       "crowding_risk": "high",
-      "entry_level_signal": "medium",
+      "entry_level_signal": "strong",
       "remote_signal": "medium",
       "skill_momentum": "declining",
       "regional_strength": [
-        {
-          "region": "Västra Götalands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Jämtlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Stockholms län",
-          "score": 76,
-          "signal": "strong"
-        },
-        {
-          "region": "Värmlands län",
-          "score": 76,
-          "signal": "strong"
-        },
         {
           "region": "Östergötlands län",
           "score": 62,
           "signal": "medium"
         },
         {
+          "region": "Stockholms län",
+          "score": 48,
+          "signal": "weak"
+        },
+        {
           "region": "Skåne län",
-          "score": 62,
-          "signal": "medium"
+          "score": 48,
+          "signal": "weak"
+        },
+        {
+          "region": "Västra Götalands län",
+          "score": 48,
+          "signal": "weak"
+        },
+        {
+          "region": "Värmlands län",
+          "score": 48,
+          "signal": "weak"
+        },
+        {
+          "region": "Örebro län",
+          "score": 48,
+          "signal": "weak"
         }
       ],
       "related_skills": [
@@ -3459,6 +3275,7 @@
       "consultant_summary": "Strong, busy market, but competitive. Plenty of ads, plenty of applicants. Better for people who can already show proof than for complete beginners.",
       "best_for": [
         "experienced",
+        "entry-friendly",
         "remote-friendly"
       ],
       "caution": null
@@ -3469,21 +3286,21 @@
       "field": "Hälso- och sjukvård",
       "field_id": "NYW6_mP6_vwf",
       "field_label": "Healthcare",
-      "current_ads": 1407,
+      "current_ads": 1456,
       "current_positions": null,
-      "search_count": 17997,
+      "search_count": 18234,
       "demand_level": "high",
-      "demand_trend": "declining",
+      "demand_trend": "stable",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1287,
-        "pct_change": -0.085,
-        "trend_class": "decline",
+        "forecast_ads_4w": 1347,
+        "pct_change": -0.0749,
+        "trend_class": "stable",
         "horizon_weeks": 4,
         "source": "ml",
         "confidence": "high"
       },
-      "opportunity_score": 60,
+      "opportunity_score": 68,
       "crowding_risk": "high",
       "entry_level_signal": "unknown",
       "remote_signal": "weak",
@@ -3505,17 +3322,17 @@
           "signal": "strong"
         },
         {
-          "region": "Dalarnas län",
+          "region": "Blekinge län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Hallands län",
           "score": 88,
           "signal": "strong"
         },
         {
           "region": "Gävleborgs län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Västernorrlands län",
           "score": 88,
           "signal": "strong"
         }
@@ -3542,9 +3359,259 @@
           "signal": "unknown"
         }
       ],
-      "consultant_summary": "Strong, busy market, but competitive. Plenty of ads, plenty of applicants. Better for people who can already show proof than for complete beginners. Demand has been softening in recent weeks.",
+      "consultant_summary": "Strong, busy market, but competitive. Plenty of ads, plenty of applicants. Better for people who can already show proof than for complete beginners.",
       "best_for": [
         "experienced"
+      ],
+      "caution": null
+    },
+    {
+      "concept_id": "jY19_knH_MJp",
+      "term": "Undersköterskor, hemtjänst, hemsjukvård, äldreboende och habilitering",
+      "field": "Hälso- och sjukvård",
+      "field_id": "NYW6_mP6_vwf",
+      "field_label": "Healthcare",
+      "current_ads": 808,
+      "current_positions": null,
+      "search_count": 30304,
+      "demand_level": "high",
+      "demand_trend": "stable",
+      "trend_source": "history",
+      "forecast": null,
+      "opportunity_score": 68,
+      "crowding_risk": "high",
+      "entry_level_signal": "unknown",
+      "remote_signal": "weak",
+      "skill_momentum": "unknown",
+      "regional_strength": [
+        {
+          "region": "Uppsala län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Södermanlands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Gotlands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Blekinge län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Hallands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Gävleborgs län",
+          "score": 88,
+          "signal": "strong"
+        }
+      ],
+      "related_skills": [
+        {
+          "skill": "omvårdnad",
+          "signal": "unknown"
+        },
+        {
+          "skill": "journal",
+          "signal": "unknown"
+        },
+        {
+          "skill": "läkemedel",
+          "signal": "unknown"
+        },
+        {
+          "skill": "svensk legitimation",
+          "signal": "unknown"
+        },
+        {
+          "skill": "patient",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Strong, busy market, but competitive. Plenty of ads, plenty of applicants. Better for people who can already show proof than for complete beginners.",
+      "best_for": [
+        "experienced"
+      ],
+      "caution": null
+    },
+    {
+      "concept_id": "YKL2_FCB_1yr",
+      "term": "Butikssäljare, fackhandel",
+      "field": "Försäljning, inköp, marknadsföring",
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "current_ads": 668,
+      "current_positions": null,
+      "search_count": 34985,
+      "demand_level": "medium",
+      "demand_trend": "rising",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 1435,
+        "pct_change": 0.601,
+        "trend_class": "grow",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 57,
+      "crowding_risk": "high",
+      "entry_level_signal": "strong",
+      "remote_signal": "medium",
+      "skill_momentum": "declining",
+      "regional_strength": [
+        {
+          "region": "Östergötlands län",
+          "score": 62,
+          "signal": "medium"
+        },
+        {
+          "region": "Stockholms län",
+          "score": 48,
+          "signal": "weak"
+        },
+        {
+          "region": "Skåne län",
+          "score": 48,
+          "signal": "weak"
+        },
+        {
+          "region": "Västra Götalands län",
+          "score": 48,
+          "signal": "weak"
+        },
+        {
+          "region": "Värmlands län",
+          "score": 48,
+          "signal": "weak"
+        },
+        {
+          "region": "Örebro län",
+          "score": 48,
+          "signal": "weak"
+        }
+      ],
+      "related_skills": [
+        {
+          "skill": "Customer Relationship Management/CRM",
+          "signal": "declining"
+        },
+        {
+          "skill": "Försäljningsvana, direktförsäljning konsument",
+          "signal": "stable"
+        },
+        {
+          "skill": "key account",
+          "signal": "unknown"
+        },
+        {
+          "skill": "förhandling",
+          "signal": "unknown"
+        },
+        {
+          "skill": "kundbemötande",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings. Demand has been rising in recent weeks.",
+      "best_for": [
+        "entry-friendly",
+        "remote-friendly"
+      ],
+      "caution": null
+    },
+    {
+      "concept_id": "s1Qk_o98_2o1",
+      "term": "Butikssäljare, dagligvaror",
+      "field": "Försäljning, inköp, marknadsföring",
+      "field_id": "RPTn_bxG_ExZ",
+      "field_label": "Sales / marketing",
+      "current_ads": 428,
+      "current_positions": null,
+      "search_count": 38062,
+      "demand_level": "medium",
+      "demand_trend": "rising",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 835,
+        "pct_change": 0.3982,
+        "trend_class": "grow",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 57,
+      "crowding_risk": "high",
+      "entry_level_signal": "strong",
+      "remote_signal": "medium",
+      "skill_momentum": "declining",
+      "regional_strength": [
+        {
+          "region": "Östergötlands län",
+          "score": 62,
+          "signal": "medium"
+        },
+        {
+          "region": "Stockholms län",
+          "score": 48,
+          "signal": "weak"
+        },
+        {
+          "region": "Skåne län",
+          "score": 48,
+          "signal": "weak"
+        },
+        {
+          "region": "Västra Götalands län",
+          "score": 48,
+          "signal": "weak"
+        },
+        {
+          "region": "Värmlands län",
+          "score": 48,
+          "signal": "weak"
+        },
+        {
+          "region": "Örebro län",
+          "score": 48,
+          "signal": "weak"
+        }
+      ],
+      "related_skills": [
+        {
+          "skill": "Customer Relationship Management/CRM",
+          "signal": "declining"
+        },
+        {
+          "skill": "Försäljningsvana, direktförsäljning konsument",
+          "signal": "stable"
+        },
+        {
+          "skill": "key account",
+          "signal": "unknown"
+        },
+        {
+          "skill": "förhandling",
+          "signal": "unknown"
+        },
+        {
+          "skill": "kundbemötande",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings. Demand has been rising in recent weeks.",
+      "best_for": [
+        "entry-friendly",
+        "remote-friendly"
       ],
       "caution": null
     },
@@ -3554,15 +3621,15 @@
       "field": "Hälso- och sjukvård",
       "field_id": "NYW6_mP6_vwf",
       "field_label": "Healthcare",
-      "current_ads": 491,
+      "current_ads": 514,
       "current_positions": null,
-      "search_count": 3709,
+      "search_count": 3723,
       "demand_level": "medium",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 669,
-        "pct_change": 0.191,
+        "forecast_ads_4w": 687,
+        "pct_change": 0.2223,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3590,17 +3657,17 @@
           "signal": "strong"
         },
         {
-          "region": "Dalarnas län",
+          "region": "Blekinge län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Hallands län",
           "score": 88,
           "signal": "strong"
         },
         {
           "region": "Gävleborgs län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Västernorrlands län",
           "score": 88,
           "signal": "strong"
         }
@@ -3637,15 +3704,15 @@
       "field": "Hotell, restaurang, storhushåll",
       "field_id": "ScKy_FHB_7wT",
       "field_label": "Hospitality / food",
-      "current_ads": 419,
+      "current_ads": 454,
       "current_positions": null,
-      "search_count": 8886,
+      "search_count": 9339,
       "demand_level": "medium",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 826,
-        "pct_change": 0.3583,
+        "forecast_ads_4w": 764,
+        "pct_change": 0.2566,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3659,11 +3726,6 @@
       "regional_strength": [
         {
           "region": "Hallands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Värmlands län",
           "score": 88,
           "signal": "strong"
         },
@@ -3684,6 +3746,11 @@
         },
         {
           "region": "Kronobergs län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Kalmar län",
           "score": 76,
           "signal": "strong"
         }
@@ -3716,15 +3783,15 @@
       "field": "Transport, distribution, lager",
       "field_id": "ASGV_zcE_bWf",
       "field_label": "Transport / logistics",
-      "current_ads": 445,
+      "current_ads": 500,
       "current_positions": null,
-      "search_count": 16193,
+      "search_count": 17674,
       "demand_level": "medium",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1471,
-        "pct_change": 0.5939,
+        "forecast_ads_4w": 1466,
+        "pct_change": 0.5888,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -3737,6 +3804,11 @@
       "skill_momentum": "stable",
       "regional_strength": [
         {
+          "region": "Stockholms län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
           "region": "Jönköpings län",
           "score": 88,
           "signal": "strong"
@@ -3747,12 +3819,7 @@
           "signal": "strong"
         },
         {
-          "region": "Örebro län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Södermanlands län",
+          "region": "Gotlands län",
           "score": 76,
           "signal": "strong"
         },
@@ -3794,190 +3861,99 @@
       "caution": null
     },
     {
-      "concept_id": "YKL2_FCB_1yr",
-      "term": "Butikssäljare, fackhandel",
-      "field": "Försäljning, inköp, marknadsföring",
-      "field_id": "RPTn_bxG_ExZ",
-      "field_label": "Sales / marketing",
-      "current_ads": 636,
+      "concept_id": "pok1_ipJ_yzD",
+      "term": "Socialsekreterare",
+      "field": "Yrken med social inriktning",
+      "field_id": "GazW_2TU_kJw",
+      "field_label": "Social care",
+      "current_ads": 427,
       "current_positions": null,
-      "search_count": 35325,
+      "search_count": 37475,
       "demand_level": "medium",
-      "demand_trend": "rising",
+      "demand_trend": "stable",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 1435,
-        "pct_change": 0.6017,
-        "trend_class": "grow",
+        "forecast_ads_4w": 459,
+        "pct_change": -0.0465,
+        "trend_class": "stable",
         "horizon_weeks": 4,
         "source": "ml",
         "confidence": "high"
       },
-      "opportunity_score": 54,
+      "opportunity_score": 53,
       "crowding_risk": "high",
       "entry_level_signal": "medium",
-      "remote_signal": "medium",
-      "skill_momentum": "declining",
+      "remote_signal": "unknown",
+      "skill_momentum": "growing",
       "regional_strength": [
         {
-          "region": "Västra Götalands län",
+          "region": "Västernorrlands län",
           "score": 88,
           "signal": "strong"
         },
         {
-          "region": "Jämtlands län",
+          "region": "Västerbottens län",
           "score": 88,
           "signal": "strong"
         },
         {
-          "region": "Stockholms län",
+          "region": "Kalmar län",
           "score": 76,
           "signal": "strong"
         },
         {
-          "region": "Värmlands län",
+          "region": "Gotlands län",
           "score": 76,
           "signal": "strong"
         },
         {
-          "region": "Östergötlands län",
+          "region": "Blekinge län",
           "score": 62,
           "signal": "medium"
         },
         {
-          "region": "Skåne län",
+          "region": "Västra Götalands län",
           "score": 62,
           "signal": "medium"
         }
       ],
       "related_skills": [
         {
-          "skill": "Customer Relationship Management/CRM",
-          "signal": "declining"
+          "skill": "Socionomexamen",
+          "signal": "growing"
         },
         {
-          "skill": "Försäljningsvana, direktförsäljning konsument",
-          "signal": "stable"
-        },
-        {
-          "skill": "key account",
+          "skill": "dokumentation",
           "signal": "unknown"
         },
         {
-          "skill": "förhandling",
+          "skill": "bemötande",
           "signal": "unknown"
         },
         {
-          "skill": "kundbemötande",
+          "skill": "lågaffektivt",
           "signal": "unknown"
         }
       ],
-      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings. Demand has been rising in recent weeks.",
-      "best_for": [
-        "remote-friendly"
-      ],
+      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings.",
+      "best_for": [],
       "caution": null
     },
     {
-      "concept_id": "s1Qk_o98_2o1",
-      "term": "Butikssäljare, dagligvaror",
-      "field": "Försäljning, inköp, marknadsföring",
-      "field_id": "RPTn_bxG_ExZ",
-      "field_label": "Sales / marketing",
-      "current_ads": 429,
-      "current_positions": null,
-      "search_count": 38404,
-      "demand_level": "medium",
-      "demand_trend": "rising",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 840,
-        "pct_change": 0.4067,
-        "trend_class": "grow",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 54,
-      "crowding_risk": "high",
-      "entry_level_signal": "medium",
-      "remote_signal": "medium",
-      "skill_momentum": "declining",
-      "regional_strength": [
-        {
-          "region": "Västra Götalands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Jämtlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Stockholms län",
-          "score": 76,
-          "signal": "strong"
-        },
-        {
-          "region": "Värmlands län",
-          "score": 76,
-          "signal": "strong"
-        },
-        {
-          "region": "Östergötlands län",
-          "score": 62,
-          "signal": "medium"
-        },
-        {
-          "region": "Skåne län",
-          "score": 62,
-          "signal": "medium"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "Customer Relationship Management/CRM",
-          "signal": "declining"
-        },
-        {
-          "skill": "Försäljningsvana, direktförsäljning konsument",
-          "signal": "stable"
-        },
-        {
-          "skill": "key account",
-          "signal": "unknown"
-        },
-        {
-          "skill": "förhandling",
-          "signal": "unknown"
-        },
-        {
-          "skill": "kundbemötande",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings. Demand has been rising in recent weeks.",
-      "best_for": [
-        "remote-friendly"
-      ],
-      "caution": null
-    },
-    {
-      "concept_id": "nDaB_vdy_eAy",
-      "term": "Ingenjörer och tekniker inom elektroteknik",
+      "concept_id": "SPYW_7Z1_ShT",
+      "term": "Civilingenjörsyrken inom elektroteknik",
       "field": "Yrken med teknisk inriktning",
       "field_id": "6Hq3_tKo_V57",
       "field_label": "Engineering / technical",
-      "current_ads": 466,
+      "current_ads": 519,
       "current_positions": null,
-      "search_count": 6700,
+      "search_count": 5090,
       "demand_level": "medium",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 541,
-        "pct_change": 0.09,
+        "forecast_ads_4w": 487,
+        "pct_change": 0.3133,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -4043,444 +4019,31 @@
       "caution": null
     },
     {
-      "concept_id": "XeBP_nMe_pXx",
-      "term": "Civilingenjörsyrken inom bygg och anläggning",
-      "field": "Bygg och anläggning",
-      "field_id": "j7Cq_ZJe_GkT",
-      "field_label": "Construction",
-      "current_ads": 413,
-      "current_positions": null,
-      "search_count": 7847,
-      "demand_level": "medium",
-      "demand_trend": "rising",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 219,
-        "pct_change": 0.8064,
-        "trend_class": "grow",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 52,
-      "crowding_risk": "high",
-      "entry_level_signal": "unknown",
-      "remote_signal": "unknown",
-      "skill_momentum": "declining",
-      "regional_strength": [
-        {
-          "region": "Västmanlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Norrbottens län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Stockholms län",
-          "score": 76,
-          "signal": "strong"
-        },
-        {
-          "region": "Västra Götalands län",
-          "score": 76,
-          "signal": "strong"
-        },
-        {
-          "region": "Dalarnas län",
-          "score": 76,
-          "signal": "strong"
-        },
-        {
-          "region": "Gävleborgs län",
-          "score": 76,
-          "signal": "strong"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "Ritningsläsning",
-          "signal": "declining"
-        },
-        {
-          "skill": "byggvana",
-          "signal": "unknown"
-        },
-        {
-          "skill": "ställning",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings. Demand has been rising in recent weeks.",
-      "best_for": [],
-      "caution": null
-    },
-    {
-      "concept_id": "oQUQ_D11_HPx",
-      "term": "Grundskollärare",
-      "field": "Pedagogik",
-      "field_id": "MVqp_eS8_kDZ",
-      "field_label": "Education",
-      "current_ads": 544,
-      "current_positions": null,
-      "search_count": 63545,
-      "demand_level": "medium",
-      "demand_trend": "rising",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 1133,
-        "pct_change": 0.4111,
-        "trend_class": "grow",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 52,
-      "crowding_risk": "high",
-      "entry_level_signal": "unknown",
-      "remote_signal": "unknown",
-      "skill_momentum": "declining",
-      "regional_strength": [
-        {
-          "region": "Uppsala län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Gävleborgs län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Jämtlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Västerbottens län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Norrbottens län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Södermanlands län",
-          "score": 76,
-          "signal": "strong"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "pedagog",
-          "signal": "unknown"
-        },
-        {
-          "skill": "Lärarlegitimation",
-          "signal": "declining"
-        },
-        {
-          "skill": "didakt",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings. Demand has been rising in recent weeks.",
-      "best_for": [],
-      "caution": null
-    },
-    {
-      "concept_id": "pok1_ipJ_yzD",
-      "term": "Socialsekreterare",
-      "field": "Yrken med social inriktning",
-      "field_id": "GazW_2TU_kJw",
-      "field_label": "Social care",
-      "current_ads": 461,
-      "current_positions": null,
-      "search_count": 30504,
-      "demand_level": "medium",
-      "demand_trend": "declining",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 412,
-        "pct_change": -0.1433,
-        "trend_class": "decline",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 51,
-      "crowding_risk": "high",
-      "entry_level_signal": "strong",
-      "remote_signal": "unknown",
-      "skill_momentum": "growing",
-      "regional_strength": [
-        {
-          "region": "Kalmar län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Gotlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Blekinge län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Hallands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Värmlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Örebro län",
-          "score": 88,
-          "signal": "strong"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "Socionomexamen",
-          "signal": "growing"
-        },
-        {
-          "skill": "dokumentation",
-          "signal": "unknown"
-        },
-        {
-          "skill": "bemötande",
-          "signal": "unknown"
-        },
-        {
-          "skill": "lågaffektivt",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings. Demand has been softening in recent weeks.",
-      "best_for": [
-        "entry-friendly"
-      ],
-      "caution": null
-    },
-    {
-      "concept_id": "BWwk_fYX_S5B",
-      "term": "Behandlingsassistenter och socialpedagoger m.fl.",
-      "field": "Yrken med social inriktning",
-      "field_id": "GazW_2TU_kJw",
-      "field_label": "Social care",
-      "current_ads": 322,
-      "current_positions": null,
-      "search_count": 28332,
-      "demand_level": "low",
-      "demand_trend": "rising",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 819,
-        "pct_change": 0.3727,
-        "trend_class": "grow",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 47,
-      "crowding_risk": "high",
-      "entry_level_signal": "strong",
-      "remote_signal": "unknown",
-      "skill_momentum": "growing",
-      "regional_strength": [
-        {
-          "region": "Kalmar län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Gotlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Blekinge län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Hallands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Värmlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Örebro län",
-          "score": 88,
-          "signal": "strong"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "Socionomexamen",
-          "signal": "growing"
-        },
-        {
-          "skill": "dokumentation",
-          "signal": "unknown"
-        },
-        {
-          "skill": "bemötande",
-          "signal": "unknown"
-        },
-        {
-          "skill": "lågaffektivt",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step. Demand has been rising in recent weeks.",
-      "best_for": [
-        "entry-friendly"
-      ],
-      "caution": null
-    },
-    {
-      "concept_id": "7pz9_eY9_D2s",
-      "term": "Vårdare, boendestödjare",
-      "field": "Yrken med social inriktning",
-      "field_id": "GazW_2TU_kJw",
-      "field_label": "Social care",
-      "current_ads": 316,
-      "current_positions": null,
-      "search_count": 24781,
-      "demand_level": "low",
-      "demand_trend": "rising",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 1136,
-        "pct_change": 0.7371,
-        "trend_class": "grow",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 47,
-      "crowding_risk": "high",
-      "entry_level_signal": "strong",
-      "remote_signal": "unknown",
-      "skill_momentum": "growing",
-      "regional_strength": [
-        {
-          "region": "Kalmar län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Gotlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Blekinge län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Hallands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Värmlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Örebro län",
-          "score": 88,
-          "signal": "strong"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "Socionomexamen",
-          "signal": "growing"
-        },
-        {
-          "skill": "dokumentation",
-          "signal": "unknown"
-        },
-        {
-          "skill": "bemötande",
-          "signal": "unknown"
-        },
-        {
-          "skill": "lågaffektivt",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step. Demand has been rising in recent weeks.",
-      "best_for": [
-        "entry-friendly"
-      ],
-      "caution": null
-    },
-    {
       "concept_id": "vaEp_iBS_c5h",
       "term": "Maskinställare och maskinoperatörer, metallarbete",
       "field": "Industriell tillverkning",
       "field_id": "wTEr_CBC_bqh",
       "field_label": "Manufacturing",
-      "current_ads": 427,
+      "current_ads": 488,
       "current_positions": null,
-      "search_count": 5392,
+      "search_count": 5659,
       "demand_level": "medium",
-      "demand_trend": "stable",
+      "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 521,
-        "pct_change": 0.0751,
-        "trend_class": "stable",
+        "forecast_ads_4w": 563,
+        "pct_change": 0.1604,
+        "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
         "confidence": "high"
       },
-      "opportunity_score": 44,
+      "opportunity_score": 47,
       "crowding_risk": "high",
-      "entry_level_signal": "unknown",
+      "entry_level_signal": "weak",
       "remote_signal": "unknown",
       "skill_momentum": "declining",
       "regional_strength": [
-        {
-          "region": "Stockholms län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Uppsala län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Södermanlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Östergötlands län",
-          "score": 88,
-          "signal": "strong"
-        },
         {
           "region": "Jönköpings län",
           "score": 88,
@@ -4488,6 +4051,26 @@
         },
         {
           "region": "Kronobergs län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Kalmar län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Hallands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Västra Götalands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Västmanlands län",
           "score": 88,
           "signal": "strong"
         }
@@ -4510,7 +4093,130 @@
           "signal": "unknown"
         }
       ],
-      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings.",
+      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings. Demand has been rising in recent weeks.",
+      "best_for": [],
+      "caution": "Entry-level access looks limited compared with total demand. Beginners may need a nearby role first."
+    },
+    {
+      "concept_id": "Kxm9_N3V_shF",
+      "term": "Montörer, metall-, gummi- och plastprodukter",
+      "field": "Industriell tillverkning",
+      "field_id": "wTEr_CBC_bqh",
+      "field_label": "Manufacturing",
+      "current_ads": 437,
+      "current_positions": null,
+      "search_count": 6661,
+      "demand_level": "medium",
+      "demand_trend": "rising",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 432,
+        "pct_change": 0.1225,
+        "trend_class": "grow",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 47,
+      "crowding_risk": "high",
+      "entry_level_signal": "weak",
+      "remote_signal": "unknown",
+      "skill_momentum": "declining",
+      "regional_strength": [
+        {
+          "region": "Jönköpings län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Kronobergs län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Kalmar län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Hallands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Västra Götalands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Västmanlands län",
+          "score": 88,
+          "signal": "strong"
+        }
+      ],
+      "related_skills": [
+        {
+          "skill": "Fräsning, CNC",
+          "signal": "declining"
+        },
+        {
+          "skill": "svets",
+          "signal": "unknown"
+        },
+        {
+          "skill": "Ritningsläsning",
+          "signal": "declining"
+        },
+        {
+          "skill": "truckkort",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings. Demand has been rising in recent weeks.",
+      "best_for": [],
+      "caution": "Entry-level access looks limited compared with total demand. Beginners may need a nearby role first."
+    },
+    {
+      "concept_id": "oQUQ_D11_HPx",
+      "term": "Grundskollärare",
+      "field": "Pedagogik",
+      "field_id": "MVqp_eS8_kDZ",
+      "field_label": "Education",
+      "current_ads": 595,
+      "current_positions": null,
+      "search_count": 64502,
+      "demand_level": "medium",
+      "demand_trend": "rising",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 1156,
+        "pct_change": 0.44,
+        "trend_class": "grow",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 46,
+      "crowding_risk": "high",
+      "entry_level_signal": "unknown",
+      "remote_signal": "unknown",
+      "skill_momentum": "declining",
+      "regional_strength": [],
+      "related_skills": [
+        {
+          "skill": "pedagog",
+          "signal": "unknown"
+        },
+        {
+          "skill": "Lärarlegitimation",
+          "signal": "declining"
+        },
+        {
+          "skill": "didakt",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Moderate demand but high search attention. Expect competition for a limited number of openings. Demand has been rising in recent weeks.",
       "best_for": [],
       "caution": null
     },
@@ -4520,9 +4226,9 @@
       "field": "Yrken med teknisk inriktning",
       "field_id": "6Hq3_tKo_V57",
       "field_label": "Engineering / technical",
-      "current_ads": 619,
+      "current_ads": 659,
       "current_positions": null,
-      "search_count": 9449,
+      "search_count": 9521,
       "demand_level": "medium",
       "demand_trend": "stable",
       "trend_source": "history",
@@ -4587,20 +4293,20 @@
       "caution": null
     },
     {
-      "concept_id": "vPP6_rsw_dck",
-      "term": "Planerare och utredare m.fl.",
-      "field": "Administration, ekonomi, juridik",
-      "field_id": "X82t_awd_Qyc",
-      "field_label": "Admin / economy / legal",
-      "current_ads": 330,
+      "concept_id": "BWwk_fYX_S5B",
+      "term": "Behandlingsassistenter och socialpedagoger m.fl.",
+      "field": "Yrken med social inriktning",
+      "field_id": "GazW_2TU_kJw",
+      "field_label": "Social care",
+      "current_ads": 334,
       "current_positions": null,
-      "search_count": 44486,
+      "search_count": 30811,
       "demand_level": "low",
       "demand_trend": "rising",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 466,
-        "pct_change": 0.1484,
+        "forecast_ads_4w": 772,
+        "pct_change": 0.2929,
         "trend_class": "grow",
         "horizon_weeks": 4,
         "source": "ml",
@@ -4608,9 +4314,167 @@
       },
       "opportunity_score": 41,
       "crowding_risk": "high",
+      "entry_level_signal": "medium",
+      "remote_signal": "unknown",
+      "skill_momentum": "growing",
+      "regional_strength": [
+        {
+          "region": "Västernorrlands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Västerbottens län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Kalmar län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Gotlands län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Blekinge län",
+          "score": 62,
+          "signal": "medium"
+        },
+        {
+          "region": "Västra Götalands län",
+          "score": 62,
+          "signal": "medium"
+        }
+      ],
+      "related_skills": [
+        {
+          "skill": "Socionomexamen",
+          "signal": "growing"
+        },
+        {
+          "skill": "dokumentation",
+          "signal": "unknown"
+        },
+        {
+          "skill": "bemötande",
+          "signal": "unknown"
+        },
+        {
+          "skill": "lågaffektivt",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step. Demand has been rising in recent weeks.",
+      "best_for": [],
+      "caution": null
+    },
+    {
+      "concept_id": "7pz9_eY9_D2s",
+      "term": "Vårdare, boendestödjare",
+      "field": "Yrken med social inriktning",
+      "field_id": "GazW_2TU_kJw",
+      "field_label": "Social care",
+      "current_ads": 321,
+      "current_positions": null,
+      "search_count": 26986,
+      "demand_level": "low",
+      "demand_trend": "rising",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 1117,
+        "pct_change": 0.7077,
+        "trend_class": "grow",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 41,
+      "crowding_risk": "high",
+      "entry_level_signal": "medium",
+      "remote_signal": "unknown",
+      "skill_momentum": "growing",
+      "regional_strength": [
+        {
+          "region": "Västernorrlands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Västerbottens län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Kalmar län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Gotlands län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Blekinge län",
+          "score": 62,
+          "signal": "medium"
+        },
+        {
+          "region": "Västra Götalands län",
+          "score": 62,
+          "signal": "medium"
+        }
+      ],
+      "related_skills": [
+        {
+          "skill": "Socionomexamen",
+          "signal": "growing"
+        },
+        {
+          "skill": "dokumentation",
+          "signal": "unknown"
+        },
+        {
+          "skill": "bemötande",
+          "signal": "unknown"
+        },
+        {
+          "skill": "lågaffektivt",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step. Demand has been rising in recent weeks.",
+      "best_for": [],
+      "caution": null
+    },
+    {
+      "concept_id": "Qo7p_wjf_gtv",
+      "term": "Lednings- och organisationsutvecklare",
+      "field": "Data/IT",
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "current_ads": 316,
+      "current_positions": null,
+      "search_count": 35525,
+      "demand_level": "low",
+      "demand_trend": "rising",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 345,
+        "pct_change": 0.1125,
+        "trend_class": "grow",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 34,
+      "crowding_risk": "high",
       "entry_level_signal": "unknown",
-      "remote_signal": "strong",
-      "skill_momentum": "unknown",
+      "remote_signal": "medium",
+      "skill_momentum": "declining",
       "regional_strength": [
         {
           "region": "Stockholms län",
@@ -4619,49 +4483,49 @@
         },
         {
           "region": "Östergötlands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Västra Götalands län",
           "score": 76,
           "signal": "strong"
         },
         {
-          "region": "Uppsala län",
+          "region": "Västmanlands län",
+          "score": 62,
+          "signal": "medium"
+        },
+        {
+          "region": "Västernorrlands län",
           "score": 62,
           "signal": "medium"
         },
         {
           "region": "Jönköpings län",
-          "score": 62,
-          "signal": "medium"
-        },
-        {
-          "region": "Blekinge län",
-          "score": 62,
-          "signal": "medium"
-        },
-        {
-          "region": "Skåne län",
-          "score": 62,
-          "signal": "medium"
+          "score": 48,
+          "signal": "weak"
         }
       ],
       "related_skills": [
-        {
-          "skill": "excel",
-          "signal": "unknown"
-        },
         {
           "skill": "sql",
           "signal": "unknown"
         },
         {
-          "skill": "redovisning",
+          "skill": "python",
           "signal": "unknown"
         },
         {
-          "skill": "lön",
+          "skill": "Java, programmeringsspråk",
+          "signal": "declining"
+        },
+        {
+          "skill": "cloud",
           "signal": "unknown"
         },
         {
-          "skill": "bokföring",
+          "skill": "azure",
           "signal": "unknown"
         }
       ],
@@ -4672,62 +4536,185 @@
       "caution": null
     },
     {
-      "concept_id": "pwRH_MT1_8nR",
-      "term": "Kundtjänstpersonal",
-      "field": "Administration, ekonomi, juridik",
-      "field_id": "X82t_awd_Qyc",
-      "field_label": "Admin / economy / legal",
-      "current_ads": 368,
+      "concept_id": "XeBP_nMe_pXx",
+      "term": "Civilingenjörsyrken inom bygg och anläggning",
+      "field": "Bygg och anläggning",
+      "field_id": "j7Cq_ZJe_GkT",
+      "field_label": "Construction",
+      "current_ads": 411,
       "current_positions": null,
-      "search_count": 27569,
+      "search_count": 7782,
+      "demand_level": "low",
+      "demand_trend": "rising",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 225,
+        "pct_change": 0.8568,
+        "trend_class": "grow",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 32,
+      "crowding_risk": "high",
+      "entry_level_signal": "unknown",
+      "remote_signal": "unknown",
+      "skill_momentum": "declining",
+      "regional_strength": [
+        {
+          "region": "Norrbottens län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Stockholms län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Södermanlands län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Västmanlands län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Gävleborgs län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Kalmar län",
+          "score": 62,
+          "signal": "medium"
+        }
+      ],
+      "related_skills": [
+        {
+          "skill": "Ritningsläsning",
+          "signal": "declining"
+        },
+        {
+          "skill": "byggvana",
+          "signal": "unknown"
+        },
+        {
+          "skill": "ställning",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step. Demand has been rising in recent weeks.",
+      "best_for": [],
+      "caution": null
+    },
+    {
+      "concept_id": "KttZ_Skc_bMR",
+      "term": "Underhållsmekaniker och maskinreparatörer",
+      "field": "Installation, drift, underhåll",
+      "field_id": "yhCP_AqT_tns",
+      "field_label": "Install / maintenance",
+      "current_ads": 359,
+      "current_positions": null,
+      "search_count": 4736,
       "demand_level": "low",
       "demand_trend": "stable",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 500,
-        "pct_change": 0.0746,
+        "forecast_ads_4w": 297,
+        "pct_change": -0.0448,
         "trend_class": "stable",
         "horizon_weeks": 4,
         "source": "ml",
         "confidence": "high"
       },
-      "opportunity_score": 33,
+      "opportunity_score": 28,
       "crowding_risk": "high",
       "entry_level_signal": "unknown",
-      "remote_signal": "strong",
-      "skill_momentum": "unknown",
+      "remote_signal": "unknown",
+      "skill_momentum": "stable",
       "regional_strength": [
         {
-          "region": "Stockholms län",
+          "region": "Södermanlands län",
           "score": 88,
           "signal": "strong"
         },
         {
-          "region": "Östergötlands län",
+          "region": "Gävleborgs län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Norrbottens län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Jönköpings län",
           "score": 76,
           "signal": "strong"
         },
         {
-          "region": "Uppsala län",
-          "score": 62,
-          "signal": "medium"
+          "region": "Kalmar län",
+          "score": 76,
+          "signal": "strong"
         },
         {
-          "region": "Jönköpings län",
-          "score": 62,
-          "signal": "medium"
-        },
-        {
-          "region": "Blekinge län",
-          "score": 62,
-          "signal": "medium"
-        },
-        {
-          "region": "Skåne län",
-          "score": 62,
-          "signal": "medium"
+          "region": "Västra Götalands län",
+          "score": 76,
+          "signal": "strong"
         }
       ],
+      "related_skills": [
+        {
+          "skill": "Felsökning, fordonsmekanik",
+          "signal": "declining"
+        },
+        {
+          "skill": "underhåll",
+          "signal": "unknown"
+        },
+        {
+          "skill": "Kabelinstallationer",
+          "signal": "growing"
+        },
+        {
+          "skill": "körkort",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step.",
+      "best_for": [],
+      "caution": null
+    },
+    {
+      "concept_id": "pwRH_MT1_8nR",
+      "term": "Kundtjänstpersonal",
+      "field": "Administration, ekonomi, juridik",
+      "field_id": "X82t_awd_Qyc",
+      "field_label": "Admin / economy / legal",
+      "current_ads": 354,
+      "current_positions": null,
+      "search_count": 30125,
+      "demand_level": "low",
+      "demand_trend": "stable",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 489,
+        "pct_change": 0.0515,
+        "trend_class": "stable",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 27,
+      "crowding_risk": "high",
+      "entry_level_signal": "unknown",
+      "remote_signal": "strong",
+      "skill_momentum": "unknown",
+      "regional_strength": [],
       "related_skills": [
         {
           "skill": "excel",
@@ -4757,26 +4744,186 @@
       "caution": null
     },
     {
-      "concept_id": "qn2U_dB9_Cmh",
-      "term": "Civilingenjörsyrken inom kemi och kemiteknik",
-      "field": "Yrken med teknisk inriktning",
-      "field_id": "6Hq3_tKo_V57",
-      "field_label": "Engineering / technical",
-      "current_ads": 374,
+      "concept_id": "UXKZ_3zZ_ipB",
+      "term": "Systemanalytiker och IT-arkitekter m.fl.",
+      "field": "Data/IT",
+      "field_id": "apaJ_2ja_LuF",
+      "field_label": "Data / IT",
+      "current_ads": 308,
       "current_positions": null,
-      "search_count": 4606,
+      "search_count": 7264,
       "demand_level": "low",
-      "demand_trend": "rising",
+      "demand_trend": "stable",
       "trend_source": "ml",
       "forecast": {
-        "forecast_ads_4w": 40,
-        "pct_change": 0.3759,
-        "trend_class": "grow",
+        "forecast_ads_4w": 364,
+        "pct_change": -0.0085,
+        "trend_class": "stable",
         "horizon_weeks": 4,
         "source": "ml",
         "confidence": "high"
       },
-      "opportunity_score": 32,
+      "opportunity_score": 26,
+      "crowding_risk": "high",
+      "entry_level_signal": "unknown",
+      "remote_signal": "medium",
+      "skill_momentum": "declining",
+      "regional_strength": [
+        {
+          "region": "Stockholms län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Östergötlands län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Västra Götalands län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Västmanlands län",
+          "score": 62,
+          "signal": "medium"
+        },
+        {
+          "region": "Västernorrlands län",
+          "score": 62,
+          "signal": "medium"
+        },
+        {
+          "region": "Jönköpings län",
+          "score": 48,
+          "signal": "weak"
+        }
+      ],
+      "related_skills": [
+        {
+          "skill": "sql",
+          "signal": "unknown"
+        },
+        {
+          "skill": "python",
+          "signal": "unknown"
+        },
+        {
+          "skill": "Java, programmeringsspråk",
+          "signal": "declining"
+        },
+        {
+          "skill": "cloud",
+          "signal": "unknown"
+        },
+        {
+          "skill": "azure",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step.",
+      "best_for": [
+        "remote-friendly"
+      ],
+      "caution": null
+    },
+    {
+      "concept_id": "9mJN_VwW_Xjg",
+      "term": "Träarbetare, snickare m.fl.",
+      "field": "Bygg och anläggning",
+      "field_id": "j7Cq_ZJe_GkT",
+      "field_label": "Construction",
+      "current_ads": 344,
+      "current_positions": null,
+      "search_count": 7631,
+      "demand_level": "low",
+      "demand_trend": "stable",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 267,
+        "pct_change": -0.031,
+        "trend_class": "stable",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 24,
+      "crowding_risk": "high",
+      "entry_level_signal": "unknown",
+      "remote_signal": "unknown",
+      "skill_momentum": "declining",
+      "regional_strength": [
+        {
+          "region": "Norrbottens län",
+          "score": 88,
+          "signal": "strong"
+        },
+        {
+          "region": "Stockholms län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Södermanlands län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Västmanlands län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Gävleborgs län",
+          "score": 76,
+          "signal": "strong"
+        },
+        {
+          "region": "Kalmar län",
+          "score": 62,
+          "signal": "medium"
+        }
+      ],
+      "related_skills": [
+        {
+          "skill": "Ritningsläsning",
+          "signal": "declining"
+        },
+        {
+          "skill": "byggvana",
+          "signal": "unknown"
+        },
+        {
+          "skill": "ställning",
+          "signal": "unknown"
+        }
+      ],
+      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step.",
+      "best_for": [],
+      "caution": null
+    },
+    {
+      "concept_id": "PRQn_9yw_NJA",
+      "term": "Civilingenjörsyrken inom maskinteknik",
+      "field": "Yrken med teknisk inriktning",
+      "field_id": "6Hq3_tKo_V57",
+      "field_label": "Engineering / technical",
+      "current_ads": 383,
+      "current_positions": null,
+      "search_count": 6744,
+      "demand_level": "low",
+      "demand_trend": "declining",
+      "trend_source": "ml",
+      "forecast": {
+        "forecast_ads_4w": 296,
+        "pct_change": -0.1108,
+        "trend_class": "decline",
+        "horizon_weeks": 4,
+        "source": "ml",
+        "confidence": "high"
+      },
+      "opportunity_score": 16,
       "crowding_risk": "high",
       "entry_level_signal": "unknown",
       "remote_signal": "weak",
@@ -4831,327 +4978,9 @@
           "signal": "declining"
         }
       ],
-      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step. Demand has been rising in recent weeks.",
+      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step. Demand has been softening in recent weeks.",
       "best_for": [],
       "caution": null
-    },
-    {
-      "concept_id": "Kxm9_N3V_shF",
-      "term": "Montörer, metall-, gummi- och plastprodukter",
-      "field": "Industriell tillverkning",
-      "field_id": "wTEr_CBC_bqh",
-      "field_label": "Manufacturing",
-      "current_ads": 326,
-      "current_positions": null,
-      "search_count": 6293,
-      "demand_level": "low",
-      "demand_trend": "rising",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 459,
-        "pct_change": 0.193,
-        "trend_class": "grow",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 32,
-      "crowding_risk": "high",
-      "entry_level_signal": "unknown",
-      "remote_signal": "unknown",
-      "skill_momentum": "declining",
-      "regional_strength": [
-        {
-          "region": "Stockholms län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Uppsala län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Södermanlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Östergötlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Jönköpings län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Kronobergs län",
-          "score": 88,
-          "signal": "strong"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "Fräsning, CNC",
-          "signal": "declining"
-        },
-        {
-          "skill": "svets",
-          "signal": "unknown"
-        },
-        {
-          "skill": "Ritningsläsning",
-          "signal": "declining"
-        },
-        {
-          "skill": "truckkort",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step. Demand has been rising in recent weeks.",
-      "best_for": [],
-      "caution": null
-    },
-    {
-      "concept_id": "UXKZ_3zZ_ipB",
-      "term": "Systemanalytiker och IT-arkitekter m.fl.",
-      "field": "Data/IT",
-      "field_id": "apaJ_2ja_LuF",
-      "field_label": "Data / IT",
-      "current_ads": 319,
-      "current_positions": null,
-      "search_count": 8162,
-      "demand_level": "low",
-      "demand_trend": "stable",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 364,
-        "pct_change": -0.0085,
-        "trend_class": "stable",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 26,
-      "crowding_risk": "high",
-      "entry_level_signal": "unknown",
-      "remote_signal": "medium",
-      "skill_momentum": "declining",
-      "regional_strength": [
-        {
-          "region": "Stockholms län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Östergötlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Västra Götalands län",
-          "score": 76,
-          "signal": "strong"
-        },
-        {
-          "region": "Örebro län",
-          "score": 62,
-          "signal": "medium"
-        },
-        {
-          "region": "Västmanlands län",
-          "score": 62,
-          "signal": "medium"
-        },
-        {
-          "region": "Västernorrlands län",
-          "score": 62,
-          "signal": "medium"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "sql",
-          "signal": "unknown"
-        },
-        {
-          "skill": "python",
-          "signal": "unknown"
-        },
-        {
-          "skill": "Java, programmeringsspråk",
-          "signal": "declining"
-        },
-        {
-          "skill": "cloud",
-          "signal": "unknown"
-        },
-        {
-          "skill": "azure",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step.",
-      "best_for": [
-        "remote-friendly"
-      ],
-      "caution": null
-    },
-    {
-      "concept_id": "9mJN_VwW_Xjg",
-      "term": "Träarbetare, snickare m.fl.",
-      "field": "Bygg och anläggning",
-      "field_id": "j7Cq_ZJe_GkT",
-      "field_label": "Construction",
-      "current_ads": 334,
-      "current_positions": null,
-      "search_count": 7790,
-      "demand_level": "low",
-      "demand_trend": "stable",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 268,
-        "pct_change": -0.0274,
-        "trend_class": "stable",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 24,
-      "crowding_risk": "high",
-      "entry_level_signal": "unknown",
-      "remote_signal": "unknown",
-      "skill_momentum": "declining",
-      "regional_strength": [
-        {
-          "region": "Västmanlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Norrbottens län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Stockholms län",
-          "score": 76,
-          "signal": "strong"
-        },
-        {
-          "region": "Västra Götalands län",
-          "score": 76,
-          "signal": "strong"
-        },
-        {
-          "region": "Dalarnas län",
-          "score": 76,
-          "signal": "strong"
-        },
-        {
-          "region": "Gävleborgs län",
-          "score": 76,
-          "signal": "strong"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "Ritningsläsning",
-          "signal": "declining"
-        },
-        {
-          "skill": "byggvana",
-          "signal": "unknown"
-        },
-        {
-          "skill": "ställning",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step.",
-      "best_for": [],
-      "caution": null
-    },
-    {
-      "concept_id": "KttZ_Skc_bMR",
-      "term": "Underhållsmekaniker och maskinreparatörer",
-      "field": "Installation, drift, underhåll",
-      "field_id": "yhCP_AqT_tns",
-      "field_label": "Install / maintenance",
-      "current_ads": 328,
-      "current_positions": null,
-      "search_count": 4399,
-      "demand_level": "low",
-      "demand_trend": "stable",
-      "trend_source": "ml",
-      "forecast": {
-        "forecast_ads_4w": 318,
-        "pct_change": 0.0239,
-        "trend_class": "stable",
-        "horizon_weeks": 4,
-        "source": "ml",
-        "confidence": "high"
-      },
-      "opportunity_score": 23,
-      "crowding_risk": "high",
-      "entry_level_signal": "weak",
-      "remote_signal": "unknown",
-      "skill_momentum": "stable",
-      "regional_strength": [
-        {
-          "region": "Östergötlands län",
-          "score": 88,
-          "signal": "strong"
-        },
-        {
-          "region": "Södermanlands län",
-          "score": 48,
-          "signal": "weak"
-        },
-        {
-          "region": "Jönköpings län",
-          "score": 48,
-          "signal": "weak"
-        },
-        {
-          "region": "Dalarnas län",
-          "score": 48,
-          "signal": "weak"
-        },
-        {
-          "region": "Gävleborgs län",
-          "score": 48,
-          "signal": "weak"
-        },
-        {
-          "region": "Norrbottens län",
-          "score": 48,
-          "signal": "weak"
-        }
-      ],
-      "related_skills": [
-        {
-          "skill": "Felsökning, fordonsmekanik",
-          "signal": "declining"
-        },
-        {
-          "skill": "underhåll",
-          "signal": "unknown"
-        },
-        {
-          "skill": "Kabelinstallationer",
-          "signal": "growing"
-        },
-        {
-          "skill": "körkort",
-          "signal": "unknown"
-        }
-      ],
-      "consultant_summary": "Thin current demand. Expect fewer openings and a longer search. Treat it as a stretch target, not a first step.",
-      "best_for": [],
-      "caution": "Entry-level access looks limited compared with total demand. Beginners may need a nearby role first."
     }
   ],
   "career_paths": [
