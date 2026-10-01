@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-09-28T12:29:35Z",
+  "last_updated": "2026-10-01T11:04:18Z",
   "methodology_version": "career-reality-v1",
   "forecast_model_source": "ml",
   "sources": {
     "live_week": "2026-W40",
     "demand_gap_week": "2026-W40",
     "regional_split_week": "2026-W40",
-    "skill_velocity_updated": "2026-09-01",
-    "forecast_updated": "2026-09-28T12:29:35Z"
+    "skill_velocity_updated": "2026-10-01",
+    "forecast_updated": "2026-10-01T11:04:18Z"
   },
   "regions": [
     {

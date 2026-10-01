@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-09-01",
-  "weeks_tracked": 35,
+  "last_updated": "2026-10-01",
+  "weeks_tracked": 39,
   "occupation_fields": [
     {
       "term": "Militära yrken",
@@ -30,13 +30,13 @@
       "sample_size": 36828
     },
     {
-      "term": "Hotell, restaurang, storhushåll",
-      "concept_id": "ScKy_FHB_7wT",
+      "term": "Yrken med teknisk inriktning",
+      "concept_id": "6Hq3_tKo_V57",
       "median_lifespan_days": 30,
-      "mean_lifespan_days": 47,
-      "pct_filled_under_7d": 2.1,
-      "pct_open_over_60d": 18.8,
-      "sample_size": 27162
+      "mean_lifespan_days": 40,
+      "pct_filled_under_7d": 3.4,
+      "pct_open_over_60d": 13.0,
+      "sample_size": 28986
     },
     {
       "term": "Industriell tillverkning",
@@ -48,22 +48,22 @@
       "sample_size": 25291
     },
     {
-      "term": "Yrken med teknisk inriktning",
-      "concept_id": "6Hq3_tKo_V57",
+      "term": "Transport, distribution, lager",
+      "concept_id": "ASGV_zcE_bWf",
       "median_lifespan_days": 30,
-      "mean_lifespan_days": 40,
-      "pct_filled_under_7d": 3.4,
-      "pct_open_over_60d": 13.0,
-      "sample_size": 28986
+      "mean_lifespan_days": 43,
+      "pct_filled_under_7d": 5.5,
+      "pct_open_over_60d": 15.9,
+      "sample_size": 28690
     },
     {
-      "term": "Bygg och anläggning",
-      "concept_id": "j7Cq_ZJe_GkT",
+      "term": "Hotell, restaurang, storhushåll",
+      "concept_id": "ScKy_FHB_7wT",
       "median_lifespan_days": 30,
-      "mean_lifespan_days": 42,
-      "pct_filled_under_7d": 3.6,
-      "pct_open_over_60d": 14.7,
-      "sample_size": 20844
+      "mean_lifespan_days": 47,
+      "pct_filled_under_7d": 2.1,
+      "pct_open_over_60d": 18.8,
+      "sample_size": 27162
     },
     {
       "term": "Installation, drift, underhåll",
@@ -73,6 +73,15 @@
       "pct_filled_under_7d": 2.8,
       "pct_open_over_60d": 17.6,
       "sample_size": 25775
+    },
+    {
+      "term": "Bygg och anläggning",
+      "concept_id": "j7Cq_ZJe_GkT",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 42,
+      "pct_filled_under_7d": 3.6,
+      "pct_open_over_60d": 14.7,
+      "sample_size": 20844
     },
     {
       "term": "Sanering och renhållning",
@@ -147,15 +156,6 @@
       "sample_size": 82703
     },
     {
-      "term": "Chefer och verksamhetsledare",
-      "concept_id": "bh3H_Y3h_5eD",
-      "median_lifespan_days": 23,
-      "mean_lifespan_days": 34,
-      "pct_filled_under_7d": 3.5,
-      "pct_open_over_60d": 9.1,
-      "sample_size": 28276
-    },
-    {
       "term": "Administration, ekonomi, juridik",
       "concept_id": "X82t_awd_Qyc",
       "median_lifespan_days": 23,
@@ -165,6 +165,15 @@
       "sample_size": 62979
     },
     {
+      "term": "Chefer och verksamhetsledare",
+      "concept_id": "bh3H_Y3h_5eD",
+      "median_lifespan_days": 23,
+      "mean_lifespan_days": 34,
+      "pct_filled_under_7d": 3.5,
+      "pct_open_over_60d": 9.1,
+      "sample_size": 28276
+    },
+    {
       "term": "Naturvetenskap",
       "concept_id": "kJeN_wmw_9wX",
       "median_lifespan_days": 23,
@@ -172,15 +181,6 @@
       "pct_filled_under_7d": 2.4,
       "pct_open_over_60d": 8.2,
       "sample_size": 5379
-    },
-    {
-      "term": "Pedagogik",
-      "concept_id": "MVqp_eS8_kDZ",
-      "median_lifespan_days": 20,
-      "mean_lifespan_days": 26,
-      "pct_filled_under_7d": 2.9,
-      "pct_open_over_60d": 5.4,
-      "sample_size": 51989
     }
   ],
   "overall": {
@@ -188,74 +188,74 @@
     "mean_lifespan_days": 40,
     "longest_running_ads": [
       {
-        "id": "29799942",
-        "headline": "Massage Therapist - Accommodation Provided",
-        "occupation_field": "Kropps- och skönhetsvård",
-        "days_open": 429,
-        "region": "Skåne län"
-      },
-      {
         "id": "29824618",
         "headline": "Städare i Malmö ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 419,
+        "days_open": 449,
         "region": "Skåne län"
       },
       {
         "id": "29824626",
         "headline": "Städare i Stockholm ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 419,
+        "days_open": 449,
         "region": "Stockholms län"
       },
       {
         "id": "29824638",
         "headline": "Cleaner in Stockholm ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 419,
+        "days_open": 449,
         "region": "Stockholms län"
       },
       {
         "id": "29824645",
         "headline": "Cleaner in Malmö ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 419,
+        "days_open": 449,
         "region": "Skåne län"
       },
       {
         "id": "29824651",
         "headline": "Cleaner in Gothenburg ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 419,
+        "days_open": 449,
         "region": "Västra Götalands län"
       },
       {
         "id": "30334648",
         "headline": "Städare i Göteborg ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 272,
+        "days_open": 302,
         "region": "Västra Götalands län"
-      },
-      {
-        "id": "30419252",
-        "headline": "Massage Therapist",
-        "occupation_field": "Kropps- och skönhetsvård",
-        "days_open": 252,
-        "region": "Skåne län"
       },
       {
         "id": "30429255",
         "headline": "Taxichaufför",
         "occupation_field": "Transport, distribution, lager",
-        "days_open": 245,
+        "days_open": 275,
         "region": "Stockholms län"
       },
       {
         "id": "30432726",
         "headline": "Frisör sökes till Marias Sax i Ytterby (deltid) ",
         "occupation_field": "Kropps- och skönhetsvård",
-        "days_open": 241,
+        "days_open": 271,
         "region": "Västra Götalands län"
+      },
+      {
+        "id": "30486370",
+        "headline": "Leg dietist till Hela Kroppen Fysiocenter  Järfälla",
+        "occupation_field": "Hälso- och sjukvård",
+        "days_open": 255,
+        "region": "Stockholms län"
+      },
+      {
+        "id": "30518136",
+        "headline": "Heltidsanställd tandhygienist till mysig privatklinik sökes.",
+        "occupation_field": "Hälso- och sjukvård",
+        "days_open": 248,
+        "region": "Västerbottens län"
       }
     ]
   },
