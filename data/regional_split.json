@@ -1,184 +1,176 @@
 {
-  "week": "2026-W43",
-  "last_updated": "2026-10-19T11:41:32Z",
+  "week": "2026-W44",
+  "last_updated": "2026-10-26T11:58:20Z",
   "national_shares": {
-    "NYW6_mP6_vwf": 0.1436,
-    "bh3H_Y3h_5eD": 0.1096,
-    "RPTn_bxG_ExZ": 0.0956,
-    "GazW_2TU_kJw": 0.0935,
-    "X82t_awd_Qyc": 0.0852,
-    "MVqp_eS8_kDZ": 0.0708,
-    "apaJ_2ja_LuF": 0.0598,
-    "ASGV_zcE_bWf": 0.0573,
-    "wTEr_CBC_bqh": 0.0555,
-    "ScKy_FHB_7wT": 0.0521,
-    "yhCP_AqT_tns": 0.0505,
-    "j7Cq_ZJe_GkT": 0.0478,
+    "NYW6_mP6_vwf": 0.158,
+    "RPTn_bxG_ExZ": 0.0939,
+    "GazW_2TU_kJw": 0.0923,
+    "X82t_awd_Qyc": 0.0833,
+    "MVqp_eS8_kDZ": 0.0726,
+    "6Hq3_tKo_V57": 0.0608,
+    "apaJ_2ja_LuF": 0.0573,
+    "ASGV_zcE_bWf": 0.056,
+    "ScKy_FHB_7wT": 0.0532,
+    "wTEr_CBC_bqh": 0.0524,
+    "bh3H_Y3h_5eD": 0.0509,
+    "yhCP_AqT_tns": 0.0496,
+    "j7Cq_ZJe_GkT": 0.0489,
     "whao_Q6A_ScE": 0.0322,
-    "E7hm_BLq_fqZ": 0.0123,
-    "9puE_nYg_crq": 0.0078,
-    "kJeN_wmw_9wX": 0.0069,
-    "VuuL_7CH_adj": 0.0064,
-    "Uuf1_GMh_Uvw": 0.0063,
+    "E7hm_BLq_fqZ": 0.0116,
+    "9puE_nYg_crq": 0.0077,
+    "VuuL_7CH_adj": 0.0066,
+    "Uuf1_GMh_Uvw": 0.0061,
     "PaxQ_o1G_wWH": 0.004,
-    "bH5L_uXD_ZAX": 0.0028
+    "bH5L_uXD_ZAX": 0.0025
   },
   "regions": [
     {
       "concept_id": "CifL_Rzy_Mku",
       "term": "Stockholms län",
-      "total_ads": 10638,
+      "total_ads": 10845,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 1290,
-          "regional_share": 0.1213,
-          "vs_national": 0.84
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 511,
-          "regional_share": 0.048,
-          "vs_national": 0.44
+          "count": 1301,
+          "regional_share": 0.12,
+          "vs_national": 0.76
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 1262,
-          "regional_share": 0.1186,
-          "vs_national": 1.24
+          "count": 1273,
+          "regional_share": 0.1174,
+          "vs_national": 1.25
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 875,
-          "regional_share": 0.0823,
-          "vs_national": 0.88
+          "count": 845,
+          "regional_share": 0.0779,
+          "vs_national": 0.84
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 1192,
-          "regional_share": 0.1121,
-          "vs_national": 1.32
-        },
-        {
-          "concept_id": "MVqp_eS8_kDZ",
-          "term": "Pedagogik",
-          "count": 630,
-          "regional_share": 0.0592,
-          "vs_national": 0.84
-        },
-        {
-          "concept_id": "apaJ_2ja_LuF",
-          "term": "Data/IT",
-          "count": 1096,
-          "regional_share": 0.103,
-          "vs_national": 1.72
-        },
-        {
-          "concept_id": "ASGV_zcE_bWf",
-          "term": "Transport, distribution, lager",
-          "count": 707,
-          "regional_share": 0.0665,
-          "vs_national": 1.16
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 342,
-          "regional_share": 0.0321,
-          "vs_national": 0.58
-        },
-        {
-          "concept_id": "ScKy_FHB_7wT",
-          "term": "Hotell, restaurang, storhushåll",
-          "count": 530,
-          "regional_share": 0.0498,
-          "vs_national": 0.96
-        },
-        {
-          "concept_id": "yhCP_AqT_tns",
-          "term": "Installation, drift, underhåll",
-          "count": 527,
-          "regional_share": 0.0495,
-          "vs_national": 0.98
-        },
-        {
-          "concept_id": "j7Cq_ZJe_GkT",
-          "term": "Bygg och anläggning",
-          "count": 653,
-          "regional_share": 0.0614,
-          "vs_national": 1.29
-        },
-        {
-          "concept_id": "whao_Q6A_ScE",
-          "term": "Sanering och renhållning",
-          "count": 463,
-          "regional_share": 0.0435,
-          "vs_national": 1.35
-        },
-        {
-          "concept_id": "E7hm_BLq_fqZ",
-          "term": "Säkerhet och bevakning",
-          "count": 125,
-          "regional_share": 0.0118,
-          "vs_national": 0.95
-        },
-        {
-          "concept_id": "9puE_nYg_crq",
-          "term": "Kultur, media, design",
-          "count": 120,
-          "regional_share": 0.0113,
-          "vs_national": 1.45
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
           "count": 0,
           "regional_share": 0.0,
           "vs_national": 0.0
         },
         {
+          "concept_id": "MVqp_eS8_kDZ",
+          "term": "Pedagogik",
+          "count": 689,
+          "regional_share": 0.0635,
+          "vs_national": 0.87
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 530,
+          "regional_share": 0.0489,
+          "vs_national": 0.8
+        },
+        {
+          "concept_id": "apaJ_2ja_LuF",
+          "term": "Data/IT",
+          "count": 1078,
+          "regional_share": 0.0994,
+          "vs_national": 1.73
+        },
+        {
+          "concept_id": "ASGV_zcE_bWf",
+          "term": "Transport, distribution, lager",
+          "count": 720,
+          "regional_share": 0.0664,
+          "vs_national": 1.19
+        },
+        {
+          "concept_id": "ScKy_FHB_7wT",
+          "term": "Hotell, restaurang, storhushåll",
+          "count": 574,
+          "regional_share": 0.0529,
+          "vs_national": 0.99
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 289,
+          "regional_share": 0.0266,
+          "vs_national": 0.51
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 544,
+          "regional_share": 0.0502,
+          "vs_national": 0.99
+        },
+        {
+          "concept_id": "yhCP_AqT_tns",
+          "term": "Installation, drift, underhåll",
+          "count": 508,
+          "regional_share": 0.0468,
+          "vs_national": 0.94
+        },
+        {
+          "concept_id": "j7Cq_ZJe_GkT",
+          "term": "Bygg och anläggning",
+          "count": 697,
+          "regional_share": 0.0643,
+          "vs_national": 1.31
+        },
+        {
+          "concept_id": "whao_Q6A_ScE",
+          "term": "Sanering och renhållning",
+          "count": 490,
+          "regional_share": 0.0452,
+          "vs_national": 1.4
+        },
+        {
+          "concept_id": "E7hm_BLq_fqZ",
+          "term": "Säkerhet och bevakning",
+          "count": 1319,
+          "regional_share": 0.1216,
+          "vs_national": 10.46
+        },
+        {
+          "concept_id": "9puE_nYg_crq",
+          "term": "Kultur, media, design",
+          "count": 116,
+          "regional_share": 0.0107,
+          "vs_national": 1.4
+        },
+        {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 61,
-          "regional_share": 0.0057,
+          "count": 64,
+          "regional_share": 0.0059,
           "vs_national": 0.89
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
-          "count": 106,
-          "regional_share": 0.01,
-          "vs_national": 1.59
+          "count": 102,
+          "regional_share": 0.0094,
+          "vs_national": 1.53
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
-          "count": 54,
-          "regional_share": 0.0051,
-          "vs_national": 1.26
+          "count": 61,
+          "regional_share": 0.0056,
+          "vs_national": 1.42
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
           "term": "Militära yrken",
-          "count": 17,
-          "regional_share": 0.0016,
-          "vs_national": 0.58
+          "count": 15,
+          "regional_share": 0.0014,
+          "vs_national": 0.56
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 10865,
-          "top_field": {
-            "term": "Försäljning, inköp, marknadsföring",
-            "vs_national": 2.45
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 10248,
@@ -202,164 +194,164 @@
             "term": "Data/IT",
             "vs_national": 1.72
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 10845,
+          "top_field": {
+            "term": "Säkerhet och bevakning",
+            "vs_national": 10.46
+          }
         }
       ]
     },
     {
       "concept_id": "zBon_eET_fFU",
       "term": "Uppsala län",
-      "total_ads": 1522,
+      "total_ads": 1581,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 386,
-          "regional_share": 0.2536,
-          "vs_national": 1.77
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 73,
-          "regional_share": 0.048,
-          "vs_national": 0.44
+          "count": 421,
+          "regional_share": 0.2663,
+          "vs_national": 1.69
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 102,
-          "regional_share": 0.067,
-          "vs_national": 0.7
+          "count": 224,
+          "regional_share": 0.1417,
+          "vs_national": 1.51
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 178,
-          "regional_share": 0.117,
-          "vs_national": 1.25
+          "count": 181,
+          "regional_share": 0.1145,
+          "vs_national": 1.24
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 125,
-          "regional_share": 0.0821,
-          "vs_national": 0.96
+          "count": 0,
+          "regional_share": 0.0,
+          "vs_national": 0.0
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 145,
-          "regional_share": 0.0953,
-          "vs_national": 1.35
+          "count": 140,
+          "regional_share": 0.0886,
+          "vs_national": 1.22
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 84,
+          "regional_share": 0.0531,
+          "vs_national": 0.87
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 58,
-          "regional_share": 0.0381,
-          "vs_national": 0.64
+          "count": 63,
+          "regional_share": 0.0398,
+          "vs_national": 0.7
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
           "count": 62,
-          "regional_share": 0.0407,
-          "vs_national": 0.71
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 51,
-          "regional_share": 0.0335,
-          "vs_national": 0.6
+          "regional_share": 0.0392,
+          "vs_national": 0.7
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
-          "count": 63,
-          "regional_share": 0.0414,
-          "vs_national": 0.79
+          "count": 73,
+          "regional_share": 0.0462,
+          "vs_national": 0.87
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 45,
+          "regional_share": 0.0285,
+          "vs_national": 0.54
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 79,
+          "regional_share": 0.05,
+          "vs_national": 0.98
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 66,
-          "regional_share": 0.0434,
-          "vs_national": 0.86
+          "count": 61,
+          "regional_share": 0.0386,
+          "vs_national": 0.78
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 53,
-          "regional_share": 0.0348,
-          "vs_national": 0.73
+          "count": 52,
+          "regional_share": 0.0329,
+          "vs_national": 0.67
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 39,
-          "regional_share": 0.0256,
-          "vs_national": 0.8
+          "count": 38,
+          "regional_share": 0.024,
+          "vs_national": 0.75
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 19,
-          "regional_share": 0.0125,
-          "vs_national": 1.01
+          "count": 22,
+          "regional_share": 0.0139,
+          "vs_national": 1.2
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 6,
-          "regional_share": 0.0039,
-          "vs_national": 0.51
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 46,
-          "regional_share": 0.0302,
-          "vs_national": 4.4
+          "count": 9,
+          "regional_share": 0.0057,
+          "vs_national": 0.74
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 10,
-          "regional_share": 0.0066,
-          "vs_national": 1.02
+          "count": 12,
+          "regional_share": 0.0076,
+          "vs_national": 1.14
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
-          "count": 10,
-          "regional_share": 0.0066,
-          "vs_national": 1.05
+          "count": 9,
+          "regional_share": 0.0057,
+          "vs_national": 0.93
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
-          "count": 6,
-          "regional_share": 0.0039,
-          "vs_national": 0.98
+          "count": 4,
+          "regional_share": 0.0025,
+          "vs_national": 0.64
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
           "term": "Militära yrken",
-          "count": 17,
-          "regional_share": 0.0112,
-          "vs_national": 4.04
+          "count": 14,
+          "regional_share": 0.0089,
+          "vs_national": 3.56
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 1538,
-          "top_field": {
-            "term": "Militära yrken",
-            "vs_national": 6.35
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 1515,
@@ -383,146 +375,154 @@
             "term": "Naturvetenskap",
             "vs_national": 4.4
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 1581,
+          "top_field": {
+            "term": "Militära yrken",
+            "vs_national": 3.56
+          }
         }
       ]
     },
     {
       "concept_id": "s93u_BEb_sx2",
       "term": "Södermanlands län",
-      "total_ads": 1032,
+      "total_ads": 987,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 199,
-          "regional_share": 0.1928,
-          "vs_national": 1.34
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 52,
-          "regional_share": 0.0504,
-          "vs_national": 0.46
+          "count": 211,
+          "regional_share": 0.2138,
+          "vs_national": 1.35
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 93,
-          "regional_share": 0.0901,
-          "vs_national": 0.94
+          "count": 84,
+          "regional_share": 0.0851,
+          "vs_national": 0.91
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 117,
-          "regional_share": 0.1134,
-          "vs_national": 1.21
+          "count": 105,
+          "regional_share": 0.1064,
+          "vs_national": 1.15
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 77,
-          "regional_share": 0.0746,
+          "count": 72,
+          "regional_share": 0.0729,
           "vs_national": 0.88
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 86,
-          "regional_share": 0.0833,
-          "vs_national": 1.18
+          "count": 88,
+          "regional_share": 0.0892,
+          "vs_national": 1.23
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 32,
+          "regional_share": 0.0324,
+          "vs_national": 0.53
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 15,
-          "regional_share": 0.0145,
-          "vs_national": 0.24
+          "count": 12,
+          "regional_share": 0.0122,
+          "vs_national": 0.21
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 88,
-          "regional_share": 0.0853,
-          "vs_national": 1.49
+          "count": 80,
+          "regional_share": 0.0811,
+          "vs_national": 1.45
+        },
+        {
+          "concept_id": "ScKy_FHB_7wT",
+          "term": "Hotell, restaurang, storhushåll",
+          "count": 34,
+          "regional_share": 0.0344,
+          "vs_national": 0.65
         },
         {
           "concept_id": "wTEr_CBC_bqh",
           "term": "Industriell tillverkning",
           "count": 64,
-          "regional_share": 0.062,
-          "vs_national": 1.12
+          "regional_share": 0.0648,
+          "vs_national": 1.24
         },
         {
-          "concept_id": "ScKy_FHB_7wT",
-          "term": "Hotell, restaurang, storhushåll",
-          "count": 41,
-          "regional_share": 0.0397,
-          "vs_national": 0.76
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 39,
+          "regional_share": 0.0395,
+          "vs_national": 0.78
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 67,
-          "regional_share": 0.0649,
-          "vs_national": 1.29
+          "count": 59,
+          "regional_share": 0.0598,
+          "vs_national": 1.21
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 66,
-          "regional_share": 0.064,
-          "vs_national": 1.34
+          "count": 72,
+          "regional_share": 0.0729,
+          "vs_national": 1.49
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 32,
-          "regional_share": 0.031,
-          "vs_national": 0.96
+          "count": 35,
+          "regional_share": 0.0355,
+          "vs_national": 1.1
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 17,
-          "regional_share": 0.0165,
-          "vs_national": 1.34
+          "count": 16,
+          "regional_share": 0.0162,
+          "vs_national": 1.39
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 5,
-          "regional_share": 0.0048,
-          "vs_national": 0.62
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 5,
-          "regional_share": 0.0048,
-          "vs_national": 0.71
+          "count": 6,
+          "regional_share": 0.0061,
+          "vs_national": 0.79
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 9,
-          "regional_share": 0.0087,
-          "vs_national": 1.36
+          "count": 10,
+          "regional_share": 0.0101,
+          "vs_national": 1.52
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
           "count": 5,
-          "regional_share": 0.0048,
-          "vs_national": 0.77
+          "regional_share": 0.0051,
+          "vs_national": 0.82
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
           "count": 1,
           "regional_share": 0.001,
-          "vs_national": 0.24
+          "vs_national": 0.26
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
@@ -533,14 +533,6 @@
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 1014,
-          "top_field": {
-            "term": "Yrken med teknisk inriktning",
-            "vs_national": 1.79
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 928,
@@ -564,164 +556,164 @@
             "term": "Transport, distribution, lager",
             "vs_national": 1.49
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 987,
+          "top_field": {
+            "term": "Naturbruk",
+            "vs_national": 1.52
+          }
         }
       ]
     },
     {
       "concept_id": "oLT3_Q9p_3nn",
       "term": "Östergötlands län",
-      "total_ads": 2218,
+      "total_ads": 2304,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 304,
-          "regional_share": 0.1371,
+          "count": 347,
+          "regional_share": 0.1506,
           "vs_national": 0.95
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 131,
-          "regional_share": 0.0591,
-          "vs_national": 0.54
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 211,
-          "regional_share": 0.0951,
-          "vs_national": 1.0
+          "count": 209,
+          "regional_share": 0.0907,
+          "vs_national": 0.97
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 161,
-          "regional_share": 0.0726,
-          "vs_national": 0.78
+          "count": 188,
+          "regional_share": 0.0816,
+          "vs_national": 0.88
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 234,
-          "regional_share": 0.1055,
-          "vs_national": 1.24
+          "count": 227,
+          "regional_share": 0.0985,
+          "vs_national": 1.18
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 145,
-          "regional_share": 0.0654,
-          "vs_national": 0.92
+          "count": 160,
+          "regional_share": 0.0694,
+          "vs_national": 0.96
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 285,
+          "regional_share": 0.1237,
+          "vs_national": 2.03
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 233,
-          "regional_share": 0.105,
-          "vs_national": 1.76
+          "count": 216,
+          "regional_share": 0.0938,
+          "vs_national": 1.64
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 110,
-          "regional_share": 0.0496,
-          "vs_national": 0.87
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 116,
-          "regional_share": 0.0523,
-          "vs_national": 0.94
+          "count": 111,
+          "regional_share": 0.0482,
+          "vs_national": 0.86
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
-          "count": 57,
-          "regional_share": 0.0257,
-          "vs_national": 0.49
+          "count": 54,
+          "regional_share": 0.0234,
+          "vs_national": 0.44
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 117,
+          "regional_share": 0.0508,
+          "vs_national": 0.97
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 147,
+          "regional_share": 0.0638,
+          "vs_national": 1.25
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 118,
-          "regional_share": 0.0532,
-          "vs_national": 1.05
+          "count": 108,
+          "regional_share": 0.0469,
+          "vs_national": 0.94
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 67,
-          "regional_share": 0.0302,
-          "vs_national": 0.63
+          "count": 72,
+          "regional_share": 0.0312,
+          "vs_national": 0.64
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 69,
-          "regional_share": 0.0311,
-          "vs_national": 0.97
+          "count": 59,
+          "regional_share": 0.0256,
+          "vs_national": 0.8
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 27,
-          "regional_share": 0.0122,
-          "vs_national": 0.99
+          "count": 18,
+          "regional_share": 0.0078,
+          "vs_national": 0.67
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 14,
-          "regional_share": 0.0063,
-          "vs_national": 0.81
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 8,
-          "regional_share": 0.0036,
-          "vs_national": 0.53
+          "count": 19,
+          "regional_share": 0.0082,
+          "vs_national": 1.08
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 13,
-          "regional_share": 0.0059,
-          "vs_national": 0.91
+          "count": 10,
+          "regional_share": 0.0043,
+          "vs_national": 0.65
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
           "count": 7,
-          "regional_share": 0.0032,
-          "vs_national": 0.5
+          "regional_share": 0.003,
+          "vs_national": 0.49
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
           "count": 10,
-          "regional_share": 0.0045,
-          "vs_national": 1.12
+          "regional_share": 0.0043,
+          "vs_national": 1.1
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
           "term": "Militära yrken",
-          "count": 15,
-          "regional_share": 0.0068,
-          "vs_national": 2.45
+          "count": 13,
+          "regional_share": 0.0056,
+          "vs_national": 2.27
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 2289,
-          "top_field": {
-            "term": "Militära yrken",
-            "vs_national": 3.78
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 2150,
@@ -745,132 +737,140 @@
             "term": "Militära yrken",
             "vs_national": 2.45
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 2304,
+          "top_field": {
+            "term": "Militära yrken",
+            "vs_national": 2.27
+          }
         }
       ]
     },
     {
       "concept_id": "MtbE_xWT_eMi",
       "term": "Jönköpings län",
-      "total_ads": 1687,
+      "total_ads": 1719,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
           "count": 209,
-          "regional_share": 0.1239,
-          "vs_national": 0.86
+          "regional_share": 0.1216,
+          "vs_national": 0.77
+        },
+        {
+          "concept_id": "RPTn_bxG_ExZ",
+          "term": "Försäljning, inköp, marknadsföring",
+          "count": 145,
+          "regional_share": 0.0844,
+          "vs_national": 0.9
+        },
+        {
+          "concept_id": "GazW_2TU_kJw",
+          "term": "Yrken med social inriktning",
+          "count": 198,
+          "regional_share": 0.1152,
+          "vs_national": 1.25
+        },
+        {
+          "concept_id": "X82t_awd_Qyc",
+          "term": "Administration, ekonomi, juridik",
+          "count": 111,
+          "regional_share": 0.0646,
+          "vs_national": 0.78
+        },
+        {
+          "concept_id": "MVqp_eS8_kDZ",
+          "term": "Pedagogik",
+          "count": 101,
+          "regional_share": 0.0588,
+          "vs_national": 0.81
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 111,
+          "regional_share": 0.0646,
+          "vs_national": 1.06
+        },
+        {
+          "concept_id": "apaJ_2ja_LuF",
+          "term": "Data/IT",
+          "count": 46,
+          "regional_share": 0.0268,
+          "vs_national": 0.47
+        },
+        {
+          "concept_id": "ASGV_zcE_bWf",
+          "term": "Transport, distribution, lager",
+          "count": 135,
+          "regional_share": 0.0785,
+          "vs_national": 1.4
+        },
+        {
+          "concept_id": "ScKy_FHB_7wT",
+          "term": "Hotell, restaurang, storhushåll",
+          "count": 71,
+          "regional_share": 0.0413,
+          "vs_national": 0.78
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 302,
+          "regional_share": 0.1757,
+          "vs_national": 3.35
         },
         {
           "concept_id": "bh3H_Y3h_5eD",
           "term": "Chefer och verksamhetsledare",
           "count": 87,
-          "regional_share": 0.0516,
-          "vs_national": 0.47
-        },
-        {
-          "concept_id": "RPTn_bxG_ExZ",
-          "term": "Försäljning, inköp, marknadsföring",
-          "count": 139,
-          "regional_share": 0.0824,
-          "vs_national": 0.86
-        },
-        {
-          "concept_id": "GazW_2TU_kJw",
-          "term": "Yrken med social inriktning",
-          "count": 171,
-          "regional_share": 0.1014,
-          "vs_national": 1.08
-        },
-        {
-          "concept_id": "X82t_awd_Qyc",
-          "term": "Administration, ekonomi, juridik",
-          "count": 105,
-          "regional_share": 0.0622,
-          "vs_national": 0.73
-        },
-        {
-          "concept_id": "MVqp_eS8_kDZ",
-          "term": "Pedagogik",
-          "count": 107,
-          "regional_share": 0.0634,
-          "vs_national": 0.9
-        },
-        {
-          "concept_id": "apaJ_2ja_LuF",
-          "term": "Data/IT",
-          "count": 51,
-          "regional_share": 0.0302,
-          "vs_national": 0.51
-        },
-        {
-          "concept_id": "ASGV_zcE_bWf",
-          "term": "Transport, distribution, lager",
-          "count": 156,
-          "regional_share": 0.0925,
-          "vs_national": 1.62
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 305,
-          "regional_share": 0.1808,
-          "vs_national": 3.26
-        },
-        {
-          "concept_id": "ScKy_FHB_7wT",
-          "term": "Hotell, restaurang, storhushåll",
-          "count": 67,
-          "regional_share": 0.0397,
-          "vs_national": 0.76
+          "regional_share": 0.0506,
+          "vs_national": 0.99
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 86,
-          "regional_share": 0.051,
-          "vs_national": 1.01
+          "count": 100,
+          "regional_share": 0.0582,
+          "vs_national": 1.17
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 57,
-          "regional_share": 0.0338,
-          "vs_national": 0.71
+          "count": 53,
+          "regional_share": 0.0308,
+          "vs_national": 0.63
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 44,
-          "regional_share": 0.0261,
-          "vs_national": 0.81
+          "count": 54,
+          "regional_share": 0.0314,
+          "vs_national": 0.98
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 23,
-          "regional_share": 0.0136,
-          "vs_national": 1.11
+          "count": 24,
+          "regional_share": 0.014,
+          "vs_national": 1.2
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 13,
-          "regional_share": 0.0077,
-          "vs_national": 0.99
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 5,
-          "regional_share": 0.003,
-          "vs_national": 0.43
+          "count": 16,
+          "regional_share": 0.0093,
+          "vs_national": 1.22
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
           "count": 4,
-          "regional_share": 0.0024,
-          "vs_national": 0.37
+          "regional_share": 0.0023,
+          "vs_national": 0.35
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
@@ -896,14 +896,6 @@
       ],
       "recent_weeks": [
         {
-          "week": "2026-W40",
-          "total_ads": 1829,
-          "top_field": {
-            "term": "Industriell tillverkning",
-            "vs_national": 4.09
-          }
-        },
-        {
           "week": "2026-W41",
           "total_ads": 1672,
           "top_field": {
@@ -926,132 +918,140 @@
             "term": "Industriell tillverkning",
             "vs_national": 3.26
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 1719,
+          "top_field": {
+            "term": "Industriell tillverkning",
+            "vs_national": 3.35
+          }
         }
       ]
     },
     {
       "concept_id": "tF3y_MF9_h5G",
       "term": "Kronobergs län",
-      "total_ads": 831,
+      "total_ads": 900,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 135,
-          "regional_share": 0.1625,
-          "vs_national": 1.13
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 41,
-          "regional_share": 0.0493,
-          "vs_national": 0.45
+          "count": 138,
+          "regional_share": 0.1533,
+          "vs_national": 0.97
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 75,
-          "regional_share": 0.0903,
-          "vs_national": 0.94
+          "count": 70,
+          "regional_share": 0.0778,
+          "vs_national": 0.83
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 68,
-          "regional_share": 0.0818,
-          "vs_national": 0.87
+          "count": 69,
+          "regional_share": 0.0767,
+          "vs_national": 0.83
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 53,
-          "regional_share": 0.0638,
-          "vs_national": 0.75
+          "count": 65,
+          "regional_share": 0.0722,
+          "vs_national": 0.87
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 76,
-          "regional_share": 0.0915,
-          "vs_national": 1.29
+          "count": 73,
+          "regional_share": 0.0811,
+          "vs_national": 1.12
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 51,
+          "regional_share": 0.0567,
+          "vs_national": 0.93
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
           "count": 29,
-          "regional_share": 0.0349,
-          "vs_national": 0.58
+          "regional_share": 0.0322,
+          "vs_national": 0.56
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 63,
-          "regional_share": 0.0758,
-          "vs_national": 1.32
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 135,
-          "regional_share": 0.1625,
-          "vs_national": 2.93
+          "count": 70,
+          "regional_share": 0.0778,
+          "vs_national": 1.39
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
-          "count": 45,
-          "regional_share": 0.0542,
-          "vs_national": 1.04
+          "count": 52,
+          "regional_share": 0.0578,
+          "vs_national": 1.09
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 147,
+          "regional_share": 0.1633,
+          "vs_national": 3.12
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 51,
+          "regional_share": 0.0567,
+          "vs_national": 1.11
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 34,
-          "regional_share": 0.0409,
-          "vs_national": 0.81
+          "count": 32,
+          "regional_share": 0.0356,
+          "vs_national": 0.72
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 21,
-          "regional_share": 0.0253,
-          "vs_national": 0.53
+          "count": 27,
+          "regional_share": 0.03,
+          "vs_national": 0.61
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
           "count": 16,
-          "regional_share": 0.0193,
-          "vs_national": 0.6
+          "regional_share": 0.0178,
+          "vs_national": 0.55
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 12,
-          "regional_share": 0.0144,
-          "vs_national": 1.17
+          "count": 14,
+          "regional_share": 0.0156,
+          "vs_national": 1.34
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 7,
-          "regional_share": 0.0084,
-          "vs_national": 1.08
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 0,
-          "regional_share": 0.0,
-          "vs_national": 0.0
+          "count": 8,
+          "regional_share": 0.0089,
+          "vs_national": 1.16
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
           "count": 9,
-          "regional_share": 0.0108,
-          "vs_national": 1.69
+          "regional_share": 0.01,
+          "vs_national": 1.5
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
@@ -1063,9 +1063,9 @@
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
-          "count": 0,
-          "regional_share": 0.0,
-          "vs_national": 0.0
+          "count": 3,
+          "regional_share": 0.0033,
+          "vs_national": 0.84
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
@@ -1076,14 +1076,6 @@
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 828,
-          "top_field": {
-            "term": "Industriell tillverkning",
-            "vs_national": 2.74
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 760,
@@ -1107,146 +1099,154 @@
             "term": "Industriell tillverkning",
             "vs_national": 2.93
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 900,
+          "top_field": {
+            "term": "Industriell tillverkning",
+            "vs_national": 3.12
+          }
         }
       ]
     },
     {
       "concept_id": "9QUH_2bb_6Np",
       "term": "Kalmar län",
-      "total_ads": 747,
+      "total_ads": 779,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 143,
-          "regional_share": 0.1914,
-          "vs_national": 1.33
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 48,
-          "regional_share": 0.0643,
-          "vs_national": 0.59
+          "count": 147,
+          "regional_share": 0.1887,
+          "vs_national": 1.19
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 120,
-          "regional_share": 0.1606,
-          "vs_national": 1.68
+          "count": 59,
+          "regional_share": 0.0757,
+          "vs_national": 0.81
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 79,
-          "regional_share": 0.1058,
-          "vs_national": 1.13
+          "count": 88,
+          "regional_share": 0.113,
+          "vs_national": 1.22
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 0,
-          "regional_share": 0.0,
-          "vs_national": 0.0
+          "count": 63,
+          "regional_share": 0.0809,
+          "vs_national": 0.97
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 51,
-          "regional_share": 0.0683,
-          "vs_national": 0.96
+          "count": 50,
+          "regional_share": 0.0642,
+          "vs_national": 0.88
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 52,
+          "regional_share": 0.0668,
+          "vs_national": 1.1
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 21,
-          "regional_share": 0.0281,
-          "vs_national": 0.47
+          "count": 16,
+          "regional_share": 0.0205,
+          "vs_national": 0.36
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 29,
-          "regional_share": 0.0388,
-          "vs_national": 0.68
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 75,
-          "regional_share": 0.1004,
-          "vs_national": 1.81
+          "count": 32,
+          "regional_share": 0.0411,
+          "vs_national": 0.73
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
-          "count": 34,
-          "regional_share": 0.0455,
-          "vs_national": 0.87
+          "count": 44,
+          "regional_share": 0.0565,
+          "vs_national": 1.06
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 74,
+          "regional_share": 0.095,
+          "vs_national": 1.81
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 43,
+          "regional_share": 0.0552,
+          "vs_national": 1.08
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 43,
-          "regional_share": 0.0576,
-          "vs_national": 1.14
+          "count": 48,
+          "regional_share": 0.0616,
+          "vs_national": 1.24
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 28,
-          "regional_share": 0.0375,
-          "vs_national": 0.78
+          "count": 27,
+          "regional_share": 0.0347,
+          "vs_national": 0.71
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 22,
-          "regional_share": 0.0295,
-          "vs_national": 0.92
+          "count": 26,
+          "regional_share": 0.0334,
+          "vs_national": 1.04
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 8,
-          "regional_share": 0.0107,
-          "vs_national": 0.87
+          "count": 12,
+          "regional_share": 0.0154,
+          "vs_national": 1.32
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 5,
-          "regional_share": 0.0067,
-          "vs_national": 0.86
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
           "count": 4,
-          "regional_share": 0.0054,
-          "vs_national": 0.78
+          "regional_share": 0.0051,
+          "vs_national": 0.67
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
           "count": 7,
-          "regional_share": 0.0094,
-          "vs_national": 1.46
+          "regional_share": 0.009,
+          "vs_national": 1.35
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
-          "count": 2,
-          "regional_share": 0.0027,
-          "vs_national": 0.43
+          "count": 3,
+          "regional_share": 0.0039,
+          "vs_national": 0.63
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
-          "count": 0,
-          "regional_share": 0.0,
-          "vs_national": 0.0
+          "count": 6,
+          "regional_share": 0.0077,
+          "vs_national": 1.95
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
@@ -1257,14 +1257,6 @@
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 820,
-          "top_field": {
-            "term": "Naturbruk",
-            "vs_national": 1.53
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 698,
@@ -1288,132 +1280,140 @@
             "term": "Industriell tillverkning",
             "vs_national": 1.81
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 779,
+          "top_field": {
+            "term": "Hantverk",
+            "vs_national": 1.95
+          }
         }
       ]
     },
     {
       "concept_id": "K8iD_VQv_2BA",
       "term": "Gotlands län",
-      "total_ads": 218,
+      "total_ads": 223,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 59,
-          "regional_share": 0.2706,
-          "vs_national": 1.88
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 23,
-          "regional_share": 0.1055,
-          "vs_national": 0.96
+          "count": 70,
+          "regional_share": 0.3139,
+          "vs_national": 1.99
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 7,
-          "regional_share": 0.0321,
-          "vs_national": 0.34
+          "count": 8,
+          "regional_share": 0.0359,
+          "vs_national": 0.38
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 44,
-          "regional_share": 0.2018,
-          "vs_national": 2.16
-        },
-        {
-          "concept_id": "X82t_awd_Qyc",
-          "term": "Administration, ekonomi, juridik",
-          "count": 14,
-          "regional_share": 0.0642,
-          "vs_national": 0.75
-        },
-        {
-          "concept_id": "MVqp_eS8_kDZ",
-          "term": "Pedagogik",
-          "count": 25,
-          "regional_share": 0.1147,
-          "vs_national": 1.62
-        },
-        {
-          "concept_id": "apaJ_2ja_LuF",
-          "term": "Data/IT",
-          "count": 3,
-          "regional_share": 0.0138,
-          "vs_national": 0.23
-        },
-        {
-          "concept_id": "ASGV_zcE_bWf",
-          "term": "Transport, distribution, lager",
-          "count": 11,
-          "regional_share": 0.0505,
-          "vs_national": 0.88
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 7,
-          "regional_share": 0.0321,
-          "vs_national": 0.58
-        },
-        {
-          "concept_id": "ScKy_FHB_7wT",
-          "term": "Hotell, restaurang, storhushåll",
-          "count": 9,
-          "regional_share": 0.0413,
-          "vs_national": 0.79
-        },
-        {
-          "concept_id": "yhCP_AqT_tns",
-          "term": "Installation, drift, underhåll",
-          "count": 3,
-          "regional_share": 0.0138,
-          "vs_national": 0.27
-        },
-        {
-          "concept_id": "j7Cq_ZJe_GkT",
-          "term": "Bygg och anläggning",
-          "count": 8,
-          "regional_share": 0.0367,
-          "vs_national": 0.77
-        },
-        {
-          "concept_id": "whao_Q6A_ScE",
-          "term": "Sanering och renhållning",
-          "count": 1,
-          "regional_share": 0.0046,
-          "vs_national": 0.14
-        },
-        {
-          "concept_id": "E7hm_BLq_fqZ",
-          "term": "Säkerhet och bevakning",
-          "count": 3,
-          "regional_share": 0.0138,
-          "vs_national": 1.12
-        },
-        {
-          "concept_id": "9puE_nYg_crq",
-          "term": "Kultur, media, design",
-          "count": 1,
-          "regional_share": 0.0046,
-          "vs_national": 0.59
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
           "count": 0,
           "regional_share": 0.0,
           "vs_national": 0.0
         },
         {
+          "concept_id": "X82t_awd_Qyc",
+          "term": "Administration, ekonomi, juridik",
+          "count": 12,
+          "regional_share": 0.0538,
+          "vs_national": 0.65
+        },
+        {
+          "concept_id": "MVqp_eS8_kDZ",
+          "term": "Pedagogik",
+          "count": 68,
+          "regional_share": 0.3049,
+          "vs_national": 4.2
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 3,
+          "regional_share": 0.0135,
+          "vs_national": 0.22
+        },
+        {
+          "concept_id": "apaJ_2ja_LuF",
+          "term": "Data/IT",
+          "count": 0,
+          "regional_share": 0.0,
+          "vs_national": 0.0
+        },
+        {
+          "concept_id": "ASGV_zcE_bWf",
+          "term": "Transport, distribution, lager",
+          "count": 8,
+          "regional_share": 0.0359,
+          "vs_national": 0.64
+        },
+        {
+          "concept_id": "ScKy_FHB_7wT",
+          "term": "Hotell, restaurang, storhushåll",
+          "count": 9,
+          "regional_share": 0.0404,
+          "vs_national": 0.76
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 6,
+          "regional_share": 0.0269,
+          "vs_national": 0.51
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 22,
+          "regional_share": 0.0987,
+          "vs_national": 1.94
+        },
+        {
+          "concept_id": "yhCP_AqT_tns",
+          "term": "Installation, drift, underhåll",
+          "count": 3,
+          "regional_share": 0.0135,
+          "vs_national": 0.27
+        },
+        {
+          "concept_id": "j7Cq_ZJe_GkT",
+          "term": "Bygg och anläggning",
+          "count": 6,
+          "regional_share": 0.0269,
+          "vs_national": 0.55
+        },
+        {
+          "concept_id": "whao_Q6A_ScE",
+          "term": "Sanering och renhållning",
+          "count": 3,
+          "regional_share": 0.0135,
+          "vs_national": 0.42
+        },
+        {
+          "concept_id": "E7hm_BLq_fqZ",
+          "term": "Säkerhet och bevakning",
+          "count": 5,
+          "regional_share": 0.0224,
+          "vs_national": 1.93
+        },
+        {
+          "concept_id": "9puE_nYg_crq",
+          "term": "Kultur, media, design",
+          "count": 1,
+          "regional_share": 0.0045,
+          "vs_national": 0.59
+        },
+        {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 1,
-          "regional_share": 0.0046,
-          "vs_national": 0.71
+          "count": 4,
+          "regional_share": 0.0179,
+          "vs_national": 2.7
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
@@ -1426,26 +1426,18 @@
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
           "count": 1,
-          "regional_share": 0.0046,
-          "vs_national": 1.14
+          "regional_share": 0.0045,
+          "vs_national": 1.13
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
           "term": "Militära yrken",
           "count": 1,
-          "regional_share": 0.0046,
-          "vs_national": 1.66
+          "regional_share": 0.0045,
+          "vs_national": 1.8
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 208,
-          "top_field": {
-            "term": "Yrken med social inriktning",
-            "vs_national": 2.34
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 207,
@@ -1469,164 +1461,164 @@
             "term": "Yrken med social inriktning",
             "vs_national": 2.16
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 223,
+          "top_field": {
+            "term": "Pedagogik",
+            "vs_national": 4.2
+          }
         }
       ]
     },
     {
       "concept_id": "DQZd_uYs_oKb",
       "term": "Blekinge län",
-      "total_ads": 571,
+      "total_ads": 605,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 83,
-          "regional_share": 0.1454,
-          "vs_national": 1.01
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 32,
-          "regional_share": 0.056,
-          "vs_national": 0.51
+          "count": 87,
+          "regional_share": 0.1438,
+          "vs_national": 0.91
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 51,
-          "regional_share": 0.0893,
-          "vs_national": 0.93
+          "count": 46,
+          "regional_share": 0.076,
+          "vs_national": 0.81
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 66,
-          "regional_share": 0.1156,
-          "vs_national": 1.24
+          "count": 68,
+          "regional_share": 0.1124,
+          "vs_national": 1.22
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 48,
-          "regional_share": 0.0841,
-          "vs_national": 0.99
+          "count": 62,
+          "regional_share": 0.1025,
+          "vs_national": 1.23
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 35,
-          "regional_share": 0.0613,
-          "vs_national": 0.87
+          "count": 41,
+          "regional_share": 0.0678,
+          "vs_national": 0.93
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 85,
+          "regional_share": 0.1405,
+          "vs_national": 2.31
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 18,
-          "regional_share": 0.0315,
-          "vs_national": 0.53
+          "count": 20,
+          "regional_share": 0.0331,
+          "vs_national": 0.58
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
           "count": 23,
-          "regional_share": 0.0403,
-          "vs_national": 0.7
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 37,
-          "regional_share": 0.0648,
-          "vs_national": 1.17
+          "regional_share": 0.038,
+          "vs_national": 0.68
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
-          "count": 43,
-          "regional_share": 0.0753,
-          "vs_national": 1.44
+          "count": 44,
+          "regional_share": 0.0727,
+          "vs_national": 1.37
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 0,
+          "regional_share": 0.0,
+          "vs_national": 0.0
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 30,
+          "regional_share": 0.0496,
+          "vs_national": 0.97
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 34,
-          "regional_share": 0.0595,
-          "vs_national": 1.18
+          "count": 35,
+          "regional_share": 0.0579,
+          "vs_national": 1.17
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 19,
-          "regional_share": 0.0333,
-          "vs_national": 0.7
+          "count": 21,
+          "regional_share": 0.0347,
+          "vs_national": 0.71
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
           "count": 9,
-          "regional_share": 0.0158,
-          "vs_national": 0.49
+          "regional_share": 0.0149,
+          "vs_national": 0.46
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 8,
-          "regional_share": 0.014,
-          "vs_national": 1.14
+          "count": 6,
+          "regional_share": 0.0099,
+          "vs_national": 0.85
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 3,
-          "regional_share": 0.0053,
-          "vs_national": 0.68
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 6,
-          "regional_share": 0.0105,
-          "vs_national": 1.53
+          "count": 7,
+          "regional_share": 0.0116,
+          "vs_national": 1.51
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 8,
-          "regional_share": 0.014,
-          "vs_national": 2.18
+          "count": 6,
+          "regional_share": 0.0099,
+          "vs_national": 1.49
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
-          "count": 0,
-          "regional_share": 0.0,
-          "vs_national": 0.0
+          "count": 1,
+          "regional_share": 0.0017,
+          "vs_national": 0.27
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
-          "count": 0,
-          "regional_share": 0.0,
-          "vs_national": 0.0
+          "count": 1,
+          "regional_share": 0.0017,
+          "vs_national": 0.42
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
           "term": "Militära yrken",
-          "count": 20,
-          "regional_share": 0.035,
-          "vs_national": 12.67
+          "count": 22,
+          "regional_share": 0.0364,
+          "vs_national": 14.6
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 605,
-          "top_field": {
-            "term": "Militära yrken",
-            "vs_national": 9.32
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 548,
@@ -1650,145 +1642,153 @@
             "term": "Militära yrken",
             "vs_national": 12.67
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 605,
+          "top_field": {
+            "term": "Militära yrken",
+            "vs_national": 14.6
+          }
         }
       ]
     },
     {
       "concept_id": "CaRE_1nn_cSU",
       "term": "Skåne län",
-      "total_ads": 4495,
+      "total_ads": 4591,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 731,
-          "regional_share": 0.1626,
-          "vs_national": 1.13
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 197,
-          "regional_share": 0.0438,
-          "vs_national": 0.4
+          "count": 755,
+          "regional_share": 0.1645,
+          "vs_national": 1.04
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 856,
-          "regional_share": 0.1904,
-          "vs_national": 1.99
+          "count": 472,
+          "regional_share": 0.1028,
+          "vs_national": 1.1
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 486,
-          "regional_share": 0.1081,
-          "vs_national": 1.16
+          "count": 474,
+          "regional_share": 0.1032,
+          "vs_national": 1.12
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
+          "count": 433,
+          "regional_share": 0.0943,
+          "vs_national": 1.13
+        },
+        {
+          "concept_id": "MVqp_eS8_kDZ",
+          "term": "Pedagogik",
+          "count": 372,
+          "regional_share": 0.081,
+          "vs_national": 1.12
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 240,
+          "regional_share": 0.0523,
+          "vs_national": 0.86
+        },
+        {
+          "concept_id": "apaJ_2ja_LuF",
+          "term": "Data/IT",
+          "count": 228,
+          "regional_share": 0.0497,
+          "vs_national": 0.87
+        },
+        {
+          "concept_id": "ASGV_zcE_bWf",
+          "term": "Transport, distribution, lager",
+          "count": 313,
+          "regional_share": 0.0682,
+          "vs_national": 1.22
+        },
+        {
+          "concept_id": "ScKy_FHB_7wT",
+          "term": "Hotell, restaurang, storhushåll",
+          "count": 274,
+          "regional_share": 0.0597,
+          "vs_national": 1.12
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 225,
+          "regional_share": 0.049,
+          "vs_national": 0.94
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 213,
+          "regional_share": 0.0464,
+          "vs_national": 0.91
+        },
+        {
+          "concept_id": "yhCP_AqT_tns",
+          "term": "Installation, drift, underhåll",
+          "count": 241,
+          "regional_share": 0.0525,
+          "vs_national": 1.06
+        },
+        {
+          "concept_id": "j7Cq_ZJe_GkT",
+          "term": "Bygg och anläggning",
+          "count": 199,
+          "regional_share": 0.0433,
+          "vs_national": 0.89
+        },
+        {
+          "concept_id": "whao_Q6A_ScE",
+          "term": "Sanering och renhållning",
+          "count": 151,
+          "regional_share": 0.0329,
+          "vs_national": 1.02
+        },
+        {
+          "concept_id": "E7hm_BLq_fqZ",
+          "term": "Säkerhet och bevakning",
           "count": 0,
           "regional_share": 0.0,
           "vs_national": 0.0
         },
         {
-          "concept_id": "MVqp_eS8_kDZ",
-          "term": "Pedagogik",
-          "count": 382,
-          "regional_share": 0.085,
-          "vs_national": 1.2
-        },
-        {
-          "concept_id": "apaJ_2ja_LuF",
-          "term": "Data/IT",
-          "count": 216,
-          "regional_share": 0.0481,
-          "vs_national": 0.8
-        },
-        {
-          "concept_id": "ASGV_zcE_bWf",
-          "term": "Transport, distribution, lager",
-          "count": 317,
-          "regional_share": 0.0705,
-          "vs_national": 1.23
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 244,
-          "regional_share": 0.0543,
-          "vs_national": 0.98
-        },
-        {
-          "concept_id": "ScKy_FHB_7wT",
-          "term": "Hotell, restaurang, storhushåll",
-          "count": 254,
-          "regional_share": 0.0565,
-          "vs_national": 1.08
-        },
-        {
-          "concept_id": "yhCP_AqT_tns",
-          "term": "Installation, drift, underhåll",
-          "count": 221,
-          "regional_share": 0.0492,
-          "vs_national": 0.97
-        },
-        {
-          "concept_id": "j7Cq_ZJe_GkT",
-          "term": "Bygg och anläggning",
-          "count": 175,
-          "regional_share": 0.0389,
-          "vs_national": 0.82
-        },
-        {
-          "concept_id": "whao_Q6A_ScE",
-          "term": "Sanering och renhållning",
-          "count": 144,
-          "regional_share": 0.032,
-          "vs_national": 1.0
-        },
-        {
-          "concept_id": "E7hm_BLq_fqZ",
-          "term": "Säkerhet och bevakning",
-          "count": 35,
-          "regional_share": 0.0078,
-          "vs_national": 0.63
-        },
-        {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 33,
-          "regional_share": 0.0073,
-          "vs_national": 0.94
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 31,
-          "regional_share": 0.0069,
-          "vs_national": 1.0
+          "count": 26,
+          "regional_share": 0.0057,
+          "vs_national": 0.74
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 30,
-          "regional_share": 0.0067,
-          "vs_national": 1.04
+          "count": 38,
+          "regional_share": 0.0083,
+          "vs_national": 1.24
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
-          "count": 39,
-          "regional_share": 0.0087,
-          "vs_national": 1.38
+          "count": 42,
+          "regional_share": 0.0091,
+          "vs_national": 1.49
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
           "count": 27,
-          "regional_share": 0.006,
+          "regional_share": 0.0059,
           "vs_national": 1.49
         },
         {
@@ -1796,18 +1796,10 @@
           "term": "Militära yrken",
           "count": 1,
           "regional_share": 0.0002,
-          "vs_national": 0.08
+          "vs_national": 0.09
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 4749,
-          "top_field": {
-            "term": "Kultur, media, design",
-            "vs_national": 1.74
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 4440,
@@ -1831,41 +1823,42 @@
             "term": "Försäljning, inköp, marknadsföring",
             "vs_national": 1.99
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 4591,
+          "top_field": {
+            "term": "Kropps- och skönhetsvård",
+            "vs_national": 1.49
+          }
         }
       ]
     },
     {
       "concept_id": "wjee_qH2_yb6",
       "term": "Hallands län",
-      "total_ads": 1047,
+      "total_ads": 1083,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 188,
-          "regional_share": 0.1796,
-          "vs_national": 1.25
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 40,
-          "regional_share": 0.0382,
-          "vs_national": 0.35
+          "count": 182,
+          "regional_share": 0.1681,
+          "vs_national": 1.06
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 162,
-          "regional_share": 0.1547,
-          "vs_national": 1.62
+          "count": 148,
+          "regional_share": 0.1367,
+          "vs_national": 1.46
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 217,
-          "regional_share": 0.2073,
-          "vs_national": 2.22
+          "count": 111,
+          "regional_share": 0.1025,
+          "vs_national": 1.11
         },
         {
           "concept_id": "X82t_awd_Qyc",
@@ -1877,118 +1870,117 @@
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 0,
-          "regional_share": 0.0,
-          "vs_national": 0.0
+          "count": 127,
+          "regional_share": 0.1173,
+          "vs_national": 1.61
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 40,
+          "regional_share": 0.0369,
+          "vs_national": 0.61
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 14,
-          "regional_share": 0.0134,
-          "vs_national": 0.22
+          "count": 17,
+          "regional_share": 0.0157,
+          "vs_national": 0.27
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 52,
-          "regional_share": 0.0497,
-          "vs_national": 0.87
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 106,
-          "regional_share": 0.1012,
-          "vs_national": 1.82
+          "count": 56,
+          "regional_share": 0.0517,
+          "vs_national": 0.92
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
-          "count": 75,
-          "regional_share": 0.0716,
-          "vs_national": 1.37
+          "count": 73,
+          "regional_share": 0.0674,
+          "vs_national": 1.27
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 101,
+          "regional_share": 0.0933,
+          "vs_national": 1.78
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 54,
+          "regional_share": 0.0499,
+          "vs_national": 0.98
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 43,
-          "regional_share": 0.0411,
-          "vs_national": 0.81
+          "count": 56,
+          "regional_share": 0.0517,
+          "vs_national": 1.04
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
           "count": 51,
-          "regional_share": 0.0487,
-          "vs_national": 1.02
+          "regional_share": 0.0471,
+          "vs_national": 0.96
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 53,
-          "regional_share": 0.0506,
-          "vs_national": 1.57
+          "count": 51,
+          "regional_share": 0.0471,
+          "vs_national": 1.46
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 15,
-          "regional_share": 0.0143,
-          "vs_national": 1.16
+          "count": 16,
+          "regional_share": 0.0148,
+          "vs_national": 1.27
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 10,
-          "regional_share": 0.0096,
-          "vs_national": 1.23
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 0,
-          "regional_share": 0.0,
-          "vs_national": 0.0
+          "count": 11,
+          "regional_share": 0.0102,
+          "vs_national": 1.33
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 10,
-          "regional_share": 0.0096,
-          "vs_national": 1.49
+          "count": 9,
+          "regional_share": 0.0083,
+          "vs_national": 1.25
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
-          "count": 8,
-          "regional_share": 0.0076,
-          "vs_national": 1.22
+          "count": 10,
+          "regional_share": 0.0092,
+          "vs_national": 1.5
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
-          "count": 3,
-          "regional_share": 0.0029,
-          "vs_national": 0.71
+          "count": 4,
+          "regional_share": 0.0037,
+          "vs_national": 0.93
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
           "term": "Militära yrken",
-          "count": 8,
-          "regional_share": 0.0076,
-          "vs_national": 2.76
+          "count": 4,
+          "regional_share": 0.0037,
+          "vs_national": 1.48
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 1038,
-          "top_field": {
-            "term": "Kultur, media, design",
-            "vs_national": 2.07
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 997,
@@ -2012,164 +2004,164 @@
             "term": "Militära yrken",
             "vs_national": 2.76
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 1083,
+          "top_field": {
+            "term": "Industriell tillverkning",
+            "vs_national": 1.78
+          }
         }
       ]
     },
     {
       "concept_id": "zdoY_6u5_Krt",
       "term": "Västra Götalands län",
-      "total_ads": 6544,
+      "total_ads": 6757,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 817,
-          "regional_share": 0.1248,
+          "count": 924,
+          "regional_share": 0.1367,
           "vs_national": 0.87
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 788,
-          "regional_share": 0.1204,
-          "vs_national": 1.1
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 599,
-          "regional_share": 0.0915,
-          "vs_national": 0.96
+          "count": 614,
+          "regional_share": 0.0909,
+          "vs_national": 0.97
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 647,
-          "regional_share": 0.0989,
-          "vs_national": 1.06
+          "count": 687,
+          "regional_share": 0.1017,
+          "vs_national": 1.1
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 548,
-          "regional_share": 0.0837,
-          "vs_national": 0.98
+          "count": 519,
+          "regional_share": 0.0768,
+          "vs_national": 0.92
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 516,
-          "regional_share": 0.0789,
-          "vs_national": 1.11
+          "count": 574,
+          "regional_share": 0.0849,
+          "vs_national": 1.17
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 420,
+          "regional_share": 0.0622,
+          "vs_national": 1.02
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 472,
-          "regional_share": 0.0721,
-          "vs_national": 1.21
+          "count": 429,
+          "regional_share": 0.0635,
+          "vs_national": 1.11
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 380,
-          "regional_share": 0.0581,
+          "count": 382,
+          "regional_share": 0.0565,
           "vs_national": 1.01
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 472,
-          "regional_share": 0.0721,
-          "vs_national": 1.3
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
-          "count": 370,
-          "regional_share": 0.0565,
-          "vs_national": 1.08
+          "count": 384,
+          "regional_share": 0.0568,
+          "vs_national": 1.07
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 479,
+          "regional_share": 0.0709,
+          "vs_national": 1.35
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 384,
+          "regional_share": 0.0568,
+          "vs_national": 1.12
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 366,
-          "regional_share": 0.0559,
-          "vs_national": 1.11
+          "count": 376,
+          "regional_share": 0.0556,
+          "vs_national": 1.12
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 342,
-          "regional_share": 0.0523,
-          "vs_national": 1.09
+          "count": 354,
+          "regional_share": 0.0524,
+          "vs_national": 1.07
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 182,
+          "count": 188,
           "regional_share": 0.0278,
           "vs_national": 0.86
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 87,
-          "regional_share": 0.0133,
-          "vs_national": 1.08
+          "count": 88,
+          "regional_share": 0.013,
+          "vs_national": 1.12
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 49,
-          "regional_share": 0.0075,
-          "vs_national": 0.96
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 43,
-          "regional_share": 0.0066,
-          "vs_national": 0.96
+          "count": 42,
+          "regional_share": 0.0062,
+          "vs_national": 0.81
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 29,
-          "regional_share": 0.0044,
+          "count": 31,
+          "regional_share": 0.0046,
           "vs_national": 0.69
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
-          "count": 43,
-          "regional_share": 0.0066,
-          "vs_national": 1.05
+          "count": 40,
+          "regional_share": 0.0059,
+          "vs_national": 0.96
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
-          "count": 32,
-          "regional_share": 0.0049,
-          "vs_national": 1.21
+          "count": 26,
+          "regional_share": 0.0038,
+          "vs_national": 0.97
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
           "term": "Militära yrken",
-          "count": 14,
-          "regional_share": 0.0021,
-          "vs_national": 0.77
+          "count": 17,
+          "regional_share": 0.0025,
+          "vs_national": 1.01
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 6592,
-          "top_field": {
-            "term": "Industriell tillverkning",
-            "vs_national": 1.26
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 6247,
@@ -2193,164 +2185,164 @@
             "term": "Industriell tillverkning",
             "vs_national": 1.3
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 6757,
+          "top_field": {
+            "term": "Industriell tillverkning",
+            "vs_national": 1.35
+          }
         }
       ]
     },
     {
       "concept_id": "EVVp_h6U_GSZ",
       "term": "Värmlands län",
-      "total_ads": 922,
+      "total_ads": 916,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 160,
-          "regional_share": 0.1735,
-          "vs_national": 1.21
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 43,
-          "regional_share": 0.0466,
-          "vs_national": 0.43
+          "count": 172,
+          "regional_share": 0.1878,
+          "vs_national": 1.19
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 105,
-          "regional_share": 0.1139,
-          "vs_national": 1.19
+          "count": 95,
+          "regional_share": 0.1037,
+          "vs_national": 1.1
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 119,
-          "regional_share": 0.1291,
-          "vs_national": 1.38
+          "count": 107,
+          "regional_share": 0.1168,
+          "vs_national": 1.27
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 71,
-          "regional_share": 0.077,
+          "count": 69,
+          "regional_share": 0.0753,
           "vs_national": 0.9
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 79,
-          "regional_share": 0.0857,
-          "vs_national": 1.21
+          "count": 72,
+          "regional_share": 0.0786,
+          "vs_national": 1.08
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 81,
+          "regional_share": 0.0884,
+          "vs_national": 1.45
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 21,
-          "regional_share": 0.0228,
+          "count": 20,
+          "regional_share": 0.0218,
           "vs_national": 0.38
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 28,
-          "regional_share": 0.0304,
-          "vs_national": 0.53
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 49,
-          "regional_share": 0.0531,
-          "vs_national": 0.96
+          "count": 39,
+          "regional_share": 0.0426,
+          "vs_national": 0.76
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
-          "count": 61,
-          "regional_share": 0.0662,
-          "vs_national": 1.27
+          "count": 65,
+          "regional_share": 0.071,
+          "vs_national": 1.33
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 40,
+          "regional_share": 0.0437,
+          "vs_national": 0.83
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 62,
+          "regional_share": 0.0677,
+          "vs_national": 1.33
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 46,
-          "regional_share": 0.0499,
+          "count": 45,
+          "regional_share": 0.0491,
           "vs_national": 0.99
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 25,
-          "regional_share": 0.0271,
-          "vs_national": 0.57
+          "count": 29,
+          "regional_share": 0.0317,
+          "vs_national": 0.65
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 34,
-          "regional_share": 0.0369,
-          "vs_national": 1.15
+          "count": 29,
+          "regional_share": 0.0317,
+          "vs_national": 0.98
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 10,
-          "regional_share": 0.0108,
-          "vs_national": 0.88
+          "count": 0,
+          "regional_share": 0.0,
+          "vs_national": 0.0
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 4,
-          "regional_share": 0.0043,
-          "vs_national": 0.56
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 2,
-          "regional_share": 0.0022,
-          "vs_national": 0.32
+          "count": 3,
+          "regional_share": 0.0033,
+          "vs_national": 0.43
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 8,
-          "regional_share": 0.0087,
-          "vs_national": 1.35
+          "count": 5,
+          "regional_share": 0.0055,
+          "vs_national": 0.82
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
-          "count": 1,
-          "regional_share": 0.0011,
-          "vs_national": 0.17
+          "count": 2,
+          "regional_share": 0.0022,
+          "vs_national": 0.36
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
-          "count": 0,
-          "regional_share": 0.0,
-          "vs_national": 0.0
+          "count": 1,
+          "regional_share": 0.0011,
+          "vs_national": 0.28
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
           "term": "Militära yrken",
           "count": 2,
           "regional_share": 0.0022,
-          "vs_national": 0.78
+          "vs_national": 0.88
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 830,
-          "top_field": {
-            "term": "Naturbruk",
-            "vs_national": 2.07
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 790,
@@ -2374,164 +2366,164 @@
             "term": "Yrken med social inriktning",
             "vs_national": 1.38
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 916,
+          "top_field": {
+            "term": "Yrken med teknisk inriktning",
+            "vs_national": 1.45
+          }
         }
       ]
     },
     {
       "concept_id": "xTCk_nT5_Zjm",
       "term": "Örebro län",
-      "total_ads": 1062,
+      "total_ads": 1126,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 144,
-          "regional_share": 0.1356,
-          "vs_national": 0.94
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 66,
-          "regional_share": 0.0621,
-          "vs_national": 0.57
+          "count": 162,
+          "regional_share": 0.1439,
+          "vs_national": 0.91
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 106,
-          "regional_share": 0.0998,
-          "vs_national": 1.04
+          "count": 113,
+          "regional_share": 0.1004,
+          "vs_national": 1.07
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 119,
-          "regional_share": 0.1121,
-          "vs_national": 1.2
+          "count": 221,
+          "regional_share": 0.1963,
+          "vs_national": 2.13
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 78,
-          "regional_share": 0.0734,
-          "vs_national": 0.86
+          "count": 0,
+          "regional_share": 0.0,
+          "vs_national": 0.0
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 98,
-          "regional_share": 0.0923,
-          "vs_national": 1.3
+          "count": 0,
+          "regional_share": 0.0,
+          "vs_national": 0.0
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 131,
+          "regional_share": 0.1163,
+          "vs_national": 1.91
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 45,
-          "regional_share": 0.0424,
-          "vs_national": 0.71
+          "count": 0,
+          "regional_share": 0.0,
+          "vs_national": 0.0
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 59,
-          "regional_share": 0.0556,
-          "vs_national": 0.97
+          "count": 67,
+          "regional_share": 0.0595,
+          "vs_national": 1.06
+        },
+        {
+          "concept_id": "ScKy_FHB_7wT",
+          "term": "Hotell, restaurang, storhushåll",
+          "count": 43,
+          "regional_share": 0.0382,
+          "vs_national": 0.72
         },
         {
           "concept_id": "wTEr_CBC_bqh",
           "term": "Industriell tillverkning",
           "count": 60,
-          "regional_share": 0.0565,
+          "regional_share": 0.0533,
           "vs_national": 1.02
         },
         {
-          "concept_id": "ScKy_FHB_7wT",
-          "term": "Hotell, restaurang, storhushåll",
-          "count": 39,
-          "regional_share": 0.0367,
-          "vs_national": 0.7
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 77,
+          "regional_share": 0.0684,
+          "vs_national": 1.34
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 67,
-          "regional_share": 0.0631,
-          "vs_national": 1.25
+          "count": 0,
+          "regional_share": 0.0,
+          "vs_national": 0.0
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 38,
-          "regional_share": 0.0358,
-          "vs_national": 0.75
+          "count": 35,
+          "regional_share": 0.0311,
+          "vs_national": 0.64
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 26,
-          "regional_share": 0.0245,
-          "vs_national": 0.76
+          "count": 24,
+          "regional_share": 0.0213,
+          "vs_national": 0.66
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 10,
-          "regional_share": 0.0094,
-          "vs_national": 0.76
+          "count": 227,
+          "regional_share": 0.2016,
+          "vs_national": 17.33
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 11,
-          "regional_share": 0.0104,
-          "vs_national": 1.33
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 8,
-          "regional_share": 0.0075,
-          "vs_national": 1.1
+          "count": 12,
+          "regional_share": 0.0107,
+          "vs_national": 1.39
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
           "count": 4,
-          "regional_share": 0.0038,
-          "vs_national": 0.59
+          "regional_share": 0.0036,
+          "vs_national": 0.53
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
           "count": 8,
-          "regional_share": 0.0075,
-          "vs_national": 1.2
+          "regional_share": 0.0071,
+          "vs_national": 1.16
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
-          "count": 2,
-          "regional_share": 0.0019,
-          "vs_national": 0.47
+          "count": 1,
+          "regional_share": 0.0009,
+          "vs_national": 0.22
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
           "term": "Militära yrken",
           "count": 2,
-          "regional_share": 0.0019,
-          "vs_national": 0.68
+          "regional_share": 0.0018,
+          "vs_national": 0.71
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 1066,
-          "top_field": {
-            "term": "Yrken med teknisk inriktning",
-            "vs_national": 1.93
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 986,
@@ -2555,146 +2547,154 @@
             "term": "Kultur, media, design",
             "vs_national": 1.33
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 1126,
+          "top_field": {
+            "term": "Säkerhet och bevakning",
+            "vs_national": 17.33
+          }
         }
       ]
     },
     {
       "concept_id": "G6DV_fKE_Viz",
       "term": "Västmanlands län",
-      "total_ads": 1037,
+      "total_ads": 1042,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 146,
-          "regional_share": 0.1408,
+          "count": 162,
+          "regional_share": 0.1555,
           "vs_national": 0.98
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 59,
-          "regional_share": 0.0569,
-          "vs_national": 0.52
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 112,
-          "regional_share": 0.108,
-          "vs_national": 1.13
+          "count": 105,
+          "regional_share": 0.1008,
+          "vs_national": 1.07
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
+          "count": 76,
+          "regional_share": 0.0729,
+          "vs_national": 0.79
+        },
+        {
+          "concept_id": "X82t_awd_Qyc",
+          "term": "Administration, ekonomi, juridik",
+          "count": 66,
+          "regional_share": 0.0633,
+          "vs_national": 0.76
+        },
+        {
+          "concept_id": "MVqp_eS8_kDZ",
+          "term": "Pedagogik",
+          "count": 54,
+          "regional_share": 0.0518,
+          "vs_national": 0.71
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 141,
+          "regional_share": 0.1353,
+          "vs_national": 2.22
+        },
+        {
+          "concept_id": "apaJ_2ja_LuF",
+          "term": "Data/IT",
+          "count": 62,
+          "regional_share": 0.0595,
+          "vs_national": 1.04
+        },
+        {
+          "concept_id": "ASGV_zcE_bWf",
+          "term": "Transport, distribution, lager",
+          "count": 45,
+          "regional_share": 0.0432,
+          "vs_national": 0.77
+        },
+        {
+          "concept_id": "ScKy_FHB_7wT",
+          "term": "Hotell, restaurang, storhushåll",
+          "count": 36,
+          "regional_share": 0.0345,
+          "vs_national": 0.65
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 78,
+          "regional_share": 0.0749,
+          "vs_national": 1.43
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 57,
+          "regional_share": 0.0547,
+          "vs_national": 1.07
+        },
+        {
+          "concept_id": "yhCP_AqT_tns",
+          "term": "Installation, drift, underhåll",
+          "count": 129,
+          "regional_share": 0.1238,
+          "vs_national": 2.5
+        },
+        {
+          "concept_id": "j7Cq_ZJe_GkT",
+          "term": "Bygg och anläggning",
           "count": 0,
           "regional_share": 0.0,
           "vs_national": 0.0
         },
         {
-          "concept_id": "X82t_awd_Qyc",
-          "term": "Administration, ekonomi, juridik",
-          "count": 71,
-          "regional_share": 0.0685,
-          "vs_national": 0.8
-        },
-        {
-          "concept_id": "MVqp_eS8_kDZ",
-          "term": "Pedagogik",
-          "count": 140,
-          "regional_share": 0.135,
-          "vs_national": 1.91
-        },
-        {
-          "concept_id": "apaJ_2ja_LuF",
-          "term": "Data/IT",
-          "count": 59,
-          "regional_share": 0.0569,
-          "vs_national": 0.95
-        },
-        {
-          "concept_id": "ASGV_zcE_bWf",
-          "term": "Transport, distribution, lager",
-          "count": 49,
-          "regional_share": 0.0473,
-          "vs_national": 0.83
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 79,
-          "regional_share": 0.0762,
-          "vs_national": 1.37
-        },
-        {
-          "concept_id": "ScKy_FHB_7wT",
-          "term": "Hotell, restaurang, storhushåll",
-          "count": 40,
-          "regional_share": 0.0386,
-          "vs_national": 0.74
-        },
-        {
-          "concept_id": "yhCP_AqT_tns",
-          "term": "Installation, drift, underhåll",
-          "count": 64,
-          "regional_share": 0.0617,
-          "vs_national": 1.22
-        },
-        {
-          "concept_id": "j7Cq_ZJe_GkT",
-          "term": "Bygg och anläggning",
-          "count": 48,
-          "regional_share": 0.0463,
-          "vs_national": 0.97
-        },
-        {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 38,
-          "regional_share": 0.0366,
-          "vs_national": 1.14
+          "count": 36,
+          "regional_share": 0.0345,
+          "vs_national": 1.07
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 15,
-          "regional_share": 0.0145,
-          "vs_national": 1.17
+          "count": 8,
+          "regional_share": 0.0077,
+          "vs_national": 0.66
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 6,
-          "regional_share": 0.0058,
-          "vs_national": 0.74
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 6,
-          "regional_share": 0.0058,
-          "vs_national": 0.84
+          "count": 5,
+          "regional_share": 0.0048,
+          "vs_national": 0.63
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
           "count": 6,
           "regional_share": 0.0058,
-          "vs_national": 0.9
+          "vs_national": 0.87
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
-          "count": 6,
-          "regional_share": 0.0058,
-          "vs_national": 0.92
+          "count": 7,
+          "regional_share": 0.0067,
+          "vs_national": 1.09
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
-          "count": 3,
-          "regional_share": 0.0029,
-          "vs_national": 0.72
+          "count": 1,
+          "regional_share": 0.001,
+          "vs_national": 0.24
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
@@ -2705,14 +2705,6 @@
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 1048,
-          "top_field": {
-            "term": "Chefer och verksamhetsledare",
-            "vs_national": 3.68
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 995,
@@ -2736,164 +2728,164 @@
             "term": "Pedagogik",
             "vs_national": 1.91
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 1042,
+          "top_field": {
+            "term": "Installation, drift, underhåll",
+            "vs_national": 2.5
+          }
         }
       ]
     },
     {
       "concept_id": "oDpK_oZ2_WYt",
       "term": "Dalarnas län",
-      "total_ads": 1171,
+      "total_ads": 1151,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 191,
-          "regional_share": 0.1631,
+          "count": 207,
+          "regional_share": 0.1798,
           "vs_national": 1.14
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 81,
-          "regional_share": 0.0692,
-          "vs_national": 0.63
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 99,
-          "regional_share": 0.0845,
-          "vs_national": 0.88
+          "count": 87,
+          "regional_share": 0.0756,
+          "vs_national": 0.81
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 140,
-          "regional_share": 0.1196,
-          "vs_national": 1.28
+          "count": 138,
+          "regional_share": 0.1199,
+          "vs_national": 1.3
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 78,
-          "regional_share": 0.0666,
-          "vs_national": 0.78
+          "count": 70,
+          "regional_share": 0.0608,
+          "vs_national": 0.73
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 89,
-          "regional_share": 0.076,
-          "vs_national": 1.07
+          "count": 83,
+          "regional_share": 0.0721,
+          "vs_national": 0.99
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 116,
+          "regional_share": 0.1008,
+          "vs_national": 1.66
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 29,
-          "regional_share": 0.0248,
-          "vs_national": 0.41
+          "count": 36,
+          "regional_share": 0.0313,
+          "vs_national": 0.55
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 42,
-          "regional_share": 0.0359,
-          "vs_national": 0.63
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 45,
-          "regional_share": 0.0384,
-          "vs_national": 0.69
+          "count": 41,
+          "regional_share": 0.0356,
+          "vs_national": 0.64
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
-          "count": 98,
-          "regional_share": 0.0837,
-          "vs_national": 1.6
+          "count": 90,
+          "regional_share": 0.0782,
+          "vs_national": 1.47
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 42,
+          "regional_share": 0.0365,
+          "vs_national": 0.7
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 75,
+          "regional_share": 0.0652,
+          "vs_national": 1.28
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 45,
-          "regional_share": 0.0384,
-          "vs_national": 0.76
+          "count": 41,
+          "regional_share": 0.0356,
+          "vs_national": 0.72
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 60,
-          "regional_share": 0.0512,
-          "vs_national": 1.07
+          "count": 70,
+          "regional_share": 0.0608,
+          "vs_national": 1.24
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 31,
-          "regional_share": 0.0265,
-          "vs_national": 0.82
+          "count": 35,
+          "regional_share": 0.0304,
+          "vs_national": 0.94
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
           "count": 18,
-          "regional_share": 0.0154,
-          "vs_national": 1.25
+          "regional_share": 0.0156,
+          "vs_national": 1.34
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 10,
-          "regional_share": 0.0085,
-          "vs_national": 1.1
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 5,
-          "regional_share": 0.0043,
-          "vs_national": 0.62
+          "count": 11,
+          "regional_share": 0.0096,
+          "vs_national": 1.25
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 9,
-          "regional_share": 0.0077,
-          "vs_national": 1.2
+          "count": 7,
+          "regional_share": 0.0061,
+          "vs_national": 0.91
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
           "count": 6,
-          "regional_share": 0.0051,
-          "vs_national": 0.82
+          "regional_share": 0.0052,
+          "vs_national": 0.85
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
           "count": 3,
           "regional_share": 0.0026,
-          "vs_national": 0.64
+          "vs_national": 0.66
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
           "term": "Militära yrken",
-          "count": 6,
-          "regional_share": 0.0051,
-          "vs_national": 1.85
+          "count": 2,
+          "regional_share": 0.0017,
+          "vs_national": 0.7
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 1122,
-          "top_field": {
-            "term": "Naturbruk",
-            "vs_national": 1.81
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 1120,
@@ -2917,146 +2909,154 @@
             "term": "Militära yrken",
             "vs_national": 1.85
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 1151,
+          "top_field": {
+            "term": "Yrken med teknisk inriktning",
+            "vs_national": 1.66
+          }
         }
       ]
     },
     {
       "concept_id": "zupA_8Nt_xcD",
       "term": "Gävleborgs län",
-      "total_ads": 802,
+      "total_ads": 861,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 173,
-          "regional_share": 0.2157,
-          "vs_national": 1.5
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 59,
-          "regional_share": 0.0736,
-          "vs_national": 0.67
+          "count": 189,
+          "regional_share": 0.2195,
+          "vs_national": 1.39
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 72,
-          "regional_share": 0.0898,
-          "vs_national": 0.94
+          "count": 78,
+          "regional_share": 0.0906,
+          "vs_national": 0.97
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 110,
-          "regional_share": 0.1372,
-          "vs_national": 1.47
+          "count": 121,
+          "regional_share": 0.1405,
+          "vs_national": 1.52
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 70,
-          "regional_share": 0.0873,
-          "vs_national": 1.02
+          "count": 71,
+          "regional_share": 0.0825,
+          "vs_national": 0.99
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 69,
-          "regional_share": 0.086,
-          "vs_national": 1.21
+          "count": 92,
+          "regional_share": 0.1069,
+          "vs_national": 1.47
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 35,
+          "regional_share": 0.0407,
+          "vs_national": 0.67
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 21,
-          "regional_share": 0.0262,
-          "vs_national": 0.44
+          "count": 27,
+          "regional_share": 0.0314,
+          "vs_national": 0.55
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 23,
-          "regional_share": 0.0287,
-          "vs_national": 0.5
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 30,
-          "regional_share": 0.0374,
-          "vs_national": 0.67
+          "count": 20,
+          "regional_share": 0.0232,
+          "vs_national": 0.42
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
+          "count": 52,
+          "regional_share": 0.0604,
+          "vs_national": 1.13
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 29,
+          "regional_share": 0.0337,
+          "vs_national": 0.64
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
           "count": 49,
-          "regional_share": 0.0611,
-          "vs_national": 1.17
+          "regional_share": 0.0569,
+          "vs_national": 1.12
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 51,
-          "regional_share": 0.0636,
-          "vs_national": 1.26
+          "count": 47,
+          "regional_share": 0.0546,
+          "vs_national": 1.1
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 33,
-          "regional_share": 0.0411,
-          "vs_national": 0.86
+          "count": 38,
+          "regional_share": 0.0441,
+          "vs_national": 0.9
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 12,
-          "regional_share": 0.015,
+          "count": 13,
+          "regional_share": 0.0151,
           "vs_national": 0.47
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 12,
-          "regional_share": 0.015,
-          "vs_national": 1.21
+          "count": 10,
+          "regional_share": 0.0116,
+          "vs_national": 1.0
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 5,
-          "regional_share": 0.0062,
-          "vs_national": 0.8
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 4,
-          "regional_share": 0.005,
-          "vs_national": 0.73
+          "count": 7,
+          "regional_share": 0.0081,
+          "vs_national": 1.06
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 3,
-          "regional_share": 0.0037,
-          "vs_national": 0.58
+          "count": 5,
+          "regional_share": 0.0058,
+          "vs_national": 0.87
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
           "count": 3,
-          "regional_share": 0.0037,
-          "vs_national": 0.6
+          "regional_share": 0.0035,
+          "vs_national": 0.57
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
-          "count": 1,
-          "regional_share": 0.0012,
-          "vs_national": 0.31
+          "count": 0,
+          "regional_share": 0.0,
+          "vs_national": 0.0
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
@@ -3067,14 +3067,6 @@
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 890,
-          "top_field": {
-            "term": "Försäljning, inköp, marknadsföring",
-            "vs_national": 1.64
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 768,
@@ -3098,132 +3090,140 @@
             "term": "Hälso- och sjukvård",
             "vs_national": 1.5
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 861,
+          "top_field": {
+            "term": "Yrken med social inriktning",
+            "vs_national": 1.52
+          }
         }
       ]
     },
     {
       "concept_id": "NvUF_SP1_1zo",
       "term": "Västernorrlands län",
-      "total_ads": 897,
+      "total_ads": 945,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 231,
-          "regional_share": 0.2575,
-          "vs_national": 1.79
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 58,
-          "regional_share": 0.0647,
-          "vs_national": 0.59
+          "count": 244,
+          "regional_share": 0.2582,
+          "vs_national": 1.63
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 76,
-          "regional_share": 0.0847,
-          "vs_national": 0.89
+          "count": 84,
+          "regional_share": 0.0889,
+          "vs_national": 0.95
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 0,
-          "regional_share": 0.0,
-          "vs_national": 0.0
+          "count": 103,
+          "regional_share": 0.109,
+          "vs_national": 1.18
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 62,
-          "regional_share": 0.0691,
-          "vs_national": 0.81
+          "count": 66,
+          "regional_share": 0.0698,
+          "vs_national": 0.84
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 164,
-          "regional_share": 0.1828,
-          "vs_national": 2.58
+          "count": 73,
+          "regional_share": 0.0772,
+          "vs_national": 1.06
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 65,
+          "regional_share": 0.0688,
+          "vs_national": 1.13
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 29,
-          "regional_share": 0.0323,
-          "vs_national": 0.54
+          "count": 33,
+          "regional_share": 0.0349,
+          "vs_national": 0.61
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 32,
-          "regional_share": 0.0357,
-          "vs_national": 0.62
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 39,
-          "regional_share": 0.0435,
-          "vs_national": 0.78
+          "count": 29,
+          "regional_share": 0.0307,
+          "vs_national": 0.55
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
-          "count": 46,
-          "regional_share": 0.0513,
-          "vs_national": 0.98
+          "count": 47,
+          "regional_share": 0.0497,
+          "vs_national": 0.93
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 43,
+          "regional_share": 0.0455,
+          "vs_national": 0.87
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 66,
+          "regional_share": 0.0698,
+          "vs_national": 1.37
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 38,
-          "regional_share": 0.0424,
-          "vs_national": 0.84
+          "count": 46,
+          "regional_share": 0.0487,
+          "vs_national": 0.98
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 38,
-          "regional_share": 0.0424,
-          "vs_national": 0.89
+          "count": 36,
+          "regional_share": 0.0381,
+          "vs_national": 0.78
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 13,
-          "regional_share": 0.0145,
-          "vs_national": 0.45
+          "count": 12,
+          "regional_share": 0.0127,
+          "vs_national": 0.39
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 15,
-          "regional_share": 0.0167,
-          "vs_national": 1.36
+          "count": 11,
+          "regional_share": 0.0116,
+          "vs_national": 1.0
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 3,
-          "regional_share": 0.0033,
-          "vs_national": 0.43
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 1,
-          "regional_share": 0.0011,
-          "vs_national": 0.16
+          "count": 5,
+          "regional_share": 0.0053,
+          "vs_national": 0.69
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 5,
-          "regional_share": 0.0056,
-          "vs_national": 0.87
+          "count": 7,
+          "regional_share": 0.0074,
+          "vs_national": 1.11
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
@@ -3237,25 +3237,17 @@
           "term": "Hantverk",
           "count": 1,
           "regional_share": 0.0011,
-          "vs_national": 0.28
+          "vs_national": 0.27
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
           "term": "Militära yrken",
-          "count": 0,
-          "regional_share": 0.0,
-          "vs_national": 0.0
+          "count": 1,
+          "regional_share": 0.0011,
+          "vs_national": 0.42
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 902,
-          "top_field": {
-            "term": "Hälso- och sjukvård",
-            "vs_national": 1.63
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 826,
@@ -3279,111 +3271,126 @@
             "term": "Pedagogik",
             "vs_national": 2.58
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 945,
+          "top_field": {
+            "term": "Hälso- och sjukvård",
+            "vs_national": 1.63
+          }
         }
       ]
     },
     {
       "concept_id": "65Ms_7r1_RTG",
       "term": "Jämtlands län",
-      "total_ads": 656,
+      "total_ads": 650,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 151,
-          "regional_share": 0.2302,
-          "vs_national": 1.6
+          "count": 161,
+          "regional_share": 0.2477,
+          "vs_national": 1.57
         },
         {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
+          "concept_id": "RPTn_bxG_ExZ",
+          "term": "Försäljning, inköp, marknadsföring",
+          "count": 55,
+          "regional_share": 0.0846,
+          "vs_national": 0.9
+        },
+        {
+          "concept_id": "GazW_2TU_kJw",
+          "term": "Yrken med social inriktning",
           "count": 0,
           "regional_share": 0.0,
           "vs_national": 0.0
         },
         {
-          "concept_id": "RPTn_bxG_ExZ",
-          "term": "Försäljning, inköp, marknadsföring",
-          "count": 60,
-          "regional_share": 0.0915,
-          "vs_national": 0.96
-        },
-        {
-          "concept_id": "GazW_2TU_kJw",
-          "term": "Yrken med social inriktning",
-          "count": 65,
-          "regional_share": 0.0991,
-          "vs_national": 1.06
-        },
-        {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 63,
-          "regional_share": 0.096,
-          "vs_national": 1.13
+          "count": 50,
+          "regional_share": 0.0769,
+          "vs_national": 0.92
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 99,
-          "regional_share": 0.1509,
-          "vs_national": 2.13
+          "count": 120,
+          "regional_share": 0.1846,
+          "vs_national": 2.54
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 7,
+          "regional_share": 0.0108,
+          "vs_national": 0.18
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 11,
-          "regional_share": 0.0168,
-          "vs_national": 0.28
+          "count": 8,
+          "regional_share": 0.0123,
+          "vs_national": 0.21
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 21,
-          "regional_share": 0.032,
-          "vs_national": 0.56
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 13,
-          "regional_share": 0.0198,
-          "vs_national": 0.36
+          "count": 25,
+          "regional_share": 0.0385,
+          "vs_national": 0.69
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
-          "count": 110,
-          "regional_share": 0.1677,
-          "vs_national": 3.22
+          "count": 115,
+          "regional_share": 0.1769,
+          "vs_national": 3.32
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 11,
+          "regional_share": 0.0169,
+          "vs_national": 0.32
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 28,
+          "regional_share": 0.0431,
+          "vs_national": 0.85
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
           "count": 27,
-          "regional_share": 0.0412,
-          "vs_national": 0.81
+          "regional_share": 0.0415,
+          "vs_national": 0.84
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 19,
-          "regional_share": 0.029,
-          "vs_national": 0.61
+          "count": 22,
+          "regional_share": 0.0338,
+          "vs_national": 0.69
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 19,
-          "regional_share": 0.029,
-          "vs_national": 0.9
+          "count": 22,
+          "regional_share": 0.0338,
+          "vs_national": 1.05
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
           "count": 1,
           "regional_share": 0.0015,
-          "vs_national": 0.12
+          "vs_national": 0.13
         },
         {
           "concept_id": "9puE_nYg_crq",
@@ -3393,50 +3400,35 @@
           "vs_national": 0.0
         },
         {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 0,
-          "regional_share": 0.0,
-          "vs_national": 0.0
-        },
-        {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 5,
-          "regional_share": 0.0076,
-          "vs_national": 1.19
+          "count": 9,
+          "regional_share": 0.0138,
+          "vs_national": 2.08
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
-          "count": 5,
-          "regional_share": 0.0076,
-          "vs_national": 1.21
+          "count": 4,
+          "regional_share": 0.0062,
+          "vs_national": 1.0
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
-          "count": 3,
-          "regional_share": 0.0046,
-          "vs_national": 1.13
+          "count": 2,
+          "regional_share": 0.0031,
+          "vs_national": 0.78
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
           "term": "Militära yrken",
-          "count": 4,
-          "regional_share": 0.0061,
-          "vs_national": 2.2
+          "count": 3,
+          "regional_share": 0.0046,
+          "vs_national": 1.85
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 634,
-          "top_field": {
-            "term": "Hotell, restaurang, storhushåll",
-            "vs_national": 3.62
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 587,
@@ -3460,146 +3452,154 @@
             "term": "Hotell, restaurang, storhushåll",
             "vs_national": 3.22
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 650,
+          "top_field": {
+            "term": "Hotell, restaurang, storhushåll",
+            "vs_national": 3.32
+          }
         }
       ]
     },
     {
       "concept_id": "g5Tt_CAV_zBd",
       "term": "Västerbottens län",
-      "total_ads": 1058,
+      "total_ads": 1101,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 236,
-          "regional_share": 0.2231,
-          "vs_national": 1.55
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 64,
-          "regional_share": 0.0605,
-          "vs_national": 0.55
+          "count": 233,
+          "regional_share": 0.2116,
+          "vs_national": 1.34
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 82,
-          "regional_share": 0.0775,
-          "vs_national": 0.81
+          "count": 85,
+          "regional_share": 0.0772,
+          "vs_national": 0.82
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
           "count": 115,
-          "regional_share": 0.1087,
-          "vs_national": 1.16
+          "regional_share": 0.1045,
+          "vs_national": 1.13
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 80,
-          "regional_share": 0.0756,
-          "vs_national": 0.89
+          "count": 86,
+          "regional_share": 0.0781,
+          "vs_national": 0.94
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 94,
-          "regional_share": 0.0888,
-          "vs_national": 1.25
+          "count": 91,
+          "regional_share": 0.0827,
+          "vs_national": 1.14
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 77,
+          "regional_share": 0.0699,
+          "vs_national": 1.15
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 19,
-          "regional_share": 0.018,
-          "vs_national": 0.3
+          "count": 20,
+          "regional_share": 0.0182,
+          "vs_national": 0.32
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 44,
-          "regional_share": 0.0416,
-          "vs_national": 0.73
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 34,
-          "regional_share": 0.0321,
-          "vs_national": 0.58
+          "count": 67,
+          "regional_share": 0.0609,
+          "vs_national": 1.09
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
-          "count": 56,
-          "regional_share": 0.0529,
-          "vs_national": 1.02
+          "count": 68,
+          "regional_share": 0.0618,
+          "vs_national": 1.16
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 30,
+          "regional_share": 0.0272,
+          "vs_national": 0.52
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 76,
+          "regional_share": 0.069,
+          "vs_national": 1.36
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 77,
-          "regional_share": 0.0728,
-          "vs_national": 1.44
+          "count": 60,
+          "regional_share": 0.0545,
+          "vs_national": 1.1
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 51,
-          "regional_share": 0.0482,
-          "vs_national": 1.01
+          "count": 58,
+          "regional_share": 0.0527,
+          "vs_national": 1.08
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
+          "count": 25,
+          "regional_share": 0.0227,
+          "vs_national": 0.71
+        },
+        {
+          "concept_id": "E7hm_BLq_fqZ",
+          "term": "Säkerhet och bevakning",
           "count": 0,
           "regional_share": 0.0,
           "vs_national": 0.0
         },
         {
-          "concept_id": "E7hm_BLq_fqZ",
-          "term": "Säkerhet och bevakning",
-          "count": 18,
-          "regional_share": 0.017,
-          "vs_national": 1.38
-        },
-        {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 7,
-          "regional_share": 0.0066,
-          "vs_national": 0.85
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 18,
-          "regional_share": 0.017,
-          "vs_national": 2.48
+          "count": 5,
+          "regional_share": 0.0045,
+          "vs_national": 0.59
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 13,
-          "regional_share": 0.0123,
-          "vs_national": 1.91
+          "count": 17,
+          "regional_share": 0.0154,
+          "vs_national": 2.32
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
           "count": 3,
-          "regional_share": 0.0028,
-          "vs_national": 0.45
+          "regional_share": 0.0027,
+          "vs_national": 0.44
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
-          "count": 1,
-          "regional_share": 0.0009,
-          "vs_national": 0.23
+          "count": 3,
+          "regional_share": 0.0027,
+          "vs_national": 0.69
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
@@ -3610,14 +3610,6 @@
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 1075,
-          "top_field": {
-            "term": "Pedagogik",
-            "vs_national": 1.7
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 984,
@@ -3641,164 +3633,164 @@
             "term": "Naturvetenskap",
             "vs_national": 2.48
           }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 1101,
+          "top_field": {
+            "term": "Naturbruk",
+            "vs_national": 2.32
+          }
         }
       ]
     },
     {
       "concept_id": "9hXe_F4g_eTG",
       "term": "Norrbottens län",
-      "total_ads": 1434,
+      "total_ads": 1489,
       "occupation_fields": [
         {
           "concept_id": "NYW6_mP6_vwf",
           "term": "Hälso- och sjukvård",
-          "count": 261,
-          "regional_share": 0.182,
+          "count": 299,
+          "regional_share": 0.2008,
           "vs_national": 1.27
-        },
-        {
-          "concept_id": "bh3H_Y3h_5eD",
-          "term": "Chefer och verksamhetsledare",
-          "count": 63,
-          "regional_share": 0.0439,
-          "vs_national": 0.4
         },
         {
           "concept_id": "RPTn_bxG_ExZ",
           "term": "Försäljning, inköp, marknadsföring",
-          "count": 94,
-          "regional_share": 0.0656,
-          "vs_national": 0.69
+          "count": 101,
+          "regional_share": 0.0678,
+          "vs_national": 0.72
         },
         {
           "concept_id": "GazW_2TU_kJw",
           "term": "Yrken med social inriktning",
-          "count": 138,
-          "regional_share": 0.0962,
-          "vs_national": 1.03
+          "count": 131,
+          "regional_share": 0.088,
+          "vs_national": 0.95
         },
         {
           "concept_id": "X82t_awd_Qyc",
           "term": "Administration, ekonomi, juridik",
-          "count": 93,
-          "regional_share": 0.0649,
-          "vs_national": 0.76
+          "count": 98,
+          "regional_share": 0.0658,
+          "vs_national": 0.79
         },
         {
           "concept_id": "MVqp_eS8_kDZ",
           "term": "Pedagogik",
-          "count": 114,
-          "regional_share": 0.0795,
-          "vs_national": 1.12
+          "count": 130,
+          "regional_share": 0.0873,
+          "vs_national": 1.2
+        },
+        {
+          "concept_id": "6Hq3_tKo_V57",
+          "term": "Yrken med teknisk inriktning",
+          "count": 93,
+          "regional_share": 0.0625,
+          "vs_national": 1.03
         },
         {
           "concept_id": "apaJ_2ja_LuF",
           "term": "Data/IT",
-          "count": 47,
-          "regional_share": 0.0328,
-          "vs_national": 0.55
+          "count": 46,
+          "regional_share": 0.0309,
+          "vs_national": 0.54
         },
         {
           "concept_id": "ASGV_zcE_bWf",
           "term": "Transport, distribution, lager",
-          "count": 78,
-          "regional_share": 0.0544,
-          "vs_national": 0.95
-        },
-        {
-          "concept_id": "wTEr_CBC_bqh",
-          "term": "Industriell tillverkning",
-          "count": 56,
-          "regional_share": 0.0391,
-          "vs_national": 0.7
+          "count": 86,
+          "regional_share": 0.0578,
+          "vs_national": 1.03
         },
         {
           "concept_id": "ScKy_FHB_7wT",
           "term": "Hotell, restaurang, storhushåll",
-          "count": 105,
-          "regional_share": 0.0732,
-          "vs_national": 1.4
+          "count": 102,
+          "regional_share": 0.0685,
+          "vs_national": 1.29
+        },
+        {
+          "concept_id": "wTEr_CBC_bqh",
+          "term": "Industriell tillverkning",
+          "count": 58,
+          "regional_share": 0.039,
+          "vs_national": 0.74
+        },
+        {
+          "concept_id": "bh3H_Y3h_5eD",
+          "term": "Chefer och verksamhetsledare",
+          "count": 72,
+          "regional_share": 0.0484,
+          "vs_national": 0.95
         },
         {
           "concept_id": "yhCP_AqT_tns",
           "term": "Installation, drift, underhåll",
-          "count": 124,
-          "regional_share": 0.0865,
-          "vs_national": 1.71
+          "count": 118,
+          "regional_share": 0.0792,
+          "vs_national": 1.6
         },
         {
           "concept_id": "j7Cq_ZJe_GkT",
           "term": "Bygg och anläggning",
-          "count": 111,
-          "regional_share": 0.0774,
-          "vs_national": 1.62
+          "count": 107,
+          "regional_share": 0.0719,
+          "vs_national": 1.47
         },
         {
           "concept_id": "whao_Q6A_ScE",
           "term": "Sanering och renhållning",
-          "count": 32,
-          "regional_share": 0.0223,
-          "vs_national": 0.69
+          "count": 28,
+          "regional_share": 0.0188,
+          "vs_national": 0.58
         },
         {
           "concept_id": "E7hm_BLq_fqZ",
           "term": "Säkerhet och bevakning",
-          "count": 37,
-          "regional_share": 0.0258,
-          "vs_national": 2.09
+          "count": 38,
+          "regional_share": 0.0255,
+          "vs_national": 2.19
         },
         {
           "concept_id": "9puE_nYg_crq",
           "term": "Kultur, media, design",
-          "count": 5,
-          "regional_share": 0.0035,
-          "vs_national": 0.45
-        },
-        {
-          "concept_id": "kJeN_wmw_9wX",
-          "term": "Naturvetenskap",
-          "count": 11,
-          "regional_share": 0.0077,
-          "vs_national": 1.12
+          "count": 4,
+          "regional_share": 0.0027,
+          "vs_national": 0.35
         },
         {
           "concept_id": "VuuL_7CH_adj",
           "term": "Naturbruk",
-          "count": 9,
-          "regional_share": 0.0063,
-          "vs_national": 0.98
+          "count": 7,
+          "regional_share": 0.0047,
+          "vs_national": 0.71
         },
         {
           "concept_id": "Uuf1_GMh_Uvw",
           "term": "Kropps- och skönhetsvård",
           "count": 6,
-          "regional_share": 0.0042,
-          "vs_national": 0.67
+          "regional_share": 0.004,
+          "vs_national": 0.66
         },
         {
           "concept_id": "PaxQ_o1G_wWH",
           "term": "Hantverk",
           "count": 5,
-          "regional_share": 0.0035,
-          "vs_national": 0.86
+          "regional_share": 0.0034,
+          "vs_national": 0.85
         },
         {
           "concept_id": "bH5L_uXD_ZAX",
           "term": "Militära yrken",
-          "count": 10,
-          "regional_share": 0.007,
-          "vs_national": 2.52
+          "count": 11,
+          "regional_share": 0.0074,
+          "vs_national": 2.97
         }
       ],
       "recent_weeks": [
-        {
-          "week": "2026-W40",
-          "total_ads": 1543,
-          "top_field": {
-            "term": "Militära yrken",
-            "vs_national": 3.65
-          }
-        },
         {
           "week": "2026-W41",
           "total_ads": 1364,
@@ -3821,6 +3813,14 @@
           "top_field": {
             "term": "Militära yrken",
             "vs_national": 2.52
+          }
+        },
+        {
+          "week": "2026-W44",
+          "total_ads": 1489,
+          "top_field": {
+            "term": "Militära yrken",
+            "vs_national": 2.97
           }
         }
       ]
