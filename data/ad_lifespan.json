@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-10-01",
-  "weeks_tracked": 39,
+  "last_updated": "2026-11-01",
+  "weeks_tracked": 43,
   "occupation_fields": [
     {
       "term": "Militära yrken",
@@ -21,15 +21,6 @@
       "sample_size": 70592
     },
     {
-      "term": "Data/IT",
-      "concept_id": "apaJ_2ja_LuF",
-      "median_lifespan_days": 30,
-      "mean_lifespan_days": 51,
-      "pct_filled_under_7d": 7.5,
-      "pct_open_over_60d": 22.4,
-      "sample_size": 36828
-    },
-    {
       "term": "Yrken med teknisk inriktning",
       "concept_id": "6Hq3_tKo_V57",
       "median_lifespan_days": 30,
@@ -39,13 +30,13 @@
       "sample_size": 28986
     },
     {
-      "term": "Industriell tillverkning",
-      "concept_id": "wTEr_CBC_bqh",
+      "term": "Data/IT",
+      "concept_id": "apaJ_2ja_LuF",
       "median_lifespan_days": 30,
-      "mean_lifespan_days": 40,
-      "pct_filled_under_7d": 5.0,
-      "pct_open_over_60d": 13.1,
-      "sample_size": 25291
+      "mean_lifespan_days": 51,
+      "pct_filled_under_7d": 7.5,
+      "pct_open_over_60d": 22.4,
+      "sample_size": 36828
     },
     {
       "term": "Transport, distribution, lager",
@@ -66,13 +57,13 @@
       "sample_size": 27162
     },
     {
-      "term": "Installation, drift, underhåll",
-      "concept_id": "yhCP_AqT_tns",
+      "term": "Industriell tillverkning",
+      "concept_id": "wTEr_CBC_bqh",
       "median_lifespan_days": 30,
-      "mean_lifespan_days": 46,
-      "pct_filled_under_7d": 2.8,
-      "pct_open_over_60d": 17.6,
-      "sample_size": 25775
+      "mean_lifespan_days": 40,
+      "pct_filled_under_7d": 5.0,
+      "pct_open_over_60d": 13.1,
+      "sample_size": 25291
     },
     {
       "term": "Bygg och anläggning",
@@ -84,6 +75,15 @@
       "sample_size": 20844
     },
     {
+      "term": "Installation, drift, underhåll",
+      "concept_id": "yhCP_AqT_tns",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 46,
+      "pct_filled_under_7d": 2.8,
+      "pct_open_over_60d": 17.6,
+      "sample_size": 25775
+    },
+    {
       "term": "Sanering och renhållning",
       "concept_id": "whao_Q6A_ScE",
       "median_lifespan_days": 30,
@@ -93,15 +93,6 @@
       "sample_size": 17035
     },
     {
-      "term": "Kropps- och skönhetsvård",
-      "concept_id": "Uuf1_GMh_Uvw",
-      "median_lifespan_days": 30,
-      "mean_lifespan_days": 56,
-      "pct_filled_under_7d": 0.4,
-      "pct_open_over_60d": 27.2,
-      "sample_size": 2046
-    },
-    {
       "term": "Naturbruk",
       "concept_id": "VuuL_7CH_adj",
       "median_lifespan_days": 30,
@@ -109,6 +100,15 @@
       "pct_filled_under_7d": 2.2,
       "pct_open_over_60d": 12.7,
       "sample_size": 4073
+    },
+    {
+      "term": "Kropps- och skönhetsvård",
+      "concept_id": "Uuf1_GMh_Uvw",
+      "median_lifespan_days": 30,
+      "mean_lifespan_days": 56,
+      "pct_filled_under_7d": 0.4,
+      "pct_open_over_60d": 27.2,
+      "sample_size": 2046
     },
     {
       "term": "Hantverk",
@@ -174,13 +174,13 @@
       "sample_size": 28276
     },
     {
-      "term": "Naturvetenskap",
-      "concept_id": "kJeN_wmw_9wX",
-      "median_lifespan_days": 23,
-      "mean_lifespan_days": 32,
-      "pct_filled_under_7d": 2.4,
-      "pct_open_over_60d": 8.2,
-      "sample_size": 5379
+      "term": "Pedagogik",
+      "concept_id": "MVqp_eS8_kDZ",
+      "median_lifespan_days": 20,
+      "mean_lifespan_days": 26,
+      "pct_filled_under_7d": 2.9,
+      "pct_open_over_60d": 5.4,
+      "sample_size": 51989
     }
   ],
   "overall": {
@@ -191,71 +191,71 @@
         "id": "29824618",
         "headline": "Städare i Malmö ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 449,
+        "days_open": 480,
         "region": "Skåne län"
       },
       {
         "id": "29824626",
         "headline": "Städare i Stockholm ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 449,
+        "days_open": 480,
         "region": "Stockholms län"
       },
       {
         "id": "29824638",
         "headline": "Cleaner in Stockholm ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 449,
+        "days_open": 480,
         "region": "Stockholms län"
       },
       {
         "id": "29824645",
         "headline": "Cleaner in Malmö ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 449,
+        "days_open": 480,
         "region": "Skåne län"
       },
       {
         "id": "29824651",
         "headline": "Cleaner in Gothenburg ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 449,
+        "days_open": 480,
         "region": "Västra Götalands län"
       },
       {
         "id": "30334648",
         "headline": "Städare i Göteborg ",
         "occupation_field": "Sanering och renhållning",
-        "days_open": 302,
-        "region": "Västra Götalands län"
-      },
-      {
-        "id": "30429255",
-        "headline": "Taxichaufför",
-        "occupation_field": "Transport, distribution, lager",
-        "days_open": 275,
-        "region": "Stockholms län"
-      },
-      {
-        "id": "30432726",
-        "headline": "Frisör sökes till Marias Sax i Ytterby (deltid) ",
-        "occupation_field": "Kropps- och skönhetsvård",
-        "days_open": 271,
+        "days_open": 333,
         "region": "Västra Götalands län"
       },
       {
         "id": "30486370",
         "headline": "Leg dietist till Hela Kroppen Fysiocenter  Järfälla",
         "occupation_field": "Hälso- och sjukvård",
-        "days_open": 255,
+        "days_open": 286,
         "region": "Stockholms län"
       },
       {
-        "id": "30518136",
-        "headline": "Heltidsanställd tandhygienist till mysig privatklinik sökes.",
-        "occupation_field": "Hälso- och sjukvård",
-        "days_open": 248,
-        "region": "Västerbottens län"
+        "id": "30523189",
+        "headline": "PLM Teamcenter",
+        "occupation_field": "Data/IT",
+        "days_open": 278,
+        "region": "—"
+      },
+      {
+        "id": "30528955",
+        "headline": "Fordonslackerare / Bilplåtslagare",
+        "occupation_field": "Industriell tillverkning",
+        "days_open": 278,
+        "region": "Stockholms län"
+      },
+      {
+        "id": "30540329",
+        "headline": "Taxiförare sökes – med giltig taxiförarlegitimation | Västerås",
+        "occupation_field": "Transport, distribution, lager",
+        "days_open": 276,
+        "region": "Västmanlands län"
       }
     ]
   },
