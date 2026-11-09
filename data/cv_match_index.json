@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-02T14:21:06Z",
+  "last_updated": "2026-11-09T14:48:20Z",
   "version": "cv-fit-engine-v2",
   "retrieval": "tf-idf-cosine",
   "domain_label": {
